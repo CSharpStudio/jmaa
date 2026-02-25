@@ -294,7 +294,7 @@ public class PgSqlDialect implements SqlDialect {
         if (comment == null) {
             comment = "";
         }
-        String sql = "CREATE TABLE " + table + " (" + column1 + " VARCHAR(13) NOT NULL, " + column2
+        String sql = "CREATE TABLE " + table + " (id VARCHAR(13)," + column1 + " VARCHAR(13) NOT NULL, " + column2
             + " VARCHAR(13) NOT NULL, PRIMARY KEY(" + column1 + "," + column2 + "))";
         cr.execute(sql);
         if (StringUtils.isNotEmpty(comment)) {

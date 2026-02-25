@@ -246,7 +246,7 @@ public class ClickhouseDialect implements SqlDialect {
         table = quote(table);
         column1 = quote(column1);
         column2 = quote(column2);
-        String sql = String.format("CREATE TABLE IF NOT EXISTS %s (%s String, %s String) ENGINE = MergeTree() ORDER BY (%s, %s)",
+        String sql = String.format("CREATE TABLE IF NOT EXISTS %s (id String,%s String,%s String) ENGINE = MergeTree() ORDER BY (%s, %s)",
             table, column1, column2, column1, column2);
 
         if (StringUtils.isNotEmpty(comment)) {

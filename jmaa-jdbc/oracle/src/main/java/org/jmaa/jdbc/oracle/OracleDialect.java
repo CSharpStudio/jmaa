@@ -298,7 +298,7 @@ public class OracleDialect implements SqlDialect {
         table = quote(table);
         column1 = quote(column1);
         column2 = quote(column2);
-        String sql = "CREATE TABLE " + table + " (" + column1 + " VARCHAR2(13) NOT NULL, " + column2 + " VARCHAR2(13) NOT NULL, PRIMARY KEY(" + column1 + "," + column2 + "))";
+        String sql = "CREATE TABLE " + table + " (id VARCHAR(13)," + column1 + " VARCHAR2(13) NOT NULL, " + column2 + " VARCHAR2(13) NOT NULL, PRIMARY KEY(" + column1 + "," + column2 + "))";
         cr.execute(sql);
         if (StringUtils.isNotEmpty(comment)) {
             cr.execute(String.format("COMMENT ON TABLE %s IS '%s'", table, comment.replace("'", "''")));

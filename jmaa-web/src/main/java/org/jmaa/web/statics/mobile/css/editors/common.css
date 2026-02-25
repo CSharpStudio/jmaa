@@ -1,0 +1,8 @@
+.readonly .input-suffix{
+    cursor: default;
+    opacity: .4;
+}
+
+.editor .ui-state-disabled{
+    pointer-events: auto;
+}

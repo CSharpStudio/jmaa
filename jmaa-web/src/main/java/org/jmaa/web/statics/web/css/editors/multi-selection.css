@@ -1,0 +1,107 @@
+.e-multi-selection {
+    position: relative;
+}
+
+.e-multi-selection .form-control {
+    height: auto;
+    min-height: calc(1.75rem + 2px);
+}
+
+.e-multi-selection .input-item .form-control {
+    min-height: 0;
+    font-size: .85rem;
+}
+
+.e-multi-selection .select-results {
+    overflow: hidden;
+    list-style: none;
+    padding: 0 5px 0 0;
+    line-height: 19px;
+    font-size: 0.85rem;
+    margin: 0 0 4px 0;
+}
+
+.e-multi-selection .select-results .select-item {
+    cursor: default;
+    float: left;
+    margin-right: 5px;
+    margin-top: 4px;
+    padding: 0 8px;
+    border-radius: 4px;
+    border: 1px solid #017e84;
+    background-color: #017e84;
+    color: #fff;
+}
+
+.e-multi-selection .select-results .input-item {
+    float: left;
+}
+
+.e-multi-selection .form-control.focus .input-item input {
+    min-width: 80px;
+}
+
+.e-multi-selection .input-item input {
+    background: none !important;
+    outline: none !important;
+    border: none !important;
+    padding: 4px 0 0 2px;
+    width: 1px;
+}
+
+.e-multi-selection .select-results .remove-item {
+    color: #eae9e9;
+    margin-left: 2px;
+    margin-right: -8px;
+    cursor: pointer;
+    float: right;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    line-height: 8px;
+}
+
+.e-multi-selection .select-results .remove-item:hover {
+    color: #fff;
+}
+
+.e-multi-selection.readonly .select-item {
+    background-color: rgba(143, 195, 31, .6);
+}
+
+.e-multi-selection.readonly .remove-item {
+    display: none;
+}
+
+.e-multi-selection.readonly .form-control {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.e-multi-selection .lookup-data {
+    overflow-x: auto;
+}
+
+.e-multi-selection .lookup-info {
+    text-align: center;
+    font-style: italic;
+}
+
+.e-multi-selection .select-item.dragging {
+    /*opacity: 0.5;*/
+    /*background: #f5f5f5;*/
+    /*rotate: -2deg;*/
+}
+
+.e-multi-selection .select-results .placeholder {
+    height: 16px;
+    width: 2px;
+    background: #e0f0ff;
+    border: 1px dashed #428bca;
+    float: left;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+
+.e-multi-selection.sortable .select-item {
+    cursor: move;
+}

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_other_stock_out_mobile_resource" name="其它出库-移动端-资源" model="wms.other_stock_out_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/other_stock_out_mobile.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id="wms_other_stock_out_mobile_view" name="其它出库-移动端" model="wms.other_stock_out_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>其它出库</t>
+                    </h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-input focus" type="text" t-enter="searchOrder"
+                               placeholder="单号/物料编码/标签条码"/>
+                        <button type="button" class="clear-input" t-click="resetSearchOrder"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="orderList" load-method="loadOrderList" on-item-click="openStockOut">
+                        <card style="margin-bottom:5px;">
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name="supplier_id" colspan="2"/>
+                            <field name="customer_id" colspan="2"/>
+                            <field name="warehouse_id" colspan="2"/>
+                            <field name="remark"/>
+                            <field name="status"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2><t>其它出库</t></h2>
+                    <a class="back-link" t-click="backSearchOrder" focus-to=".search-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="stockOutTab" label="其它出库">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input class="label-input" type="text" t-enter="scanCode"
+                                           placeholder="标签条码"/>
+                                    <button type="button" class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <button type="button" t-click="prevMaterial"
+                                            class="ui-btn ui-mini btn-primary">
+                                        <t>上一个</t>
+                                    </button>
+                                    <button type="button" t-click="nextMaterial"
+                                            class="ui-btn ui-mini btn-primary">
+                                        <t>下一个</t>
+                                    </button>
+                                    <div class="flex-fill"/>
+                                    <div  t-visible="stock_rule=='num' || stock_rule=='lot'">
+                                        <button type="button" t-click="stockOutMaterial"
+                                                class="ui-btn ui-mini btn-primary">
+                                            <t>确认</t>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="height: calc(100% - 79px)">
+                                <form ref="stockOutForm">
+                                    <field class="label-left" name="material_id" colspan="2"/>
+                                    <editor label="名称规格" name="material_name_spec" type="char" colspan="2"
+                                            readonly="1" class="label-left"/>
+                                    <field name="warehouse_id" colspan="2" class="label-left"
+                                           on-change-action="onWarehouseChange" required="1"/>
+                                    <editor label="待发数量" name="to_delivery_qty" type="float" readonly="1"
+                                            class="label-left"/>
+                                    <editor label="库存数量" name="onhand_qty" type="float" readonly="1"
+                                            class="label-left"/>
+                                    <editor label="发货数量" class="label-left" name="scan_qty" gt="0" type="float" required="1" t-visible="stock_rule !='sn'"/>
+                                    <field class="label-left" name="stock_rule" />
+                                    <field label="发货库位" name="location_id" class="label-left" t-visible="stock_rule=='num' || stock_rule=='lot'" type="char" lookup="[['warehouse_id','=',warehouse_id]]" colspan="2"/>
+                                    <field label="打印新标签" name="print_flag" t-visible="stock_rule=='num' || stock_rule=='lot'"/>
+                                    <field label="标签模板" class="label-left" name="template_id" t-visible="stock_rule=='num' || stock_rule=='lot'" lookup="[['category','=','material_label']]"/>
+                                    <editor label="推荐库位" name="suggest_location" type="char" readonly="1"
+                                            class="label-left"/>
+                                    <editor label="库存单位" name='unit' type="char" readonly="1" class="label-left"/>
+                                    <editor label="推荐条码" name="suggest_sn" type="char" colspan="2" readonly="1"
+                                            class="label-left"/>
+                                    <editor name='result' label="扫描结果" colspan="2" type="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="物料明细" t-click="showMaterialList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label><t>全部</t>
+                                            <input name="materialScope" type="radio" value="all"/>
+                                        </label>
+                                        <label><t>未完成</t>
+                                            <input checked="checked" name="materialScope" type="radio"
+                                                   value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <list ref="materialList" load-method="loadMaterialList" model="wms.other_stock_out_line"
+                                  style="height:calc(100% - 76px);">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name="request_qty"/>
+                                    <field name="scan_qty"/>
+                                    <field name='unit_id'/>
+                                    <field name='status'/>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab label="出库明细" t-click="showDetailsList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label><t>全部</t>
+                                            <input name="detailScope" type="radio" value="all"/>
+                                        </label>
+                                        <label><t>未完成</t>
+                                            <input checked="checked" name="detailScope" type="radio" value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                    <div class="flex-fill"/>
+                                    <button t-click="createStockOut" type="button" class="btn-primary"><t>生成出库单</t></button>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList"
+                                  style="height:calc(100% - 76px);" model="wms.other_stock_out_details">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='sn'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='qty'/>
+                                    <field name='unit_id'/>
+                                    <field name='product_date'/>
+                                    <field name='product_lot'/>
+                                    <field name='status'/>
+                                    <div style="position:absolute;right:10px;bottom:10px">
+                                        <button class="ui-btn btn-primary btn-order-group" t-click="deleteDetails">
+                                            <t>删除</t>
+                                        </button>
+                                    </div>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

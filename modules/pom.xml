@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jmaa</groupId>
+        <artifactId>jmaa</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>modules</artifactId>
+    <name>modules</name>
+    <description>Modules</description>
+    <packaging>pom</packaging>
+    <modules>
+        <module>basic</module>
+        <module>master-data</module>
+        <module>qms</module>
+        <module>mes</module>
+        <module>wms</module>
+        <module>aps</module>
+        <module>erp</module>
+        <module>common</module>
+    </modules>
+</project>

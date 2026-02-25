@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='wms_iqc_sheet_mobile_view' name='来料检验-移动端-WMS' type="mobile" priority="100"
+          inherit_id="wms-qc.iqc_sheet_mobile_view" model='iqc.sheet_mobile'>
+        <xpath expr="tabs[name='detailTabs']" position="inside">
+            <tab label="送检明细" name="materialDetails">
+                <div class="list-panel" style="height: 100%;">
+                    <list ref="iqcDetailsList" model="iqc.material_details" load-method="loadDetailsList">
+                        <card>
+                            <field name='material_id'/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name='sn' colspan="2"/>
+                            <field name='lot_num' colspan="2"/>
+                            <field name='material_name_spec' colspan="2"/>
+                            <field name='qty' class="sum col-success"/>
+                            <field name='unit_id'/>
+                            <field name='product_date' colspan="2"/>
+                            <field name='warehouse_id' colspan="2"/>
+                        </card>
+                    </list>
+                </div>
+            </tab>
+        </xpath>
+    </view>
+</data>

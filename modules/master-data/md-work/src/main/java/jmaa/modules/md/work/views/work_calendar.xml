@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_calendar_search' name='工作日历-查询' model='md.work_calendar'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_work_calendar_grid' name='工作日历-表格' model='md.work_calendar'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <field name='is_default'/>
+        </grid>
+    </view>
+    <view id='md_work_calendar_form' name='工作日历-表单' model='md.work_calendar'>
+        <form>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <field name='is_default'/>
+            <tabs>
+                <tab label="周方案">
+                    <field name='week_ids' colspan="4" nolabel="1">
+                        <grid>
+                            <toolbar></toolbar>
+                            <field name='shift_id'/>
+                            <field name='begin_date'/>
+                            <field name='mon'/>
+                            <field name='tue'/>
+                            <field name='wed'/>
+                            <field name='thu'/>
+                            <field name='fri'/>
+                            <field name='sat'/>
+                            <field name='sun'/>
+                            <edit>
+                                <field name='shift_id'/>
+                                <field name='begin_date'/>
+                                <div class="grid-colspan-4 d-grid" style="grid-template-columns: repeat(7, 1fr)">
+                                    <field name='mon'/>
+                                    <field name='tue'/>
+                                    <field name='wed'/>
+                                    <field name='thu'/>
+                                    <field name='fri'/>
+                                    <field name='sat'/>
+                                    <field name='sun'/>
+                                </div>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

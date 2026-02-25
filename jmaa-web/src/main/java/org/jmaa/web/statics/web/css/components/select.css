@@ -1,0 +1,31 @@
+.jui-select {
+    position: relative;
+    overflow: visible;
+}
+
+.jui-select .jui-select-dropdown {
+    background: #fff;
+    border: 1px solid #ddd;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.jui-select .jui-select-dropdown ul {
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+}
+
+.jui-select .jui-select-dropdown li {
+    padding: 6px 10px;
+    text-align: left;
+    cursor: pointer;
+    min-width: 50px;
+}
+
+.jui-select .jui-select-dropdown li:hover {
+    background-color: #f2f6fc;
+}

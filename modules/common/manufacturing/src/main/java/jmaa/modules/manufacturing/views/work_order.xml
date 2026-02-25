@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='mfg_work_order_resource' name='生产工单-资源' model='mfg.work_order'>
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"></script>
+            <script src="/web/jmaa/modules/manufacturing/statics/js/work_order.js"></script>
+        </resource>
+    </view>
+    <view id='mfg_work_order_search' name='生产工单-查询' model='mfg.work_order'>
+        <search>
+            <field name='code'/>
+            <field name='material_id'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='mfg_work_order_grid' name='生产工单-表格' model='mfg.work_order'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="发放" t-enable="ids:['draft', 'suspend'].includes(status)" name="release"
+                        t-click="releaseOrder" class="btn-success"/>
+                <button label="暂停" name="suspend" ref="release" t-click="suspendOrder" class="btn-info"
+                        t-enable="ids:['release','producing'].includes(status)"/>
+            </toolbar>
+            <field name='code'/>
+            <field name="status"
+                   tags="{draft:'warning',producing:'info',release:'success',done:'olive',_:'secondary'}"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='plan_qty' class="col-info"/>
+            <field name='output' class="col-success"/>
+            <field name='unit_id'/>
+            <field name='workshop_id'/>
+            <field name='resource_id'/>
+            <field name='product_order_id'/>
+            <field name='plan_start'/>
+            <field name='plan_end'/>
+            <field name='material_category' label="产品分类"/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='mfg_work_order_form' name='生产工单-表单' model='mfg.work_order'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button label="发放" t-enable="id" name="release" class="btn-success" t-click="releaseOrder"
+                        t-visible="['draft','suspend'].includes(status)"/>
+                <button label="暂停" name="suspend" t-click="suspendOrder" class="btn-info"
+                        t-visible="!['draft','suspend'].includes(status)"/>
+                <button label="关闭" auth="close" t-enable="status!='close'" t-click="closeOrder" ref="save"/>
+                <button label="重新修改" auth="close" t-enable="status=='close'" t-click="reopenOrder" ref="save"/>
+                <field name="status" editor="statusbar" values="draft,release,producing,done"/>
+            </toolbar>
+            <field name="code" placeholder="自动生成" readonly="1"/>
+            <field name='material_id' lookup="[['producible','=',true]]" order="code" view="default"
+                   t-readonly="status!='draft'" on-change-action="onMaterialChange"/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name="unit_accuracy" visible="0"/>
+            <field name='plan_qty' editor="accuracy" accuracy="unit_accuracy"/>
+            <field name='unit_id'/>
+            <field name='product_order_id' view="default" t-reset="material_id" lookup="[['status','=','approve']]"
+                   on-change-action="onProductOrderChange"/>
+            <field name='workshop_id' link="0"/>
+            <field name='resource_id' t-reset="workshop_id" view="default" lookup="[['workshop_id','=',workshop_id]]"/>
+            <field name='plan_start' format="yyyy-MM-DD HH:mm"/>
+            <field name='plan_end' format="yyyy-MM-DD HH:mm"/>
+            <field name='remark'/>
+            <tabs>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'></field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='mfg_work_order_lookup' name='生产工单-下拉' model='mfg.work_order'>
+        <lookup>
+            <field name='code'/>
+            <field name="status" tags="{'create':'warning','producing':'info','release':'success','_':'secondary'}"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='plan_qty'/>
+            <field name='unit_id'/>
+            <field name="plan_start"/>
+        </lookup>
+    </view>
+    <view id='mfg_work_order_lookup-mobile' key="mobile-lookup" name='生产工单-下拉-移动端' model='mfg.work_order'>
+        <lookup>
+            <field name='code' colspan="2"/>
+            <field name='material_id' colspan="2"/>
+            <field name='material_name_spec' colspan="2"/>
+            <field name='plan_qty'/>
+            <field name='unit_id'/>
+            <field name='material_category'/>
+            <field name="status"/>
+            <field name="plan_start" colspan="2"/>
+        </lookup>
+    </view>
+</data>

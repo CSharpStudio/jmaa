@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id='view_sn_onhand_report_resource' name='标签条码库存查询-资源' model='wms.onhand_report'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"></link>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/report/warehouseSearchEditor.js"></script>
+            <script src="/web/jmaa/modules/inventory/statics/js/report/onhand_report.js"></script>
+        </resource>
+    </view>
+    <view id='sn_onhand_report_search' name='标签条码库存-查询' model='wms.onhand_report'>
+        <search>
+            <field name='company_id' defaultValue="env.company" criteria="[['a.company_id', 'in', value]]"/>
+            <field name='warehouse_id' editor="warehouseSearchEditor" criteria="[['a.warehouse_id', 'in', value]]"/>
+            <field name='material_id' editor="many2many-tags" criteria="[['a.material_id', 'in', value]]"/>
+            <field name='sn' criteria="[['a.sn', '=', value]]"/>
+            <field name='lot_num' criteria="[['a.lot_num', '=', value]]"/>
+            <field name='category' criteria="[['b.category', 'in', value]]"/>
+            <field name='abc_type' criteria="[['b.abc_type', 'in', value]]"/>
+            <field name='product_lot' criteria="[['c.product_lot', '=', value]]"/>
+            <field name='quality_status' criteria="[['c.quality_status', 'in', value]]"/>
+        </search>
+    </view>
+    <view id='sn_onhand_report_grid' name='标签条码库存-表格' model='wms.onhand_report'>
+        <grid footer="1" ordering="0">
+            <toolbar buttons='query|export'>
+                <button label="库位移动" name="move" auth="move" t-click="showMoveDialog" class="btn btn-info"/>
+            </toolbar>
+            <field name='sn' class="material_code" criteria="[['a.sn','like',value]]"/>
+            <field name='lot_num' criteria="[['c.lot_num','like',value]]"/>
+            <field name='material_code' criteria="[['b.code','like',value]]"/>
+            <field name='name_spec' criteria="[['b.spec','like',value]]"/>
+            <field name='total_qty' class="sum col-info" filter="0" title="合格数+不合格数"/>
+            <field name='available_qty' class="sum col-success" filter="0" title="合格数-冻结数-分配数"/>
+            <field name='frozen_qty' class="sum col-danger" filter="0" title="盘点冻结数量"/>
+            <field name='allot_qty' class="sum col-warning" filter="0" title="出库待扣减库存数量"/>
+            <field name='ok_qty' class="sum col-success" filter="0"/>
+            <field name='ng_qty' class="sum col-danger" filter="0"/>
+            <field name='company' criteria="[['co.name','like',value]]"/>
+            <field name='warehouse' criteria="['|', ['w.name','like',value], ['w.code','like',value]]"/>
+            <field name='location' criteria="[['l.code','like',value]]"/>
+            <field name='quality_status' criteria="[['c.quality_status','=',value]]"/>
+            <field name='status' criteria="[['a.status','=',value]]"/>
+            <field name='unit' criteria="[['u.name','like',value]]"/>
+            <field name='category' criteria="[['b.category','=',value]]"/>
+            <field name='abc_type' criteria="[['b.abc_type','=',value]]"/>
+            <field name='product_lot' criteria="[['c.product_lot','like',value]]"/>
+            <field name='product_date'
+                   criteria="['&amp;', ['c.product_date','&gt;=',value[0]], ['c.product_date','&lt;=',value[1]]]"/>
+        </grid>
+    </view>
+    <view id='wms_location_move_form' name='标签条码库存-库位移动-表单' model="wms.location_move">
+        <form>
+            <field name="warehouse_id" colspan="2"/>
+            <field name="code" colspan="2"  placeholder="录入条码后按Enter键"/>
+            <field name="material_id" colspan="2" readonly="1"/>
+            <field name="material_name_spec" colspan="2" readonly="1"/>
+            <field name="qty"/>
+            <field name="unit_id" readonly="1"/>
+            <field name="location_code_source"/>
+            <field name="location_code_target"/>
+            <field name='msg' colspan="2" editor="msg_editor"/>
+            <div style="grid-column:span 2;grid-row:span 1;align-items: center;display: flex;" class="form-group col-12">
+                <button type="button" role="reset" class="btn btn-flat btn-lg btn-default mr-3" t-click="resetForm">
+                    <t>重置</t>
+                </button>
+                <button type="button" role="print" class="btn btn-flat btn-lg btn-success" t-click="submitForm">
+                    <t>确定</t>
+                </button>
+            </div>
+        </form>
+    </view>
+</data>

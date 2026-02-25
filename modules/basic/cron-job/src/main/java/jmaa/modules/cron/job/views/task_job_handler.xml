@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='job_handler_search' name='定时任务方法-查询' model='job.handler'>
+        <search>
+            <field name="name"/>
+            <field name="method"/>
+        </search>
+    </view>
+    <view id='job_handler_grid' name='定时任务方法-表格' model='job.handler'>
+        <grid>
+            <toolbar buttons="default"/>
+            <field name="name"/>
+            <field name="method"/>
+            <field name="description"/>
+        </grid>
+    </view>
+    <view id='job_handler_form' name='定时任务方法-表单' model='job.handler'>
+        <form>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="name"/>
+            <field name="method"/>
+            <field name="description"/>
+        </form>
+    </view>
+</data>

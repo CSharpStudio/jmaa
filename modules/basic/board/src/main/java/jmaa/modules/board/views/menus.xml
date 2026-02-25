@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="board_menus" name="大屏看板" seq="50">
+        <menu id="designer_menus" name="看板设计" seq="10" view="card,grid" model="board.designer"/>
+    </menu>
+</data>

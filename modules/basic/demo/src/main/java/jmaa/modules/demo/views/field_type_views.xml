@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id="view_field_type_resource" name="demo.field_type.resource" model="demo.field_type">
+        <resource>
+            <script src="/web/jmaa/modules/demo/statics/js/field_type.js"/>
+        </resource>
+    </view>
+    <view id="view_field_type_search" name="demo.field_type.search" model="demo.field_type">
+        <search>
+            <field name="f_bool" default="true"/>
+            <field name="f_date" editor="date-range"/>
+            <field name="f_datetime" editor="datetime-range"/>
+            <field name="f_time" editor="time-range"/>
+            <field name="f_radio" editor="radio"/>
+            <field name="f_m2o_id" editor="many2many-tags"/>
+            <fixed>
+                <field name="f_char" default="char"/>
+                <field name="f_selection"/>
+            </fixed>
+        </search>
+    </view>
+    <view id="view_field_type_grid" name="demo.field_type.grid" type="grid" model="demo.field_type">
+        <grid dialog="0" on-init="onGridInit" on-load="onGridLoad" on-selected="onGridSelected"
+              on-row-dblclick="onGridDblClick"
+              on-create="onGridCreate" on-save="onGridSave" on-valid="onGridValid" on-edit-load="onEditLoad">
+            <toolbar buttons="default">
+                <div class="input-group" position="after">
+                    <input t-enter="searchBy" type="text" class="form-control search-input" placeholder="文本或大文本"/>
+                    <div class="input-suffix">
+                        <button type="button" class="btn btn-default btn-lookup" t-click="searchBy">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </toolbar>
+            <field name="f_char"/>
+            <field name="f_bool"/>
+            <field name="f_date"/>
+            <field name="f_datetime"/>
+            <field name="f_float"/>
+            <field name="f_text"/>
+            <field name="f_int"/>
+            <field name="f_selection"/>
+            <field name="f_multi_selection" column="multi-selection" tags="{_:'success'}"/>
+            <field name="f_compute"/>
+            <field name="f_m2o_id"/>
+        </grid>
+    </view>
+    <view id="view_field_type_form" name="demo.field_type.form" model="demo.field_type">
+        <form cols="4" on-init="onFormInit" on-load="onFormLoad" on-create="onFormCreate"
+              on-valid="onFormValid" on-save="onFormSave" on-selected="onFormSelected">
+            <toolbar buttons="default">
+                <button auth="read" class="btn-success" t-click="setReadonly" label="只读"></button>
+                <button auth="read" class="btn-success">Success</button>
+                <button auth="read" class="btn-info">Info</button>
+                <button auth="read" class="btn-warning">Warning</button>
+                <button auth="read" class="btn-danger">Danger</button>
+                <button auth="read" class="btn-default">Default</button>
+                <button auth="read" class="btn-primary">Primary</button>
+                <button auth="read" class="btn-secondary">Secondary</button>
+            </toolbar>
+            <group label="文本" collapsable="1" colspan="2" rowspan="2">
+                <field name="f_char" required="1" length="10" trim="1"/>
+                <field name="f_text" rows="6"/>
+                <field name="f_html" visible="0"/>
+            </group>
+            <group label="数字" collapsable="1" colspan="2">
+                <field name="f_float" required="1" min="0" max="5" step="0.5"/>
+                <field name="f_int" required="1" min="0" max="6" step="1" on-change-action="getDecimals"/>
+            </group>
+            <group label="布尔" collapsable="1" colspan="2">
+                <field name="f_bool" required="1"/>
+                <field name="f_bool_nullable" allow-null="1"/>
+                <div class="form-group e-check">
+                    <input type="checkbox" id="c1"></input>
+                    <label for="c1">是否</label>
+                </div>
+                <div class="form-group e-check">
+                    <input type="checkbox" id="c2"></input>
+                    <label class="right" for="c2">是否</label>
+                </div>
+            </group>
+            <group label="选择" collapsable="1" colspan="2">
+                <field name="f_priority" editor="priority"/>
+                <field name="f_selection" required="1"/>
+                <field name="f_multi_selection" editor="multi-selection"/>
+                <field name="f_radio" editor="radio"/>
+                <field name="f_check_list" editor="checklist" required="1"/>
+            </group>
+            <group label="日期" collapsable="1" colspan="2">
+                <field name="f_time" editor="time"/>
+                <field name="f_time_mm" editor="time" format="HH:mm"/>
+                <field name="f_date" required="1" min="2020-1-1" max="2201-1-1"/>
+                <field name="f_datetime" required="1" min="2020-1-1" max="2023-1-1"/>
+                <field name="f_date_range" editor="date-range" required="1" format="yyyy-MM"/>
+                <field name="f_time_range" editor="time-range"/>
+            </group>
+            <group label="关联关系" collapsable="1" colspan="2">
+                <field name="f_m2o_id"/>
+                <field name="f_m2o_grid_id" view="default"/>
+                <field name="f_m2m_tags" editor="many2many-tags"/>
+            </group>
+            <group label="图片" collapsable="1" colspan="2">
+                <field name="f_image" limit="3" width="100" editor="media"/>
+                <field name="f_image_db" width="100"/>
+            </group>
+            <group label="文件" collapsable="1">
+                <field name="f_file" sync="1"/>
+                <field name="f_file_db"/>
+                <field name="f_big_file" size="50"/>
+            </group>
+            <!--            <group label="日历" collapsable="1">-->
+            <!--                <field name="f_calendar" editor="calendar" colspan="4"/>-->
+            <!--            </group>-->
+            <tabs>
+                <tab label="子模型">
+                    <field name="child_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <field name="f_char"/>
+                            <field name="f_bool"/>
+                            <field name="f_date"/>
+                            <field name="f_datetime"/>
+                            <field name="f_float"/>
+                            <field name="f_text"/>
+                            <field name="f_int"/>
+                            <field name="f_selection"/>
+                            <field name="f_multi_selection" column="multi-selection" tags="{_:'success'}"/>
+                            <field name="f_compute"/>
+                            <field name="f_m2o_id"/>
+                            <edit>
+                                <toolbar buttons="default">
+                                    <button auth="read" class="btn-success" t-click="setReadonly" label="只读"></button>
+                                    <button auth="read" class="btn-success">Success</button>
+                                    <button auth="read" class="btn-info">Info</button>
+                                    <button auth="read" class="btn-warning">Warning</button>
+                                    <button auth="read" class="btn-danger">Danger</button>
+                                    <button auth="read" class="btn-default">Default</button>
+                                </toolbar>
+                                <group label="文本" collapsable="1" colspan="2" rowspan="2">
+                                    <field name="f_char" required="1" length="10" trim="1"/>
+                                    <field name="f_text" rows="6"/>
+                                    <field name="f_html" visible="0"/>
+                                </group>
+                                <group label="数字" collapsable="1" colspan="2">
+                                    <field name="f_float" required="1" min="0" max="5" step="0.5"/>
+                                    <field name="f_int" required="1" min="0" max="6" step="1" on-change-action="getDecimals"/>
+                                </group>
+                                <group label="布尔" collapsable="1" colspan="2">
+                                    <field name="f_bool" required="1"/>
+                                    <field name="f_bool_nullable" allow-null="1"/>
+                                    <div class="form-group e-check">
+                                        <input type="checkbox" id="c1"></input>
+                                        <label for="c1">是否</label>
+                                    </div>
+                                    <div class="form-group e-check">
+                                        <input type="checkbox" id="c2"></input>
+                                        <label class="right" for="c2">是否</label>
+                                    </div>
+                                </group>
+                                <group label="选择" collapsable="1" colspan="2">
+                                    <field name="f_priority" editor="priority"/>
+                                    <field name="f_selection" required="1"/>
+                                    <field name="f_multi_selection" editor="multi-selection"/>
+                                    <field name="f_radio" editor="radio"/>
+                                    <field name="f_check_list" editor="checklist" required="1"/>
+                                </group>
+                                <group label="日期" collapsable="1" colspan="2">
+                                    <field name="f_time" editor="time"/>
+                                    <field name="f_time_mm" editor="time" format="HH:mm"/>
+                                    <field name="f_date" required="1" min="2020-1-1" max="2201-1-1"/>
+                                    <field name="f_datetime" required="1" min="2020-1-1" max="2023-1-1"/>
+                                    <field name="f_date_range" editor="date-range" required="1"/>
+                                    <field name="f_time_range" editor="time-range"/>
+                                </group>
+                                <group label="关联关系" collapsable="1" colspan="2">
+                                    <field name="f_m2o_id"/>
+                                    <field name="f_m2o_grid_id" view="default"/>
+                                    <field name="f_m2m_tags" editor="many2many-tags"/>
+                                </group>
+                                <group label="图片" collapsable="1" colspan="2">
+                                    <field name="f_image" limit="3" width="100"/>
+                                    <field name="f_image_db" width="100"/>
+                                </group>
+                                <group label="文件" collapsable="1">
+                                    <field name="f_file" sync="1"/>
+                                    <field name="f_file_db"/>
+                                    <field name="f_big_file" size="50"/>
+                                </group>
+                                <tabs>
+                                    <tab label="一对多">
+                                        <field name="f_o2m_ids" colspan="4" nolabel="1">
+                                            <grid on-edit-load="onEditLoad">
+                                                <toolbar>
+                                                    <button type="button" t-enable="id" label="测试" auth="test" t-click="test"></button>
+                                                </toolbar>
+                                                <field name="name"/>
+                                                <field name="one_id"/>
+                                                <field name="o2m_ids"/>
+                                                <edit on-load="onEditLoad">
+                                                    <field name="name"/>
+                                                    <field name="one_id"/>
+                                                    <tabs>
+                                                        <tab label="明细">
+                                                            <field name="o2m_ids" colspan="4">
+                                                                <grid>
+                                                                    <toolbar>
+                                                                        <button type="button" t-enable="id" label="测试" auth="test"
+                                                                                t-click="test"></button>
+                                                                    </toolbar>
+                                                                    <field name="name"/>
+                                                                    <field name="one_id"/>
+                                                                </grid>
+                                                            </field>
+                                                        </tab>
+                                                    </tabs>
+                                                </edit>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                    <tab label="多对多">
+                                        <field name="f_m2m_ids" colspan="4" nolabel="1">
+                                            <grid>
+                                                <toolbar></toolbar>
+                                                <field name="name"/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                </tabs>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="一对多">
+                    <field name="f_o2m_ids" colspan="4" nolabel="1">
+                        <grid on-edit-load="onEditLoad">
+                            <toolbar>
+                                <button type="button" t-enable="id" label="测试" auth="test" t-click="test"></button>
+                            </toolbar>
+                            <field name="name"/>
+                            <field name="one_id"/>
+                            <field name="o2m_ids"/>
+                            <field name="f_m2o_grid_id"/>
+                            <field name="f_datetime"/>
+                            <field name="f_date_range"/>
+                            <field name="f_m2m_tags"/>
+                            <field name="f_multi_selection"/>
+                            <edit on-load="onEditLoad">
+                                <field name="name"/>
+                                <field name="f_bool"/>
+                                <field name="one_id"/>
+                                <field name="f_m2o_grid_id"/>
+                                <field name="f_datetime"/>
+                                <field name="f_date_range" editor="date-range"/>
+                                <field name="f_m2m_tags" editor="many2many-tags"/>
+                                <field name="f_multi_selection"/>
+                                <tabs>
+                                    <tab label="明细" t-visible="f_bool">
+                                        <field name="o2m_ids" colspan="4">
+                                            <grid>
+                                                <toolbar>
+                                                    <button type="button" t-enable="id" label="测试" auth="test"
+                                                            t-click="test"></button>
+                                                </toolbar>
+                                                <field name="name"/>
+                                                <field name="one_id"/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                </tabs>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="多对多">
+                    <field name="f_m2m_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <toolbar></toolbar>
+                            <field name="name"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id="view_many2one_form" name="demo.many2one.form" model="demo.many2one">
+        <form>
+            <toolbar buttons="default"></toolbar>
+            <field name="name"/>
+            <field name="code"/>
+            <field name="active"/>
+        </form>
+    </view>
+    <view id="view_many2one_lookup" name="demo.many2one.lookup" model="demo.many2one">
+        <lookup>
+            <field name="name"/>
+            <field name="code"/>
+            <field name="active"/>
+        </lookup>
+    </view>
+</data>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="pr_route_menu" name="工艺路线" seq="60" model="pr.route" view="grid,form"
+          parent="md-process.process_menus"/>
+    <menu id="pr_product_route_menu" name="产品工艺路线" seq="80" model="pr.product_route" view="grid,form"
+          parent="md-process.process_menus"/>
+    <menu id="pr_resource_route_menu" name="产线工艺路线" seq="90" model="pr.resource_route" view="grid,form"
+          parent="md-process.process_menus"/>
+</data>

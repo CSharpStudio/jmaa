@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_unit_resource' name='单位-资源' model='md.unit'>
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/unit.js"></script>
+        </resource>
+    </view>
+    <view id='md_unit_search' name='单位-查询' model='md.unit'>
+        <search>
+            <field name='name'/>
+            <field name='symbol'/>
+            <field name='type'/>
+            <field name='is_base'/>
+        </search>
+    </view>
+    <view id='md_unit_grid' name='单位-表格' model='md.unit'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='symbol'/>
+            <field name='type'/>
+            <field name='is_base'/>
+            <field name='base_conversion' column="unit-conversion"/>
+            <field name='accuracy' min="0" max="6"/>
+            <field name='description'/>
+        </grid>
+    </view>
+    <view id='md_unit_form' name='单位-表单' model='md.unit'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='symbol'/>
+            <field name='type'/>
+            <field name='is_base'/>
+            <field name='accuracy'/>
+            <field name='base_conversion' editor="unit-conversion" t-readonly="is_base == true"/>
+            <field name='description'/>
+            <tabs>
+                <tab label="单位转换" t-visible="is_base == true">
+                    <field name="derived_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <toolbar buttons="default"></toolbar>
+                            <field name="derived_id" on-change-action="onDerivedChange"/>
+                            <field name="derived_type"/>
+                            <field name="ratio" decimals="6"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

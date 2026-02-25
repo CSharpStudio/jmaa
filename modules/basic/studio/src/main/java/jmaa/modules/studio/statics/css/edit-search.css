@@ -1,0 +1,77 @@
+.edit-search .d-body {
+    height: calc(100% - 40px);
+    display: flex;
+}
+
+.edit-search .m-body {
+    flex: 1;
+    padding: 15px;
+    overflow: auto;
+}
+
+.edit-search .jui-search {
+    background: #fff;
+}
+
+.edit-search .search-dropdown {
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .175);
+}
+
+.edit-search .search-dropdown .e-form {
+    margin: 7.5px;
+    min-height: 30px;
+}
+
+.search-dropdown .form-group label {
+    font-size: .875rem;
+    font-weight: 500 !important;
+    margin-bottom: 0;
+    color: #7f7f7f;
+}
+
+.edit-search .form-item:hover {
+    outline: 1px dashed #3c8dbc;
+    outline-offset: 5px;
+}
+
+.edit-search .holder-item {
+    min-height: 40px;
+    background: #f8f9fa;
+    font-size: 12px;
+    color: #6c757d !important;
+    font-style: italic;
+    display: grid;
+    place-items: center;
+}
+
+.edit-search .search-form {
+    display: grid;
+    column-gap: 3.5rem;
+    padding: 15px 2.5rem;
+}
+
+.edit-search .form-item label {
+    cursor: move;
+}
+
+.edit-search .jui-search-fixed {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 3.5rem;
+}
+
+.edit-search .jui-search-fixed .form-item {
+    display: flex;
+}
+
+.edit-search .jui-search-fixed [data-field] {
+    flex: 1;
+}

@@ -1,0 +1,51 @@
+.jui-report {
+
+}
+
+.jui-report .search {
+    border-bottom: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.jui-report .search.jui-form .form-body .e-form {
+    padding: 15px 1rem;
+}
+
+.jui-report .search.jui-form .form-card {
+    box-shadow: none;
+    margin: 0;
+    border: none;
+}
+
+.jui-report .search.jui-form .form-group {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.jui-report .search.jui-form label {
+    line-height: 30px;
+}
+
+.jui-report .search.jui-form [data-editor],
+.jui-report .search.jui-form [data-field] {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.jui-report .btn-row {
+    width: auto;
+    margin: 0;
+    padding: 6px 16px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.jui-report .grid {
+    overflow-y: auto;
+    padding: 0 7.5px;
+}
+
+
+.jui-report .jui-form.search .d-grid {
+    row-gap: .8rem;
+}

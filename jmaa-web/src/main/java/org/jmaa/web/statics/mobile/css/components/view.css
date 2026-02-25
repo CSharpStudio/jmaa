@@ -1,0 +1,169 @@
+body {
+    margin: 0;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    text-shadow: none;
+}
+
+.ui-mobile-rendering {
+    visibility: visible;
+}
+
+.ui-mobile-rendering .skeleton,
+.ui-mobile-rendering [data-role=page] {
+    display: block;
+    visibility: visible;
+}
+
+.ui-loading [data-role=page]:has(.skeleton) {
+    display: block;
+}
+
+.jui-mobile .loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(128, 128, 128, 0.23);
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.jui-mobile .loading div {
+    margin: auto;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    background: #646160;
+}
+
+.jui-mobile .loading div i {
+    margin: auto;
+    line-height: 40px;
+    text-shadow: none;
+    color: white;
+}
+
+.jui-mobile .skeleton {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.jui-mobile .skeleton:before,
+.jui-mobile .skeleton:after {
+    content: '';
+    height: 60px;
+    width: 100%;
+    display: block;
+    background: #dbdbdb;
+}
+
+.jui-mobile .skeleton i {
+    width: calc(100% - 20px);
+    display: block;
+    height: 100px;
+    margin: 10px;
+    background: #eeeeee;
+}
+
+.jui-mobile .skeleton:after {
+    position: absolute;
+    height: 40px;
+    bottom: 0;
+}
+
+.jui-mobile .ui-page-theme-a .ui-btn {
+    text-shadow: none;
+    border-radius: 0;
+}
+
+.jui-mobile .ui-page {
+    height: 100%;
+    overflow: hidden;
+}
+
+.jui-mobile .ui-header {
+    background: #714B67;
+    width: 100%;
+    z-index: 1000;
+    color: #fff;
+    text-shadow: none;
+    border: 0;
+    min-height: 45px;
+    border-bottom: 1px solid #714B67;
+}
+
+.jui-mobile .ui-header .ui-title {
+    padding: .75em 0;
+}
+
+.jui-mobile .ui-header .ui-btn:hover,
+.jui-mobile .ui-header .ui-btn:focus,
+.jui-mobile .ui-header .ui-btn:active {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+.jui-mobile .home-link,
+.jui-mobile .menu-link,
+.jui-mobile .back-link {
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    background: none;
+    border: 0;
+    box-shadow: none;
+    color: #fff;
+    font-size: 1.35rem;
+    padding: .25rem .5rem;
+    min-width: 1.2rem;
+}
+
+.jui-mobile .back-link:before {
+    content: "\f053";
+}
+
+.jui-mobile .home-link:before {
+    content: "\f015";
+}
+
+.jui-mobile .menu-link:before {
+    content: "\f0c9";
+}
+
+.jui-mobile .ui-content {
+    padding: 0;
+}
+
+.jui-mobile .jui-content {
+    height: calc(100% - 44px);
+}
+
+.jui-mobile .tab-content .jui-content {
+    height: calc(100% - 40px);
+}
+
+.jui-mobile .ui-footer {
+    background: #fff;
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.jui-mobile .ui-dialog-contain > .ui-footer {
+    display: block;
+    position: relative;
+    width: auto;
+    margin: 0;
+}
+
+.jui-mobile .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.jui-mobile .ui-shadow {
+    box-shadow: none !important;
+}

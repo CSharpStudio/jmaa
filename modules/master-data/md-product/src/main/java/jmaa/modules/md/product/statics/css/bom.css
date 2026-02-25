@@ -1,0 +1,17 @@
+.bom-version .version-item {
+    padding-left: 0;
+}
+
+.bom-version .version-toolbar {
+    height: 40px;
+}
+
+.bom-version .left-aside{
+    min-height: 100px;
+}
+
+.bom-version .bom-details{
+    width: 100%;
+    overflow: auto;
+    padding: 0 7.5px;
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_stock_class_search' name='物料仓储分类-查询' model='md.stock_class'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <field name='company_ids'/>
+        </search>
+    </view>
+    <view id='md_stock_class_grid' name='物料仓储分类-表格' model='md.stock_class'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <field name='company_ids'/>
+            <field name='store_limit'/>
+            <field name='warehouse_ids'/>
+            <field name='store_location_ids'/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='md_stock_class_form' name='物料仓储分类-表单' model='md.stock_class'>
+        <form>
+            <toolbar buttons='default'>
+            </toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <field name='store_limit' editor="radio"/>
+            <field name='warehouse_ids' t-reset="store_limit" t-visible="store_limit=='warehouse'"
+                   editor="many2many-tags" required="1" sortable="1"/>
+            <field name='store_location_ids' t-reset="store_limit" t-visible="store_limit=='location'"
+                   editor="many2many-tags" required="1" sortable="1"/>
+            <field name='company_ids' editor="many2many-tags"/>
+            <field name='remark' colspan="2"/>
+            <tabs>
+                <tab label='仓管员'>
+                    <field name='user_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='default'>
+                            </toolbar>
+                            <field name='name'/>
+                            <field name='login'/>
+                            <field name='role_ids' column="many2many-tags"/>
+                            <field name='active'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='物料'>
+                    <field name='material_ids' colspan='4' nolabel='1' editor="many2many">
+                        <grid>
+                            <toolbar buttons='default'>
+                            </toolbar>
+                            <field name='code'/>
+                            <field name='name'/>
+                            <field name='spec'/>
+                            <field name='abc_type'/>
+                            <field name='category'/>
+                            <field name='unit_id'/>
+                            <field name='stock_rule'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

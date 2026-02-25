@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='wip_production_search' name='在制品-查询' model='wip.production'>
+        <search criteria="[['status','not in',['done','scrap']]]">
+            <field name='work_order_id'/>
+            <field name='material_id'/>
+            <field name='product_code' label="追溯码" criteria="[['bind_code_ids.code','=',value]]"/>
+            <field name='company_id' editor="many2many-tags"/>
+        </search>
+    </view>
+    <view id='wip_production_grid' name='在制品-表格' model='wip.production'>
+        <grid>
+            <toolbar buttons='query|browse|export'></toolbar>
+            <field name='product_code' label="追溯码" criteria="[['code_ids.code','=',value]]"/>
+            <field name='current_process_id'/>
+            <field name='next_process_name'/>
+            <field name='work_order_id'/>
+            <field name='material_id' label="产品编码"/>
+            <field name='material_name_spec' label="产品名称/规格"/>
+            <field name='qty'/>
+            <field name='ng_qty'/>
+            <field name='status' readonly="1"/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+    <view id='wip_production_form' name='在制品-表单' model='wip.production'>
+        <form>
+            <toolbar buttons='reload'></toolbar>
+            <field name='product_code' readonly="1" label="追溯码"/>
+            <field name='current_process_id' readonly="1"/>
+            <field name='next_process_name' readonly="1"/>
+            <field name='work_order_id' readonly="1"/>
+            <field name='material_id' readonly="1"/>
+            <field name='material_name_spec' readonly="1"/>
+            <field name='qty' readonly="1"/>
+            <field name='ng_qty' readonly="1"/>
+            <field name='status' readonly="1"/>
+            <field name='company_id' readonly="1"/>
+            <tabs>
+                <tab label="生产工序">
+                    <field name='process_ids' nolabel="1" colspan="4" readonly="1">
+                        <grid>
+                            <toolbar buttons="export|reload"/>
+                            <field name="process_id"/>
+                            <field name="ok_qty" class="col-success"/>
+                            <field name="ng_qty" class="col-warning"/>
+                            <field name="code"/>
+                            <field name="code_type"/>
+                            <field name="workshop_id"/>
+                            <field name="resource_id"/>
+                            <field name="station_id"/>
+                            <field name="status"/>
+                            <field name="op_ids"/>
+                            <field name="create_date" label="操作时间"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='工序用料'>
+                    <field name='module_ids' colspan='4' nolabel='1' pager="0">
+                        <grid ordering="0">
+                            <toolbar buttons='export|reload'/>
+                            <field name="process_id" label="工序"/>
+                            <field name='material_id' label="物料编码"/>
+                            <field name='material_name_spec' label="物料名称"/>
+                            <field name='qty' class="col-info"/>
+                            <field name='unit_id'/>
+                            <field name='code'/>
+                            <field name='lot_num'/>
+                            <field name='material_category'/>
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="不良信息">
+                    <field name='defect_ids' nolabel="1" colspan="4" readonly="1">
+                        <grid>
+                            <toolbar buttons="export|reload"/>
+                            <field name="process_id"/>
+                            <field name="defect_id"/>
+                            <field name="qty"/>
+                            <field name="defect_type"/>
+                            <field name="defect_grade"/>
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="维修记录">
+                    <field name='repair_ids' nolabel="1" colspan="4" readonly="1">
+                        <grid>
+                            <toolbar buttons="export|reload"/>
+                            <field name='result'/>
+                            <field name='defect_id'/>
+                            <field name='defect_cause'/>
+                            <field name='method'/>
+                            <field name='tooling'/>
+                            <field name='status'/>
+                            <field name='result'/>
+                            <field name="create_uid"/>
+                            <field name="create_date"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

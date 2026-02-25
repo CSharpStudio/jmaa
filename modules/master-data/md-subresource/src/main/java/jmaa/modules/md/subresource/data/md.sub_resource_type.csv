@@ -1,0 +1,8 @@
+"id","category","name"
+"md-art-injection-mold","mold","注塑模具"
+"md-art-casting-die","mold","压铸模具"
+"md-art-stamping-die","mold","冲压模具"
+"md-art-cutting","cutting","刀具"
+"md-art-fixture","fixture","夹具"
+"md-art-gauge","gauge","检具"
+"md-art-jig","jig","治具"

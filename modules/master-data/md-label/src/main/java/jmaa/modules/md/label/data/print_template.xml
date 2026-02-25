@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="template_material_label" model="print.template">
+        <field name="name">物料标签</field>
+        <field name="adapter">print.adapter.stimulsoft</field>
+        <field name="rule">print.rule.material_label</field>
+        <field name="category">material_label</field>
+        <field name="upload_status">true</field>
+        <field name="file" file="jmaa/modules/md/label/statics/物料标签.mrt"/>
+        <field name="file_name">物料标签.mrt</field>
+    </record>
+    <record id="template_product_label" model="print.template">
+        <field name="name">产品标签</field>
+        <field name="adapter">print.adapter.stimulsoft</field>
+        <field name="rule">print.rule.product_label</field>
+        <field name="category">product_label</field>
+        <field name="upload_status">true</field>
+        <field name="file" file="jmaa/modules/md/label/statics/产品标签.mrt"/>
+        <field name="file_name">产品标签.mrt</field>
+    </record>
+</data>

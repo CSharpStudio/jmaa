@@ -1,0 +1,201 @@
+package org.jmaa.sdk.fields;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
+import org.jmaa.sdk.Utils;
+import org.jmaa.sdk.core.*;
+import org.jmaa.sdk.tools.StringUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.jmaa.sdk.Criteria;
+import org.jmaa.sdk.DeleteMode;
+import org.jmaa.sdk.Records;
+import org.jmaa.sdk.data.DbColumn;
+import org.jmaa.sdk.util.Cache;
+import org.jmaa.sdk.util.Tuple;
+
+/**
+ * 一对多
+ *
+ * @author Eric Liang
+ */
+public class One2manyField extends RelationalMultiField<One2manyField> {
+    String inverseName;
+    @JsonIgnore
+    Integer limit;
+
+    public One2manyField() {
+        type = Constants.ONE2MANY;
+    }
+
+    public One2manyField(String comodel, String inverseName) {
+        this();
+        args.put("comodelName", comodel);
+        args.put("inverseName", inverseName);
+    }
+
+    public One2manyField limit(Integer limit) {
+        args.put("limit", limit);
+        return this;
+    }
+
+    public String getInverseName() {
+        return inverseName;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    @Override
+    protected void setupNonRelated(MetaModel model) {
+        super.setupNonRelated(model);
+        if (StringUtils.isNotBlank(inverseName)) {
+            MetaModelWrapper wrapper = new MetaModelWrapper(model);
+            wrapper.addFieldInverse(inverseName, getName());
+        }
+        // TODO model_relate in ir_models 不能设置ondelete为Restrict
+    }
+
+    @Override
+    protected void updateDb(Records model, Map<String, DbColumn> columns) {
+        // TODO check comodel
+    }
+
+    @Override
+    public void read(Records records) {
+        Environment env = records.getEnv();
+        boolean activeTest = Utils.toBoolean(env.getContext().get("active_test"));
+        Map<String, Object> context = new HashMap<>(16);
+        context.put("active_test", activeTest);
+        if (this.context != null) {
+            context.putAll(this.context);
+        }
+        Records comodel = env.get(getComodel()).withContext(context);
+        MetaField inverseField = comodel.getMeta().getField(inverseName);
+        Criteria criteria = getCriteria(records).and(Criteria.in(inverseName, Arrays.asList(records.getIds())));
+        if (activeTest && comodel.getMeta().getFields().containsKey("active")) {
+            criteria.and(Criteria.equal("active", true));
+        }
+        Records lines = comodel.find(criteria, 0, limit, null);
+        Map<Object, List<String>> group = new HashMap<>(records.size());
+        for (Records line : lines.withContext(Constants.PREFETCH_FIELDS, false)) {
+            Object lineId = inverseField.getType() == "many2one" ? ((Records) line.get(inverseName)).getId()
+                    : line.get(inverseName);
+            List<String> ids = group.get(lineId);
+            if (ids == null) {
+                ids = new ArrayList<>();
+                group.put(lineId, ids);
+            }
+            ids.add(line.getId());
+        }
+        Cache cache = env.getCache();
+        for (Records record : records) {
+            cache.set(record, this, group.getOrDefault(record.getId(), Collections.emptyList()));
+        }
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    protected Records doSave(List<Tuple<Records, Object>> recordsCommandsList, boolean create) {
+        if (recordsCommandsList.size() == 0) {
+            return null;
+        }
+        Records model = recordsCommandsList.get(0).getItem1().browse();
+        Records comodel = model.getEnv().get(getComodel()).withContext(getContext());
+        Set<String> ids = new HashSet<>();
+        recordsCommandsList.stream().forEach(t -> ids.addAll(Arrays.asList(t.getItem1().getIds())));
+        Records records = model.browse(ids);
+        if (isStore()) {
+            boolean allowFullDelete = !create;
+            List<Map<String, Object>> toCreate = new ArrayList<>();
+            List<String> toDelete = new ArrayList<>();
+            Map<Records, Set<String>> toInverse = new HashMap<>();
+            String inverse = getInverseName();
+            for (Tuple<Records, Object> t : recordsCommandsList) {
+                Records rs = t.getItem1();
+                List<List<Object>> commands = (List<List<Object>>) t.getItem2();
+                for (List<Object> command : commands) {
+                    Command cmd = Command.get(command.get(0));
+                    if (cmd == Command.ADD) {
+                        for (Records r : rs) {
+                            Map<String, Object> values = new HashMap<>((Map<String, Object>) command.get(2));
+                            values.put(inverse, r.getId());
+                            toCreate.add(values);
+                        }
+                        allowFullDelete = false;
+                    } else if (cmd == Command.UPDATE) {
+                        comodel.browse((String) command.get(1)).update((Map<String, Object>) command.get(2));
+                    } else if (cmd == Command.DELETE) {
+                        toDelete.add((String) command.get(1));
+                    } else if (cmd == Command.REMOVE) {
+                        unlink(comodel.browse((String) command.get(1)), toDelete, inverse);
+                    } else if (cmd == Command.PUT) {
+                        Records r = rs.browse(rs.getIds()[0]);
+                        Set<String> lines = toInverse.get(r);
+                        if (lines == null) {
+                            lines = new HashSet<>();
+                            toInverse.put(r, lines);
+                        }
+                        lines.add((String) command.get(1));
+                        allowFullDelete = false;
+                    } else if (cmd == Command.CLEAR || cmd == Command.REPLACE) {
+                        List<String> lineIds = cmd == Command.REPLACE ? (List<String>) command.get(2)
+                                : Collections.emptyList();
+                        if (!allowFullDelete && lineIds.size() == 0) {
+                            continue;
+                        }
+                        flush(rs, toCreate, toDelete, toInverse, inverse);
+                        Records lines = comodel.browse(lineIds);
+                        Criteria criteria = Criteria.in(inverse, Arrays.asList(rs.getIds()))
+                                .and(Criteria.notIn("id", Arrays.asList(lines.getIds())));
+                        unlink(comodel.find(criteria, 0, 0, null), toDelete, inverse);
+                        // assign the given lines to the last record only
+                        lines.set(inverse, rs.getIds()[rs.size() - 1]);
+                    }
+                }
+            }
+            flush(comodel, toCreate, toDelete, toInverse, inverse);
+        } else {
+            // TODO
+        }
+        return records;
+    }
+
+    void unlink(Records lines, List<String> toDelete, String inverse) {
+        Many2oneField m2o = (Many2oneField) lines.getMeta().getField(inverse);
+        if (m2o.getOnDelete() == DeleteMode.Cascade) {
+            toDelete.addAll(Arrays.asList(lines.getIds()));
+        } else {
+            lines.set(inverse, null);
+        }
+    }
+
+    void flush(Records comodel, List<Map<String, Object>> toCreate, List<String> toDelete,
+               Map<Records, Set<String>> toInverse, String inverse) {
+        if (toDelete.size() > 0) {
+            comodel.browse(toDelete).delete();
+            toDelete.clear();
+        }
+        if (toCreate.size() > 0) {
+            comodel.createBatch(toCreate);
+            toCreate.clear();
+        }
+        if (toInverse.size() > 0) {
+            for (Entry<Records, Set<String>> e : toInverse.entrySet()) {
+                Records r = e.getKey();
+                Records lines = comodel.browse(e.getValue());
+                lines = lines.filter(line -> !r.getId().equals(line.get(inverse)));
+                lines.set(inverse, r);
+            }
+        }
+    }
+}

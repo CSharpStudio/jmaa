@@ -1,0 +1,45 @@
+.edit-card .d-body {
+    height: calc(100% - 40px);
+    display: flex;
+}
+
+.edit-card .m-body {
+    flex: 1;
+    overflow: hidden;
+}
+
+.edit-card .card-view .card {
+    min-height: 80px;
+}
+
+.edit-card .card-content {
+    height: calc(100% - 48px);
+    overflow: auto;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.edit-card .card-item-field {
+    position: relative;
+}
+
+.edit-card .card-item-field:hover {
+    outline: 1px dashed #3c8dbc;
+    outline-offset: 4px;
+}
+
+.edit-card .card-item-field:hover .component-tools {
+    display: flex;
+}
+
+.edit-card .holder-item {
+    min-height: 40px;
+    background: #f8f9fa;
+    font-size: 12px;
+    color: #6c757d !important;
+    font-style: italic;
+    display: grid;
+    place-items: center;
+}

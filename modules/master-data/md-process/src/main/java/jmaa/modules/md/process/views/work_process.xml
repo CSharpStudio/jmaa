@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_process_resource' name='工序-资源' model='md.work_process'>
+        <resource>
+            <script src="/web/jmaa/modules/md/process/statics/js/work_process.js"></script>
+        </resource>
+    </view>
+    <view id='md_work_process_search' name='工序-查询' model='md.work_process'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_type'/>
+            <field name='product_family_id'/>
+            <field name='company_ids'/>
+        </search>
+    </view>
+    <view id='md_work_process_grid' name='工序-表格' model='md.work_process'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_type'/>
+            <field name='product_family_id'/>
+            <field name="collection_result"/>
+            <field name='company_ids'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_work_process_form' name='工序-表单' model='md.work_process'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_type'/>
+            <field name='product_family_id'/>
+            <field name="collection_result"/>
+            <field name='active'/>
+            <field name='company_ids' editor="many2many-tags"/>
+            <tabs>
+                <tab label="过站参数">
+                    <field name="step_ids" nolabel="1" colspan="4">
+                        <grid on-create="onStepCreate">
+                            <field name="seq"/>
+                            <field name="code_type"/>
+                            <field name="is_move_code"/>
+                            <field name="bind_mode"/>
+                            <field name="print"/>
+                            <edit>
+                                <field name="seq"/>
+                                <field name="code_type"/>
+                                <field name="is_move_code"/>
+                                <field name="print" t-reset="code_type" t-visible="code_type=='product' || code_type=='batch'"/>
+                                <field name="bind_mode" t-reset="code_type" t-visible="code_type=='container'"/>
+                                <div class="grid-colspan-4 p-2 bg-light">
+                                    <i>条码类型说明：</i>
+                                    <div class="text-sm ml-2">
+                                        <div>产品条码：产品标签的序列号</div>
+                                        <div>组件条码：装配件(关键BOM物料)的序列号</div>
+                                        <div>拼板条码：多个小型工件或单元组合成一个大型板件的条码</div>
+                                        <div>批次条码：产品批次条码</div>
+                                        <div>容器条码：生产标准容器条码</div>
+                                        <div>过站条码：历史过站的条码</div>
+                                    </div>
+                                </div>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="工步">
+                    <field name="work_step_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="name"/>
+                            <field name="seq"/>
+                            <field name="description" colspan="2"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="缺陷">
+                    <field name="defect_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name='code'/>
+                            <field name='name'/>
+                            <field name='grade'/>
+                            <field name='type'/>
+                            <field name='remark'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='md_work_process_lookup' name='工序-下拉' model='md.work_process'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_type'/>
+            <field name="collection_result"/>
+        </lookup>
+    </view>
+</data>

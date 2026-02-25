@@ -1,0 +1,124 @@
+.e-date .bootstrap-datetimepicker-widget table th {
+    border-radius: 0;
+    background-color: #fff;
+}
+
+.e-date .bootstrap-datetimepicker-widget table td {
+    border: none;
+}
+
+.e-date .bootstrap-datetimepicker-widget table td,
+.e-date .bootstrap-datetimepicker-widget table th {
+    padding: 0.3rem 0.5rem;
+}
+
+.e-date .bootstrap-datetimepicker-widget table td span.active,
+.e-date .bootstrap-datetimepicker-widget table td.active,
+.e-date .bootstrap-datetimepicker-widget table td.active:hover {
+    background-color: #017e84;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.e-date .bootstrap-datetimepicker-widget.dropdown-menu {
+    width: auto;
+}
+
+.e-date .bootstrap-datetimepicker-widget .row {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.e-date .bootstrap-datetimepicker-widget .row .col-md-6 {
+    max-width: 100% !important;
+    padding: 0;
+}
+
+.e-date .bootstrap-datetimepicker-widget .row .datepicker table td,
+.e-date .bootstrap-datetimepicker-widget .row .datepicker table th {
+    padding: 0.2rem 0.5rem;
+}
+
+.e-date .bootstrap-datetimepicker-widget .row .timepicker {
+    border-top: 1px solid #dee2e6;
+}
+
+.e-date .timepicker table td span {
+    width: 30px;
+    height: 20px;
+    line-height: 20px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: .25rem;
+    font-size: 1rem;
+}
+
+.e-date .timepicker table td {
+    height: 20px;
+    line-height: 20px;
+    width: auto;
+    padding: 0;
+}
+
+.e-date .timepicker span {
+    width: 54px;
+    font-weight: 600 !important;
+    margin: 0;
+}
+
+.e-date .timepicker .timepicker-picker a.btn {
+    padding: 0;
+}
+
+.e-date .timepicker .timepicker-picker a.btn {
+    color: #7f7f7f;
+}
+
+.e-date .timepicker .timepicker-picker .fa-arrow-up:before {
+    content: "\f077";
+}
+
+.e-date .timepicker .timepicker-picker .fa-arrow-down:before {
+    content: "\f078";
+}
+
+.e-date .timepicker .timepicker-picker span[data-action]:hover,
+.e-date .timepicker .timepicker-picker span[data-action]:focus,
+.e-date .timepicker .timepicker-picker a.btn:hover{
+    color: #000;
+}
+
+.e-date .date-dropdown {
+    position: fixed;
+    z-index: 1000;
+}
+
+.e-date.readonly .input-suffix,
+.e-date-range.readonly .input-suffix {
+    display: none;
+}
+
+.e-date.readonly .form-control,
+.e-date-range.readonly .form-control {
+    padding-right: 5px !important;
+}
+
+.e-multi-time.readonly .btn-dropdown {
+    pointer-events: none;
+}
+
+.e-multi-time.e-multi-selection .select-results {
+    margin-right: 20px;
+}
+
+.e-multi-time .form-control.is-invalid {
+    background-position: right 24px center;
+}
+
+
+.e-date .bootstrap-datetimepicker-widget.dropdown-menu:after,
+.e-date .bootstrap-datetimepicker-widget.dropdown-menu:before {
+    display: none;
+}
+

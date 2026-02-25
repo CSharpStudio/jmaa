@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='warehouse_form' inherit_id="md-inventory.md_warehouse_form" type="form" name='仓库-表单-扩展'
+          model='md.warehouse'>
+        <xpath expr="field[name=workshop_ids]" position="before">
+            <field name='stock_out_rule'/>
+            <field name='stock_out_accuracy'/>
+            <field name='bulk_fo'/>
+            <field name='transfer_receipt'/>
+        </xpath>
+    </view>
+</data>

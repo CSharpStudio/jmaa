@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='res_config_form' inherit_id="base.view_config_form" type="form" name='IoT系统配置项-表单'
+          model='res.config'>
+        <xpath not="tab[label=QMS设置]" expr="tabs" position="inside">
+            <tab label="QMS设置">
+            </tab>
+        </xpath>
+        <xpath expr="tab[label=QMS设置]" position="inside">
+            <field name="iqc_auto_approve"/>
+        </xpath>
+    </view>
+</data>

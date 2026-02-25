@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='mfg_product_order_grid' inherit_id="manufacturing.mfg_product_order_grid" name='生产订单-表格-排程'
+          model='mfg.product_order'>
+        <xpath expr="toolbar" position="inside">
+            <button label="生成制程单" confirm="确认生成制程单?" service="createCraftOrder"
+                    t-enable="ids:status=='new'"/>
+            <button label="撤销制程单" confirm="确认撤销制程单?" service="removeCraftOrder" ref="createCraftOrder"
+                    t-enable="ids:status=='craft'"/>
+        </xpath>
+        <xpath expr="field[name=customer_id]" position="before">
+            <field name="priority"/>
+            <field name="craft_route_id"/>
+        </xpath>
+    </view>
+    <view id='mfg_product_order_form' inherit_id="manufacturing.mfg_product_order_form" name='生产订单-表单-排程'
+          model='mfg.product_order'>
+        <xpath expr="toolbar" position="inside">
+            <button label="生成制程单" confirm="确认生成制程单?" service="createCraftOrder"
+                    t-enable="id and status=='new'"/>
+            <button label="撤销制程单" confirm="确认撤销制程单?" service="removeCraftOrder" ref="createCraftOrder"
+                    t-enable="status=='craft'"/>
+        </xpath>
+        <xpath expr="field[name=customer_id]" position="before">
+            <field name="priority"/>
+            <field name="craft_route_id"/>
+        </xpath>
+        <xpath expr="form tabs" position="inside">
+            <tab label="制程单">
+                <field name="craft_order_ids" nolabel="1" colspan="4">
+                    <grid>
+                        <field name='code'/>
+                        <field name='status'/>
+                        <field name='product_order_id'/>
+                        <field name='craft_process_id'/>
+                        <field name='material_name_spec'/>
+                        <field name='material_id'/>
+                        <field name='plan_qty'/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

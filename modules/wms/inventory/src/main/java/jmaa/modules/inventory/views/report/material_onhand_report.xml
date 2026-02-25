@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id='view_material_onhand_report_resource' name='物料库存查询-资源' model='wms.material_onhand_report'>
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/report/warehouseSearchEditor.js"></script>
+        </resource>
+    </view>
+
+    <view id='material_onhand_report_search' name='物料库存-查询' model='wms.material_onhand_report'>
+        <search>
+            <field name='company_id' defaultValue="env.company" criteria="[['a.company_id', 'in', value]]"/>
+            <field name='warehouse_id' editor="warehouseSearchEditor" criteria="[['a.warehouse_id', 'in', value]]"/>
+            <field name='material_id' editor="many2many" criteria="[['a.material_id', 'in', value]]"/>
+            <field name='category' criteria="[['b.category', 'in', value]]"/>
+            <field name='abc_type' criteria="[['b.abc_type', 'in', value]]"/>
+        </search>
+    </view>
+    <view id='material_onhand_report_grid' name='物料库存-表格' model='wms.material_onhand_report'>
+        <grid footer="1" ordering="0" filterColumn="false">
+            <toolbar buttons='query|export'></toolbar>
+            <field name='material_code' class="material_code"/>
+            <field name='name_spec'/>
+            <field name='company'/>
+            <field name='total_qty' class="sum col-info" title="合格数+不合格数"/>
+            <field name='available_qty' class="sum col-success" title="合格数-冻结数-分配数"/>
+            <field name='frozen_qty' class="sum col-danger" title="盘点冻结数量"/>
+            <field name='allot_qty' class="sum col-warning" title="出库待扣减库存数量"/>
+            <field name='ok_qty' class="sum col-success"/>
+            <field name='ng_qty' class="sum col-danger"/>
+            <field name='unit'/>
+            <field name='category'/>
+            <field name='abc_type'/>
+            <field name='stock_rule'/>
+        </grid>
+    </view>
+</data>

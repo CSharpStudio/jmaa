@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="iqc_sheet_mobile_resource" name="来料检验-移动端-资源" model="iqc.sheet_mobile">
+        <resource>
+            <script src="/web/jmaa/modules/iqc/statics/js/iqc_sheet_mobile.js"></script>
+            <!-- codemirror -->
+            <link rel="stylesheet" href="/web/jmaa/modules/md/qsd/statics/css/qsd_sheet.css"></link>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/qsd/statics/css/qsd_sheet_mobile.css"></link>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"></link>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"></script>
+            <script src="/web/jmaa/modules/md/qsd/statics/js/qsd_test_values_editor.js"></script>
+        </resource>
+    </view>
+    <view id='iqc_sheet_mobile_view' name='来料检验-移动端' type="mobile" inherit_id="wms-qc.iqc_sheet_mobile_view"
+          model='iqc.sheet_mobile'>
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>来料检验</t>
+                    </h2>
+                    <a class="home-link"></a>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-iqc-input focus" type="text" t-enter="searchList"
+                               placeholder="检验单号/物料编码/相关单据"/>
+                        <button type="button" class="clear-input" t-click="searchList"></button>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="iqcSheetList" load-on-init="1" model="iqc.sheet_mobile"
+                          load-method="loadList" on-item-click="openSheet">
+                        <card>
+                            <field name='code' readonly="1"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name='material_id' label="物料编码" colspan="2"/>
+                            <field name='material_name' colspan="2"/>
+                            <field name='qty'/>
+                            <field name='unit_id'/>
+                            <field name='related_code' colspan="2"/>
+                            <field name="status"
+                                   tags="{exempted:'success','to-inspect':'warning','inspecting':'primary',_:'secondary'}"/>
+                            <field name='result' tags="{ok:'success','ng':'danger'}"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="sheet">
+                <div data-role="header">
+                    <h2>
+                        <t>来料检验</t>
+                    </h2>
+                    <a class="back-link" focus-to=".search-iqc-input"></a>
+                </div>
+                <div style="height:calc(100% - 42px)">
+                    <tabs ref="tabs" position="footer" name="detailTabs">
+                        <tab label="来料单据" name="orderInfoTab">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <div name="formButtons">
+                                        <button class="ui-btn" t-click="save">
+                                            <t>保存</t>
+                                        </button>
+                                        <button class="ui-btn" t-click="submit">
+                                            <t>提交</t>
+                                        </button>
+                                    </div>
+                                    <div class="flex-fill"></div>
+                                    <button class="ui-btn btn-primary" name="to-inspect" t-click="commence">
+                                        <t>开始检验</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="orderInfoCard" style="height:calc(100% - 44px)">
+                                <form ref="sheetForm">
+                                    <field name='code'/>
+                                    <field name="status" required="0"/>
+                                    <field name='material_id' required="0"/>
+                                    <field name='related_code'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='qty' required="0"/>
+                                    <field name='unit_id'/>
+                                    <field name='result'/>
+                                    <field name="attachments" colspan="2" limit="10"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="检验项目" name="inspectItemTab">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <select name="inspectItemScope" class="ui-btn" data-role="none">
+                                        <option value="all">全部</option>
+                                        <option value="undone" selected="selected">待检验</option>
+                                    </select>
+                                    <select name="inspectItemCategory" class="ui-btn" data-role="none">
+                                        <option value="all">全部类别</option>
+                                    </select>
+                                    <div class="flex-fill"></div>
+                                    <button class="ui-button btn-primary" name="setAllPass" t-click="setAllPass">
+                                        <t>定性一键合格</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list-panel" style="height: calc(100% - 44px);">
+                                <list ref="itemList" on-init="onItemListInit" model="iqc.inspect_item_mobile"
+                                      load-method="loadItemList">
+                                    <card>
+                                        <field name="name"/>
+                                        <field name='$rownum' nolabel="1" render="rownum"/>
+                                        <field name="mark"/>
+                                        <field name="sample_size"/>
+                                        <field name="category"/>
+                                        <field name="ng_qty" render="ngQty"/>
+                                        <field name="result" render="result" colspan="2"/>
+                                        <field name="remark" colspan="2" render="remark"/>
+                                        <div style="bottom:0;position:absolute;right: 10px;" class="checkItemBtn">
+                                            <button class="ui-btn ui-corner-all" t-click="inspect">
+                                                <t>检验</t>
+                                            </button>
+                                        </div>
+                                    </card>
+                                </list>
+                            </div>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+            <div class="ui-page" id="checkItem">
+                <div data-role="header">
+                    <h2>检验</h2>
+                    <a class="back-link" id="checkItemBackBtn" t-click="backCheckInspectItemTab"></a>
+                </div>
+                <div class="header-bar">
+                    <div class="toolbar">
+                        <button type="button" name="prev" class="ui-btn" t-click="handleInspectItemFormGridPrev">
+                            <t>上一个</t>
+                        </button>
+                        <button type="button" name="next" class="ui-btn" t-click="handleInspectItemFormGridNext">
+                            <t>下一个</t>
+                        </button>
+                        <div class="flex-fill"></div>
+                        <button type="button" name="confirmed" class="ui-btn btn-primary"
+                                t-click="handleInspectItemFormGridConfirmed">
+                            <t>保存</t>
+                        </button>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <form ref="waitCheckFrom" logAccess="0" cols="2" model="iqc.inspect_item_mobile">
+                        <field name='name' readonly="1" required="0"/>
+                        <field name='mark' readonly="1" required="0"/>
+                        <field name='ac' readonly="1" required="0" class="label-left"/>
+                        <field name='re' readonly="1" required="0" class="label-left"/>
+                        <field name='ng_qty' t-readonly="mark=='quan'" on-value-change="updateResult"/>
+                        <field name='result' readonly="1"/>
+                        <editor name="test_values" type="qsd_test_values_editor" label="测试值" colspan="2"
+                                class="isMobile" t-visible="mark=='quan'"/>
+                        <field name='sample_size' readonly="1" t-visible="mark=='quan'"/>
+                        <editor name='need_test_qty' type="integer" readonly="1" t-visible="mark=='quan'"
+                                label="还需测试"/>
+                        <field name='remark' colspan="2"/>
+                        <group collapsable="1" label="检验参考" collapsed="1" position="bottom">
+                            <field name="tools" readonly="1" colspan="2"/>
+                            <field name="methods" readonly="1" colspan="2"/>
+                            <field name='standards' readonly="1" colspan="2"/>
+                            <field name='limit_upper' readonly="1" t-visible="mark=='quan'"/>
+                            <field name='limit_lower' readonly="1" t-visible="mark=='quan'"/>
+                            <field name='unit' readonly="1" t-visible="mark=='quan'"/>
+                            <field name="category" readonly="1" required="0"/>
+                        </group>
+                    </form>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

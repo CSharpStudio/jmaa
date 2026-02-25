@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_craft_route_resource' name='制程路线-资源' model='md.craft_route'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.css"></link>
+            <link href="/web/org/jmaa/web/statics/plugins/bootstrap-slider/css/bootstrap-slider.min.css"
+                  rel="stylesheet"></link>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/assets/diagram/diagram.css"></link>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/craft/statics/css/craft_route.css"></link>
+            <script src="/web/org/jmaa/web/statics/plugins/jquery-ui/jquery-ui.min.js?etag=1.12.1"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/bootstrap-slider/bootstrap-slider.min.js?etag=11.0.2"></script>
+            <script src="/web/org/jmaa/web/statics/assets/diagram/diagram.min.js"></script>
+            <script src="/web/jmaa/modules/md/craft/statics/js/RouteNode.js"></script>
+            <script src="/web/jmaa/modules/md/craft/statics/js/craft_route.js"></script>
+        </resource>
+    </view>
+    <view id='md_craft_route_search' name='制程路线-查询' model='md.craft_route'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='md_craft_route_grid' name='制程路线-表格' model='md.craft_route'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_craft_route_form' name='制程路线-表单' model='md.craft_route'>
+        <form on-load="onFormLoad" on-init="onFormInit">
+            <toolbar buttons='default'>
+                <button label="启用" t-enable="id and !active" service="setActive" confirm="确定启用?"/>
+                <button label="禁用" t-enable="id and active" service="setInactive" confirm="确定禁用?"/>
+            </toolbar>
+            <field name='code' t-readonly="active"/>
+            <field name='name' t-readonly="active"/>
+            <field name='active' readonly="1"/>
+            <tabs>
+                <tab t-visible="id" label="制程路线图">
+                    <div class="craft_route grid-colspan-4">
+                        <div class="toolbar details-toolbar">
+                            <button class="btn btn-default btn-flat btn-reload"><t>刷新</t></button>
+                            <button disabled="disabled" class="btn btn-default btn-flat btn-undo"><t>撤销</t></button>
+                            <button disabled="disabled" class="btn btn-default btn-flat btn-redo"><t>恢复</t></button>
+                        </div>
+                        <div class="route-diagram"></div>
+                    </div>
+                </tab>
+                <tab label="产品">
+                    <field name="material_ids" nolabel="1" colspan="4" editor="many2many">
+                        <grid>
+                            <field name="code"/>
+                            <field name="name_spec"/>
+                            <field name="category"/>
+                            <field name='type_id'/>
+                            <field name="attribute"/>
+                            <field name='purchasable'/>
+                            <field name='producible'/>
+                            <field name='salable'/>
+                            <field name='outsourcable'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='md_craft_route_node_form' name='制程路线节点-表单' model='md.craft_route_node'>
+        <form logAccess="0">
+            <field name='process_id' view="default" on-change-action="processChangeAction" required="1"/>
+            <field name='craft_type_id'/>
+            <field name='next_relationship'/>
+            <field name='transfer_batch'/>
+            <field name='transfer_time'/>
+            <field name='interval_days'/>
+        </form>
+    </view>
+</data>

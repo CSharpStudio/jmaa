@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='mfg_work_order_resource' name='生产工单-资源' inherit_id="manufacturing.mfg_work_order_resource"
+          model='mfg.work_order'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.css"></link>
+            <link href="/web/org/jmaa/web/statics/plugins/bootstrap-slider/css/bootstrap-slider.min.css"
+                  rel="stylesheet"></link>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/assets/diagram/diagram.css"></link>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/process/routing/statics/css/route.css"></link>
+            <script src="/web/org/jmaa/web/statics/plugins/jquery-ui/jquery-ui.min.js?etag=1.12.1"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.min.js"></script>
+            <script
+                src="/web/org/jmaa/web/statics/plugins/bootstrap-slider/bootstrap-slider.min.js?etag=11.0.2"></script>
+            <script src="/web/org/jmaa/web/statics/assets/diagram/diagram.min.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteDiagram.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteNode.js"></script>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"></script>
+            <script src="/web/jmaa/modules/wip/statics/js/work_order.js"></script>
+        </resource>
+    </view>
+    <view id='mfg_work_order_search' name='生产工单-查询' model='mfg.work_order'>
+        <search>
+            <field name='code'/>
+            <field name='material_id'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='mfg_work_order_grid' inherit_id="manufacturing.mfg_work_order_grid" name='生产工单-在制品-表格'
+          model='mfg.work_order'>
+        <xpath expr="toolbar" position="inside">
+            <button label="备料" t-enable="['release', 'producing', 'suspend'].includes(status)"
+                    t-click="requestMaterials" class="btn-blue"/>
+        </xpath>
+    </view>
+    <view id='mfg_work_order_form' inherit_id="manufacturing.mfg_work_order_form" name='生产工单-在制品-表单'
+          model='mfg.work_order'>
+        <xpath expr="toolbar button[name=suspend]" position="after">
+            <button label="备料" t-enable="['release','producing','suspend'].includes(status)"
+                    t-click="requestMaterials" t-visible="status!='draft'" class="btn-blue"/>
+        </xpath>
+        <xpath expr="field[name=plan_end]" position="after">
+            <field name="work_order_type"/>
+            <field name="bom_version_id" t-reset="material_id" lookup="[['bom_id.material_id','=',material_id]]"/>
+            <field name='route_version_id' t-reset="material_id" view="default" link="0"
+                   lookup="[['is_publish','=',true],['route_id.family_id.product_ids','=',material_id]]"/>
+        </xpath>
+        <xpath expr="tab[label=消息]" position="before">
+            <tab label="BOM">
+                <field name="bom_ids" nolabel="1" colspan="4">
+                    <grid>
+                        <field name="unit_accuracy" visible="0"/>
+                        <field name="material_id" view="default" on-change-action="onMaterialChange"
+                               t-readonly="id"/>
+                        <field name='material_name_spec'/>
+                        <field name='material_category'/>
+                        <field name='is_alternative'/>
+                        <field name='qty' class="col-info" editor="accuracy" accuracy="unit_accuracy"/>
+                        <field name='require_qty' class="col-success" editor="accuracy" accuracy="unit_accuracy"/>
+                        <field name='unit_id'/>
+                        <field name='main_material_id' t-reset="is_alternative" t-visible="is_alternative"
+                               view="default"/>
+                    </grid>
+                </field>
+            </tab>
+            <tab label="工序BOM">
+                <field name="process_bom_ids" nolabel="1" colspan="4">
+                    <grid>
+                        <field name="unit_accuracy" visible="0"/>
+                        <field name="process_id" t-filter="processFilter" t-readonly="id"/>
+                        <field name="material_id" view="default" on-change-action="onMaterialChange"
+                               t-readonly="id"/>
+                        <field name='material_name_spec'/>
+                        <field name='material_category'/>
+                        <field name='qty' class="col-info" editor="accuracy" accuracy="unit_accuracy"/>
+                        <field name='unit_id'/>
+                        <field name="key_module"/>
+                        <field name='is_alternative'/>
+                        <field name='main_material_id' t-reset="is_alternative" t-visible="is_alternative"
+                               view="default"/>
+                    </grid>
+                </field>
+            </tab>
+            <tab label="工艺路线" t-click="showRoute">
+                <field name='work_order_route_id' nolabel="1" colspan="4" editor="route-editor"/>
+            </tab>
+        </xpath>
+    </view>
+    <view id='mfg_work_order_lookup' name='生产工单-下拉' model='mfg.work_order'>
+        <lookup>
+            <field name='code'/>
+            <field name="status" tags="{'create':'warning','producing':'info','release':'success','_':'secondary'}"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='plan_qty'/>
+            <field name='unit_id'/>
+            <field name="plan_start"/>
+        </lookup>
+    </view>
+    <view id='mfg_work_order_lookup-mobile' key="mobile-lookup" name='生产工单-下拉-移动端' model='mfg.work_order'>
+        <lookup>
+            <field name='code' colspan="2"/>
+            <field name='material_id' colspan="2"/>
+            <field name='material_name_spec' colspan="2"/>
+            <field name='plan_qty'/>
+            <field name='unit_id'/>
+            <field name='material_category'/>
+            <field name="status"/>
+            <field name="plan_start" colspan="2"/>
+        </lookup>
+    </view>
+    <view id='mfg_work_order_issue_num_dialog' key="issue_num_dialog" name='生产工单-下拉' model='mfg.work_order'>
+        <form logAccess="0" cols="1">
+            <field name='plan_qty' label="计划套数" readonly="1"/>
+            <field name='issue_qty' label="已备料套数" readonly="1" values="0"/>
+            <editor name="qty" label="本次发料套数" type="float" required="1" min="1"/>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="demo_menus" name="示例" parent="base.model_menus" seq="1000">
+        <menu id="menu_field_type" name="字段类型" model="demo.field_type" view="grid,form"/>
+        <menu id="attr_action_menu" name="属性动作" model="demo.attr_action" view="form"/>
+    </menu>
+    <m-menu id="m_demo_menus" name="测试" seq="1000">
+        <m-menu id="mobile_demo_menu" name="示例" seq="10" model="demo.mobile_demo" view="mobile"/>
+    </m-menu>
+</data>

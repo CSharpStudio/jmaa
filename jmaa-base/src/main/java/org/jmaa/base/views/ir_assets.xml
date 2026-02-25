@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='ir_assets_resource' name='资源文件-资源' model='ir.assets'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_ui_view.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/editors/code-editor.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/xml/xml.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/javascript/javascript.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/css/css.js"></script>
+            <script src="/web/org/jmaa/web/statics/web/editors/CodeEditor.js"></script>
+            <script src="/web/org/jmaa/base/statics/js/ir_assets.js"></script>
+        </resource>
+    </view>
+    <view id='ir_assets_search' name='资源文件-查询' model='ir.assets'>
+        <search>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="type"/>
+        </search>
+    </view>
+    <view id='ir_assets_grid' name='资源文件-表格' model='ir.assets'>
+        <grid>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="type"/>
+            <field name="path"/>
+            <field name="active"/>
+        </grid>
+    </view>
+    <view id='ir_assets_form' name='资源文件-表单' model='ir.assets'>
+        <form on-load="onFormLoad">
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="type" t-readonly="id"/>
+            <field name="path" t-visible="id"/>
+            <field name="active"/>
+            <field name="file" editor="media" t-visible="['image','mp3','mp4','file'].includes(type)"/>
+            <field name="content" editor="code-editor" colspan="4" rows="20"
+                   t-visible="!['image','mp3','mp4','file'].includes(type)"/>
+        </form>
+    </view>
+</data>

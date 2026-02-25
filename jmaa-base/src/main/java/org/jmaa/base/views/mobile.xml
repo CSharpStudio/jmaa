@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <web id="mobile_app" name="mobile.app">
+        <html class="ui-mobile">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+                <title>{{TITLE}}</title>
+                <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/jquery-mobile/jquery.mobile-1.4.5.min.css?etag=1.4.5"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css?etag=5.39.0"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/fontawesome-free/css/all.min.css?etag=5.15.3"/>
+                <link debug="false" rel="stylesheet" href="/web/org/jmaa/web/statics/assets/mobile/view.css"/>
+                <link debug="false" rel="stylesheet" href="/web/org/jmaa/web/statics/assets/mobile/app.css"/>
+                <link debug="true" rel="stylesheet" href="/web/org/jmaa/web/statics/mobile/css/view.css"/>
+                <link debug="true" rel="stylesheet" href="/web/org/jmaa/web/statics/mobile/css/app.css"/>
+            </head>
+            <body class="jui-mobile">
+                <div class="ui-startup" style="visibility:visible">
+                    <img src="/web/org/jmaa/web/statics/img/logo.png"/>
+                    <div class="pt-2">{{TITLE}}</div>
+                    <div class="startup-info">
+                        <t>加载中</t>
+                    </div>
+                </div>
+                <div data-role="page" class="main-page ui-page d-none" id="main">
+                    <div data-role="header" class="ui-header">
+                        <h2 class="ui-title">{{TITLE}}</h2>
+                        <div class="user-profile">
+                            <div class="user-icon">{{USERNAME}}</div>
+                            <span class="user-name">{{USERNAME}}</span>
+                        </div>
+                    </div>
+                    <div class="menu-groups" style="height:calc(100% - 114px);">
+                        <div class="main-menus"></div>
+                    </div>
+                    <div data-role="footer" class="ui-footer">
+                        <a class="page-link" href="#home" name="link-home">
+                            <i class="fa fa-envelope-open"></i>
+                            <t>首页</t>
+                        </a>
+                        <a class="page-link active" name="link-main">
+                            <i class="fa fa-list-alt"></i>
+                            <t>工作台</t>
+                        </a>
+                        <a class="page-link" href="#user" name="link-user">
+                            <i class="fa fa-user"></i>
+                            <t>我</t>
+                        </a>
+                    </div>
+                </div>
+                <div data-role="page" class="view-page d-none" id="view">
+                </div>
+                <div data-role="page" class="home-page d-none" id="home">
+                    <div data-role="header">
+                        <h2>首页</h2>
+                    </div>
+                    <div class="ui-content">
+                        <div class="home-content" style="display:flex;flex-flow:column">
+                            <img src="/web/org/jmaa/web/statics/img/login.png" style="width: 100%;"/>
+                            <div style="text-align:center"></div>
+                        </div>
+                    </div>
+                    <div data-role="footer" class="ui-footer">
+                        <a class="page-link active" name="link-home">
+                            <i class="fa fa-envelope-open"></i>
+                            <t>首页</t>
+                        </a>
+                        <a class="page-link" href="#main" name="link-main">
+                            <i class="fa fa-list-alt"></i>
+                            <t>工作台</t>
+                        </a>
+                        <a class="page-link" href="#user" name="link-user">
+                            <i class="fa fa-user"></i>
+                            <t>我</t>
+                        </a>
+                    </div>
+                </div>
+                <div data-role="page" class="user-page d-none" id="user">
+                    <div data-role="header">
+                        <h2>我的账号</h2>
+                        <a class="setting-link ui-btn-right" href="#setting" data-transition="slide"></a>
+                    </div>
+                    <div class="ui-content">
+                        <div class="user-content">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <span class="user-company"></span>
+                                    <i class="fa fa-users"/>
+                                </div>
+                                <div class="user-icon"></div>
+                            </div>
+                            <div class="user-data">
+                                <div class="user-name">{{USERNAME}}</div>
+                                <div class="user-account"></div>
+                            </div>
+                        </div>
+                        <div class="list-view" id="user-list">
+                        </div>
+                    </div>
+                    <div data-role="footer" class="ui-footer">
+                        <a class="page-link" href="#home" name="link-home">
+                            <i class="fa fa-envelope-open"></i>
+                            <t>首页</t>
+                        </a>
+                        <a class="page-link" href="#main" name="link-main">
+                            <i class="fa fa-list-alt"></i>
+                            <t>工作台</t>
+                        </a>
+                        <a class="page-link active" name="link-user">
+                            <i class="fa fa-user"></i>
+                            <t>我</t>
+                        </a>
+                    </div>
+                </div>
+                <div data-role="page" class="setting-page d-none" id="setting">
+                    <div data-role="header">
+                        <h2>设置</h2>
+                        <a class="back-link" href="#user" data-transition="slide" data-direction="reverse"></a>
+                    </div>
+                    <div class="ui-content">
+                        <div class="list-view">
+                            <div class="list-group">
+                                <a class="link-language list-item link">
+                                    <span class="title">
+                                        <t>语言</t>
+                                    </span>
+                                    <span class="text-end user-lang">
+                                    </span>
+                                </a>
+                                <a class="link-password list-item link">
+                                    <span class="title">
+                                        <t>修改密码</t>
+                                    </span>
+                                </a>
+                            </div>
+                            <a class="link-about list-item link">
+                                <span class="title">
+                                    <t>关于</t>
+                                </span>
+                            </a>
+                            <a class="link-update list-item link">
+                                <span class="title">
+                                    <t>检查更新</t>
+                                </span>
+                                <span class="text-end app-version">
+                                </span>
+                            </a>
+                            <a class="link-logout list-item center text-danger">
+                                <t>退出登录</t>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div data-role="page" class="common-page d-none" id="common">
+                    <div data-role="header">
+                        <h2 class="title"></h2>
+                        <a class="back-link" data-transition="slide" data-direction="reverse"></a>
+                    </div>
+                    <div class="ui-content" style="height:calc(100% - 42px);overflow:hidden">
+                    </div>
+                </div>
+                <script src="/web/org/jmaa/web/statics/plugins/jquery/jquery-2.2.4.min.js?etag=2.2.4"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/jquery-mobile/jquery.mobile-1.4.5.min.js?etag=1.4.5"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/juicer/juicer.min.js?etag=0.6.15"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/zxing_library/index.js"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/moment/moment.min.js?etag=2.29.1"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js?etag=5.39.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap-input-spinner/js/bootstrap-input-spinner.js?etag=1.0"></script>
+                <script debug="true" src="/web/org/jmaa/web/statics/jmaa.js"></script>
+                <script debug="true" type="module" src="/web/org/jmaa/web/statics/mobile/app.js"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/jmaa.min.js"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/mobile/app.min.js"></script>
+            </body>
+        </html>
+    </web>
+    <web id="mobile_view" name="mobile.view">
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+                <title>{{TITLE}}</title>
+                <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/jquery-mobile/jquery.mobile-1.4.5.min.css?etag=1.4.5"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css?etag=5.39.0"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/fontawesome-free/css/all.min.css?etag=5.15.3"/>
+                <link debug="false" rel="stylesheet" href="/web/org/jmaa/web/statics/assets/mobile/view.css"/>
+                <link debug="true" rel="stylesheet" href="/web/org/jmaa/web/statics/mobile/css/view.css"/>
+            </head>
+            <body class="jui-mobile">
+                <div class="skeleton">
+                    <i/>
+                    <i/>
+                    <i/>
+                </div>
+                <script src="/web/org/jmaa/web/statics/plugins/jquery/jquery-2.2.4.min.js?etag=2.2.4"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/jquery-mobile/jquery.mobile-1.4.5.min.js?etag=1.4.5"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/juicer/juicer.min.js?etag=0.6.15"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/zxing_library/index.js"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/moment/moment.min.js?etag=2.29.1"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js?etag=5.39.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap-input-spinner/js/bootstrap-input-spinner.js?etag=1.0"></script>
+                <script debug="true" src="/web/org/jmaa/web/statics/jmaa.js"></script>
+                <script debug="true" type="module" src="/web/org/jmaa/web/statics/mobile/view.js"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/jmaa.min.js"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/mobile/view.min.js"></script>
+            </body>
+        </html>
+    </web>
+</data>

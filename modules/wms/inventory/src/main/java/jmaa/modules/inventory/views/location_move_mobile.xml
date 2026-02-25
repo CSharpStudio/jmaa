@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_location_move_mobile_resource" name="库位移动-移动端-资源" model="wms.location_move_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"></link>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/location_move_mobile.js"/>
+        </resource>
+    </view>
+    <view id="wms_location_move_mobile_view" name="库位移动-移动端" model="wms.location_move_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>库位移动</t>
+                    </h2>
+                    <a class="home-link"></a>
+                </div>
+                <div class="header-bar">
+                    <div class="toolbar">
+                        <button t-click="resetForm">
+                            <t>重置</t>
+                        </button>
+                        <div class="flex-fill"></div>
+                        <button t-click="submitForm" class="ui-btn btn-primary ml-1">
+                            <t>确认</t>
+                        </button>
+                    </div>
+                </div>
+                <div style="height: calc(100% - 86px)">
+                    <form ref="locationMoveForm">
+                        <field name="warehouse_id" colspan="2"/>
+                        <field name="code" editor="scanner" focus="1" colspan="2" t-enter="scanCode"/>
+                        <field name="material_id" colspan="2" readonly="1"/>
+                        <field name="material_name_spec" colspan="2" readonly="1"/>
+                        <field name="qty"/>
+                        <field name="unit_id" readonly="1"/>
+                        <field name="location_code_source" editor="scanner" t-enter="scanLocation"/>
+                        <field name="location_code_target" editor="scanner" t-enter="scanLocation"/>
+                        <field name='msg' colspan="2" editor="msg_editor"/>
+                    </form>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

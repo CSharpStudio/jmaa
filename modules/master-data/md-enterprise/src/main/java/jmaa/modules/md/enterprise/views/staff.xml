@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_staff_search' name='员工-查询' model='md.staff'>
+        <search>
+            <field name='name'/>
+            <field name='code'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_staff_grid' name='员工-表格' model='md.staff'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:active==false" confirm="确定删除该员工信息?"/>
+                <button label="创建账号" class="btn-success" service="createUserAccount" t-enable="ids:!account_id"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='entry_date'/>
+            <field name='birth_date'/>
+            <field name='email'/>
+            <field name='mobile'/>
+            <field name='active'/>
+            <field name='account_id'/>
+        </grid>
+    </view>
+    <!-- 员工表单视图 -->
+    <view id='md_staff_form' name='员工-表单' model='md.staff'>
+        <form>
+            <toolbar buttons='default'>
+                <button label="创建账号" class="btn-success" service="createUserAccount" t-enable="id and !account_id"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='entry_date'/>
+            <field name='birth_date'/>
+            <field name='email'/>
+            <field name='mobile'/>
+            <field name='active'/>
+            <field name='account_id'/>
+        </form>
+    </view>
+</data>

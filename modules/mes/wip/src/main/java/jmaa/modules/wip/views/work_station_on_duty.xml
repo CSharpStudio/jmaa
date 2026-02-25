@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='station_on_duty_dialog' name='上岗对话框-表单' model='mfg.work_station_on_duty_dialog'>
+        <form>
+            <field name='workshop_id' link="0"/>
+            <field name='resource_id' t-reset="workshop_id" link="0"
+                   lookup="[['workshop_id','=',workshop_id],['work_type','=','task']]"/>
+            <field name='station_id' t-reset="resource_id" link="0" view="default"
+                   t-filter="filterOnDutyStation" on-change-action="onStationChange"/>
+            <field name='process_id' t-reset="station_id" readonly="1" link="0" required="0"/>
+            <field name="staff_id" colspan="2"/>
+            <div>
+                <button type="button" class="btn btn-lg text-lg btn-success btn-on-duty">上岗</button>
+            </div>
+            <tabs>
+                <tab label="在岗员工">
+                    <field name="on_duty_ids" colspan="4" nolabel="1" t-filter="filterStationOnDuty">
+                        <grid>
+                            <toolbar buttons="export|reload"/>
+                            <field name="staff_id"/>
+                            <field name="create_date" label="上岗时间"/>
+                            <field name="id" column="offDuty" label="操作"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

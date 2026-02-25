@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="warehouse_menu" name="仓库" seq="50" model="md.warehouse" view="grid,form"
+          parent="md-enterprise.enterprise_menus"/>
+    <menu id="stock_class_menu" name="物料仓储分类" seq="90" model="md.stock_class" view="grid,form"
+          parent="md-enterprise.material_menus"/>
+</data>

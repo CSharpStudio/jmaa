@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='qsd_quality_class_spec_resource' name='分类检验标准-资源' model='qsd.quality_class_spec'>
+        <resource>
+            <script src="/web/jmaa/modules/md/qsd/statics/js/aql_editor.js"></script>
+        </resource>
+    </view>
+    <view id='qsd_quality_class_spec_search' name='分类检验标准-查询' model='qsd.quality_class_spec'>
+        <search>
+            <field name="code"/>
+            <field name='class_id'/>
+            <field name='version'/>
+            <field name='type'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='qsd_quality_class_spec_grid' name='分类检验标准-表格' model='qsd.quality_class_spec'>
+        <grid>
+            <toolbar buttons='default|copy'/>
+            <field name="code"/>
+            <field name='class_id'/>
+            <field name='version'/>
+            <field name='type'/>
+            <field name='remark'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='qsd_quality_class_spec_form' name='分类检验标准-表单' model='qsd.quality_class_spec'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name="code"/>
+            <field name='class_id'/>
+            <field name='version'/>
+            <field name='type' t-readonly="id"/>
+            <field name='active'/>
+            <field name='remark' colspan="2"/>
+            <tabs>
+                <tab label="检验项目" t-visible="id">
+                    <field name="item_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="name"/>
+                            <field name="mode"/>
+                            <field name="mark"/>
+                            <field name="category"/>
+                            <field name="tools"/>
+                            <field name="methods"/>
+                            <field name="standards"/>
+                            <field name="limit_upper"/>
+                            <field name="limit_lower"/>
+                            <field name="unit"/>
+                            <field name='sampling_process_id'/>
+                            <field name="remark"/>
+                            <edit>
+                                <field name="name"/>
+                                <field name="mode"/>
+                                <field name='mark'/>
+                                <field name="category"/>
+                                <field name="tools"/>
+                                <field name="methods"/>
+                                <field name="standards"/>
+                                <field name="limit_upper" t-visible="mark=='quan'" required="1" t-reset="mark"/>
+                                <field name="limit_lower" t-visible="mark=='quan'" required="1" t-reset="mark"/>
+                                <field name="unit" t-visible="mark=='quan'" t-reset="mark"/>
+                                <field name='sampling_process_id'/>
+                                <field name="remark"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='qsd_quality_class_spec_lookup' name='分类检验标准-下拉' model='qsd.quality_class_spec'>
+        <lookup>
+            <field name='class_id'/>
+            <field name='version'/>
+            <field name='type'/>
+            <field name='remark'/>
+        </lookup>
+    </view>
+</data>

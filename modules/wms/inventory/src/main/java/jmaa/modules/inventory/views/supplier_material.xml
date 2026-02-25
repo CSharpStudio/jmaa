@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='wms_supplier_material_search' name='供应商物料-查询' model='wms.supplier_material'>
+        <search>
+            <field name='supplier_id'/>
+            <field name='material_id'/>
+            <field name='supplier_material_code'/>
+        </search>
+    </view>
+    <view id='wms_supplier_material_grid' name='供应商物料-表格' model='wms.supplier_material'>
+        <grid>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name='supplier_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='supplier_material_code'/>
+        </grid>
+    </view>
+    <view id='wms_supplier_material_form' name='供应商物料-表单' model='wms.supplier_material'>
+        <form logAccess="0">
+            <toolbar buttons="default">
+            </toolbar>
+            <field name='supplier_id'/>
+            <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+            <field name='material_name_spec'/>
+            <field name='supplier_material_code'/>
+        </form>
+    </view>
+</data>

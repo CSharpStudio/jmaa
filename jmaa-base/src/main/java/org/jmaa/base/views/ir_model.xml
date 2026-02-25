@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='model_resource' name='模型-资源' model='ir.model'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_ui_view.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/editors/code-editor.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/xml/xml.js"></script>
+            <script src="/web/org/jmaa/web/statics/web/editors/CodeEditor.js"></script>
+            <script src="/web/org/jmaa/base/statics/js/model.js"></script>
+        </resource>
+    </view>
+    <view id='model_search' name='模型-查询' model='ir.model'>
+        <search>
+            <field name="name"/>
+            <field name="model"/>
+            <field name="origin"/>
+        </search>
+    </view>
+    <view id='model_grid' name='模型-表格' model='ir.model'>
+        <grid>
+            <toolbar buttons="default"></toolbar>
+            <field name="name"/>
+            <field name="model"/>
+            <field name="inherit"/>
+            <field name="table_name"/>
+            <field name="origin"/>
+        </grid>
+    </view>
+    <view id='model_form' name='模型-表单' model='ir.model'>
+        <form>
+            <toolbar buttons="default"></toolbar>
+            <field name="name"/>
+            <field name="model" t-readonly="origin == 'base'"/>
+            <field name="inherit" t-readonly="origin == 'base'"/>
+            <field name="table" t-readonly="origin == 'base'"/>
+            <field name="order"/>
+            <field name="present_fields"/>
+            <field name="origin"/>
+            <field name="module_id" t-readonly="origin == 'base'"/>
+            <field name="description" colspan="4"/>
+            <tabs>
+                <tab label="字段">
+                    <field name="field_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <toolbar buttons="default">
+                                <button name="delete" t-enable="ids:origin != 'base'" class="btn-danger"
+                                        t-click="delete" confirm="确定删除?" label="删除"></button>
+                            </toolbar>
+                            <field name="name"/>
+                            <field name="field_type"/>
+                            <field name="label"/>
+                            <field name="required"/>
+                            <field name="readonly"/>
+                            <field name="index"/>
+                            <field name="store"/>
+                            <field name="origin"/>
+                            <edit>
+                                <field name="name" t-readonly="origin == 'base'"/>
+                                <field name="field_type" t-readonly="origin == 'base'"/>
+                                <field name="label"/>
+                                <field name="help"/>
+                                <field name="required" t-readonly="origin == 'base'"/>
+                                <field name="readonly" t-readonly="origin == 'base'"/>
+                                <field name="related" t-readonly="origin == 'base'"/>
+                                <field name="index" t-readonly="origin == 'base'"/>
+                                <field name="store" t-readonly="origin == 'base'"/>
+                                <field name="copy" t-readonly="origin == 'base'"/>
+                                <field name="depends" t-readonly="origin == 'base'"/>
+                                <field name="default_value" t-readonly="origin == 'base'"/>
+                                <field name="compute" t-readonly="origin == 'base'"/>
+                                <field name="origin" t-readonly="origin == 'base'"/>
+                                <field name="translate" t-visible="field_type==='char'" t-readonly="origin == 'base'"/>
+                                <field name="length" t-visible="field_type==='char'" t-readonly="origin == 'base'"/>
+                                <field name="relation"
+                                       t-visible="field_type==='many2one' || field_type==='one2many' || field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="relation_field" t-visible="field_type==='one2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="relation_table" t-visible="field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="column1" t-visible="field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="column2" t-visible="field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <tabs>
+                                    <tab label="选项" t-visible="field_type==='selection'">
+                                        <field name="selection_ids" colspan="4" nolabel="1">
+                                            <grid>
+                                                <toolbar buttons="default"></toolbar>
+                                                <field name="value"/>
+                                                <field name="name"/>
+                                                <field name="sequence"/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                </tabs>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="视图" t-visible="id">
+                    <field name="view_ids" nolabel="1" colspan="4" editor="view-editor" readonly="0">
+                        <grid>
+                            <toolbar buttons="default">
+                                <button name="create" auth="update"></button>
+                                <button name="edit" auth="update"></button>
+                                <button name="delete" auth="update"></button>
+                            </toolbar>
+                            <field name="name"/>
+                            <field name="model"/>
+                            <field name="key"/>
+                            <field name="priority"/>
+                            <field name="type"/>
+                            <field name="inherit_id"/>
+                            <field name="mode"/>
+                            <field name="module_id"/>
+                            <field name="active"/>
+                            <edit on-create="onCreateView">
+                                <div class="edit-notice" t-visible="module and module!='studio'">
+                                    <t>不建议编辑当前视图结构，因为应用升级后会被覆盖。</t>
+                                </div>
+                                <field name="name"/>
+                                <field name="model" readonly="1"/>
+                                <field name="key"/>
+                                <field name="priority"/>
+                                <field name="type"/>
+                                <field name="inherit_id"/>
+                                <field name="mode"/>
+                                <field name="module_id" readonly="1"/>
+                                <field name="active"/>
+                                <field name="arch" editor="code-editor" colspan="4" rows="20"/>
+                                <field name="module" visible="0"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+
+    <view id='model_field_search' name='快码-查询' model='ir.model.field'>
+        <search criteria="[['field_type','=', 'selection'],['is_catalog','=',true]]">
+            <field name="name"/>
+            <field name="model_id"/>
+            <field name="label"/>
+            <field name="origin"/>
+        </search>
+    </view>
+    <view id='model_field_grid' name='快码-表格' model='ir.model.field'>
+        <grid>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="model_id" label="功能"/>
+            <field name="name" label="编码"/>
+            <field name="label" label="名称"/>
+        </grid>
+    </view>
+    <view id='model_field_form' name='快码-表单' model='ir.model.field'>
+        <form>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="model_id" readonly="1" label="功能" required="0"/>
+            <field name="name" readonly="1" label="编码" required="0"/>
+            <field name="label" readonly="1" label="名称"/>
+            <tabs>
+                <tab label="选项">
+                    <field name="selection_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <field name="value" t-readonly="origin=='base'"/>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                            <field name="origin" readonly="1"/>
+                            <field name="active"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='model_feature' name='模型-功能选择' key="feature" model='ir.model'>
+        <custom>
+            <div class="m-feature row">
+                <div class="feature-item col-md-6">
+                    <div class="form-group e-check">
+                        <input type="checkbox" id="ckb-company" feature="company"></input>
+                        <label for="ckb-company">
+                            <div class="feature-text">
+                                <div class="feature-title">组织</div>
+                                <div class="feature-desc">按组织隔离数据</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="feature-item col-md-6">
+                    <div class="form-group e-check">
+                        <input type="checkbox" id="ckb-active" checked="checked" feature="active"></input>
+                        <label for="ckb-active">
+                            <div class="feature-text">
+                                <div class="feature-title">有效状态</div>
+                                <div class="feature-desc">标记数据记录是否生效</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </custom>
+    </view>
+</data>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_staff_grid' inherit_id="md-enterprise.md_staff_grid" name='员工-表格-扩展' model='md.staff'>
+        <xpath expr="field[name=account_id]" position="after">
+            <field name='work_team_id'/>
+            <field name='duty'/>
+        </xpath>
+    </view>
+    <view id='md_staff_form' inherit_id="md-enterprise.md_staff_form" name='员工-表单-扩展' model='md.staff'>
+        <xpath expr="field[name=account_id]" position="after">
+            <field name='work_team_id'/>
+            <field name='duty'/>
+        </xpath>
+    </view>
+</data>

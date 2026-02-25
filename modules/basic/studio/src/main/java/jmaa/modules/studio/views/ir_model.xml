@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='ir_model_resource' inherit_id="base.model_resource" name='模型-资源' model='ir.model'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_model_feature.css"></link>
+            <script src="/web/jmaa/modules/studio/statics/js/ir_model.js"></script>
+        </resource>
+    </view>
+    <view id='ir_model_grid' inherit_id="base.model_grid" name='模型-表格-Studio' model='ir.model'>
+        <xpath expr="toolbar" position="inside">
+            <button name="create" t-click="createModel" auth="read"/>
+            <button label="设计" t-enable="id" t-click="design" auth="read"/>
+        </xpath>
+        <xpath expr="toolbar" position="attribute">
+            <toolbar on-init="onToolbarInit"></toolbar>
+        </xpath>
+    </view>
+    <view id='ir_model_form' inherit_id="base.model_form" name='模型-表单-Studio' model='ir.model'>
+        <xpath expr="form>toolbar" position="inside">
+            <button name="create" t-click="createModel" auth="read"/>
+            <button label="设计" t-enable="id" t-click="design" auth="read"/>
+        </xpath>
+        <xpath expr="form>toolbar" position="attribute">
+            <toolbar on-init="onToolbarInit"></toolbar>
+        </xpath>
+    </view>
+    <view id='model_form_studio' name='开发平台-模型-表单' key="studio" model='ir.model'>
+        <form>
+            <toolbar buttons="save|reload"></toolbar>
+            <field name="name"/>
+            <field name="model" t-readonly="origin=='base'"/>
+            <field name="inherit" t-readonly="origin=='base'"/>
+            <field name="table" readonly="1"/>
+            <field name="order"/>
+            <field name="present_fields"/>
+            <field name="origin"/>
+            <field name="module_id" readonly="1"/>
+            <field name="description" colspan="4"/>
+            <tabs>
+                <tab label="字段">
+                    <field name="field_ids" colspan="4" nolabel="1" editor="studio-field-editor">
+                        <grid>
+                            <toolbar buttons="default">
+                                <button name="delete" t-enable="ids:origin!='base'" class="btn-danger"
+                                        auth="read" confirm="确定删除?" label="删除"></button>
+                                <button name="edit" auth="read" label="编辑"></button>
+                            </toolbar>
+                            <field name="name"/>
+                            <field name="field_type"/>
+                            <field name="label"/>
+                            <field name="required"/>
+                            <field name="readonly"/>
+                            <field name="index"/>
+                            <field name="store"/>
+                            <field name="origin"/>
+                            <edit>
+                                <field name="name" readonly="1"/>
+                                <field name="field_type" readonly="1"/>
+                                <field name="label"/>
+                                <field name="help"/>
+                                <field name="required" t-readonly="origin == 'base'"/>
+                                <field name="readonly" t-readonly="origin == 'base'"/>
+                                <field name="related" t-readonly="origin == 'base'"/>
+                                <field name="index" t-readonly="origin == 'base'"/>
+                                <field name="store" t-readonly="origin == 'base'"/>
+                                <field name="copy" t-readonly="origin == 'base'"/>
+                                <field name="depends" t-readonly="origin == 'base'"/>
+                                <field name="default_value" t-readonly="origin == 'base'"/>
+                                <field name="compute" t-readonly="origin == 'base'"/>
+                                <field name="origin" readonly="1"/>
+                                <field name="translate" t-visible="field_type==='char'" t-readonly="origin == 'base'"/>
+                                <field name="length" t-visible="field_type==='char'" t-readonly="origin == 'base'"/>
+                                <field name="relation"
+                                       t-visible="field_type==='many2one' || field_type==='one2many' || field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="relation_field" t-visible="field_type==='one2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="relation_table" t-visible="field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="column1" t-visible="field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <field name="column2" t-visible="field_type==='many2many'"
+                                       t-readonly="origin == 'base'"/>
+                                <tabs>
+                                    <tab label="选项" t-visible="field_type==='selection'">
+                                        <field name="selection_ids" colspan="4" nolabel="1">
+                                            <grid>
+                                                <toolbar buttons="default"></toolbar>
+                                                <field name="value"/>
+                                                <field name="name"/>
+                                                <field name="sequence"/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                </tabs>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="视图" t-visible="id">
+                    <field name="view_ids" nolabel="1" colspan="4" editor="studio-view-editor" readonly="0">
+                        <grid>
+                            <toolbar buttons="default">
+                                <button name="edit" auth="read"></button>
+                                <button name="delete" auth="read" t-enable="!active" title="删除无效状态的数据"></button>
+                            </toolbar>
+                            <field name="name"/>
+                            <field name="model"/>
+                            <field name="key"/>
+                            <field name="priority"/>
+                            <field name="type"/>
+                            <field name="inherit_id"/>
+                            <field name="mode"/>
+                            <field name="module_id"/>
+                            <field name="active"/>
+                            <edit>
+                                <div class="edit-notice" t-visible="module and module!='studio'">
+                                    <t>不建议编辑当前视图结构，因为应用升级后会被覆盖。</t>
+                                </div>
+                                <field name="name"/>
+                                <field name="model" readonly="1"/>
+                                <field name="key"/>
+                                <field name="priority"/>
+                                <field name="type"/>
+                                <field name="inherit_id"/>
+                                <field name="mode"/>
+                                <field name="module_id" readonly="1"/>
+                                <field name="active"/>
+                                <field name="arch" editor="code-editor" colspan="4" rows="20"/>
+                                <field name="module" visible="0"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='studio_view_form' key="studio-edit-view" name='低代码平台-视图-编辑' model='ir.ui.view'>
+        <form logAccess="0">
+            <div class="edit-notice" t-visible="module and module!='studio'">
+                <t>不建议编辑当前视图结构，因为应用升级后会被覆盖。</t>
+            </div>
+            <field name="name"/>
+            <field name="key"/>
+            <field name="priority"/>
+            <field name="inherit_id"/>
+            <field name="mode"/>
+            <field name="module_id" readonly="1"/>
+            <field name="active"/>
+            <field name="arch" editor="code-editor" colspan="4" rows="20"/>
+            <field name="module" visible="0"/>
+        </form>
+    </view>
+</data>

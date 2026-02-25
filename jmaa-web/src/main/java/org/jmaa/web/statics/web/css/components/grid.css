@@ -1,0 +1,80 @@
+.jui-grid .table-bordered td {
+    border-top-width: 0;
+}
+
+.jui-grid div.dataTables_wrapper div.dataTables_processing {
+    margin-bottom: 4px;
+    top: 0;
+    z-index: 1000;
+    position: sticky;
+    bottom: 50%;
+    margin-top: -60px;
+    left: calc(50% - 100px);
+}
+
+.jui-grid.customizable .table thead th:last-child {
+    min-width: 30px;
+}
+
+.jui-grid.customizable .table thead th:last-child .title:after {
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    color: #626774;
+    text-decoration: none !important;
+    content: "\f013";
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+.jui-grid.customizable table.dataTable > thead > tr > th:last-child:not(.sorting_disabled) {
+    padding-right: 66px;
+}
+
+.jui-grid.customizable .table thead th:last-child .column-filter {
+    right: 40px;
+}
+
+.jui-grid.customizable table.dataTable thead th:last-child.sorting_disabled {
+    padding-right: 50px;
+}
+
+.jui-grid.customizable .table thead th:last-child.sorting_disabled .column-filter {
+    right: 26px;
+}
+
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting:before,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_asc:before,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_desc:before,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_asc_disabled:before,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_desc_disabled:before,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting:after,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_asc:after,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_desc:after,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_asc_disabled:after,
+.jui-grid.customizable table.dataTable > thead th:last-child.sorting_desc_disabled:after {
+    right: 22px;
+}
+
+.jui-grid-customize {
+    overflow: auto;
+    z-index: 9999;
+}
+
+.jui-grid-customize label {
+    font-size: .8rem;
+    font-weight: 400 !important;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.jui-grid-customize label:hover {
+    background-color: #ecf5ff;
+}
+
+.jui-grid-customize label:before,
+.jui-grid-customize label:after {
+    margin-left: 10px;
+}

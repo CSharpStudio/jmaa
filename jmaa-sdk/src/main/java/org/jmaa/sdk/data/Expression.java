@@ -1,0 +1,939 @@
+package org.jmaa.sdk.data;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Stack;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jmaa.sdk.Utils;
+import org.jmaa.sdk.exceptions.TypeException;
+import org.jmaa.sdk.tools.StringUtils;
+import org.jmaa.sdk.Criteria;
+import org.jmaa.sdk.Records;
+import org.jmaa.sdk.Search;
+import org.jmaa.sdk.core.BaseModel;
+import org.jmaa.sdk.core.Constants;
+import org.jmaa.sdk.core.MetaField;
+import org.jmaa.sdk.data.Query.SelectClause;
+import org.jmaa.sdk.exceptions.ValueException;
+import org.jmaa.sdk.fields.BinaryBaseField;
+import org.jmaa.sdk.fields.BooleanField;
+import org.jmaa.sdk.fields.Many2manyField;
+import org.jmaa.sdk.fields.Many2oneField;
+import org.jmaa.sdk.fields.One2manyField;
+import org.jmaa.sdk.fields.RelationalField;
+import org.jmaa.sdk.fields.RelationalMultiField;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 这个类的主要职责是将过滤条件表达式编译为SQL查询。
+ * 过滤条件是由二元条件和运算符构成。可用的运算符是'!','&'和'|'。
+ * '!'是一元'非'运算符，'&'是二进制的'and'，'|'是二进制的'or'。
+ * 例如, 这是一个有效的过滤条件：
+ * <p>
+ * ["&", "!", {term1}, "|", {term2}, {term3}]
+ * </p>
+ * <p>
+ * 二元条件是由字段，操作符，值构成，以下两种都是有效的二元条件：
+ * <p>
+ * {"field":"field1", "op":"=", "value":"value1"}
+ * </p>
+ * <p>
+ * ["field1", "=", "value1"]
+ * </p>
+ *
+ * @author Eric Liang
+ */
+public class Expression {
+    protected static Logger logger = LoggerFactory.getLogger(Expression.class);
+
+    static final String ID = "id";
+    static final String OP_IN = "in";
+    static final String OP_NOT_IN = "not in";
+    static final String OP_IN_SELECT = "inselect";
+    static final String OP_NOT_IN_SELECT = "not inselect";
+    static final String OP_EQ = "=";
+    static final String OP_NOT_EQ = "!=";
+    static final String OP_LT_GT = "<>";
+    static final String OP_CHILD_OF = "child_of";
+    static final String OP_PARENT_OF = "parent_of";
+    static final String OP_EQ_Q = "=?";
+    static final String OP_LIKE = "like";
+    static final String OP_NOT_LIKE = "not like";
+    static final String OP_ILIKE = "ilike";
+    static final String OP_NOT_ILIKE = "not ilike";
+    static final String OP_LT = "<";
+    static final String OP_GT = ">";
+    static final String OP_LTE = "<=";
+    static final String OP_GTE = ">=";
+
+    static final String OP_NOT = "!";
+    static final String OP_OR = "|";
+    static final String OP_AND = "&";
+    static final List<String> FILTER_OPS = Arrays.asList(OP_NOT, OP_OR, OP_AND);
+    static final List<String> TERM_OPS = Arrays.asList(OP_EQ, OP_NOT_EQ, OP_LTE, OP_LT, OP_GT, OP_GTE, OP_EQ_Q, OP_LIKE,
+        OP_NOT_LIKE, OP_ILIKE, OP_NOT_ILIKE, OP_IN, OP_NOT_IN, OP_CHILD_OF, OP_PARENT_OF);
+    static final List<String> NEGATIVE_TEAM_OPS = Arrays.asList(OP_NOT_EQ, OP_NOT_LIKE, OP_NOT_ILIKE, OP_NOT_IN);
+    static final Map<String, String> FILTER_OPS_NEGATION = new HashMap<String, String>() {
+        {
+            put(OP_AND, OP_OR);
+            put(OP_OR, OP_AND);
+        }
+    };
+    static final Map<String, String> TERM_OPS_NEGATION = new HashMap<String, String>() {
+        {
+            put(OP_LT, OP_GTE);
+            put(OP_GT, OP_LTE);
+            put(OP_LTE, OP_GT);
+            put(OP_GTE, OP_LT);
+            put(OP_EQ, OP_NOT_EQ);
+            put(OP_NOT_EQ, OP_EQ);
+            put(OP_IN, OP_NOT_IN);
+            put(OP_LIKE, OP_NOT_LIKE);
+            put(OP_ILIKE, OP_NOT_ILIKE);
+            put(OP_NOT_IN, OP_IN);
+            put(OP_NOT_LIKE, OP_LIKE);
+            put(OP_NOT_ILIKE, OP_ILIKE);
+        }
+    };
+    static final BinaryOp TRUE_LEAF = new BinaryOp(1, OP_EQ, 1);
+    static final BinaryOp FALSE_LEAF = new BinaryOp(0, OP_EQ, 1);
+
+    public static boolean isFalse(Records model, List<Object> criteria) {
+        Stack<Integer> stack = new Stack<>();
+        criteria = normalizeCriteria(criteria);
+        for (int i = criteria.size() - 1; i >= 0; i--) {
+            Object token = criteria.get(i);
+            if (OP_AND.equals(token)) {
+                stack.push(Math.min(stack.pop(), stack.pop()));
+            } else if (OP_OR.equals(token)) {
+                stack.push(Math.max(stack.pop(), stack.pop()));
+            } else if (OP_NOT.equals(token)) {
+                stack.push(-stack.pop());
+            } else if (TRUE_LEAF.equals(token)) {
+                stack.push(1);
+            } else if (FALSE_LEAF.equals(token)) {
+                stack.push(-1);
+            } else if (token instanceof BinaryOp) {
+                BinaryOp bo = (BinaryOp) token;
+                if (OP_IN.equals(bo.getOp()) && isEmptyCollection(bo)) {
+                    stack.push(-1);
+                } else if (OP_NOT_IN.equals(bo.getOp()) && isEmptyCollection(bo)) {
+                    stack.push(1);
+                } else {
+                    stack.push(0);
+                }
+            } else {
+                stack.push(0);
+            }
+        }
+        return stack.pop() == -1;
+    }
+
+    static boolean isEmptyCollection(BinaryOp bo) {
+        return !(bo.getValue() instanceof Query) && bo.getValue() instanceof Collection<?>
+            && ((Collection<?>) bo.getValue()).isEmpty();
+    }
+
+    static List<Object> normalizeCriteria(List<Object> criteria) {
+        if (criteria.isEmpty()) {
+            return Collections.singletonList(TRUE_LEAF);
+        }
+        List<Object> result = new ArrayList<>();
+        int expected = 1;
+        Map<String, Integer> opArity = new HashMap<String, Integer>(3) {
+            {
+                put(OP_NOT, 1);
+                put(OP_AND, 2);
+                put(OP_OR, 2);
+            }
+        };
+        for (Object token : criteria) {
+            if (expected == 0) {
+                result.add(0, OP_AND);
+                expected = 1;
+            }
+            if (token instanceof BinaryOp) {
+                expected -= 1;
+            } else {
+                expected += opArity.getOrDefault(token.toString(), 0) - 1;
+            }
+            result.add(token);
+        }
+        assert (expected == 0) : String.format("参数criteria语法不正确:%s", getCriteriaString(criteria));
+        return result;
+    }
+
+    static String getCriteriaString(List<Object> criteria) {
+        try {
+            return new ObjectMapper().writeValueAsString(criteria);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    static List<Object> combine(String op, List<Object> unit, List<Object> zero, List<List<Object>> criterias) {
+        if (criterias.size() == 1 && criterias.get(0).equals(unit)) {
+            return unit;
+        }
+
+        List<Object> result = new ArrayList<>();
+        int count = 0;
+        for (List<Object> criteria : criterias) {
+            if (criteria.equals(unit)) {
+                continue;
+            }
+            if (criteria.equals(zero)) {
+                return zero;
+            }
+            if (!criteria.isEmpty()) {
+                result.addAll(normalizeCriteria(criteria));
+                count++;
+            }
+        }
+        for (int i = 0; i < count - 1; i++) {
+            result.set(0, op);
+        }
+        return result.isEmpty() ? unit : result;
+    }
+
+    static List<Object> and(List<List<Object>> criteria) {
+        return combine(OP_AND, Collections.singletonList(TRUE_LEAF), Collections.singletonList(FALSE_LEAF), criteria);
+    }
+
+    static List<Object> or(List<List<Object>> criteria) {
+        return combine(OP_OR, Collections.singletonList(FALSE_LEAF), Collections.singletonList(TRUE_LEAF), criteria);
+    }
+
+    static List<Object> distributeNot(List<Object> criteria) {
+        List<Object> result = new ArrayList<>();
+        Stack<Boolean> stack = new Stack<>();
+        stack.push(false);
+        for (Object token : criteria) {
+            boolean negate = stack.pop();
+            if (isLeaf(token, false)) {
+                if (negate) {
+                    BinaryOp bo = (BinaryOp) token;
+                    if (TERM_OPS_NEGATION.containsKey(bo.getOp())) {
+                        if (token.equals(TRUE_LEAF)) {
+                            result.add(FALSE_LEAF);
+                        } else if (token.equals(FALSE_LEAF)) {
+                            result.add(TRUE_LEAF);
+                        } else {
+                            result.add(new BinaryOp(bo.getField(), TERM_OPS_NEGATION.get(bo.getOp()), bo.getValue()));
+                        }
+                    } else {
+                        result.add(OP_NOT);
+                        result.add(token);
+                    }
+                } else {
+                    result.add(token);
+                }
+            } else if (OP_NOT.equals(token)) {
+                stack.push(!negate);
+            } else if (token instanceof String && FILTER_OPS_NEGATION.containsKey((String) token)) {
+                result.add(negate ? FILTER_OPS_NEGATION.get((String) token) : token);
+                stack.push(negate);
+                stack.push(negate);
+            } else {
+                result.add(token);
+            }
+        }
+        return result;
+    }
+
+    static Object normalizeLeaf(Object element) {
+        if (!isLeaf(element, false)) {
+            return element;
+        }
+        BinaryOp bo = (BinaryOp) element;
+        String original = bo.getOp();
+        String op = bo.getOp().toLowerCase();
+        if (OP_LT_GT.equals(op)) {
+            op = OP_NOT_EQ;
+        }
+        Object left = bo.getField();
+        Object right = bo.getValue();
+        boolean inBool = right instanceof Boolean && (OP_IN.equals(op) || OP_NOT_IN.equals(op));
+        if (inBool) {
+            logger.warn("过滤条件({},{},{}) 中应使用 '=' 或者 '!=' 对比符", left, original, right);
+            op = OP_IN.equals(op) ? OP_EQ : OP_NOT_EQ;
+        }
+        boolean equalsCollection = right instanceof Collection && (OP_EQ.equals(op) || OP_NOT_EQ.equals(op));
+        if (equalsCollection) {
+            logger.warn("过滤条件({},{},{})中应使用 'in' 或者 'not in' 对比符", left, original,
+                right);
+            op = OP_EQ.equals(op) ? OP_IN : OP_NOT_IN;
+        }
+        return new BinaryOp(left, op, right);
+    }
+
+    static boolean isOp(Object element) {
+        return element instanceof String && FILTER_OPS.contains((String) element);
+    }
+
+    static boolean isLeaf(Object element, boolean internal) {
+        if (element instanceof BinaryOp) {
+            BinaryOp bo = (BinaryOp) element;
+            boolean isOps = TERM_OPS.contains(bo.getOp()) || OP_LT_GT.equals(bo.getOp())
+                || (internal && (OP_IN_SELECT.equals(bo.getOp()) || OP_NOT_IN_SELECT.equals(bo.getOp())));
+            if (!isOps) {
+                logger.warn("过滤条件{}中，对比操作符{}无效", bo, bo.getOp());
+            }
+            return true;
+        }
+        return false;
+    }
+
+    static boolean isBool(Object element) {
+        return TRUE_LEAF.equals(element) || FALSE_LEAF.equals(element);
+    }
+
+    static void checkLeaf(Object element, boolean internal) {
+        if (!isOp(element) && !isLeaf(element, internal)) {
+            throw new ValueException(String.format("Invalid leaf %s", element));
+        }
+    }
+
+    public static SqlFormat toWhereSql(List<Object> criteria) {
+        List<Object> expression = distributeNot(normalizeCriteria(criteria));
+        Stack<Object> stack = new Stack<>();
+        Stack<SqlFormat> resultStack = new Stack<>();
+        for (Object leaf : expression) {
+            stack.push(leaf);
+        }
+        while (stack.size() > 0) {
+            Object item = stack.pop();
+            if (isOp(item)) {
+                parseOp(item, resultStack);
+                continue;
+            }
+            SqlFormat sql;
+            if (item.equals(TRUE_LEAF)) {
+                sql = new SqlFormat("1=1", Collections.emptyList());
+            } else if (item.equals(FALSE_LEAF)) {
+                sql = new SqlFormat("0=1", Collections.emptyList());
+            } else {
+                BinaryOp bo = (BinaryOp) item;
+                String left = (String) bo.getField();
+                String op = bo.getOp();
+                Object right = bo.getValue();
+
+                List<Object> params;
+                boolean needWildcard = OP_LIKE.equals(op) || OP_ILIKE.equals(op) || OP_NOT_LIKE.equals(op)
+                    || OP_NOT_ILIKE.equals(op);
+                if (needWildcard) {
+                    right = "%" + right + "%";
+                }
+                String query = String.format("(%s %s %%s)", left, op);
+                params = Collections.singletonList(right);
+                sql = new SqlFormat(query, params);
+            }
+            resultStack.add(sql);
+        }
+        return resultStack.pop();
+    }
+
+    Records rootModel;
+    String rootAlias;
+    List<Object> expression;
+    Query query;
+
+    public Query getQuery() {
+        return query;
+    }
+
+    public Expression(List<Object> criteria, Records model, String alias, Query query) {
+        rootModel = model;
+        rootAlias = alias == null ? model.getMeta().getTable() : alias;
+        expression = distributeNot(normalizeCriteria(criteria));
+        this.query = query == null
+            ? new Query(model.getEnv().getCursor(), model.getMeta().getTable(),
+            (String) model.call("getTableQuery"))
+            : query;
+        parse();
+    }
+
+    static class LeafModel {
+        Object leaf;
+        Records model;
+        String alias;
+
+        public LeafModel(Object leaf, Records model, String alias) {
+            this.leaf = leaf;
+            this.model = model;
+            this.alias = alias;
+        }
+    }
+
+    static void parseOp(Object leaf, Stack<SqlFormat> resultStack) {
+        String op = (String) leaf;
+        if (OP_NOT.equals(op)) {
+            SqlFormat sf = resultStack.pop();
+            resultStack.push(new SqlFormat("(NOT (" + sf.getSql() + "))", sf.getParmas()));
+        } else {
+            SqlFormat lhs = resultStack.pop();
+            SqlFormat rhs = resultStack.pop();
+            String expr = OP_AND.equals(op) ? "(" + lhs.getSql() + " AND " + rhs.getSql() + ")"
+                : "(" + lhs.getSql() + " OR " + rhs.getSql() + ")";
+            List<Object> params = new ArrayList<>();
+            params.addAll(lhs.getParmas());
+            params.addAll(rhs.getParmas());
+            resultStack.push(new SqlFormat(expr, params));
+        }
+    }
+
+    boolean parseOfId(LeafModel lm, String left, String op, Object right, Stack<LeafModel> stack,
+                      Stack<SqlFormat> resultStack) {
+        boolean isOfId = ID.equals(left) && (OP_CHILD_OF.equals(op) || OP_PARENT_OF.equals(op));
+        if (isOfId) {
+            List<Object> ids2 = toIds(right, lm.model, lm.leaf);
+            List<Object> dom = hierarchyFunc(op, left, ids2, lm.model, null, "");
+            for (Object domLeaf : dom) {
+                pushStack(stack, domLeaf, lm.model, lm.alias, false);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    boolean parseMany2onePath(String[] path, MetaField field, LeafModel lm, String op, Object right,
+                              Stack<LeafModel> stack, Stack<SqlFormat> resultStack) {
+        if (path.length > 1 && field instanceof Many2oneField) {
+            Many2oneField m2o = (Many2oneField) field;
+            String[] related = field.getRelated();
+            if (field.isStore()) {
+                Records comodel = lm.model.getEnv().get(m2o.getComodel());
+                if (m2o.getAutoJoin()) {
+                    String aliasRel = query.leftJoin(lm.alias, path[0], comodel.getMeta().getTable(), ID, path[0]);
+                    pushStack(stack, new BinaryOp(path[1], op, right), comodel, aliasRel, false);
+                } else {
+                    List<String> rightIds = Arrays.asList(comodel
+                        .find(Criteria.binary(path[1], op, right), null, null, ID).getIds());
+                    pushStack(stack, new BinaryOp(path[0], OP_IN, rightIds), lm.model, lm.alias, false);
+                }
+                return true;
+            } else if (related.length > 0) {
+                String left = String.join(".", related) + "." + Arrays.stream(path).skip(1).collect(Collectors.joining("."));
+                pushStack(stack, new BinaryOp(left, op, right), lm.model, lm.alias, false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean parseOne2manyPathJoin(String[] path, MetaField field, LeafModel lm, String op, Object right,
+                                  Stack<LeafModel> stack, Stack<SqlFormat> resultStack) {
+        if (path.length > 1 && field.isStore() && field instanceof One2manyField) {
+            One2manyField o2m = (One2manyField) field;
+            if (o2m.getAutoJoin()) {
+                Criteria criteria = Criteria.binary(path[1], op, right);
+                Criteria filter = o2m.getCriteria(lm.model);
+                if (Utils.isNotEmpty(filter)) {
+                    criteria.and(filter);
+                }
+                Records comodel = lm.model.getEnv().get(o2m.getComodel());
+                Query query = BaseModel.whereCalc(comodel.withContext(o2m.getContext()), criteria, true);
+                Cursor cr = lm.model.getEnv().getCursor();
+                SelectClause selectClause = query.select(
+                    String.format("%s.%s", cr.quote(comodel.getMeta().getTable()), cr.quote(o2m.getInverseName())));
+                pushStack(stack, new BinaryOp(Constants.ID, OP_IN_SELECT, selectClause), lm.model, lm.alias, true);
+            }
+        }
+        return false;
+    }
+
+    boolean parse2manyPath(String[] path, MetaField field, LeafModel lm, String op, Object right,
+                           Stack<LeafModel> stack, Stack<SqlFormat> resultStack) {
+        boolean result = path.length > 1 && field.isStore() && (field instanceof RelationalMultiField);
+        if (result) {
+            RelationalMultiField<?> rf = (RelationalMultiField<?>) field;
+            Records comodel = lm.model.getEnv().get(rf.getComodel());
+            List<String> rightIds = Arrays.asList(comodel.withContext(rf.getContext())
+                .find(Criteria.binary(path[1], op, right), null, null, Constants.ID).getIds());
+            pushStack(stack, new BinaryOp(path[0], OP_IN, rightIds), lm.model, lm.alias, false);
+        }
+        return result;
+    }
+
+    boolean parseOfOne2many(MetaField field, LeafModel lm, String left, String op, Object right, Stack<LeafModel> stack,
+                            Stack<SqlFormat> resultStack) {
+        boolean result = field instanceof One2manyField && (OP_CHILD_OF.equals(op) || OP_PARENT_OF.equals(op));
+        if (result) {
+            One2manyField o2m = (One2manyField) field;
+            Records comodel = lm.model.getEnv().get(o2m.getComodel());
+            List<Object> ids = toIds(right, rootModel, lm.leaf);
+            List<Object> dom;
+            if (!lm.model.getMeta().getName().equals(o2m.getComodel())) {
+                dom = hierarchyFunc(op, left, ids, comodel, null, o2m.getComodel());
+            } else {
+                dom = hierarchyFunc(op, Constants.ID, ids, lm.model, left, "");
+            }
+            for (Object domLeaf : dom) {
+                pushStack(stack, domLeaf, lm.model, lm.alias, false);
+            }
+        }
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    boolean parseOne2many(MetaField field, LeafModel lm, String left, String op, Object right, Stack<LeafModel> stack,
+                          Stack<SqlFormat> resultStack) {
+        if (field instanceof One2manyField) {
+            One2manyField o2m = (One2manyField) field;
+            Records comodel = lm.model.getEnv().get(o2m.getComodel());
+            MetaField inverseField = comodel.getMeta().getField(o2m.getInverseName());
+            Cursor cr = lm.model.getEnv().getCursor();
+            if (right != null) {
+                String inOp = NEGATIVE_TEAM_OPS.contains(op) ? "NOT IN" : "IN";
+                List<Object> ids = new ArrayList<>();
+                if (right instanceof Records) {
+                    ids.addAll(Arrays.asList(((Records) right).getIds()));
+                } else if (right instanceof Collection) {
+                    ids.addAll((Collection<String>) right);
+                } else if (right instanceof String[]) {
+                    ids.addAll(Arrays.asList((String[]) right));
+                } else {
+                    ids.add(right);
+                }
+                if (inverseField.isStore()) {
+                    if (right instanceof Query) {
+                        Query query = (Query) right;
+                        SelectClause selectClause = query.subSelect(String.format("%s.%s",
+                            cr.quote(comodel.getMeta().getTable()), cr.quote(inverseField.getName())));
+                        String sql = String.format("(%s.id %s (%s))", cr.quote(lm.alias), inOp,
+                            selectClause.getQuery());
+                        resultStack.push(new SqlFormat(sql, selectClause.getParams()));
+                    } else {
+                        String subquery = String.format("SELECT %s FROM %s WHERE id IN %%s",
+                            cr.quote(inverseField.getName()),
+                            cr.quote(comodel.getMeta().getTable()));
+                        if (!inverseField.isRequired()) {
+                            subquery += String.format(" AND %s IS NOT NULL", cr.quote(inverseField.getName()));
+                        }
+                        String sql = String.format("(%s.id %s (%s))", cr.quote(lm.alias), inOp, subquery);
+                        if (ids.isEmpty()) {
+                            ids.add(null);
+                        }
+                        resultStack.push(new SqlFormat(sql, Collections.singletonList(ids)));
+                    }
+                } else {
+                    List<String> ids1 = comodel.browse(ids.toArray(new String[0]))
+                        .withContext(Constants.PREFETCH_FIELDS, false)
+                        .stream().map(r -> (String) r.get(o2m.getInverseName())).collect(Collectors.toList());
+                    pushStack(stack, new BinaryOp(Constants.ID, inOp, ids1), lm.model, lm.alias, false);
+                }
+            } else {
+                if (inverseField.isStore()) {
+                    String op1 = NEGATIVE_TEAM_OPS.contains(op) ? OP_IN_SELECT : OP_NOT_IN_SELECT;
+                    String subquery = String.format("SELECT %s FROM %s WHERE %s IS NOT NULL",
+                        cr.quote(inverseField.getName()), cr.quote(comodel.getMeta().getTable()),
+                        cr.quote(inverseField.getName()));
+                    pushStack(stack, new BinaryOp(Constants.ID, op1, Arrays.asList(subquery, Collections.emptyList())),
+                        lm.model, lm.alias, true);
+                } else {
+                    Criteria comodelCriteria = Criteria.notEqual(inverseField.getName(), null);
+                    List<String> ids1 = comodel.find(comodelCriteria, null, null, Constants.ID)
+                        .withContext(Constants.PREFETCH_FIELDS, false)
+                        .stream().filter(r -> StringUtils.isNotEmpty((String) r.get(o2m.getInverseName())))
+                        .map(r -> r.getId())
+                        .collect(Collectors.toList());
+                    String op1 = NEGATIVE_TEAM_OPS.contains(op) ? OP_IN : OP_NOT_IN;
+                    pushStack(stack, new BinaryOp(Constants.ID, op1, ids1), lm.model, lm.alias, false);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    boolean parseMany2many(MetaField field, LeafModel lm, String left, String op, Object right, Stack<LeafModel> stack,
+                           Stack<SqlFormat> resultStack) {
+        if (field instanceof Many2manyField) {
+            Many2manyField m2m = (Many2manyField) field;
+            String relTable = m2m.getRelation();
+            String relId1 = m2m.getColumn1();
+            String relId2 = m2m.getColumn2();
+            Cursor cr = lm.model.getEnv().getCursor();
+            if (right != null) {
+                List<Object> params = new ArrayList<>();
+                String termId2;
+                if (right instanceof Query) {
+                    Query sub = (Query) right;
+                    SelectClause select = sub.subSelect();
+                    termId2 = select.getQuery();
+                    params.addAll(select.getParams());
+                } else {
+                    if (right instanceof Collection || right instanceof Object[]) {
+                        params.add(right);
+                    } else {
+                        params.add(Collections.singletonList(right));
+                    }
+                    termId2 = "%s";
+                }
+                String exists = NEGATIVE_TEAM_OPS.contains(op) ? "NOT EXISTS" : "EXISTS";
+                String relAlias = cr.getSqlDialect().generateTableAlias(lm.alias, m2m.getName());
+                String sql = String.format("%s (SELECT 1 FROM %s %s WHERE %s.%s=%s.id AND %s.%s IN %s)",
+                    exists, cr.quote(relTable), cr.quote(relAlias), cr.quote(relAlias), cr.quote(relId1),
+                    cr.quote(lm.alias), cr.quote(relAlias), cr.quote(relId2), termId2);
+                resultStack.push(new SqlFormat(sql, params));
+            } else {
+                String exists = NEGATIVE_TEAM_OPS.contains(op) ? "EXISTS" : "NOT EXISTS";
+                String relAlias = cr.getSqlDialect().generateTableAlias(lm.alias, m2m.getName());
+                String sql = String.format("%s (SELECT 1 FROM %s %s WHERE %s.%s=%s.id)",
+                    exists, cr.quote(relTable), cr.quote(relAlias), cr.quote(relAlias), cr.quote(relId1), cr.quote(lm.alias));
+                resultStack.push(new SqlFormat(sql, Collections.emptyList()));
+            }
+            return true;
+        }
+        return false;
+    }
+
+    boolean parseMany2one(MetaField field, LeafModel lm, String left, String op, Object right, Stack<LeafModel> stack,
+                          Stack<SqlFormat> resultStack) {
+        if (field instanceof Many2oneField) {
+            Many2oneField m2o = (Many2oneField) field;
+            Records comodel = lm.model.getEnv().get(m2o.getComodel());
+            if ((OP_CHILD_OF.equals(op) || OP_PARENT_OF.equals(op))) {
+                List<Object> ids2 = toIds(right, comodel, lm.leaf);
+                List<Object> dom;
+                if (!m2o.getComodel().equals(lm.model.getMeta().getName())) {
+                    dom = hierarchyFunc(op, left, ids2, comodel, null, m2o.getComodel());
+                } else {
+                    dom = hierarchyFunc(op, ID, ids2, lm.model, left, "");
+                }
+                for (Object domLeaf : dom) {
+                    pushStack(stack, domLeaf, lm.model, lm.alias, false);
+                }
+            } else {
+                // 因为id和name都是String类型，无法根据类型识别，
+                // 所以要使用name查询时，要使用[xxx_id.name, op, name]查询，不能直接使用[xxx_id, op, name]
+                resultStack.push(leafToSql((BinaryOp) lm.leaf, lm.model, lm.alias));
+            }
+            return true;
+        }
+        return false;
+    }
+
+    boolean parseAttachment(MetaField field, LeafModel lm, String left, String op, Object right, Stack<LeafModel> stack,
+                            Stack<SqlFormat> resultStack) {
+        if (field instanceof BinaryBaseField && ((BinaryBaseField<?>) field).isAttachment()) {
+            // TODO
+            throw new UnsupportedOperationException();
+        }
+        return false;
+    }
+
+    @SuppressWarnings("deprecation")
+    void parseLeaf(MetaField field, LeafModel lm, String left, String op, Object right,
+                   Stack<LeafModel> stack, Stack<SqlFormat> resultStack) {
+        int datelength = 10;
+        if (Constants.DATETIME.equals(field.getType()) && right != null) {
+            if (right instanceof String && ((String) right).length() == datelength) {
+                String str = (String) right;
+                if (OP_GT.equals(op) || OP_LTE.equals(op)) {
+                    str += " 23:59:59";
+                } else {
+                    str += " 00:00:00";
+                }
+                pushStack(stack, new BinaryOp(left, op, str), lm.model, lm.alias, false);
+            } else if (right instanceof Date) {
+                Date d = (Date) right;
+                if (OP_GT.equals(op) || OP_LTE.equals(op)) {
+                    right = new Timestamp(d.getYear(), d.getMonth(), d.getDay(), 23, 59, 59, 0);
+                } else {
+                    right = new Timestamp(d.getYear(), d.getMonth(), d.getDay(), 0, 0, 0, 0);
+                }
+                pushStack(stack, new BinaryOp(left, op, right), lm.model, lm.alias, false);
+            } else {
+                resultStack.add(leafToSql((BinaryOp) lm.leaf, lm.model, lm.alias));
+            }
+        }
+        // TODO Translate
+        // else if (field.Translate && right.IsTrue())
+        // {
+        // throw new NotImplementedException();
+        // }
+        else {
+            resultStack.add(leafToSql((BinaryOp) lm.leaf, lm.model, lm.alias));
+        }
+    }
+
+    void parse() {
+        Stack<LeafModel> stack = new Stack<>();
+        Stack<SqlFormat> resultStack = new Stack<>();
+        for (Object leaf : expression) {
+            pushStack(stack, leaf, rootModel, rootAlias, false);
+        }
+        while (stack.size() > 0) {
+            LeafModel lm = stack.pop();
+            if (isOp(lm.leaf)) {
+                parseOp(lm.leaf, resultStack);
+                continue;
+            }
+            if (isBool(lm.leaf)) {
+                SqlFormat sf = leafToSql((BinaryOp) lm.leaf, lm.model, lm.alias);
+                resultStack.push(sf);
+                continue;
+            }
+            BinaryOp bo = (BinaryOp) lm.leaf;
+            String left = (String) bo.getField();
+            String op = bo.getOp();
+            Object right = bo.getValue();
+            String[] path = left.split("\\.", 2);
+            MetaField field = lm.model.getMeta().findField(path[0]);
+            if (field == null) {
+                throw new ValueException(
+                    String.format("无效的字段[%s.%s]在条件节点[%s]", lm.model.getMeta().getName(), path[0], lm.leaf));
+            }
+            if (field.isInherited()) {
+                String parentModelName = field.getRelatedField().getModelName();
+                String parentFieldName = lm.model.getMeta().getDelegates().get(parentModelName);
+                Records parentModel = lm.model.getEnv().get(parentModelName);
+                String parentTable = parentModel.getMeta().getTable();
+                String parentAlias = this.query.leftJoin(lm.alias, parentFieldName, parentTable, "id", parentFieldName);
+                pushStack(stack, lm.leaf, parentModel, parentAlias, false);
+            } else if (parseOfId(lm, left, op, right, stack, resultStack)) {
+                //empty if
+            } else if (parseMany2onePath(path, field, lm, op, right, stack, resultStack)) {
+                //empty if
+            } else if (parseOne2manyPathJoin(path, field, lm, op, right, stack, resultStack)) {
+                //empty if
+            } else if (parse2manyPath(path, field, lm, op, right, stack, resultStack)) {
+                //empty if
+            } else if (field.getRelated().length > 0) {
+                pushStack(stack, new BinaryOp(StringUtils.join(field.getRelated(), "."), op, right), lm.model, lm.alias, false);
+            } else if (!field.isStore()) {
+                Search search = field.getSearch();
+                List<Object> criteria = new ArrayList<>();
+                if (search == null) {
+                    logger.error("非存储字段 {} 不能查询", field);
+                } else {
+                    if (path.length > 1) {
+                        RelationalField<?> rf = (RelationalField<?>) field;
+                        right = Arrays.asList(lm.model.getEnv().get(rf.getComodel())
+                            .find(Criteria.binary(path[1], op, right), null, null, Constants.ID)
+                            .getIds());
+                        op = OP_IN;
+                    }
+                    criteria = search.call(lm.model, op, right);
+                    lm.model.call("flushSearch", criteria, Collections.emptyList(), Constants.ID);
+                }
+                for (Object elem : normalizeCriteria(criteria)) {
+                    pushStack(stack, elem, lm.model, lm.alias, true);
+                }
+            } else if (parseOfOne2many(field, lm, left, op, right, stack, resultStack)) {
+                //empty if
+            } else if (parseOne2many(field, lm, left, op, right, stack, resultStack)) {
+                //empty if
+            } else if (parseMany2many(field, lm, left, op, right, stack, resultStack)) {
+                //empty if
+            } else if (parseMany2one(field, lm, left, op, right, stack, resultStack)) {
+                //empty if
+            } else if (parseAttachment(field, lm, left, op, right, stack, resultStack)) {
+                //empty if
+            } else {
+                parseLeaf(field, lm, left, op, right, stack, resultStack);
+            }
+        }
+        SqlFormat result = resultStack.pop();
+        query.addWhere(result.getSql(), result.getParmas());
+    }
+
+    SqlFormat leafToInSql(BinaryOp leaf, Records model, String left, String op, Object right, String tableAlias,
+                          Cursor cr) {
+        if (right instanceof Query) {
+            SelectClause sub = ((Query) right).select();
+            return new SqlFormat(String.format("(%s.%s %s (%s))", tableAlias, cr.quote(left), op, sub.getQuery()),
+                sub.getParams());
+        }
+        if (right instanceof Object[]) {
+            right = Arrays.asList((Object[]) right);
+        }
+        if (right instanceof Collection<?>) {
+            List<Object> params = new ArrayList<>((Collection<?>) right);
+            String query;
+            if (params.isEmpty()) {
+                query = OP_IN.equals(op) ? "1=0" : "1=1";
+            } else {
+                String[] formats = new String[params.size()];
+                Arrays.fill(formats, "%s");
+                String instr = StringUtils.join(formats, ",");
+                if (!ID.equals(left)) {
+                    MetaField field = model.getMeta().getField(left);
+                    params.replaceAll(p -> field.convertToColumn(p, model, false));
+                }
+                query = String.format("(%s.%s %s (%s))", tableAlias, cr.quote(left), op, instr);
+            }
+            return new SqlFormat(query, params);
+        }
+        throw new ValueException("无效的条件值:" + leaf);
+    }
+
+    SqlFormat leafToSqlInner(BinaryOp leaf, Records model, MetaField field, String left, String op, Object right,
+                             String tableAlias, Cursor cr) {
+        boolean needWildcard = OP_LIKE.equals(op) || OP_ILIKE.equals(op) || OP_NOT_LIKE.equals(op)
+            || OP_NOT_ILIKE.equals(op);
+        boolean needCast = op.endsWith(OP_LIKE);
+        String column = String.format("%s.%s", tableAlias, cr.quote(left));
+        if (needCast) {
+            column = cr.getSqlDialect().cast(column, ColumnType.Text);
+        }
+
+        List<Object> params;
+        String query = String.format("(%s %s %%s)", column, op);
+
+        boolean orIsNull = (needWildcard && right == null) || (right != null && NEGATIVE_TEAM_OPS.contains(op));
+        if (orIsNull) {
+            query = String.format("(%s OR %s.%s IS NULL)", query, tableAlias, cr.quote(left));
+        }
+
+        if (needWildcard) {
+            params = Collections.singletonList("%" + right + "%");
+        } else {
+            params = Collections.singletonList(field.convertToColumn(right, model, false));
+        }
+
+        return new SqlFormat(query, params);
+    }
+
+    @SuppressWarnings("unchecked")
+    public SqlFormat leafToSql(BinaryOp leaf, Records model, String alias) {
+        if (leaf.equals(TRUE_LEAF)) {
+            return new SqlFormat("1=1", Collections.emptyList());
+        }
+        if (leaf.equals(FALSE_LEAF)) {
+            return new SqlFormat("0=1", Collections.emptyList());
+        }
+        String left = (String) leaf.getField();
+        String op = leaf.getOp();
+        Object right = leaf.getValue();
+        Cursor cr = model.getEnv().getCursor();
+        String tableAlias = cr.quote(alias);
+        if (OP_IN_SELECT.equals(op) || OP_NOT_IN_SELECT.equals(op)) {
+            if (right instanceof SelectClause) {
+                SelectClause selectClause = (SelectClause) right;
+                return new SqlFormat(String.format("(%s.%s %s (%s))", tableAlias, cr.quote(left),
+                    OP_IN_SELECT.equals(op) ? "in" : "not in", selectClause.getQuery()), selectClause.getParams());
+            }
+            if (right instanceof List) {
+                List<Object> r = (List<Object>) right;
+                return new SqlFormat(String.format("(%s.%s %s (%s))", tableAlias, cr.quote(left),
+                    OP_IN_SELECT.equals(op) ? "in" : "not in", r.get(0)), (List<Object>) r.get(1));
+            }
+            throw new TypeException("inselect 参数类型不匹配，应该是SelectClause或List，实际是" + right.getClass());
+        }
+        if (OP_IN.equals(op) || OP_NOT_IN.equals(op)) {
+            return leafToInSql(leaf, model, left, op, right, tableAlias, cr);
+        }
+        MetaField field = model.getMeta().findField(left);
+        boolean boolNullOrFalse = field instanceof BooleanField
+            && ((OP_EQ.equals(op) && Objects.equals(false, right))
+            || (OP_NOT_EQ.equals(op) && Objects.equals(true, right)));
+        if (boolNullOrFalse) {
+            String col = cr.quote(left);
+            return new SqlFormat(
+                String.format("(%s.%s IS NULL or %s.%s = %%s)", tableAlias, col, tableAlias, col),
+                Collections.singletonList(false));
+        }
+
+        boolean isNull = (Objects.equals(right, false) || right == null) && OP_EQ.equals(op);
+        if (isNull) {
+            return new SqlFormat(
+                String.format("%s.%s IS NULL", tableAlias, cr.quote(left)),
+                Collections.emptyList());
+        }
+
+        boolean boolNotNullAndNotFalse = field instanceof BooleanField
+            && ((OP_NOT_EQ.equals(op) && Objects.equals(false, right))
+            || (OP_EQ.equals(op) && Objects.equals(true, right)));
+        if (boolNotNullAndNotFalse) {
+            String col = cr.quote(left);
+            return new SqlFormat(
+                String.format("(%s.%s IS NOT NULL and %s.%s = %%s)", tableAlias, col, tableAlias, col),
+                Collections.singletonList(true));
+        }
+
+        boolean isNotNull = (Objects.equals(right, false) || right == null) && OP_NOT_EQ.equals(op);
+        if (isNotNull) {
+            return new SqlFormat(
+                String.format("%s.%s IS NOT NULL", tableAlias, cr.quote(left)),
+                Collections.emptyList());
+        }
+
+        if (OP_EQ_Q.equals(op)) {
+            if (Objects.equals(right, false) || right == null) {
+                return new SqlFormat("1=1", Collections.emptyList());
+            } else {
+                return leafToSql(new BinaryOp(left, OP_EQ, right), model, alias);
+            }
+        }
+
+        if (field == null) {
+            throw new ValueException(
+                String.format("条件[%s]中存在模型[%s]无效的字段[%s]", leaf, model.getMeta().getName(), left));
+        }
+
+        return leafToSqlInner(leaf, model, field, left, op, right, tableAlias, cr);
+    }
+
+    List<Object> toIds(Object value, Records comodel, Object left) {
+        List<String> names = new ArrayList<>();
+        if (value instanceof String) {
+            names.add((String) value);
+        } else if (value instanceof Collection<?>) {
+            for (Object o : (Collection<?>) value) {
+                if (o instanceof String) {
+                    names.add((String) o);
+                }
+            }
+        }
+        // TODO
+        if (names.size() > 0) {
+            List<Object> ids = new ArrayList<>();
+            for (String name : names) {
+                Records r = (Records) comodel.call("nameSearch", name, Collections.emptyList(), OP_ILIKE, -1);
+                Collections.addAll(ids, r.getIds());
+            }
+            return ids;
+        }
+        return Collections.singletonList(value);
+    }
+
+    List<Object> childOfCriteria(Object left, List<Object> ids, Records leftModel, String parent, String prefix) {
+        List<Object> criteria = new ArrayList<>();
+        // TODO
+        return criteria;
+    }
+
+    List<Object> parentOfCriteria(Object left, List<Object> ids, Records leftModel, String parent, String prefix) {
+        List<Object> criteria = new ArrayList<>();
+        // TODO
+        return criteria;
+    }
+
+    List<Object> hierarchyFunc(String op, Object left, List<Object> ids, Records leftModel, String parent,
+                               String prefix) {
+        return OP_CHILD_OF.equals(op) ? childOfCriteria(left, ids, leftModel, parent, prefix)
+            : parentOfCriteria(left, ids, leftModel, parent, prefix);
+    }
+
+    void pushStack(Stack<LeafModel> stack, Object leaf, Records model, String alias, boolean internal) {
+        leaf = normalizeLeaf(leaf);
+        checkLeaf(leaf, internal);
+        stack.push(new LeafModel(leaf, model, alias));
+    }
+}

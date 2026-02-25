@@ -1,0 +1,25 @@
+.jui-pager {
+    display: flex;
+    align-items: center;
+}
+
+.jui-pager .page-size {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.jui-pager .size-separator {
+    min-width: 1rem;
+    text-align: center;
+}
+
+.jui-pager .size-to {
+    min-width: .8rem;
+    text-align: center;
+}
+
+.jui-pager.no-counting .size-separator,
+.jui-pager.no-counting .pager-total {
+    display: none;
+}

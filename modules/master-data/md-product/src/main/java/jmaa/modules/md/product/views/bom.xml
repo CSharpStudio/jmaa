@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_bom_resource' name='BOM-资源' model='md.bom'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/product/statics/css/bom.css"></link>
+            <script src="/web/jmaa/modules/md/product/statics/js/bom.js"></script>
+        </resource>
+    </view>
+    <view id='md_bom_search' name='BOM-查询' model='md.bom'>
+        <search>
+            <field name='material_id'/>
+        </search>
+    </view>
+    <view id='md_bom_grid' name='BOM-表格' model='md.bom'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='unit_id'/>
+            <field name='active'/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='md_bom_form' name='BOM-表单' model='md.bom'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='material_id' on-change-action="onMaterialChange" t-readonly="id" view="default"
+                   lookup="[['category','in',['semi-finished','finished']]]"/>
+            <field name='material_name_spec' colspan="2"/>
+            <field name='material_category'/>
+            <field name='unit_id'/>
+            <field name='active'/>
+            <field name='remark' colspan="2"/>
+            <tabs>
+                <tab label="物料清单">
+                    <field name="version_ids" nolabel="1" colspan="4" editor="bom-version" t-readonly="!id">
+                        <aside>
+                            <toolbar buttons="default">
+                                <button confirm="确定设为默认?" service="setDefault" label="设为默认"></button>
+                            </toolbar>
+                            <field name='code'/>
+                            <field name='version'/>
+                            <field name='is_default'/>
+                            <field name='active'/>
+                            <field name='source'/>
+                            <field name='details_ids'/>
+                            <template>
+                                <div class="card-body">
+                                    {@if !active}
+                                    <div class="ribbon-wrapper">
+                                        <div class="ribbon bg-secondary">
+                                            <small>失效</small>
+                                        </div>
+                                    </div>
+                                    {@else if is_default}
+                                    <div class="ribbon-wrapper">
+                                        <div class="ribbon bg-success">
+                                            <small>默认</small>
+                                        </div>
+                                    </div>
+                                    {@/if}
+                                    <div><span>编码：</span>${code}
+                                    </div>
+                                    <div><span>版本：</span>${version}
+                                        <div class="float-right mr-3">${source &amp;&amp; source[1]}</div>
+                                    </div>
+                                </div>
+                            </template>
+                            <edit>
+                                <field name='code'/>
+                                <field name='version'/>
+                                <field name='is_default' readonly="1" allow-null="1"/>
+                                <field name='active'/>
+                                <field name='source' readonly="1"/>
+                                <tabs>
+                                    <tab label="物料清单">
+                                        <field name="details_ids" nolabel="1" colspan="4">
+                                            <grid>
+                                                <field name="unit_accuracy" visible="0"/>
+                                                <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+                                                <field name='material_name_spec'/>
+                                                <field name='material_category'/>
+                                                <field name='qty' editor="accuracy" accuracy="unit_accuracy"/>
+                                                <field name='unit_id'/>
+                                                <field name='is_alternative'/>
+                                                <field name='main_material_id' t-reset="is_alternative"
+                                                       t-visible="is_alternative" required="1"/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                </tabs>
+                            </edit>
+                        </aside>
+                        <details>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='material_category'/>
+                            <field name='qty'/>
+                            <field name='unit_id'/>
+                            <field name='is_alternative'/>
+                            <field name='main_material_id'/>
+                        </details>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='md_bom_version_form' name='BOM-编码-表单' model='md.bom_version'>
+        <form>
+            <toolbar buttons="default"/>
+            <field name='code'/>
+            <field name='version'/>
+            <field name='is_default' readonly="1" allow-null="1"/>
+            <field name='active'/>
+            <field name='source' readonly="1"/>
+            <tabs>
+                <tab label="物料清单">
+                    <field name="details_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <toolbar buttons="default"/>
+                            <field name="unit_accuracy" visible="0"/>
+                            <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+                            <field name='material_name_spec'/>
+                            <field name='material_category'/>
+                            <field name='qty' editor="accuracy" accuracy="unit_accuracy"/>
+                            <field name='unit_id'/>
+                            <field name='is_alternative'/>
+                            <field name='main_material_id' t-reset="is_alternative"
+                                   t-visible="is_alternative" required="1"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,333 @@
+.custom-panel {
+    height: 100%;
+}
+
+.custom-panel .report-head {
+    min-height: 41px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: white;
+    gap: 4px;
+}
+
+.custom-panel .report-head .r-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-right: 300px;
+    flex: 1;
+    cursor: pointer;
+}
+
+.custom-panel .report-content {
+    height: calc(100% - 41px);
+    display: flex;
+}
+
+.custom-panel .left-aside {
+    max-width: 250px;
+    border-right: 1px solid #dee2e6;
+    padding: 0 15px;
+}
+
+.custom-panel .left-aside .s-components {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4px;
+}
+
+.custom-panel .left-aside h6 {
+    margin-top: 10px;
+}
+
+.custom-panel .jui-report .search {
+    border: none;
+}
+
+.custom-panel .r-body {
+    flex: 1;
+    width: calc(100% - 250px);
+    overflow: auto;
+}
+
+.custom-panel .rpt-search {
+    border-bottom: 1px solid #dee2e6;
+    background-color: #fff;
+    min-height: 60px;
+    overflow: hidden;
+}
+
+.custom-panel .r-body .btn-row {
+    width: auto;
+    margin: 0;
+    padding: 6px 16px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.custom-panel .r-body .rpt-grid {
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    padding: 0 7px 20px 7px;
+}
+
+.custom-panel .rpt-ds-bind {
+    margin-bottom: -5px;
+}
+
+.rpt-grid table.table-bordered.dataTable th,
+.rpt-grid table.table-bordered.dataTable td {
+    border-left-width: 1px;
+    border-left-color: transparent;
+}
+
+.rpt-grid table.dataTable thead tr th .title {
+    cursor: move;
+}
+
+.rpt-grid table.dataTable > thead > tr > th.hover,
+.rpt-grid table.dataTable > tbody > tr > td.hover {
+    border-left: 1px dashed #017e84;
+    border-right: 1px dashed #017e84;
+}
+
+.rpt-grid table.dataTable > thead > tr > th.hover .component-tools {
+    display: flex;
+    top: 0;
+    margin: 0;
+}
+
+.dragging {
+    border: 1px solid #B2B0B0;
+    rotate: -5deg;
+    opacity: .8;
+    max-width: 140px;
+}
+
+.move-dragging {
+    border: 1px solid #B2B0B0;
+    rotate: -2deg;
+    opacity: .8;
+    max-width: 300px;
+    min-width: 140px;
+    background: #fff;
+    outline: none !important;
+    cursor: move !important;
+}
+
+.dragging-over {
+    outline: 2px solid #3c8dbc !important;
+    opacity: 1;
+    outline-offset: 0 !important;
+}
+
+.drop-target {
+    outline: 1px solid #3c8dbc;
+    min-height: 30px;
+    width: 100%;
+}
+
+.rpt-grid [position=before].drop-target {
+    border-left: 2px solid #017e84 !important;
+    border-right: 1px solid #dee2e6 !important;
+    outline: none !important;
+}
+
+.rpt-grid [position=after].drop-target {
+    border-right: 2px solid #017e84 !important;
+    border-left-color: transparent !important;
+    outline: none !important;
+}
+
+.bind-ds-list {
+    width: 200px;
+    border-right: 1px solid #dee2e6;
+    padding: 15px;
+}
+
+.bind-ds-columns {
+    flex: 1;
+    min-height: 300px;
+    overflow: auto;
+    padding: 0 7px;
+}
+
+.holder-item {
+    min-height: 40px;
+    background: #f8f9fa;
+    font-size: 12px;
+    color: #6c757d !important;
+    font-style: italic;
+    display: grid;
+    place-items: center;
+    margin: 10px;
+}
+
+.ds-result {
+    min-height: 100px;
+    overflow: auto;
+}
+
+.ds-list-item {
+    display: flex;
+    padding: 4px 1px 4px 10px;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+}
+
+.ds-list-item.selected {
+    color: #419fff;
+    background-color: #ecf5ff;
+}
+
+.ds-list-commands {
+    display: none;
+    margin: -10px 0;
+}
+
+.ds-list-commands .btn {
+    width: 32px;
+}
+
+.ds-list-item:hover {
+    background-color: #C9CCD2;
+}
+
+.ds-list-item span {
+    flex: 1;
+}
+
+.ds-list-item:hover .ds-list-commands {
+    display: flex;
+}
+
+.rpt-search .holder-item {
+    padding: .5rem 1rem;
+}
+
+.rpt-search .form-item:hover {
+    outline: 1px dashed #3c8dbc;
+    outline-offset: 5px;
+}
+
+.form-item:hover .component-tools {
+    display: flex;
+}
+
+.component-tools {
+    position: absolute;
+    right: 0;
+    top: -4px;
+    z-index: 500;
+    display: none;
+    background: #343a40;
+    margin: 0 -4px;
+    padding: 0 5px;
+}
+
+.component-tools .btn {
+    padding: 3px;
+    min-width: 22px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.rpt-search .form-item label,
+.component-tools .btn-move {
+    cursor: move !important;
+}
+
+.s-component {
+    max-width: 108px;
+    line-height: 27px;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    margin-bottom: 5px;
+    padding: 3px 5px 0 0;
+    border-radius: 2px;
+    background-color: #eaeaea;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    cursor: move;
+}
+
+.s-component:before {
+    width: 33px;
+    height: 150%;
+    display: block;
+    float: left;
+    margin: -3px 5px 0 0;
+    border-right: 1px solid #a0abb9;
+    background-color: #dddddd;
+    content: "";
+}
+
+.s-component:after {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    bottom: auto;
+    right: auto;
+    background-image: url("/web/jmaa/modules/report/statics/field_icons.png");
+    background-repeat: no-repeat;
+    content: '';
+    width: 20px;
+    height: 20px;
+}
+
+.s-field-boolean:after {
+    background-position: 0 -20px;
+}
+
+.s-field-char:after {
+    background-position: 0 -40px;
+}
+
+.s-field-group:after {
+    background-position: 0 -60px;
+}
+
+.s-field-date:after {
+    background-position: 0 -80px;
+}
+
+.s-field-datetime:after {
+    background-position: 0 -100px;
+}
+
+.s-field-float:after {
+    background-position: 0 -120px;
+}
+
+.s-field-html:after {
+    background-position: 0 -140px;
+}
+
+.s-field-picture:after {
+    background-position: 0 -160px;
+}
+
+.s-field-integer:after {
+    background-position: 0 -180px;
+}
+
+.s-field-selection:after {
+    background-position: 0 -280px;
+}
+
+.s-field-text:after {
+    background-position: 0 -340px;
+}
+
+.s-field-related:after {
+    background-position: 0 -400px;
+}

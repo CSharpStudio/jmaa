@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='purchase_order_resource' inherit_id="purchase.purchase_order_resource" name='采购订单-资源'
+          model='purchase.order'>
+        <resource>
+            <script src="/web/jmaa/modules/account/statics/js/purchase_order.js"></script>
+        </resource>
+    </view>
+    <view id='purchase_order_form' inherit_id="purchase.purchase_order_form" name='采购订单-会计-表单'
+          model='purchase.order'>
+        <xpath expr="field[name=line_ids] field[name=purchase_qty]" position="after">
+            <field name='price' decimals="6" help="根据含税单价计算" readonly="1"/>
+            <field name='tax_rate' required="1"/>
+            <field name='price_tax' required="1" decimals="6" t-change="computeTotalPrice"/>
+            <field name='total_price' class="sum" required="1"/>
+        </xpath>
+        <xpath expr="field[name=line_ids] edit field[name=purchase_qty]" position="attribute">
+            <field name='purchase_qty' t-change="readPrice"/>
+        </xpath>
+        <xpath expr="field[name=line_ids] edit field[name=material_id]" position="attribute">
+            <field name='material_id' t-change="readPrice"/>
+        </xpath>
+    </view>
+</data>

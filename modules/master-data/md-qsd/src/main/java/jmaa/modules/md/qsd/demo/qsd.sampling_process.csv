@@ -1,0 +1,5 @@
+"id","name","type","percent","sample_size","sampling_plan_id","aql","strictness","remark","active","ac"
+"057i4psava22o","0.1正常方案","dynamic",,,"sp_gb282812012_s2","2.5","normal",,"1",
+"057i5phbhb94w","全检","full",,,,,,,"1","1"
+"057i5q3q50t1c","10%","percent","10",,,,,,"1","1"
+"057i5rgxc0vls","固定1个单位","fixed",,"1",,,,,"1","0"

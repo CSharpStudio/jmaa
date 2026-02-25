@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='lbl_material_label_print_dialog_form' name='标签管理-表单' model='lbl.material_label_print_dialog'>
+        <form>
+            <field name='material_id' view="default" on-change-action="onMaterialChange" order="code"/>
+            <field name='material_name_spec' colspan='2'/>
+            <field name='material_category'/>
+            <field name='template_id' lookup="[['category','=','material_label']]"/>
+            <field name='supplier_id'/>
+            <field name='customer_id'/>
+            <field name="stock_rule"/>
+            <field name='min_packages' min="0" t-change="onMinPackagesChange"/>
+            <field name='unit_id'/>
+            <field name='product_date' />
+            <field name='product_lot' editor="label-editor" nolabel="1"/>
+            <field name='print_qty' min="0" t-change="onPrintQtyChange"/>
+            <field name='label_count' readonly="1"/>
+            <field name='lot_attr' editor="label-editor" nolabel="1"/>
+            <field name='lpn' editor="label-editor" nolabel="1"/>
+        </form>
+    </view>
+</data>

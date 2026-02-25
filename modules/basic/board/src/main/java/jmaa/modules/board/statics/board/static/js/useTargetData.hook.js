@@ -1,0 +1,1 @@
+import{u as t}from"./chartEditStore.js";import{J as e}from"./index.js";const r=()=>{const r=t();return{targetData:e(()=>{const t=r.getComponentList,e=r.fetchTargetIndex();let o=t[e];const n=r.getTargetChart.selectId;if(e>-1&&o.id!==n[0]){const t=o.groupList;if(t){const e=t.findIndex(t=>t.id===n[0]);o=t[e]}}return o}),chartEditStore:r}};export{r as u};

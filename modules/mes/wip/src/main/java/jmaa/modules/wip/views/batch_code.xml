@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='wip_batch_code_resource' name='批次条码-资源' model='wip.batch_code'>
+        <resource>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"></script>
+            <script src="/web/jmaa/modules/wip/statics/js/batch_code.js"></script>
+        </resource>
+    </view>
+    <view id='wip_batch_code_search' name='批次条码-查询' model='wip.batch_code'>
+        <search>
+            <field name='code'/>
+            <field name="work_order_id"/>
+        </search>
+    </view>
+    <view id='wip_batch_code_grid' name='批次条码-表格' model='wip.batch_code'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="create" label="打印" auth="print" t-click="print"/>
+                <button label="补打" t-click="reprint"/>
+            </toolbar>
+            <field name='code'/>
+            <field name="work_order_id"/>
+            <field name="material_id"/>
+            <field name="material_name_spec"/>
+            <field name="qty"/>
+            <field name="unit_id"/>
+            <field name="supplier_id"/>
+            <field name="product_date"/>
+        </grid>
+    </view>
+
+    <view id='wip_print_batch_code_dialog' name='批次条码打印-对话框' model='wip.batch_code_print_dialog'>
+        <form>
+            <field name="work_order_id" on-change-action="onWorkOrderChange" view="default" lookup="[['status','not in',['close','done']]]"/>
+            <field name="material_id"/>
+            <field name="material_name_spec" colspan="2"/>
+            <field name="print_qty"/>
+            <field name="batch_rule_id" on-change-action="onBatchRuleChange"/>
+            <field name="work_order_qty"/>
+            <field name="unit_id"/>
+            <field name="batch_qty"/>
+            <field name="coding_id" lookup="[['rule','=','code.rule.batch']]"/>
+            <field name="template_id" lookup="[['category','=','batch_label']]"/>
+            <field name="supplier_id"/>
+            <field name="product_date"/>
+        </form>
+    </view>
+</data>

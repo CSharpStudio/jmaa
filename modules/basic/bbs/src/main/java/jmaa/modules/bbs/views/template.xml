@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='bbs_template_search' name='消息模板-查询' model='bbs.template'>
+        <search>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='bbs_template_grid' name='消息模板-表格' model='bbs.template'>
+        <grid>
+            <toolbar buttons="default"/>
+            <field name='name'/>
+            <field name='model'/>
+        </grid>
+    </view>
+    <view id='bbs_template_form' name='消息模板-表单' model='bbs.template'>
+        <form>
+            <toolbar buttons='default'>
+            </toolbar>
+            <field name='name'/>
+            <field name='model'/>
+            <field name='fields' colspan="4"/>
+            <field name='subject' colspan="4"/>
+            <field name='content' colspan="4"/>
+        </form>
+    </view>
+</data>

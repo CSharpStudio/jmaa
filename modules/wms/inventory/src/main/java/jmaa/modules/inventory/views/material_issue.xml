@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="mfg_material_issue_resource" type="resource" inherit_id="mfg-logistics.mfg_material_issue_resource"
+          name="发料单-资源" model="mfg.material_issue">
+        <xpath expr="resource" position="inside">
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/material_issue.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </xpath>
+    </view>
+    <view id='mfg_material_issue_grid' type="grid" inherit_id="mfg-logistics.mfg_material_issue_grid" name='发料单-表格'
+          model='mfg.material_issue'>
+        <xpath expr="toolbar" position="replace">
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="提交" t-enable="ids:id AND ['draft', 'reject'].includes(status)"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="!['draft', 'done'].includes(status)"
+                        t-click="closeOrder" class="btn-grey" ref="edit"/>
+            </toolbar>
+        </xpath>
+    </view>
+    <view id='mfg_material_issue_card' type="card" inherit_id="mfg-logistics.mfg_material_issue_card" name='发料单-卡片'
+          model='mfg.material_issue'>
+        <xpath expr="toolbar" position="replace">
+            <toolbar buttons="default">
+                <button name="delete" t-enable="ids:status[0]=='draft'"/>
+                <button label="提交" t-enable="ids:id &amp;&amp; ['draft', 'reject'].includes(status[0])"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status[0]=='commit'" auth="approve"
+                        t-click="approveIssueOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status[0])"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="!['draft', 'done'].includes(status[0])"
+                        t-click="closeOrder" class="btn-grey" ref="edit"/>
+            </toolbar>
+        </xpath>
+    </view>
+    <view id='mfg_material_issue_form' type="form" inherit_id="mfg-logistics.mfg_material_issue_form" name='发料单-表单'
+          model='mfg.material_issue'>
+        <xpath expr="toolbar" position="replace">
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="ids:id AND ['draft', 'reject'].includes(status)"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="!['draft', 'done'].includes(status)"
+                        t-click="closeOrder" class="btn-grey" ref="save"/>
+                <button label="发料" t-click="issue" auth="issue" class="btn-primary"
+                        t-enable="status=='approve'"/>
+                <button label="出库" t-click="stockOut" auth="stockOut" class="btn-success"
+                        t-enable="status=='approve'"/>
+                <field name='status' editor="statusbar" values="draft,commit,approve,done"/>
+            </toolbar>
+        </xpath>
+        <xpath expr="tabs" position="inside">
+            <tab label='发料明细'>
+                <field name='details_ids' colspan='4' nolabel='1'>
+                    <grid>
+                        <toolbar buttons='reload|export'/>
+                        <field name="status" tags="{'new':'warning','done':'success'}"/>
+                        <field name='sn'/>
+                        <field name='lot_num'/>
+                        <field name='material_id'/>
+                        <field name='material_name_spec'/>
+                        <field name='qty'/>
+                        <field name='unit_id'/>
+                        <field name='warehouse_id'/>
+                        <field name='location_id'/>
+                        <field name='material_category'/>
+                        <field name='update_uid'/>
+                        <field name='update_date'/>
+                    </grid>
+                </field>
+            </tab>
+            <tab label='消息' t-visible="id">
+                <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+            </tab>
+        </xpath>
+        <xpath expr="field[name=line_ids] toolbar" position="replace">
+            <toolbar buttons='default' on-init="onToolbarInit">
+                <button name="delete" t-enable="ids:issued_qty==0"/>
+                <div class="input-group" position="after">
+                    <div class="e-check">
+                        <input id="showUndone" type="checkbox" class="form-control"/>
+                        <label for="showUndone" title="显示未完成物料">未完成</label>
+                    </div>
+                    <input id="searchInput" t-enter="searchLine" type="text" class="form-control"
+                           placeholder="按物料编码搜索"/>
+                    <div class="input-suffix">
+                        <button type="button" auth="read" class="btn btn-default btn-lookup"
+                                t-click="searchLine">
+                            <i class="fa fa-search"/>
+                        </button>
+                    </div>
+                </div>
+            </toolbar>
+        </xpath>
+        <xpath expr="field[name=line_ids]" position="attribute">
+            <field t-filter="lineFilter"/>
+        </xpath>
+    </view>
+    <view id='mfg_material_issue_dialog' name='发料-对话框' model='mfg.material_issue_dialog'>
+        <form logAccess="0" cols="3">
+            <editor name="unit_accuracy" visible="0" type="integer"/>
+            <editor label="条码" name='code' type="char" colspan="2" placeholder="请扫描标签" class="lg"/>
+            <editor label="扫描结果" name='result' rowspan="2" type="msg_editor"/>
+            <field name='material_id'/>
+            <editor label="ABC分类" name='abc_type' type="char" readonly="1"/>
+            <editor label="名称规格" name="material_name_spec" type="char" colspan="2" readonly="1"/>
+            <field name='stock_rule'/>
+            <editor label="需求数量" name="request_qty" type="accuracy" accuracy="unit_accuracy" readonly="1"/>
+            <editor label="已发数量" name="issued_qty" type="accuracy" accuracy="unit_accuracy" readonly="1"/>
+            <editor label="待发数量" name="to_issue_qty" type="accuracy" accuracy="unit_accuracy" readonly="1"/>
+            <field name="warehouse_id" t-filter="filterWarehouse" on-change-action="onWarehouseChange" required="1"/>
+            <editor label="库存数量" name="onhand_qty" type="accuracy" accuracy="unit_accuracy" readonly="1"/>
+            <editor label="库存单位" name='unit_id' type="many2one" readonly="1"/>
+            <editor label="推荐库位" name="suggest_location" type="char" readonly="1"/>
+            <editor label="推荐条码" name="suggest_sn" type="char" readonly="1"/>
+        </form>
+    </view>
+</data>

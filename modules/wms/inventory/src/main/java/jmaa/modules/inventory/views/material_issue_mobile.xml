@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="mfg_material_issue_mobile_resource" name="发料-移动端-资源" model="mfg.material_issue_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/material_issue_mobile.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+
+    <view id="mfg_material_issue_mobile_view" name="发料-移动端" model="mfg.material_issue_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>发料</t>
+                    </h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-order-input focus" type="text" t-enter="searchOrder"
+                               placeholder="单号/物料编码/标签条码"/>
+                        <button type="button" class="clear-input" t-click="searchOrder"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="orderList" load-method="loadOrderList" on-item-click="openIssue">
+                        <card>
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name="workshop_id" colspan="2"/>
+                            <field name="warehouse_ids" colspan="2"/>
+                            <field name="related_code" colspan="2"/>
+                            <field name="type"/>
+                            <field name="status"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2>
+                        <t>发料</t>
+                    </h2>
+                    <a class="back-link" t-click="searchOrder" focus-to=".search-order-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="issueTab" label="发料" focus-to=".issue-input">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input class="issue-input" type="text" t-enter="scanIssue"
+                                           placeholder="标签条码"/>
+                                    <button type="button" class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <div class="flex-fill"></div>
+                                    <button type="button" t-click="prevMaterial"
+                                            class="ui-btn ui-mini btn-default">
+                                        <t>上一个</t>
+                                    </button>
+                                    <button type="button" t-click="nextMaterial"
+                                            class="ui-btn ui-mini btn-default">
+                                        <t>下一个</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height: calc(100% - 79px)">
+                                <form ref="issueForm">
+                                    <div class="card-view">
+                                        <field name="code" editor="card-item" colspan="2"/>
+                                        <field name="material_id" editor="card-item" colspan="2"/>
+                                        <editor label="名称规格" name="material_name_spec" type="card-item"
+                                                colspan="2"/>
+                                        <editor label="库存数量" name="onhand_qty" type="card-item"/>
+                                        <editor label="库存单位" name="unit_id" type="card-item"/>
+                                        <editor label="需求数量" name="request_qty" type="card-item"/>
+                                        <editor label="已发数量" name="issued_qty" type="card-item"/>
+                                        <editor label="待发数量" name="to_issue_qty" type="card-item"/>
+                                        <editor label="推荐库位" name="suggest_location" type="card-item"/>
+                                        <editor label="推荐条码" name="suggest_sn" type="card-item" colspan="2"/>
+                                    </div>
+                                    <field name="warehouse_id" colspan="2" class="label-left" t-filter="filterWarehouse"
+                                           on-change-action="onWarehouseChange" required="1"/>
+                                    <group label="更多信息" collapsable="1" collapsed="1" position="bottom">
+                                        <div class="card-view">
+                                            <field name="warehouse_ids" colspan="2" readonly="1"
+                                                   editor="many2many-tags"/>
+                                            <editor label="ABC分类" name='abc_type' type="card-item"/>
+                                            <field name='stock_rule' editor="card-item"/>
+                                            <field name="related_code" colspan="2" editor="card-item"/>
+                                            <field name="workshop_id" colspan="2" editor="card-item"/>
+                                            <field name="status" editor="card-item"/>
+                                        </div>
+                                    </group>
+                                    <editor name='result' label="扫描结果" colspan="2" type="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="发料明细" t-click="showDetailsList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="detailScope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未完成</t>
+                                            <input checked="checked" name="detailScope" type="radio" value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                    <div class="flex-fill"></div>
+                                    <button t-click="createStockOut" type="button" class="btn-primary">
+                                        <t>出库</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList"
+                                  style="height:calc(100% - 76px);" model="mfg.material_issue_details">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='sn'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='qty'/>
+                                    <field name='unit_id'/>
+                                    <field name='product_date'/>
+                                    <field name='product_lot'/>
+                                    <field name='status'/>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab label="物料明细" t-click="showMaterialList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="materialScope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未完成</t>
+                                            <input checked="checked" name="materialScope" type="radio"
+                                                   value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <list ref="materialList" load-method="loadMaterialList" model="mfg.material_issue_line"
+                                  style="height:calc(100% - 76px);">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name="request_qty"/>
+                                    <field name="issued_qty"/>
+                                    <field name='unit_id'/>
+                                    <field name='status'/>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

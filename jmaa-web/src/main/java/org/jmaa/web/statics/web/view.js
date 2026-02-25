@@ -1,0 +1,66 @@
+import './components/JComponent.js';
+import './components/EventHandlerMixin.js';
+import './components/JDialog.js';
+import './components/JTabs.js';
+import './components/JImportXls.js';
+import './components/JSelect.js';
+
+import './renders/Render.js';
+import './renders/Boolean.js';
+import './renders/Selection.js';
+import './renders/Many2many.js';
+
+import './editors/Misc.js';
+import './editors/Editor.js';
+import './editors/Char.js';
+import './editors/Password.js';
+import './editors/Boolean.js';
+import './editors/Integer.js';
+import './editors/Float.js';
+import './editors/Accuracy.js';
+import './editors/Text.js';
+import './editors/Html.js';
+import './editors/Date.js';
+import './editors/DateTime.js';
+import './editors/DateRange.js';
+import './editors/DateTimeRange.js';
+import './editors/Time.js';
+import './editors/TimeMutilple.js';
+import './editors/TimeRange.js';
+import './editors/Selection.js';
+import './editors/SelectionMultiple.js';
+import './editors/Radio.js';
+import './editors/Priority.js';
+import './editors/CheckList.js';
+import './editors/Media.js';
+import './editors/Many2One.js';
+import './editors/Many2OneRef.js';
+import './editors/One2Many.js';
+import './editors/Many2Many.js';
+import './editors/Many2ManyTags.js';
+import './editors/Binary.js';
+import './editors/StatusBar.js';
+import './editors/Message.js';
+import './editors/CardItem.js';
+
+import './columns/Column.js';
+import './columns/TreeColumn.js';
+import './columns/Boolean.js';
+import './columns/Selection.js';
+import './columns/Many2One.js';
+import './columns/One2Many.js';
+import './columns/Many2Many.js';
+import './columns/Image.js';
+import './columns/Binary.js';
+
+import './components/JSearchPanel.js';
+import './components/JSearch.js';
+import './components/JPager.js';
+import './components/JToolbar.js';
+import './components/JGrid.js';
+import './components/JForm.js';
+import './components/JCard.js';
+import './components/JTree.js';
+import './components/JCustom.js';
+import './components/JView.js';
+

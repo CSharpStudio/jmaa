@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="mfg_feeding_log_resource" name="上下料记录-资源" model="mfg.feeding_log">
+        <resource>
+            <script src="/web/jmaa/modules/wip/statics/js/feeding_log.js"></script>
+        </resource>
+    </view>
+    <view id='mfg_feeding_log_search' name='上下料记录-查询' model='mfg.feeding_log'>
+        <search>
+            <field name='station_id'/>
+            <field name='material_id'/>
+            <field name='resource_id'/>
+            <field name='workshop_id'/>
+            <field name='company_id' editor="many2many-tags"/>
+        </search>
+    </view>
+    <view id='mfg_feeding_log_grid' name='上下料记录-表格' model='mfg.feeding_log'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='station_id'/>
+            <field name='sn'/>
+            <field name='work_order_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='qty' column="qty-editor"/>
+            <field name='unit_id'/>
+            <field name='lot_num'/>
+            <field name='product_lot'/>
+            <field name='product_date'/>
+            <field name='resource_id'/>
+            <field name='workshop_id'/>
+            <field name='company_id'/>
+            <field name='create_uid'/>
+            <field name='create_date'/>
+        </grid>
+    </view>
+</data>

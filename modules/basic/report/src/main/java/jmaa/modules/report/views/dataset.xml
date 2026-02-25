@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='rpt_dataset_resource' name='数据源-资源' model='rpt.dataset'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_ui_view.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/editors/code-editor.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/sql/sql.js"></script>
+            <script src="/web/org/jmaa/web/statics/web/editors/CodeEditor.js"></script>
+            <script src="/web/jmaa/modules/report/statics/js/rpt_dataset.js"></script>
+        </resource>
+    </view>
+    <view id='rpt_dataset_search' name='数据源-查询' model='rpt.dataset'>
+        <search>
+            <field name="name"/>
+        </search>
+    </view>
+    <view id='rpt_dataset_grid' name='数据源-表格' model='rpt.dataset'>
+        <grid>
+            <toolbar buttons="default"></toolbar>
+            <field name="name"/>
+        </grid>
+    </view>
+    <view id='rpt_dataset_form' name='数据源-表单' model='rpt.dataset'>
+        <form on-load="onFormLoad">
+            <toolbar buttons="default"></toolbar>
+            <field name="name"/>
+            <field name="content" editor="code-editor" colspan="4" rows="20"/>
+        </form>
+    </view>
+</data>

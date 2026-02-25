@@ -1,0 +1,46 @@
+.jui-tabs {
+    height: 100%;
+}
+
+.jui-tabs .ui-tabs-panel {
+    height: calc(100% - 40px);
+}
+
+.jui-tabs .ui-navbar li:last-child .ui-btn {
+    border-right-width: 1px;
+    margin-right: 0;
+}
+
+.jui-tabs .jui-tabs-nav.ui-footer {
+    border: 0;
+}
+
+.jui-tabs.ui-tabs {
+    padding: 0;
+}
+
+.jui-tabs .jui-tabs-nav .ui-btn {
+    padding: .7em 1em .6em 1em;
+    font-size: .85rem;
+    border-width: 0;
+    border-bottom-color: #8B8888;
+    border-bottom-width: 3px;
+}
+
+.jui-tabs .ui-tabs-active .ui-btn,
+.jui-tabs .jui-tabs-nav .ui-btn.ui-btn-active {
+    background-color: #8B8888;
+    border-color: #8B8888;
+    color: #fff;
+}
+
+.jui-tabs .jui-tabs-nav .ui-btn:focus {
+    box-shadow: none;
+}
+
+.jui-tabs .jui-tabs-nav.ui-footer .ui-btn {
+    padding: .6em 1em .8em 1em;
+    border-width: 0;
+    border-top-color: #8B8888;
+    border-top-width: 3px;
+}

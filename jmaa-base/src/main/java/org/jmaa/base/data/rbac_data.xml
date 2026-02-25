@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <!-- user 2 is the human admin user -->
+    <record id="user_admin" model="rbac.user">
+        <field name="login">admin</field>
+        <field name="name">管理员</field>
+        <field name="password">admin</field>
+        <field name="must_update_password">false</field>
+        <field name="company_id" ref="base.company_default"></field>
+        <field name="company_ids" eval="[[4, ref(base.company_default)]]"></field>
+        <field name="mode">user</field>
+    </record>
+
+    <record id="role_admin" model="rbac.role">
+        <field name="name">admin</field>
+        <field name="is_admin">true</field>
+        <field name="user_ids" eval="[[4, ref(base.user_admin)]]"></field>
+    </record>
+
+    <record id="job_user" model="rbac.user">
+        <field name="name">系统定时任务</field>
+        <field name="login">job</field>
+        <field name="password">d08a3f$5e7c9b1</field>
+        <field name="active">true</field>
+        <field name="lang">zh_CN</field>
+        <field name="company_id" ref="base.company_default"></field>
+        <field name="company_ids" eval="[[4, ref(base.company_default)]]"></field>
+        <field name="role_ids" eval="[[4, ref(base.role_admin)]]"></field>
+        <field name="mode">user</field>
+    </record>
+</data>

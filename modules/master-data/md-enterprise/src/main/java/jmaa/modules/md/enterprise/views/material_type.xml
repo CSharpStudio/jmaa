@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_material_type_form' name='物料分类-表单' model='md.material_type'>
+        <form>
+            <tree present="display"></tree>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="parent_id" readonly="1" link="0"/>
+        </form>
+    </view>
+</data>

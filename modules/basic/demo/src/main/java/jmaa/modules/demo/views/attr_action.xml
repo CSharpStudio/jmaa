@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='attr_action_search' name='属性动作-查询' model='demo.attr_action'>
+        <search>
+            <field name="value"/>
+        </search>
+    </view>
+    <view id='attr_action_grid' name='属性动作-表格' model='demo.attr_action'>
+        <grid>
+            <toolbar buttons="default"></toolbar>
+            <field name="value"/>
+            <field name="min"/>
+            <field name="max"/>
+            <field name="decimals"/>
+            <field name="readonly"/>
+            <field name="required"/>
+            <field name="visible"/>
+        </grid>
+    </view>
+    <view id='attr_action_form' name='属性动作-表单' model='demo.attr_action'>
+        <form>
+            <toolbar buttons="none"></toolbar>
+            <field name="value"/>
+            <field name="min" on-change-action="onMinChange"/>
+            <field name="max" on-change-action="onMaxChange"/>
+            <field name="decimals" on-change-action="onDecimalsChange"/>
+            <field name="readonly" on-change-action="onReadonlyChange"/>
+            <field name="required" on-change-action="onRequiredChange"/>
+            <field name="visible" on-change-action="onVisibleChange"/>
+        </form>
+    </view>
+</data>

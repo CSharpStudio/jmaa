@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+    <title>在线打印</title>
+    <meta charset="utf-8"/>
+    <script src="scripts/stimulsoft.reports.js?etag=2025.3.3" type="text/javascript"></script>
+    <script>
+        let reportData = window.parent.reportData;
+
+        function setReport() {
+            let report = new Stimulsoft.Report.StiReport();
+            report.loadFile(reportData.template);
+            let json = {"Data": reportData.data};
+            let dataSet = new Stimulsoft.System.Data.DataSet("JSON");
+            dataSet.readJson(json);
+            report.dictionary.databases.clear();
+            report.regData("JSON", "JSON", dataSet);
+            report.renderAsync(function () {
+                if (top.NativeJS) {
+                    let service = new Stimulsoft.Report.Export.StiHtmlExportService();
+                    let t = new Stimulsoft.Report.Export.StiHtmlExportSettings();
+                    t.useWatermarkMargins = !1;
+                    t.removeEmptySpaceAtBottom = !1;
+                    t.exportMode = 2; //StiHtmlExportMode.Div,
+                    t.exportBookmarksMode = 2; //StiHtmlExportBookmarksMode.ReportOnly;
+                    let memoryStream = new Stimulsoft.System.IO.MemoryStream();
+                    service.exportTo(report, memoryStream, t);
+                    top.NativeJS.print(memoryStream.toString());
+                } else {
+                    report.print();
+                }
+            });
+            window.parent.printDialog.close();
+        }
+
+        function start() {
+            setReport();
+        }
+    </script>
+</head>
+<body onload="start()">
+<div id="viewerContent"></div>
+</body>
+</html>

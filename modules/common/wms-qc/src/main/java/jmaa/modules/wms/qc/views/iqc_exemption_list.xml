@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='iqc_exemption_list_search' name='来料免检清单-查询' model='iqc.exemption_list'>
+        <search>
+            <field name='material_id'/>
+            <field name='supplier_id'/>
+        </search>
+    </view>
+    <view id='iqc_exemption_list_grid' name='来料免检清单-表格' model='iqc.exemption_list'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='supplier_id'/>
+            <field name='begin_date'/>
+            <field name='end_date'/>
+        </grid>
+    </view>
+    <view id='iqc_exemption_list_form' name='来料免检清单-表单' model='iqc.exemption_list'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+            <field name='material_name_spec'/>
+            <field name='supplier_id'/>
+            <field name='begin_date'/>
+            <field name='end_date'/>
+        </form>
+    </view>
+</data>

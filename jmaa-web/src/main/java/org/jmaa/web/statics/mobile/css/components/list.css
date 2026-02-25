@@ -1,0 +1,151 @@
+.jui-mobile .ui-content .ui-listview {
+    margin: 0;
+}
+
+.jui-list {
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.jui-list .ui-list-view .list-item .ui-btn {
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    padding: 0.5em 1em;
+}
+
+.jui-list .ui-list-item {
+    background-color: #fff;
+    color: #333;
+    text-shadow: none;
+    padding: .7em 1em;
+    margin: 5px;
+    border-radius: 10px !important;
+    box-shadow: 0px 0px 6px -3px rgba(0, 0, 0, 0.4);
+}
+
+.jui-list .ui-listview-active {
+    border: 1px solid #1dc116;
+    margin: 4px;
+}
+
+.jui-list .card-item {
+    display: flex;
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.jui-list .card-item label {
+    font-size: .875rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: #7f7f7f;
+    white-space: nowrap;
+}
+
+.jui-list .d-grid {
+    column-gap: 1rem;
+    row-gap: .5rem;
+}
+
+.jui-list .ui-listview .text-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 20px;
+}
+
+.jui-list .ui-listview .text-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: small;
+    min-height: 16px;
+}
+
+.checked-column, .unchecked-column {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+}
+
+.checked-column:before {
+    position: absolute;
+    top: 0.15rem;
+    display: block;
+    height: 1rem;
+    content: "";
+    width: 1.75rem;
+    border-radius: 0.5rem;
+    border-color: #017e84;
+    background-color: #017e84;
+}
+
+.checked-column:after {
+    position: absolute;
+    content: "";
+    top: calc(0.15rem + 2px);
+    left: calc(0.75rem + 2px);
+    width: calc(1rem - 4px);
+    height: calc(1rem - 4px);
+    background-color: #dee2e6;
+    border-radius: 0.5rem;
+}
+
+.unchecked-column:before {
+    position: absolute;
+    top: 0.15rem;
+    display: block;
+    height: 1rem;
+    content: "";
+    width: 1.75rem;
+    border-radius: 0.5rem;
+    background-color: #dee2e6;
+    box-shadow: inset 0 0.25rem 0.25rem rgb(0 0 0 / 10%);
+}
+
+.unchecked-column:after {
+    position: absolute;
+    content: "";
+    top: calc(0.15rem + 2px);
+    left: calc(2px);
+    width: calc(1rem - 4px);
+    height: calc(1rem - 4px);
+    background-color: #adb5bd;
+    border-radius: 0.5rem;
+}
+
+.jui-list .ui-input {
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    border-bottom: 1px solid #017e84 !important;
+    border-radius: unset;
+    outline: none;
+    width: 100%;
+}
+
+.ui-loading-item {
+    text-align: center;
+    line-height: 40px;
+    color: #999;
+}
+
+/*pull-down*/
+.pull-down {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    max-height: 50px;
+}
+
+.pull-down-content {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    line-height: 40px;
+    color: #999;
+    width: 100%;
+}

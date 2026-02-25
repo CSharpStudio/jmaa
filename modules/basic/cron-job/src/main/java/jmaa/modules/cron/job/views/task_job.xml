@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='task_job_resource' name='定时任务-资源' model='job.task'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/job/statics/css/job.css"/>
+            <script src="/web/jmaa/modules/job/statics/js/job.js"/>
+        </resource>
+    </view>
+    <view id='task_job_search' name='定时任务-查询' model='job.task'>
+        <search>
+            <field name="name"/>
+            <field name="job_handler_id"/>
+            <field name="module_id"/>
+        </search>
+    </view>
+    <view id='task_job_grid' name='定时任务-表格' model='job.task'>
+        <grid>
+            <toolbar buttons='default'>
+                <button label="启动" t-enable="ids:status=='0'" service="startTask"/>
+                <button label="停用" t-enable="ids:status=='1'" service="stopTask"/>
+                <button label="执行一次" t-enable="ids" service="executeOnce"/>
+                <button label="清理7天前日志" ref="edit" service="clearLog" confirm="确认清理7天前日志？"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="module_id"/>
+            <field name="cron" column="cron_column"/>
+            <field name="next_exec_time" visible="0"/>
+            <field name="job_handler_id"/>
+            <field name="status" tags="{'0':'secondary','1':'success'}"/>
+            <field name="execute_user_id"/>
+            <field name="company_id"/>
+            <field name="description"/>
+        </grid>
+    </view>
+    <view id='task_job_form' name='定时任务-表单' model='job.task'>
+        <form>
+            <toolbar buttons="default">
+                <button label="启动" t-enable="status=='0'" service="startTask"/>
+                <button label="停用" t-enable="status=='1'" service="stopTask"/>
+                <button label="执行一次" t-enable="id" service="executeOnce"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="module_id" lookup="[['state','=','installed']]"/>
+            <field name="cron" editor="cron_editor"/>
+            <field name="job_handler_id"/>
+            <field name="execute_user_id"/>
+            <field name="company_id" t-reset="execute_user_id" editor="company_editor" link="0"/>
+            <field name="timeout"/>
+            <field name="retry_count"/>
+            <field name="params" colspan="2"/>
+            <field name="description"/>
+            <field name="status" readonly="1"/>
+            <tabs>
+                <tab label="执行日志">
+                    <field name="job_log_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <toolbar buttons="export|reload"/>
+                            <field name="status" tags="{'run':'warning','success':'success','error':'danger'}"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="content"/>
+                            <field name="error"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

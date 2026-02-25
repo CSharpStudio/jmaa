@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='qsd_sampling_process_resource' name='抽样过程-资源' model='qsd.sampling_process'>
+        <resource>
+            <script src="/web/jmaa/modules/md/qsd/statics/js/aql_editor.js"></script>
+        </resource>
+    </view>
+    <view id='qsd_sampling_process_search' name='抽样过程-查询' model='qsd.sampling_process'>
+        <search>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='company_ids'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='qsd_sampling_process_grid' name='抽样过程-表格' model='qsd.sampling_process'>
+        <grid>
+            <toolbar buttons='default|copy'/>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='sampling_plan_id'/>
+            <field name='aql'/>
+            <field name='strictness'/>
+            <field name='percent'/>
+            <field name='sample_size'/>
+            <field name='ac'/>
+            <field name='re'/>
+            <field name='remark'/>
+            <field name='company_ids'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='qsd_sampling_process_form' name='抽样过程-表单' model='qsd.sampling_process'>
+        <form>
+            <toolbar buttons='default|copy'></toolbar>
+            <field name='name'/>
+            <field name='type' t-readonly="id" t-change="changType"/>
+            <field name='percent' t-reset="type" gt="0" t-visible="type=='percent'" required="1"/>
+            <field name='sample_size' t-reset="type" t-visible="type=='fixed'" required="1" gt="0"/>
+            <field name='ac' t-reset="type" required="1" t-visible="type!='dynamic'" on-change-action="acChangeAction"/>
+            <field name='re' t-reset="type" t-visible="type!='dynamic'"/>
+            <field name='sampling_plan_id' t-reset="type" t-visible="type=='dynamic'"/>
+            <field name='aql' t-reset="type,sampling_plan_id" t-visible="type=='dynamic'" editor="aql-editor"
+                   required="1"/>
+            <field name='strictness' t-reset="type" t-visible="type=='dynamic'" required="1"/>
+            <field name='company_ids' editor="many2many-tags"/>
+            <field name='remark' colspan="2"/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

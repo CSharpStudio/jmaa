@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='packing_package_resource' name='包装-资源' model='packing.package'>
+        <resource>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+            <script src="/web/jmaa/modules/label/manager/statics/js/package.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+        </resource>
+    </view>
+    <view id='packing_package_grid' type="grid" inherit_id="md-packing.packing_package_grid" name='包装-表格' model='packing.package'>
+        <xpath expr="toolbar" position="inside">
+            <button t-click="print" t-enable="ids" class="btn-blue" label="打印"/>
+            <button t-click="splitLabel" t-enable="ids" class="btn-blue" auth="print" label="拆分"/>
+            <button t-click="mergeLabel" t-enable="ids" class="btn-blue" auth="print" label="合并"/>
+        </xpath>
+        <xpath expr="field[name=package_qty]" position="after">
+            <field name="print_template_id"/>
+            <field name="stock_rule"/>
+            <field name="category"/>
+        </xpath>
+    </view>
+    <view id='packing_package_form' type="form" inherit_id="md-packing.packing_package_form" name='包装-表单' model='packing.package'>
+        <xpath expr="field[name=package_qty]" position="after">
+            <field name="print_template_id"/>
+        </xpath>
+    </view>
+</data>

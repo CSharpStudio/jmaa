@@ -1,0 +1,4 @@
+"id","code","name","remark","active","product_ids"
+"04q9hb90wsyyo","P01","电机",,"1","[]"
+"04q9hc1apxj40","P02","冷凝器",,"1","[[4,ref(md-enterprise.0484vrrep8c1s)],[4,ref(md-enterprise.0484vrremqfpc)],[4,ref(md-enterprise.0484vrrehqn0g)],[4,ref(md-enterprise.0484vrrecqubk)]]"
+"04q9hd95p8vsw","P03","汽车空调",,"1","[]"

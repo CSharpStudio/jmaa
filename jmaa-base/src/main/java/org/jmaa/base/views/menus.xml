@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="system_menus" name="系统" seq="1000">
+        <menu id="security_menus" name="安全">
+            <menu id="rbac_user_menu" name="用户" model="rbac.user" view="grid,form"/>
+            <menu id="rbac_role_menu" name="角色" model="rbac.role" view="grid,form"/>
+            <menu id="rbac_permission_menu" name="权限码" model="rbac.permission" view="grid,form"/>
+            <menu id="rbac_jwt_menu" name="WEB令牌" model="rbac.jwt" view="grid,form"/>
+        </menu>
+        <menu id="menu_menus" name="菜单">
+            <menu id="ir_ui_menu_menu" name="菜单" model="ir.ui.menu" view="form"/>
+            <menu id="ir_ui_menu_mobile_menu" name="移动端菜单" model="ir.ui.menu.mobile" view="form"/>
+        </menu>
+        <menu id="model_menus" name="开发建模">
+            <menu id="ir_model_menu" name="模型" model="ir.model" view="grid,form"/>
+            <menu id="ir_ui_view_menu" name="视图" model="ir.ui.view" view="grid,form"/>
+            <menu id="ir_assets_menu" name="WEB资源" model="ir.assets" view="grid,form"/>
+            <menu id="enter_debug_menu" name="进入调试模式"
+                  click="jmaa.web.cookie('ctx_debug', true);top.window.location.reload();"/>
+            <menu id="auto_test_menu" name="冒烟测试" url="/{tenant}/test" target="blank"/>
+        </menu>
+        <menu id="system_manager_menus" name="系统管理">
+            <menu id="res_company_menu" name="公司" model="res.company" view="grid,form"/>
+            <menu id="res_config_menu" name="配置" model="res.config" view="form"/>
+            <menu id="res_selection_menu" name="快码" model="ir.model.field" view="grid,form"/>
+            <menu id="res_localization_menu" name="多语言" model="res.localization" view="grid,form"/>
+            <menu id="res_download_menu" name="文件下载" model="res.download" view="grid,form"/>
+        </menu>
+        <menu id="ir_module_menu" name="应用管理" model="ir.module" seq="200" view="card,grid,form" topmenu="1"/>
+    </menu>
+</data>

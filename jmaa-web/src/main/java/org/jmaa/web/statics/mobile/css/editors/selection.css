@@ -1,0 +1,151 @@
+.e-selection .dropdown-select {
+    left: 0;
+    top: 0;
+    z-index: 1001;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background-color: #4e4e4e1e;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.e-selection .dropdown-body {
+    max-height: 60%;
+    height: 60%;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .6);
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+.e-selection .dropdown-select .header {
+    padding: 10px;
+    background: #8B8888;
+    text-shadow: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.e-selection .dropdown-select .header label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold !important;
+}
+
+.e-selection .dropdown-select .header .ui-link {
+    color: #fff;
+}
+
+.e-selection .options {
+    padding: 12px 30px;
+    border-bottom: 1px solid #dee2e6;
+    white-space: normal;
+}
+
+.e-selection .options:not(.selected):before {
+    content: "";
+    float: right;
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    background: #b2b2b2;
+    margin-top: 3px;
+}
+
+.e-selection .options.selected:before {
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    content: "\f14a";
+    float: right;
+}
+
+.e-selection .dropdown-select .options.hover,
+.e-selection .dropdown-select .options:hover {
+    background-color: inherit;
+}
+
+.e-selection .ui-footer {
+    display: flex;
+    border: 0;
+    border-top: 1px solid #dee2e6;
+}
+
+.e-selection .ui-footer .ui-input-text {
+    flex: 1;
+    border: 1px solid #dee2e6;
+    position: relative;
+    margin: auto auto auto 10px;
+}
+
+.e-selection .ui-footer .input-group {
+    flex: 1;
+}
+
+.e-selection .ui-footer .ui-btn[data-btn=clear-input],
+.e-selection .ui-footer .ui-btn[data-btn=search] {
+    border: none;
+    position: absolute;
+    right: 0;
+    padding: .4em 8px;
+    margin: 6px 3px;
+    border-radius: 0 5px 5px 0;
+}
+
+.e-selection .ui-footer .ui-btn[data-btn=clear-input] {
+    right: 30px;
+    border-radius: 0;
+}
+
+.e-selection .ui-footer .ui-btn[data-btn=clear-input]:not(:active),
+.e-selection .ui-footer .ui-btn[data-btn=search]:not(:active) {
+    background: transparent;
+}
+
+.e-selection .ui-footer .lookup-input {
+    padding-right: 62px;
+}
+
+.e-selection .ui-footer .ui-btn {
+    margin: 5px 10px;
+    padding: .4em 1em;
+}
+
+.e-selection .ui-footer [data-btn=prev] {
+    margin-right: 0;
+}
+
+.e-selection .ui-footer [data-btn=next] {
+    margin-left: 2px;
+}
+
+.e-selection .lookup-info {
+    margin: 30px;
+    text-align: center;
+    font-style: italic;
+}
+
+.e-selection .lookup-data {
+    height: calc(100% - 80px);
+    overflow: auto;
+}
+
+.form-group .e-selection .ui-input-text .form-control {
+    padding-right: 30px;
+}
+
+.e-selection.readonly .input-suffix {
+    display: none;
+}
+
+.form-group .e-selection.readonly .ui-input-text .form-control {
+    padding-right: 0;
+}
+
+.e-selection ul {
+    overflow: visible;
+    overflow-x: hidden;
+    height: calc(100% - 42px);
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="template_packing" model="print.template">
+        <field name="name">包装标签</field>
+        <field name="adapter">print.adapter.stimulsoft</field>
+        <field name="rule">print.rule.package</field>
+        <field name="category">package_label</field>
+        <field name="upload_status">true</field>
+        <field name="file" file="jmaa/modules/md/packing/statics/包装标签.mrt"/>
+        <field name="file_name">包装标签.mrt</field>
+    </record>
+</data>

@@ -1,0 +1,3 @@
+"id","route_id","next_id","process_id","next_relationship","transfer_batch","transfer_time","interval_days","x","y","is_start","is_end","active"
+"053ms80y6by80","053ms70kw1xj4",,"053ms46ksblz4","es",,,,"540","60",,"1","1"
+"053ms7rvvlg5c","053ms70kw1xj4","053ms80y6by80","053ms1yp2pv5s","es",,,,"300","60","1",,"1"

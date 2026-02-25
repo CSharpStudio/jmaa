@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='pr_route_version_resource' name='工艺路线版本-资源' model='pr.route_version'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.css"></link>
+            <link href="/web/org/jmaa/web/statics/plugins/bootstrap-slider/css/bootstrap-slider.min.css"
+                  rel="stylesheet"></link>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/assets/diagram/diagram.css"></link>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/process/routing/statics/css/route.css"></link>
+            <script src="/web/org/jmaa/web/statics/plugins/jquery-ui/jquery-ui.min.js?etag=1.12.1"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.min.js"></script>
+            <script
+                src="/web/org/jmaa/web/statics/plugins/bootstrap-slider/bootstrap-slider.min.js?etag=11.0.2"></script>
+            <script src="/web/org/jmaa/web/statics/assets/diagram/diagram.min.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteDiagram.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteFlow.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteNode.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/route_version.js"></script>
+        </resource>
+    </view>
+    <view id="pr_route_version_form" name="工艺路线版本-表单" model="pr.route_version">
+        <form>
+            <field name="route_id" readonly="1"/>
+            <field name="code" readonly="1"/>
+            <field name="version" readonly="1"/>
+            <field name="family_id" readonly="1"/>
+            <field name='node_ids' nolabel="1" colspan="4" editor="route-editor"/>
+        </form>
+    </view>
+    <view id="pr_route_version_card" name="工艺路线版本-卡片" model="pr.route_version">
+        <card cols="1">
+            <toolbar buttons="default">
+                <button name="copy" ref="create" auth="create" t-enable="id" class="btn-primary btn-edit-group"
+                        t-click="copyVersion" label="复制"></button>
+                <button confirm="确定设为默认?" t-enable="is_publish" service="setDefault" label="设为默认"></button>
+            </toolbar>
+            <field name='code'/>
+            <field name='version'/>
+            <field name='is_default'/>
+            <field name='active'/>
+            <field name="is_publish"/>
+            <template>
+                <div class="card-body">
+                    {@if !active}
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon bg-secondary">
+                            <small>失效</small>
+                        </div>
+                    </div>
+                    {@else if is_default}
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon bg-success">
+                            <small>默认</small>
+                        </div>
+                    </div>
+                    {@else if is_publish}
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon bg-info">
+                            <small>已发布</small>
+                        </div>
+                    </div>
+                    {@/if}
+                    <div><span>编码：</span>${code}
+                    </div>
+                    <div><span>版本：</span>${version}
+                    </div>
+                </div>
+            </template>
+            <edit>
+                <field name='code'/>
+                <field name='version'/>
+                <field name='canvas_width'/>
+                <field name='canvas_height'/>
+                <field name='active'/>
+                <field name='is_default' readonly="1" allow-null="1"/>
+                <tabs>
+                    <tab label="工序" t-visible="id">
+                        <field name="node_ids" nolabel="1" colspan="4" lookup="[['active','=',true]]">
+                            <grid>
+                                <toolbar buttons="edit|export|reload">
+                                    <button name="edit" auth="read"/>
+                                </toolbar>
+                                <field name='process_id'/>
+                                <field name="process_type"/>
+                                <field name="ok_id"/>
+                                <field name="ng_id"/>
+                                <field name='is_optional'/>
+                                <field name='create_task'/>
+                                <field name='is_output'/>
+                                <field name='min_duration'/>
+                                <field name='min_interval'/>
+                                <field name='max_times'/>
+                                <field name='enable_move_in'/>
+                                <field name='is_repeatable'/>
+                                <field name='is_deduction'/>
+                                <field name='to_fqc'/>
+                                <edit>
+                                    <field name='process_id' readonly="1"/>
+                                    <field name="process_type"/>
+                                    <field name="is_optional"/>
+                                    <field name='create_task'/>
+                                    <field name="is_output"/>
+                                    <field name="min_interval"/>
+                                    <field name="enable_move_in"/>
+                                    <field name="min_duration" t-reset="enable_move_in" t-visible="enable_move_in"/>
+                                    <field name="is_repeatable"/>
+                                    <field name="max_times" t-reset="is_repeatable" t-visible="is_repeatable"/>
+                                    <field name="is_deduction"/>
+                                    <field name="to_fqc"/>
+                                </edit>
+                            </grid>
+                        </field>
+                    </tab>
+                </tabs>
+            </edit>
+        </card>
+    </view>
+    <view id="pr_route_version_lookup" name="工艺版本-下拉" model="pr.route_version">
+        <lookup>
+            <field name="code"/>
+            <field name="version"/>
+            <field name="route_id"/>
+            <field name="family_id"/>
+        </lookup>
+    </view>
+</data>

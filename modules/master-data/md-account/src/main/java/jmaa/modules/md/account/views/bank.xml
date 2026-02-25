@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_bank_search' name='银行-查询' model='md.bank'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_bank_grid' name='银行-表格' model='md.bank'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='full_name'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_bank_form' name='银行-表单' model='md.bank'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='full_name'/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

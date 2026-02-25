@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>    <view id="tenant_info_resource" name="租户-资源" model="tenant.info">
+    <resource>
+        <script src="/web/jmaa/modules/tenant/statics/js/tenant.js"></script>
+    </resource>
+</view>
+    <view id="tenant_info_search" name="租户-查询" model="tenant.info">
+        <search>
+            <field name="name"></field>
+        </search>
+    </view>
+    <view id="tenant_info_grid" name="租户-表格" model="tenant.info">
+        <grid>
+            <toolbar buttons="default">
+                <button type="button" t-enable="id" label="重启租户" confirm="确定重启？" service="resetTenant"></button>
+            </toolbar>
+            <field name="name"></field>
+            <field name="code" column="tenant_link"></field>
+            <field name="db"></field>
+            <field name="enterprise"></field>
+            <field name="expiration"></field>
+            <field name="active"></field>
+        </grid>
+    </view>
+    <view id="tenant_info_form" name="租户-表单" model="tenant.info">
+        <form>
+            <toolbar buttons="default"></toolbar>
+            <field name="name"></field>
+            <field name="code" t-readonly="this.id"></field>
+            <field name="enterprise"></field>
+            <field name="data_source"></field>
+            <field name="db" readonly="1" t-visible="this.id"></field>
+            <field name="expiration"></field>
+            <field name="active"></field>
+        </form>
+    </view>
+</data>

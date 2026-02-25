@@ -1,0 +1,243 @@
+.s-component {
+    width: 100%;
+    height: 34px;
+    max-width: 300px;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    margin-bottom: 5px;
+    padding: 3px 5px 0 0;
+    border-radius: 2px;
+    background-color: #eaeaea;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    cursor: move;
+}
+
+.s-component-description {
+    font-weight: normal;
+    color: #6c757d;
+    font-size: 11px;
+    margin-top: -4px;
+}
+
+.a-components {
+    margin-top: 10px;
+}
+
+.a-components .s-component {
+    max-width: 108px;
+    line-height: 27px;
+}
+
+.a-components .s-new-fields,
+.a-components .s-components {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4px;
+}
+
+.edit-notice {
+    grid-column: span 4 !important;
+    color: #855900;
+    background-color: #ffeecc;
+    border: 1px solid #f7c459;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.s-component:before {
+    width: 33px;
+    height: 150%;
+    display: block;
+    float: left;
+    margin: -3px 5px 0 0;
+    border-right: 1px solid #a0abb9;
+    background-color: #dddddd;
+    content: "";
+}
+
+.s-component:after {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    bottom: auto;
+    right: auto;
+    background-image: url("/web/jmaa/modules/studio/statics/studio_icons.png");
+    background-repeat: no-repeat;
+    content: '';
+    width: 20px;
+    height: 20px;
+}
+
+.s-collapse {
+    cursor: pointer;
+}
+
+.s-field-binary:after {
+    background-position: 0 0;
+}
+
+.s-field-boolean:after {
+    background-position: 0 -20px;
+}
+
+.s-field-char:after {
+    background-position: 0 -40px;
+}
+
+.s-field-group:after {
+    background-position: 0 -60px;
+}
+
+.s-field-date:after {
+    background-position: 0 -80px;
+}
+
+.s-field-datetime:after {
+    background-position: 0 -100px;
+}
+
+.s-field-float:after {
+    background-position: 0 -120px;
+}
+
+.s-field-html:after {
+    background-position: 0 -140px;
+}
+
+.s-field-picture:after {
+    background-position: 0 -160px;
+}
+
+.s-field-integer:after {
+    background-position: 0 -180px;
+}
+
+.s-field-many2many:after {
+    background-position: 0 -200px;
+}
+
+.s-field-many2one:after {
+    background-position: 0 -220px;
+}
+
+.s-field-monetary:after {
+    background-position: 0 -240px;
+}
+
+.s-field-one2many:after {
+    background-position: 0 -260px;
+}
+
+.s-field-selection:after {
+    background-position: 0 -280px;
+}
+
+.s-field-tabs:after {
+    background-position: 0 -300px;
+}
+
+.s-field-tags:after {
+    background-position: 0 -320px;
+}
+
+.s-field-text:after {
+    background-position: 0 -340px;
+}
+
+.o_web_studio_filter_separator:after {
+    background-position: 0 -360px;
+}
+
+.s-field-priority:after {
+    background-position: 0 -380px;
+}
+
+.s-field-related:after {
+    background-position: 0 -400px;
+}
+
+.s-field-filter:after {
+    background-position: 0 -420px;
+}
+
+.s-field-signature:after {
+    background-position: 0 -440px;
+}
+
+.s-field-lines:after {
+    background-position: 0 -460px;
+}
+
+.dragging {
+    border: 1px solid #B2B0B0;
+    rotate: -5deg;
+    opacity: .8;
+    max-width: 140px;
+}
+
+.move-dragging {
+    border: 1px solid #B2B0B0;
+    rotate: -2deg;
+    opacity: .8;
+    max-width: 300px;
+    min-width: 140px;
+    background: #fff;
+    outline: none !important;
+    cursor: move !important;
+}
+
+.dragging-over {
+    outline: 2px solid #3c8dbc !important;
+    opacity: 1;
+    outline-offset: 0 !important;
+}
+
+.drop-target {
+    outline: 1px solid #3c8dbc;
+    margin-bottom: 10px;
+    min-height: 50px;
+    width: 100%;
+}
+
+.component-tools {
+    position: absolute;
+    right: 0;
+    top: -4px;
+    z-index: 500;
+    display: none;
+    background: #343a40;
+    margin: 0 -4px;
+    padding: 0 5px;
+}
+
+.component-tools .btn {
+    padding: 3px;
+    min-width: 22px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.component-tools .btn:hover {
+    color: #fff;
+}
+
+.component-tools .btn-move {
+    cursor: move !important;
+}
+
+.form-item {
+    position: relative;
+}
+
+.form-item:hover .component-tools {
+    display: flex;
+}
+
+.move-dragging .component-tools {
+    display: none !important;
+}
+

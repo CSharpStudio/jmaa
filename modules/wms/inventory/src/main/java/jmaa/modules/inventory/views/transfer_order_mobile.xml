@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_transfer_order_mobile_resource" name="仓库调拨-移动端-资源" model="wms.transfer_order_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/transfer_order_mobile.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id="wms_transfer_order_mobile_view" name="仓库调拨-移动端" model="wms.transfer_order_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>仓库调拨</t>
+                    </h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-transfer_order-input focus" type="text" t-enter="searchOrder"
+                               placeholder="调拨单号/物料标签"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="orderList" load-method="loadOrderList" on-item-click="openOrderDetails">
+                        <card style="margin-bottom:5px;">
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name="status"/>
+                            <field name='required_time' colspan="2"/>
+                            <field name='remark' colspan="2"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2>
+                        <t>仓库调拨</t>
+                    </h2>
+                    <a class="back-link" t-click="searchOrder" focus-to=".search-transfer_order-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="transferTab" label="仓库调拨">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input class="transfer-input" type="text" t-enter="scanTransfer"
+                                           placeholder="请扫描标签条码"/>
+                                    <button type="button" class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <button type="button" t-click="prevMaterial"
+                                            class="ui-btn ui-mini btn-primary">
+                                        <t>上一个</t>
+                                    </button>
+                                    <button type="button" t-click="nextMaterial"
+                                            class="ui-btn ui-mini btn-primary">
+                                        <t>下一个</t>
+                                    </button>
+                                    <div class="flex-fill"></div>
+                                    <div t-visible="stock_rule=='num' || stock_rule=='lot'">
+                                        <button type="button" t-click="transferMaterial"
+                                                class="ui-btn ui-mini btn-primary">
+                                            <t>确认</t>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="height: calc(100% - 79px)">
+                                <form ref="transferOrderForm">
+                                    <field name="material_id"/>
+                                    <field name="unit_accuracy" visible="0"/>
+                                    <editor label="名称规格" name="material_name_spec" type="char" colspan="2"
+                                            readonly="1" class="label-left"/>
+                                    <field name="warehouse_id" colspan="2" class="label-left" t-filter="filterWarehouse"
+                                           on-change-action="onWarehouseChange" required="1"/>
+                                    <editor label="待发数量" name="to_transfer_qty" type="accuracy" accuracy="unit_accuracy"  readonly="1"
+                                            class="label-left"/>
+                                    <editor label="库存数量" name="onhand_qty" type="accuracy" accuracy="unit_accuracy"  readonly="1"
+                                            class="label-left"/>
+                                    <editor label="调拨数量" name="transfer_qty" gt="0" type="accuracy" accuracy="unit_accuracy"  required="1"
+                                            t-visible="stock_rule !=='sn'"/>
+                                    <field label="发货库位" name="location_id" class="label-left"
+                                           t-visible="stock_rule=='num' || stock_rule=='lot'" type="char"
+                                           lookup="[['warehouse_id','=',warehouse_id]]" colspan="2"/>
+                                    <field label="打印新标签" name="print_flag"
+                                           t-visible="stock_rule=='num' || stock_rule=='lot'"/>
+                                    <field label="标签模板" name="template_id"
+                                           t-visible="stock_rule=='num' || stock_rule=='lot'"
+                                           lookup="[['category','=','material_label']]"/>
+                                    <editor label="推荐库位" name="suggest_location" type="char" readonly="1"
+                                            class="label-left"/>
+                                    <editor label="库存单位" name='unit' type="char" readonly="1" class="label-left"/>
+                                    <editor label="推荐条码" name="suggest_sn" type="char" colspan="2" readonly="1"
+                                            class="label-left"/>
+                                    <group label="更多信息" collapsable="1" collapsed="1" position="bottom">
+                                        <editor label="ABC分类" name='abc_type' type="char" readonly="1"/>
+                                        <field name='stock_rule'/>
+                                        <field name="status" readonly="1"/>
+                                        <editor name="source_warehouse_ids" visible="0" type="selection"/>
+                                    </group>
+                                    <editor name='result' label="扫描结果" colspan="2" type="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="需求明细" t-click="showLineList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="materialScope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未完成</t>
+                                            <input checked="checked" name="materialScope" type="radio"
+                                                   value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="list-panel" style="height:calc(100% - 50px)">
+                                <list ref="lineList" load-method="loadLineList" model="wms.transfer_order_line">
+                                    <card>
+                                        <field name='material_id'/>
+                                        <field name='$rownum' nolabel="1" render="rownum"/>
+                                        <field name='status'/>
+                                        <field name='material_category'/>
+                                        <field name='material_name_spec' colspan="2" class="label-left"/>
+                                        <field name='request_qty'/>
+                                        <field name='transfer_qty'/>
+                                        <field name='unit_id'/>
+                                    </card>
+                                </list>
+                            </div>
+                        </tab>
+                        <tab label="调拨明细" t-click="showDetailsList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="detailScope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未完成</t>
+                                            <input checked="checked" name="detailScope" type="radio" value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                    <div class="flex-fill"></div>
+                                    <button t-click="createStockOut" type="button" class="btn-primary">
+                                        <t>出库</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height:100%">
+                                <list ref="detailsList" load-method="loadDetailsList"
+                                      model="wms.transfer_order_details">
+                                    <card style="margin-bottom:5px;">
+                                        <field name='material_id'/>
+                                        <field name='$rownum' nolabel="1" render="rownum"/>
+                                        <field name="status"/>
+                                        <field name='sn' colspan="2"/>
+                                        <field name='lot_num' colspan="2"/>
+                                        <field name='material_name_spec' colspan="2"/>
+                                        <field name='qty'/>
+                                        <field name='unit_id'/>
+                                        <field name='material_category'/>
+                                        <field name='warehouse_id' colspan="2"/>
+                                        <field name='location_id' colspan="2"/>
+                                        <div style="position:absolute;right:10px;bottom:10px">
+                                            <button class="ui-btn btn-primary btn-order-group" t-click="deleteDetails">
+                                                <t>删除</t>
+                                            </button>
+                                        </div>
+                                    </card>
+                                </list>
+                            </div>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

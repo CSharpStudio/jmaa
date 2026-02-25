@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='wip_batch_rule_search' name='批次大小-查询' model='wip.batch_rule'>
+        <search>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='wip_batch_rule_grid' name='批次大小-表格' model='wip.batch_rule'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name="qty"/>
+            <field name="coding_id"/>
+            <field name="template_id"/>
+        </grid>
+    </view>
+    <view id='wip_batch_rule_form' name='批次大小-表单' model='wip.batch_rule'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name="qty"/>
+            <field name="coding_id" lookup="[['rule','=','code.rule.batch']]"/>
+            <field name="template_id" lookup="[['category','=','batch_label']]"/>
+        </form>
+    </view>
+</data>

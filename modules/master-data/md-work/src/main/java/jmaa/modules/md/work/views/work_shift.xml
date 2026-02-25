@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_shift_resource' name='班制-资源' model='md.work_shift'>
+        <resource>
+            <script src="/web/jmaa/modules/md/work/statics/js/work_shift.js"></script>
+        </resource>
+    </view>
+    <view id='md_work_shift_search' name='班制-查询' model='md.work_shift'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_work_shift_grid' name='班制-表格' model='md.work_shift'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <field name='is_default'/>
+        </grid>
+    </view>
+    <view id='md_work_shift_form' name='班制-表单' model='md.work_shift'>
+        <form>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <field name='is_default'/>
+            <tabs t-visible="id">
+                <tab label="班次时间">
+                    <field name='day_ids' colspan="4" nolabel="1">
+                        <grid on-save="saveShiftDay">
+                            <toolbar buttons="default"></toolbar>
+                            <field name='code'/>
+                            <field name='name'/>
+                            <field name='start_time' editor="time" format="HH:mm"/>
+                            <field name='end_time' editor="time" format="HH:mm"/>
+                            <field name='next_day'/>
+                            <field name='ot_ids'/>
+                            <field name='rest_ids'/>
+                            <edit>
+                                <field name='code'/>
+                                <field name='name'/>
+                                <field name='start_time' editor="time" format="HH:mm"/>
+                                <field name='end_time' editor="time" format="HH:mm"/>
+                                <field name='next_day'/>
+                                <tabs>
+                                    <tab label="加班时间">
+                                        <field name="ot_ids" nolabel="1" colspan="4">
+                                            <grid>
+                                                <toolbar></toolbar>
+                                                <field name='start_time' editor="time" format="HH:mm"/>
+                                                <field name='end_time' editor="time" format="HH:mm"/>
+                                                <field name='remark'/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                    <tab label="休息时间">
+                                        <field name="rest_ids" nolabel="1" colspan="4">
+                                            <grid>
+                                                <toolbar></toolbar>
+                                                <field name='name'/>
+                                                <field name='start_time' editor="time" format="HH:mm"/>
+                                                <field name='end_time' editor="time" format="HH:mm"/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                </tabs>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="有效工作时间">
+                    <field name='time_ids' colspan="4" nolabel="1">
+                        <grid>
+                            <toolbar buttons="export|reload"></toolbar>
+                            <field name='day_id'/>
+                            <field name='start_time' editor="time" format="HH:mm"/>
+                            <field name='end_time' editor="time" format="HH:mm"/>
+                            <field name='next_day'/>
+                            <field name='is_ot'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+.vscode/
+.husky/
+.vs/
+*.iml
+logs/**
+**/target/**
+rebel.xml
+rebel-remote.xml
+**/node_modules/**
+package-lock.json
+*.js.LICENSE.txt
+**/js/gantt/*.js
+data/**

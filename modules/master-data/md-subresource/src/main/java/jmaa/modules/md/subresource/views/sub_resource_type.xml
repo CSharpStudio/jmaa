@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='md_sub_resource_type_search' name='辅助资源类型-查询' model='md.sub_resource_type'>
+        <search>
+            <field name='name'/>
+            <field name='category'/>
+        </search>
+    </view>
+    <view id='md_sub_resource_type_grid' name='辅助资源类型-表格' model='md.sub_resource_type'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='category'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_sub_resource_type_form' name='辅助资源类型-表单' model='md.sub_resource_type'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='category'/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

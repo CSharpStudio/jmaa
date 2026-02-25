@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <!--样本量字码表-->
+    <record id="level_letter_table_1" model="qsd.level_letter_table">
+        <field name="limit_lower">2</field>
+        <field name="limit_upper">8</field>
+        <field name="s1">A</field>
+        <field name="s2">A</field>
+        <field name="s3">A</field>
+        <field name="s4">A</field>
+        <field name="g1">A</field>
+        <field name="g2">A</field>
+        <field name="g3">B</field>
+    </record>
+    <record id="level_letter_table_2" model="qsd.level_letter_table">
+        <field name="limit_lower">9</field>
+        <field name="limit_upper">15</field>
+        <field name="s1">A</field>
+        <field name="s2">A</field>
+        <field name="s3">A</field>
+        <field name="s4">A</field>
+        <field name="g1">A</field>
+        <field name="g2">B</field>
+        <field name="g3">C</field>
+    </record>
+    <record id="level_letter_table_3" model="qsd.level_letter_table">
+        <field name="limit_lower">16</field>
+        <field name="limit_upper">25</field>
+        <field name="s1">A</field>
+        <field name="s2">A</field>
+        <field name="s3">B</field>
+        <field name="s4">B</field>
+        <field name="g1">B</field>
+        <field name="g2">C</field>
+        <field name="g3">D</field>
+    </record>
+    <record id="level_letter_table_4" model="qsd.level_letter_table">
+        <field name="limit_lower">26</field>
+        <field name="limit_upper">50</field>
+        <field name="s1">A</field>
+        <field name="s2">B</field>
+        <field name="s3">B</field>
+        <field name="s4">C</field>
+        <field name="g1">C</field>
+        <field name="g2">D</field>
+        <field name="g3">E</field>
+    </record>
+    <record id="level_letter_table_5" model="qsd.level_letter_table">
+        <field name="limit_lower">51</field>
+        <field name="limit_upper">90</field>
+        <field name="s1">B</field>
+        <field name="s2">B</field>
+        <field name="s3">C</field>
+        <field name="s4">C</field>
+        <field name="g1">C</field>
+        <field name="g2">E</field>
+        <field name="g3">F</field>
+    </record>
+    <record id="level_letter_table_6" model="qsd.level_letter_table">
+        <field name="limit_lower">91</field>
+        <field name="limit_upper">150</field>
+        <field name="s1">B</field>
+        <field name="s2">B</field>
+        <field name="s3">C</field>
+        <field name="s4">D</field>
+        <field name="g1">D</field>
+        <field name="g2">F</field>
+        <field name="g3">G</field>
+    </record>
+    <record id="level_letter_table_7" model="qsd.level_letter_table">
+        <field name="limit_lower">151</field>
+        <field name="limit_upper">280</field>
+        <field name="s1">B</field>
+        <field name="s2">C</field>
+        <field name="s3">D</field>
+        <field name="s4">E</field>
+        <field name="g1">E</field>
+        <field name="g2">G</field>
+        <field name="g3">H</field>
+    </record>
+    <record id="level_letter_table_8" model="qsd.level_letter_table">
+        <field name="limit_lower">281</field>
+        <field name="limit_upper">500</field>
+        <field name="s1">B</field>
+        <field name="s2">C</field>
+        <field name="s3">D</field>
+        <field name="s4">E</field>
+        <field name="g1">F</field>
+        <field name="g2">H</field>
+        <field name="g3">J</field>
+    </record>
+    <record id="level_letter_table_9" model="qsd.level_letter_table">
+        <field name="limit_lower">501</field>
+        <field name="limit_upper">1200</field>
+        <field name="s1">C</field>
+        <field name="s2">C</field>
+        <field name="s3">E</field>
+        <field name="s4">F</field>
+        <field name="g1">G</field>
+        <field name="g2">J</field>
+        <field name="g3">K</field>
+    </record>
+    <record id="level_letter_table_10" model="qsd.level_letter_table">
+        <field name="limit_lower">1201</field>
+        <field name="limit_upper">3200</field>
+        <field name="s1">C</field>
+        <field name="s2">D</field>
+        <field name="s3">E</field>
+        <field name="s4">G</field>
+        <field name="g1">H</field>
+        <field name="g2">K</field>
+        <field name="g3">L</field>
+    </record>
+    <record id="level_letter_table_11" model="qsd.level_letter_table">
+        <field name="limit_lower">3201</field>
+        <field name="limit_upper">10000</field>
+        <field name="s1">C</field>
+        <field name="s2">D</field>
+        <field name="s3">F</field>
+        <field name="s4">G</field>
+        <field name="g1">J</field>
+        <field name="g2">L</field>
+        <field name="g3">M</field>
+    </record>
+    <record id="level_letter_table_12" model="qsd.level_letter_table">
+        <field name="limit_lower">10001</field>
+        <field name="limit_upper">35000</field>
+        <field name="s1">C</field>
+        <field name="s2">D</field>
+        <field name="s3">F</field>
+        <field name="s4">H</field>
+        <field name="g1">K</field>
+        <field name="g2">M</field>
+        <field name="g3">N</field>
+    </record>
+    <record id="level_letter_table_13" model="qsd.level_letter_table">
+        <field name="limit_lower">35001</field>
+        <field name="limit_upper">150000</field>
+        <field name="s1">D</field>
+        <field name="s2">E</field>
+        <field name="s3">G</field>
+        <field name="s4">J</field>
+        <field name="g1">L</field>
+        <field name="g2">N</field>
+        <field name="g3">P</field>
+    </record>
+    <record id="level_letter_table_14" model="qsd.level_letter_table">
+        <field name="limit_lower">150001</field>
+        <field name="limit_upper">500000</field>
+        <field name="s1">D</field>
+        <field name="s2">E</field>
+        <field name="s3">G</field>
+        <field name="s4">J</field>
+        <field name="g1">M</field>
+        <field name="g2">P</field>
+        <field name="g3">Q</field>
+    </record>
+    <record id="level_letter_table_15" model="qsd.level_letter_table">
+        <field name="limit_lower">500001</field>
+        <field name="limit_upper">100000000</field>
+        <field name="s1">D</field>
+        <field name="s2">E</field>
+        <field name="s3">H</field>
+        <field name="s4">K</field>
+        <field name="g1">N</field>
+        <field name="g2">Q</field>
+        <field name="g3">R</field>
+    </record>
+</data>

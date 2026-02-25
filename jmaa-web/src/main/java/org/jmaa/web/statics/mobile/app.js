@@ -1,0 +1,9 @@
+import './misc.js';
+import '.././web/components/JComponent.js';
+import '.././web/components/EventHandlerMixin.js';
+import './editors/Editors.js';
+import './components/JDialog.js';
+import './components/JList.js';
+import './components/JTabs.js';
+import './components/JForm.js';
+import './components/JApp.js';

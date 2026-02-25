@@ -1,0 +1,7 @@
+"id","seq","packing_level","package_qty","coding_id","print_template_id","rule_id","is_in","is_out"
+"04q95p06f6dc0","1","pallet","10000","pallet_code","template_packing","04q95p06a6kn4","1","0"
+"04q965ujbcfeo","1","pallet","5000","pallet_code","template_packing","04q965uj8uj28","1","0"
+"04q967enj82yo","1","pallet","2000","pallet_code","template_packing","04q967ene8a9s","1","1"
+"04q96c06fhyio","1","box","10","box_code","template_packing","04q96c06d0268","0","0"
+"04q96c06hzuv4","2","carton","100","carton_code","template_packing","04q96c06d0268","0","0"
+"04q96c06hzuv5","3","pallet","1000","pallet_code","template_packing","04q96c06d0268","1","1"

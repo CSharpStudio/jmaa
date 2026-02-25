@@ -1,0 +1,209 @@
+
+table.dataTable tbody tr.selected,
+table.dataTable tbody th.selected,
+table.dataTable tbody td.selected {
+    color: #212529;
+}
+
+table.dataTable tbody > tr.selected,
+table.dataTable tbody > tr > .selected {
+    background-color: #e3eeff;
+}
+
+table.table-bordered.dataTable tfoot td {
+    padding: 0.3rem 0.5rem;
+    border-bottom-width: 0;
+    border-top-width: 1px;
+}
+
+table.dataTable td.dataTables_empty,
+table.dataTable th.dataTables_empty {
+    padding: 10px;
+}
+
+table.dataTable > thead .sorting:before,
+table.dataTable > thead .sorting:after,
+table.dataTable > thead .sorting_asc:before,
+table.dataTable > thead .sorting_asc:after,
+table.dataTable > thead .sorting_desc:before,
+table.dataTable > thead .sorting_desc:after,
+table.dataTable > thead .sorting_asc_disabled:before,
+table.dataTable > thead .sorting_asc_disabled:after,
+table.dataTable > thead .sorting_desc_disabled:before,
+table.dataTable > thead .sorting_desc_disabled:after {
+    top: -1px;
+    color: #212529;
+    line-height: 1;
+}
+
+table.dataTable > thead .sorting:after,
+table.dataTable > thead .sorting_asc:after,
+table.dataTable > thead .sorting_desc:after,
+table.dataTable > thead .sorting_asc_disabled:after,
+table.dataTable > thead .sorting_desc_disabled:after {
+    right: .5em;
+    content: "▼";
+    transform: scale(.6);
+    top: 9px;
+}
+
+table.dataTable > thead .sorting:before,
+table.dataTable > thead .sorting_asc:before,
+table.dataTable > thead .sorting_desc:before,
+table.dataTable > thead .sorting_asc_disabled:before,
+table.dataTable > thead .sorting_desc_disabled:before {
+    right: .5em;
+    content: "▲";
+    transform: scale(.6);
+}
+
+table.table-bordered.dataTable {
+    border-right-width: 0;
+    border-top-width: 0;
+}
+
+table.table-bordered.dataTable > thead {
+    position: relative;
+}
+
+table.dataTable > thead .title {
+    user-select: none;
+}
+
+table.table-bordered.dataTable > thead > tr {
+    position: sticky;
+    top: 0;
+    z-index: 801;
+    background: #f6f6f6;
+}
+
+table.table-bordered.dataTable > tfoot > tr {
+    position: sticky;
+    bottom: 0;
+    z-index: 800;
+    background: #f6f6f6;
+}
+
+table.dataTable > thead > tr > th:not(.sorting_disabled),
+table.dataTable > thead > tr > td:not(.sorting_disabled) {
+    padding-right: 50px;
+}
+
+table.dataTable > thead > tr > th.sorting_disabled {
+    padding-right: 30px;
+}
+
+table.dataTable .sorting_disabled .column-filter {
+    right: 8px;
+}
+
+table.dataTable thead tr th .title {
+    display: flex;
+    cursor: pointer;
+}
+
+table.dataTable tr.even {
+    background-color: #f8f9fa;
+}
+
+table.dataTable.table-hover tbody tr.hover,
+table.dataTable.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: #f2f6fc;
+}
+
+table.dataTable.table-hover tbody tr.selected.hover,
+table.dataTable.table-hover tbody tr.selected:hover {
+    background-color: #dee7f6;
+}
+
+table .edit {
+    background-color: #fff;
+}
+
+table .form-body {
+    overflow-y: unset;
+}
+
+.grid-sm .table td {
+    padding: 0 0.5rem;
+}
+
+.grid-sm .table th {
+    padding: 0.3rem 0.5rem;
+}
+
+.grid-sm .dataTables_empty {
+    padding: 0.5rem !important;
+}
+
+/* 表格相关样式 */
+.table {
+    background-color: white;
+}
+
+.table thead th {
+    border-bottom: none;
+    background: #efefef96;
+    font-size: 15px;
+    line-height: 1.5;
+    position: relative;
+    vertical-align: middle;
+}
+
+.table-bordered td,
+.table-bordered th {
+    vertical-align: middle;
+}
+
+.table th {
+    white-space: nowrap;
+    padding: 0.5rem 0.55rem;
+}
+
+.table tfoot th {
+    white-space: nowrap;
+    padding: 0.3rem 0.5rem;
+}
+
+.table td {
+    white-space: nowrap;
+    padding: 0.3rem 0.5rem;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.table .form-group {
+    margin-bottom: 0.5rem;
+}
+
+.table .card-body {
+    padding: 0.5rem 0.75rem 0 0.75rem;
+}
+
+.table .check-select,
+.table .all-check-select {
+    width: 16px;
+    height: 16px;
+}
+
+.table .check-select {
+    margin-top: 5px;
+}
+
+.table .sum {
+    text-align: right;
+}
+
+.table-hover tbody tr:hover:is(.edit) {
+    color: unset;
+    background-color: #fff;
+}
+
+table.DTCR_clonedTable.dataTable {
+    position: absolute !important;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1202;
+    transform: rotate(-5deg);
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id="board_template_resource" name="看板模板-资源" model="board.template">
+        <resource>
+            <script src="/web/jmaa/modules/board/statics/js/board_template.js"></script>
+        </resource>
+    </view>
+    <view id="board_template_card" name="看板模板" model="board.template">
+        <card>
+            <toolbar buttons="default|copy">
+                <button name="delete" t-enable="ids:state[0]!='1'"/>
+                <button label="从模板创建" ref="create" auth="create" t-click="createFromTemplate"/>
+                <button label="保存为模板" t-click="saveAsTemplate" t-enable="id" class="btn-info"/>
+                <button label="发布" name="publish" auth="updateState" t-click="updateState" t-enable="ids:state=='0'"
+                        class="btn-success" confirm="确认发布选中的看板?"/>
+                <button label="取消发布" ref="publish" t-click="updateState" t-enable="ids:state=='1'"
+                        confirm="确认取消发布选中的看板?"/>
+                <button label="预览" auth="read" t-click="preview" t-enable="id"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="remark"/>
+            <field name="image"/>
+            <field name="update_uid"/>
+            <template>
+                {@helper getImage}
+                function(image){ return jmaa.web.getTenantPath()+"/attachment/"+image[0].id; }
+                {@/helper}
+                <div class="card-body">
+                    <div class="card-board">
+                        <div class="row m-0">
+                            <div class="board-image w-100">
+                                {@if image &amp;&amp; image[0]}
+                                <img src="${image|getImage}" alt="" style="width:100%"/>
+                                {@else}
+                                <div class="border"></div>
+                                {@/if}
+                            </div>
+                            <div class="mt-1">
+                                <div>${name}</div>
+                                <div>
+                                    <small>${remark}</small>
+                                </div>
+                                <div>
+                                    <small>${update_uid[1]}</small>
+                                </div>
+                            </div>
+                            <div class="template-menu">
+                                <div class="template-preview">
+                                    <i class="fa fa-eye"/>
+                                </div>
+                                <div class="nav-item dropdown">
+                                    <span data-toggle="dropdown" role="button">
+                                        <span class="fa fa-bars"></span>
+                                    </span>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div role="button" class="dropdown-item template-delete">${'删除'.t()}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </card>
+    </view>
+</data>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='mfg_product_order_resource' name='生产订单-资源' model='mfg.product_order'>
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"></script>
+        </resource>
+    </view>
+    <view id='mfg_product_order_search' name='生产订单-查询' model='mfg.product_order'>
+        <search>
+            <field name='code'/>
+            <field name='material_id'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='mfg_product_order_grid' name='生产订单-表格' model='mfg.product_order'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="提交" t-enable="ids:['draft', 'reject'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="status!='close'" t-click="closeOrder" class="btn-grey"
+                        ref="edit"/>
+            </toolbar>
+            <field name='code'/>
+            <field name="status" tags="{'new':'warning','release':'success','_':'secondary'}"/>
+            <field name='material_id' label="产品"/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='plan_qty'/>
+            <field name='unit_id'/>
+            <field name='customer_id'/>
+            <field name="sales_order_id"/>
+            <field name='customer_due_date'/>
+            <field name='factory_id'/>
+            <field name='factory_due_date'/>
+            <field name='remark'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+    <view id='mfg_product_order_form' name='生产订单-表单' model='mfg.product_order'>
+        <form>
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="id AND ['draft', 'reject'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="status!='close'" t-click="closeOrder" ref="save"/>
+                <field name='status' editor="statusbar" values="draft,commit,approve,done"/>
+            </toolbar>
+            <field name="code" placeholder="自动生成" readonly="1"/>
+            <field name='material_id' on-change-action="onMaterialChange" view="default" t-readonly="id"
+                   lookup="[['category','in',['semi-finished','finished']]]" label="产品"/>
+            <field name='material_name_spec' colspan="2"/>
+            <field name='material_category'/>
+            <field name="unit_accuracy" visible="0"/>
+            <field name='plan_qty' editor="accuracy" accuracy="unit_accuracy"/>
+            <field name='unit_id'/>
+            <field name='customer_id'/>
+            <field name="sales_order_id" view="default"/>
+            <field name='customer_due_date'/>
+            <field name='factory_id'/>
+            <field name='factory_due_date'/>
+            <field name='company_id' readonly="1"/>
+            <field name='remark'/>
+            <tabs>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'></field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='mfg_product_order_lookup' name='生产订单-下拉' model='mfg.product_order'>
+        <lookup>
+            <field name='code'/>
+            <field name="status" tags="{'new':'warning','release':'success','_':'secondary'}"/>
+            <field name='material_id' label="产品"/>
+            <field name='material_name_spec'/>
+            <field name='plan_qty'/>
+            <field name='unit_id'/>
+            <field name='factory_id'/>
+            <field name='factory_due_date'/>
+        </lookup>
+    </view>
+</data>

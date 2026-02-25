@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_material_receipt_mobile_resource" name="收料-移动端-资源" model="wms.material_receipt_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"></link>
+            <script src="/web/jmaa/modules/inventory/statics/js/material_receipt_mobile.js"></script>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+        </resource>
+    </view>
+    <view id="wms_material_receipt_mobile_view" type="mobile" name="收料-移动端" model="wms.material_receipt_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>来料接收</t>
+                    </h2>
+                    <a class="home-link"></a>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-receipt-input focus" type="text" t-enter="searchReceipt"
+                               placeholder="单号/物料编码/标签条码"/>
+                        <button class="clear-input" t-click="resetSearchReceipt"></button>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="receiptList" load-on-init="1" load-method="loadReceiptList" on-item-click="openDetails">
+                        <card>
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name="delivery_note" colspan="2"/>
+                            <field name="supplier_id" colspan="2"/>
+                            <field name="warehouse_id" colspan="2"/>
+                            <field name="receive_date" colspan="2"/>
+                            <field name="type"/>
+                            <field name="receipt_status"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2>
+                        <t>来料接收</t>
+                    </h2>
+                    <a class="back-link" t-click="focusOnList" focus-to=".search-receipt-input"></a>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="receiptTab" label="收料" focus-to=".receipt-input">
+                            <div class="tab-header-scan">
+                                <div widget="scanner" ref="codeScanner">
+                                    <a class="scan-icon"/>
+                                    <input class="code-input" type="text" t-enter="scanReceipt"
+                                           placeholder="标签条码"/>
+                                    <button class="clear-input"></button>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <label for="check-auto">
+                                        <t>自动确认</t>
+                                    </label>
+                                    <input id="check-auto" type="checkbox"/>
+                                    <div class="flex-fill"></div>
+                                    <button t-click="submitCode" class="btn-primary ml-1">
+                                        <t>确认</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height:calc(100% - 84px)">
+                                <form ref="receiptForm">
+                                    <div class="card-view">
+                                        <div class="form-group grid-colspan-2 grid-rowspan-1">
+                                            <label>
+                                                <t>收料单号</t>
+                                            </label>
+                                            <span data-field="code"></span>
+                                        </div>
+                                        <div class="form-group grid-colspan-2 grid-rowspan-1">
+                                            <label>
+                                                <t>送货单号</t>
+                                            </label>
+                                            <span data-field="delivery_note"></span>
+                                        </div>
+                                        <div class="form-group grid-colspan-2 grid-rowspan-1">
+                                            <label>
+                                                <t>供应商</t>
+                                            </label>
+                                            <span data-field="supplier_id"></span>
+                                        </div>
+                                        <editor name="unit_accuracy" visible="0" type="integer"/>
+                                        <editor label="物料编码" name="material_id" colspan="2" type="card-item"/>
+                                        <editor label="名称规格" name="material_name_spec" colspan="2"
+                                                type="card-item"/>
+                                        <editor label="收货仓库" name='warehouse_id' colspan="2" type="card-item"/>
+                                        <editor label="预收数量" name="request_qty" type="card-item"/>
+                                        <editor label="实收数量" name="receive_qty" type="card-item"/>
+                                        <editor label="赠品数量" name="gift_qty" type="card-item"/>
+                                        <editor label="待收数量" name="left_qty" type="card-item"/>
+                                        <editor label="单位" name="unit_id" type="card-item"/>
+                                    </div>
+                                    <editor label="收货数量(含赠品)" name='confirm_qty' type="accuracy"
+                                            accuracy="unit_accuracy" required="1"/>
+                                    <editor label="赠品数量" name='confirm_gift_qty' type="accuracy"
+                                            accuracy="unit_accuracy"/>
+                                    <editor name='result' label="扫描结果" colspan="2" type="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="物料明细" t-click="showMaterialList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <button t-click="toInspectAll" class="btn-primary">
+                                        <t>全部报检</t>
+                                    </button>
+                                    <div class="flex-fill"></div>
+                                    <button t-click="toInspect" class="btn-primary">
+                                        <t>报检</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <list ref="materialList" load-method="loadMaterialList" model="wms.material_receipt_line"
+                                  style="height:calc(100% - 44px)">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name="$rownum" nolabel="1" render="rownum-check"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='warehouse_id' colspan="2"/>
+                                    <field name='request_qty'/>
+                                    <field name='receive_qty'/>
+                                    <field name='unit_id'/>
+                                    <field name="status"/>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab label="收料明细" t-click="showDetailsList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input checked="checked" name="scope" type="radio" value="all"></input>
+                                        </label>
+                                        <label>
+                                            <t>未报检</t>
+                                            <input name="scope" type="radio" value="undone"></input>
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList" model="wms.material_receipt_details"
+                                  style="height:calc(100% - 44px)">
+                                <card>
+                                    <field name='sn'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_id'/>
+                                    <field name='status'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='qty'/>
+                                    <field name='unit_id'/>
+                                    <field name='lpn'/>
+                                    <field name='lot_num' colspan="2"/>
+                                    <field name='warehouse_id' colspan="2"/>
+                                    <field name='create_uid' label="收货人" colspan="2"/>
+                                    <field name='create_date' label="收货时间" colspan="2"/>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab label="检验单" t-click="showIqcList">
+                            <list ref="iqcList" load-method="loadIqcList" model="iqc.sheet"
+                                  style="height:100%">
+                                <card>
+                                    <field name='code'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_id' colspan="2"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='qty'/>
+                                    <field name='unit_id'/>
+                                    <field name='result'/>
+                                    <field name='status'/>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

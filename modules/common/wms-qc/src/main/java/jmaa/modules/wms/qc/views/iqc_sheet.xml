@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='iqc_sheet_resource' name='来料检验-资源' model='iqc.sheet'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/wms/qc/statics/css/inspect_mark.css"></link>
+            <script src="/web/jmaa/modules/wms/qc/statics/js/inspect_mark.js"></script>
+            <script src="/web/jmaa/modules/wms/qc/statics/js/iqc_sheet.js"></script>
+        </resource>
+    </view>
+    <view id='iqc_sheet_search' name='来料检验-查询' model='iqc.sheet'>
+        <search>
+            <field name='code'/>
+            <field name='material_id'/>
+            <field name='status'/>
+            <field name='related_code'/>
+            <field name='delivery_note'/>
+            <field name='result'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='iqc_sheet_grid' name='来料检验-表格' model='iqc.sheet'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='to-inspect'"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status' tags="{exempted:'success','to-inspect':'warning','inspecting':'primary',_:'secondary'}"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='qty'/>
+            <field name='unit_id'/>
+            <field name='result' tags="{ok:'success','ng':'danger'}"/>
+            <field name='related_code'/>
+            <field name='delivery_note'/>
+            <field name='supplier_id'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+    <view id='iqc_sheet_form' name='来料检验-表单' model='iqc.sheet'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button name="save" t-enable="status!='done'"/>
+                <button label="提交" auth="commit" t-enable="id and status=='to-inspect'"
+                        t-click="commitOrder" class="btn-success" confirm="确认提交？"/>
+                <button label="MRB" t-visible="['done'].includes(status) and result=='ng' and !mrb_id"
+                        service="createMrb" class="btn-info btn-mrb" confirm="确认创建MRB？"/>
+                <field name="status" editor="statusbar" t-visible="id"
+                       values="to-inspect,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='material_id' on-change-action="onMaterialChange" t-readonly="id" view="default"/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='related_code' t-readonly="status!='to-inspect'"/>
+            <field name='delivery_note' t-readonly="status!='to-inspect'"/>
+            <field name='supplier_id' t-readonly="id"/>
+            <field name='qty' t-readonly="id"/>
+            <field name='unit_id'/>
+            <field name='result' allow-null="1" t-visible="id" t-readonly="['commit','exempted','done'].includes(status)"/>
+            <field name='company_id' t-readonly="id"/>
+            <field name="mrb_id" readonly="1" t-visible="mrb_id"/>
+            <tabs>
+            </tabs>
+        </form>
+    </view>
+</data>

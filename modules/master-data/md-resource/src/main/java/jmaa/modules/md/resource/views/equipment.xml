@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_equipment_search' name='设备台账-查询' model='md.equipment'>
+        <search>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="model_id"/>
+        </search>
+    </view>
+    <view id='md_equipment_grid' name='设备台账-表格' model='md.equipment'>
+        <grid>
+            <toolbar buttons='default'>
+                <button class="btn-default" label="设置为资源" t-enable="ids:!is_resource" service="setResource"
+                        confirm="确定设置为资源?"/>
+            </toolbar>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="model_id"/>
+            <field name="specification"/>
+            <field name="type_id"/>
+            <field name="type_category"/>
+            <field name="workshop_id"/>
+            <field name='resource_id'/>
+            <field name="seq"/>
+            <field name='is_resource'/>
+        </grid>
+    </view>
+    <view id='md_equipment_form' name='设备台账-表单' model='md.equipment'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="model_id" view="default" on-change-action="onModelChange"/>
+            <field name="image" rowspan="4"/>
+            <field name="specification"/>
+            <field name="type_id"/>
+            <field name="type_category"/>
+            <field name='is_resource'/>
+            <field name="workshop_id"/>
+            <field name='resource_id' view="default" t-reset="workshop_id"
+                   lookup="[['workshop_id','=',workshop_id],['type','=','line']]"/>
+            <field name="seq"/>
+            <tabs></tabs>
+        </form>
+    </view>
+    <view id='md_equipment_lookup' name='设备台账-下拉' model='md.equipment'>
+        <lookup>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="model_id"/>
+            <field name="specification"/>
+            <field name="type_id"/>
+            <field name="type_category"/>
+            <tabs></tabs>
+        </lookup>
+    </view>
+</data>

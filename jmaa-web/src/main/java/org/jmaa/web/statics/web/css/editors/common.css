@@ -1,0 +1,151 @@
+.input-group .input-suffix {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    font-weight: 400;
+    color: #212529;
+    line-height: 1.75rem;
+    min-width: 1.75rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.e-form .input-group .btn:disabled,
+.btn-row .input-group .btn:disabled {
+    border-bottom: 1px solid #dee2e6;
+}
+
+input[disabled] ~ .input-suffix {
+    cursor: default;
+    opacity: .6;
+}
+
+.input-group .input-suffix .btn {
+    border-radius: 0;
+    margin: 1px;
+    padding: .35rem;
+}
+
+.input-group .input-suffix .btn:focus {
+    background-color: #f5f7fa;
+}
+
+.input-group .input-suffix .btn:disabled{
+    border: 0;
+}
+
+.input-group .input-suffix .btn-default {
+    border: 0;
+    background-color: #fff;
+}
+
+.input-group .form-control:not(:last-child) {
+    padding-right: 30px;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.input-group:has(>.input-suffix) .form-control:not(:last-child) {
+    padding-right: 30px;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.input-group .form-control.is-invalid {
+    padding-right: 3.5rem !important;
+    background-position: right 2rem center;
+}
+
+.input-group:has(.input-suffix) .form-control.is-invalid {
+    padding-right: 3.5rem !important;
+    background-position: right 2rem center;
+}
+
+.form-control {
+    height: calc(1.75rem + 2px);
+    padding: 0 0 0 5px;
+    font-size: 1rem;
+    text-align: left !important;
+    color: black;
+    font-weight: 500;
+}
+
+textarea.form-control {
+    height: auto;
+}
+
+.e-form .input-group-text,
+.e-form .form-control,
+.e-form .input-group .form-control,
+.btn-row .input-group-text,
+.btn-row .form-control,
+.e-form .input-group > .input-group-prepend > .btn,
+.e-form .input-group > .input-group-append > .btn,
+.btn-row .input-group > .input-group-prepend > .btn,
+.btn-row .input-group > .input-group-append > .btn{
+    border: 0;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #B2B0B0;
+}
+
+.e-form .input-group .input-group-prepend .btn-default,
+.e-form .input-group .input-group-append .btn-default,
+.btn-row .input-group .input-group-prepend .btn-default,
+.btn-row .input-group .input-group-append .btn-default {
+    background-color: #fff;
+}
+
+.input-group-text:focus,
+.form-control:focus,
+.form-control.focus {
+    border-color: #017e84 !important;
+}
+
+.e-form .form-control.readonly,
+.e-form .form-control:disabled,
+.e-form .form-control:disabled:focus,
+.btn-row .form-control:disabled,
+.btn-row .form-control:disabled:focus {
+    color: #747474;
+    background-color: #fff;
+    opacity: 1;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.input-group .btn {
+    padding: .4rem;
+}
+
+.lg label {
+    font-size: 1.1rem !important;
+}
+
+.lg .form-control {
+    font-size: 1.2rem;
+}
+
+.xl label {
+    font-size: 1.1rem !important;
+}
+
+.xl .form-control {
+    font-size: 1.75rem;
+    min-height: 60px;
+}
+
+.input-group-text {
+    background: none;
+}
+
+.editor .e-check label:not(.lg) {
+    margin-right: 3px;
+    vertical-align: middle;
+    font-weight: normal;
+    font-size: .8rem;
+}

@@ -1,0 +1,7 @@
+id,name,type,length,expression,remark,active,source
+05a77moinmkg0,内部序列号管控条码(单一),lbl.product_label,1,^R[A-Za-z0-9]+$,R开头,1,system
+05a77moismd4w,内部库位条码,md.store_location,1,^KW[A-Za-z0-9]+$,KW开头,1,system
+05a777vcp8dmo,内部序列号管控条码(完整),lbl.material_label,2,^(?<sn>[R][^|]*)\|(?<materialCode>[^|]*),序列号R开头|物料编码,1,system
+05a77e9rke800,内部批次号管控条码(完整),lbl.material_label,4,^(?<sn>[R][^|]*)\|(?<materialCode>[^|]*)\|(?<lotNum>[^|]*)\|(?<qty>[^|]*)$,序列号|物料编码|批次号|数量,1,system
+05a77hp6qs64g,内部数量管控条码(完整),lbl.material_label,3,^(?<sn>[R][^|]*)\|(?<materialCode>[^|]*)\|(?<qty>[^|]*)$,序列号R开头|物料编码|数量,1,system
+05b2bsn9xbdvk,内部包装标签条码(单一),packing.package,1,^P[A-Za-z0-9]+$,P开头,1,system

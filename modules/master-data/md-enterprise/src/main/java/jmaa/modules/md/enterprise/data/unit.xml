@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="unit_pcs" model="md.unit">
+        <field name="name">PCS</field>
+        <field name="symbol">pcs</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_ge" model="md.unit">
+        <field name="name">个</field>
+        <field name="symbol">个</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_jian" model="md.unit">
+        <field name="name">件</field>
+        <field name="symbol">件</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_tai" model="md.unit">
+        <field name="name">台</field>
+        <field name="symbol">台</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_zu" model="md.unit">
+        <field name="name">组</field>
+        <field name="symbol">组</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_tao" model="md.unit">
+        <field name="name">套</field>
+        <field name="symbol">套</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_tong" model="md.unit">
+        <field name="name">桶</field>
+        <field name="symbol">桶</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_xiang" model="md.unit">
+        <field name="name">箱</field>
+        <field name="symbol">箱</field>
+        <field name="type">quantity</field>
+        <field name="accuracy">0</field>
+    </record>
+    <record id="unit_g" model="md.unit">
+        <field name="name">克</field>
+        <field name="symbol">g</field>
+        <field name="type">weight</field>
+        <field name="accuracy">0</field>
+        <field name="is_base">true</field>
+    </record>
+    <record id="unit_kg" model="md.unit">
+        <field name="name">千克</field>
+        <field name="symbol">kg</field>
+        <field name="type">weight</field>
+        <field name="accuracy">3</field>
+    </record>
+    <record id="unit_m" model="md.unit">
+        <field name="name">米</field>
+        <field name="symbol">m</field>
+        <field name="type">length</field>
+        <field name="accuracy">3</field>
+    </record>
+    <record id="unit_mm" model="md.unit">
+        <field name="name">毫米</field>
+        <field name="symbol">mm</field>
+        <field name="type">length</field>
+        <field name="accuracy">0</field>
+        <field name="is_base">true</field>
+    </record>
+    <record id="unit_l" model="md.unit">
+        <field name="name">升</field>
+        <field name="symbol">L</field>
+        <field name="type">volume</field>
+        <field name="accuracy">3</field>
+    </record>
+    <record id="unit_ml" model="md.unit">
+        <field name="name">毫升</field>
+        <field name="symbol">ml</field>
+        <field name="type">volume</field>
+        <field name="accuracy">0</field>
+        <field name="is_base">true</field>
+    </record>
+    <record id="unit_m2mm" model="md.unit_conversion">
+        <field name="base_id" ref="unit_mm"/>
+        <field name="derived_id" ref="unit_m"/>
+        <field name="ratio">1000</field>
+    </record>
+    <record id="unit_l2ml" model="md.unit_conversion">
+        <field name="base_id" ref="unit_ml"/>
+        <field name="derived_id" ref="unit_l"/>
+        <field name="ratio">1000</field>
+    </record>
+    <record id="unit_kg2g" model="md.unit_conversion">
+        <field name="base_id" ref="unit_g"/>
+        <field name="derived_id" ref="unit_kg"/>
+        <field name="ratio">1000</field>
+    </record>
+</data>

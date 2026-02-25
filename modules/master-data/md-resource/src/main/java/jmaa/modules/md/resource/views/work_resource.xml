@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_resource_search' name='制造资源-查询' model='md.work_resource'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='workshop_id'/>
+        </search>
+    </view>
+    <view id='md_work_resource_grid' name='制造资源-表格' model='md.work_resource'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='workshop_id'/>
+            <field name='work_type'/>
+            <field name="seq"/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_work_resource_form' name='制造资源-表单' model='md.work_resource'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code' t-readonly="type=='equipment'"/>
+            <field name='name' t-readonly="type=='equipment'"/>
+            <field name='type' readonly="1"/>
+            <field name='workshop_id' link="0"/>
+            <field name='work_type'/>
+            <field name="seq"/>
+            <field name='active'/>
+        </form>
+    </view>
+    <view id='md_work_resource_lookup' name='制造资源-下拉' model='md.work_resource'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='workshop_id'/>
+        </lookup>
+    </view>
+</data>

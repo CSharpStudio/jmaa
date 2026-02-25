@@ -1,0 +1,6 @@
+"id","shift_id","code","name","start_time","end_time","next_day","rest_ids"
+"04uwza07utslc","04uwz31oiyhog","S1-1","白班","08:00","17:00","0","[[0,0,{"name":"中休","start_time":"12:00","end_time":"13:00"}]]"
+"04uwza07ztla8","04uwz31oiyhog","S1-2","晚班","20:00","05:00","1","[[0,0,{"name":"中休","start_time":"00:00","end_time":"01:00"}]]"
+"04uwzlmapiozk","04uwzlmakiwao","S2-1","早班","08:00","17:00","0","[[0,0,{"name":"中休","start_time":"12:00","end_time":"13:00"}]]"
+"04uwzlmas0lc0","04uwzlmakiwao","S2-2","中班","17:00","01:00","1","[[0,0,{"name":"中休","start_time":"21:00","end_time":"22:00"}]]"
+"04uwzlmas0lc1","04uwzlmakiwao","S2-3","晚班","01:00","08:00","1","[[0,0,{"name":"中休","start_time":"04:00","end_time":"05:00"}]]"

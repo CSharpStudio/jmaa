@@ -1,0 +1,67 @@
+.edit-grid .d-body {
+    height: calc(100% - 40px);
+    display: flex;
+    width: 100%;
+}
+
+.edit-grid .m-body {
+    flex: 1;
+    width: calc(100% - 250px);
+}
+
+.edit-grid .grid-content {
+    height: calc(100% - 48px);
+    overflow: auto;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.edit-grid table.table-bordered.dataTable th,
+.edit-grid table.table-bordered.dataTable td {
+    border-left-width: 1px;
+    border-left-color: transparent;
+}
+
+.edit-grid table.dataTable > thead > tr > th.hover,
+.edit-grid table.dataTable > tbody > tr > td.hover {
+    border-left: 1px dashed #017e84;
+    border-right: 1px dashed #017e84;
+}
+
+.edit-grid [position=before].drop-target {
+    border-left: 2px solid #017e84 !important;
+    border-right: 1px solid #dee2e6 !important;
+    outline: none !important;
+}
+
+.edit-grid [position=after].drop-target {
+    border-right: 2px solid #017e84 !important;
+    border-left-color: transparent !important;
+    outline: none !important;
+}
+
+.edit-grid .holder-item.drop-target {
+    border-left: 2px solid #017e84 !important;
+    border-right: 2px solid #017e84 !important;
+    outline: none !important;
+}
+
+.edit-grid .grid-body {
+    width: auto;
+    max-width: unset;
+}
+
+.edit-grid table.dataTable thead tr th .title {
+    cursor: move;
+}
+
+.edit-grid .component-tools {
+    top: 0;
+    margin: 0;
+}
+
+.edit-grid table.dataTable > thead > tr > th.hover .component-tools {
+    display: flex;
+}

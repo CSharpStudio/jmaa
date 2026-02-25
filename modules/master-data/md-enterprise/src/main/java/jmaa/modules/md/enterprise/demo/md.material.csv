@@ -1,0 +1,41 @@
+id,name,code,spec,image,category,type_id,unit_id,purchase_unit_id,sales_unit_id,active,abc_type,attribute,purchasable,producible,salable
+0484vrr9wxc74,电饭煲上盖注塑壳(注塑件),200101010001,ABS材质 直径22cm 厚度2.5mm 米白色 一体注塑,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,C,purchase,1,0,0
+0484vrra4f18g,豆浆机PP杯体(注塑件),200102010020,"PP食品级 高18cm 直径12cm 透明款 耐温120℃ 无毛刺",,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,A,purchase,1,0,0
+0484vrra9etxc,豆浆机内胆(注塑件),200102010021,"PC食品级 高17cm 直径11cm 半透明 防刮花 密封型",,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,A,purchase,1,0,0
+0484vrrabwq9s,电水壶手柄五金护套(五金件),100203020008,不锈钢材质 长15cm 宽3.5cm 黑色喷塑 防滑纹,,raw,t12,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,B,purchase,1,0,0
+0484vrragwiyo,电水壶底座注塑护盖(注塑件),200103020009,ABS材质 直径10cm 厚度2.0mm 灰色 带散热孔,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,C,purchase,1,0,0
+0484vrrajefb4,破壁机杯座(注塑件),200104010001,PC高强度 直径15cm 高度8cm 黑色 带卡槽 耐冲击,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,A,purchase,1,0,0
+0484vrraoe800,榨汁机进料口五金盖(五金件),100205030015,不锈钢+ABS复合 直径8cm 厚度2.2mm 白色 密封款,,raw,t12,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,B,purchase,1,0,0
+0484vrraqw4cg,豆浆机按钮面板注塑壳(注塑件),200102040019,ABS材质 长12cm 宽6cm 厚度1.8mm 白色 带按键孔,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,B,purchase,1,0,0
+0484vrravvx1c,电饭煲控制面板五金壳(五金件),100201040001,铝合金材质 长18cm 宽8cm 厚度1.8mm 黑色 阳极氧化,,raw,t12,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,A,purchase,1,0,0
+0484vrrb0vpq8,电炖锅外壳(注塑件),200106010018,PP材质 直径18cm 高度20cm 米白色 哑光 防刮,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,A,purchase,1,0,0
+0484vrrb3dm2o,电炖锅内胆盖(注塑件),200106020002,PC食品级 直径16cm 厚度2.0mm 透明 带密封圈槽,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,B,purchase,1,0,0
+0484vrrbavb40,空气炸锅炸篮五金手柄(五金件),100207030003,不锈钢材质 长12cm 宽4cm 厚度2.2mm 黑色 耐高温,,raw,t12,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,A,purchase,1,0,0
+0484vrrbdd7gg,电饭煲底脚注塑护套(注塑件),200101050004,TPE软胶 直径3cm 高度2cm 黑色 防滑 耐老化,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,C,purchase,1,0,0
+0484vrrbid05c,微波炉门体五金框架(五金件),100208010002,冷轧钢板 长30cm 宽20cm 厚度2.5mm 白色 喷塑,,raw,t12,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,A,purchase,1,0,0
+0484vrrbkuwhs,电饭煲电源线收纳注塑槽(注塑件),200101050003,ABS材质 长10cm 宽5cm 厚度1.5mm 灰色 防磨,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,C,purchase,1,0,0
+0484vrrbsclj4,电水壶壶嘴五金护套(五金件),100203020007,黄铜材质 长6cm 宽4cm 厚度2.0mm 银色 防烫 抛光,,raw,t12,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,B,purchase,1,0,0
+0484vrrbuuhvk,破壁机杯盖注塑提手(注塑件),200104030019,ABS材质 长8cm 宽3cm 厚度2.0mm 黑色 防滑 一体成型,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,C,purchase,1,0,0
+0484vrrbzuakg,榨汁机杯盖(注塑件),200105020018,PC食品级 直径9cm 厚度2.0mm 透明 带锁扣 防漏,,raw,t11,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,B,purchase,1,0,0
+0484vrrc2c6ww,电炖锅电源线接口五金盖(五金件),100206050017,不锈钢材质 长5cm 宽3cm 厚度1.8mm 黑色 防水,,raw,t12,md-enterprise.unit_kg,md-enterprise.unit_kg,md-enterprise.unit_kg,1,C,purchase,1,0,0
+0484vrrc7bzls,固定螺丝(五金件),100209010002,"不锈钢 M3规格 长度8mm 直径5mm 带螺纹 十字槽",,raw,t12,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,C,purchase,1,0,0
+0484vrrccbsao,装饰卡扣(注塑件),200109020003,"PP材质 长10mm 宽8mm 厚度3mm 白色 卡扣式 环保无毒",,raw,t11,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,C,purchase,1,0,0
+0484vrrchbkzk,密封胶圈座(注塑件),200109030001,"TPE软胶 Φ12xΦ15xδ2.0 黑色 耐温80℃ 防老化",,raw,t11,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,B,purchase,1,0,0
+0484vrrcmbdog,指示灯五金灯罩(五金件),100209040001,铝合金 直径12mm 高度8mm 无色 防刮 阳极氧化,,raw,t12,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,B,purchase,1,0,0
+0484vrrcrb6dc,开关按键(注塑件),200109040002,ABS材质 长15mm 宽10mm 高度5mm 白色 回弹灵敏 耐按压,,raw,t11,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,C,purchase,1,0,0
+0484vrrcwaz28,铭牌安装座(注塑件),200109050003,ABS材质 长20mm 宽15mm 高度2mm 黑色 带凹槽 易安装,,raw,t11,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,C,purchase,1,0,0
+0484vrrd1arr4,散热孔五金盖板(五金件),100209060001,"冷轧钢板 Φ20xδ1.5 65Mn加固 黑色 多孔 散热快",,raw,t12,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,B,purchase,1,0,0
+0484vrrd3so3k,电池仓注塑盖(注塑件),200109070002,ABS材质 长50mm 宽30mm 厚度2.0mm 灰色 非标卡扣 防脱,,raw,t11,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,C,purchase,1,0,0
+0484vrrd8sgsg,电饭煲铭牌(五金件),100201060005,不锈钢材质 55*20-YDB35B-6AL1 白色 丝印清晰 防褪色,,raw,t12,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,B,purchase,1,0,0
+0484vrrdds9hc,豆浆机铭牌(五金件),100202060006,铝合金材质 55*20-YDJ28A-6AL2 黑色 烫金 耐磨,,raw,t12,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,B,purchase,1,0,0
+0484vrrdis268,电水壶铭牌(五金件),100203060007,黄铜材质 55*20-YDS40A-4A1 银色 腐蚀印 防氧化,,raw,t12,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,B,purchase,1,0,0
+0484vrrdnruv4,定子绕组注塑护套(注塑件),400110010001,R2DR!0.15@0.13#155℃￥ABS注塑包覆 绝缘性好,,semi-finished,t20,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,0
+0484vrrdsrnk0,转子绕组注塑护套(注塑件),400110010002,R2DR!0.16@0.17#155℃￥ABS注塑包覆 耐高温,,semi-finished,t20,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,0
+0484vrrdv9jwg,定子五金固定座(五金件),400211010001,铸铁材质 110*110*Φ68*t29 黑色 带定位孔 防生锈,,semi-finished,t20,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,0
+0484vrre09clc,转子五金固定座(五金件),400211010002,铸铁材质 110*110*Φ68*t27 灰色 带卡槽 耐磨,,semi-finished,t20,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,1
+0484vrre2r8xs,智能电饭煲(成品),500301010002,YDB35A-6A1 3L容量 米白色 注塑外壳+五金配件 触控操控,,finished,t30,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,1
+0484vrre7r1mo,多功能豆浆机(成品),500302010003,YDJ30B-6AL1 1.2L容量 透明 注塑杯体+五金刀头 全自动,,finished,t30,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,1
+0484vrrecqubk,快速电水壶(成品),500303010004,YDS28A-6AL1 1.5L容量 黑色 五金壶嘴+注塑外壳 防干烧,,finished,t30,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,1
+0484vrrehqn0g,破壁料理机(成品),500304010005,YDB35B-6AL1 1.0L容量 银色 注塑杯体+五金底座 多档位,,finished,t30,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,1
+0484vrremqfpc,电炖锅(成品),500306010006,YDD28A-6AL2 2.0L容量 白色 注塑外壳+五金内胆 恒温炖煮,,finished,t30,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,1
+0484vrrep8c1s,便携式榨汁机(成品),500305010007,YDZ40A-4A1 0.8L容量 透明 注塑杯体+五金刀组 充电款,,finished,t30,md-enterprise.unit_pcs,md-enterprise.unit_pcs,md-enterprise.unit_pcs,1,A,make,1,1,1

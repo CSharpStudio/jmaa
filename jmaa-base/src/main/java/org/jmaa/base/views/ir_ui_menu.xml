@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='menu_resource' name='菜单-资源' model='ir.ui.menu'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_ui_menu.css"></link>
+            <script src="/web/org/jmaa/base/statics/js/ir_ui_menu.js"></script>
+            <script src="/web/org/jmaa/base/statics/js/model-lookup.js"></script>
+        </resource>
+    </view>
+    <view id='menu_form' name='菜单-表单' model='ir.ui.menu'>
+        <form>
+            <tree sort-field="sequence"></tree>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="name"/>
+            <field name="parent_id" readonly="1" link="0"/>
+            <field name="sequence"/>
+            <field name="model" editor="model-lookup" on-change-action="onModelChange"/>
+            <field name="model_name"/>
+            <field name="view" editor="menu_view"/>
+            <field name="target"/>
+            <field name="icon" colspan="2"/>
+            <field name="url" colspan="4"/>
+            <field name="click" colspan="4"/>
+            <field name="top_menu"/>
+            <field name="active"/>
+        </form>
+    </view>
+</data>

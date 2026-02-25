@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="iqc_sheet_mobile_view" name="来料检验-移动端" type="mobile" model="iqc.sheet_mobile">
+        <mobile>
+        </mobile>
+    </view>
+</data>

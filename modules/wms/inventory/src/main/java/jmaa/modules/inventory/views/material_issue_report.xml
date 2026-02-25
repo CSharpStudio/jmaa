@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='mfg_material_issue_report_search' name='发料单-查询' model='mfg.material_issue_report'>
+        <search>
+            <field name='issue_id'/>
+            <field name='related_code'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='status'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='mfg_material_issue_report_grid' name='发料单-表格' model='mfg.material_issue_report'>
+        <grid footer="1">
+            <toolbar buttons='query|export'/>
+            <field name='issue_id' link="1"/>
+            <field name="status"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='request_qty' class="sum col-info"/>
+            <field name='issued_qty' class="sum col-success"/>
+            <field name='unit_id'/>
+            <field name='material_category'/>
+            <field name='abc_type'/>
+            <field name='type'/>
+            <field name='related_code'/>
+            <field name='workshop_id'/>
+            <field name='warehouse_ids' column="many2many-tags"/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+</data>

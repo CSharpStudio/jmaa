@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='iqc_sheet_resource' name='来料检验-资源-IQC' type="resource" inherit_id="wms-qc.iqc_sheet_resource"
+          model='iqc.sheet'>
+        <xpath expr="resource" position="inside">
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/iqc/statics/js/iqc_sheet.js"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/qsd/statics/css/qsd_sheet.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"/>
+            <script src="/web/jmaa/modules/md/qsd/statics/js/qsd_test_values_editor.js"/>
+        </xpath>
+    </view>
+    <view id='iqc_sheet_search' name='来料检验-查询-IQC' type="search" inherit_id="wms-qc.iqc_sheet_search"
+          model='iqc.sheet'>
+        <xpath expr="field[name=status]" position="attribute">
+            <field default="to-inspect,inspecting"/>
+        </xpath>
+    </view>
+    <view id='iqc_sheet_grid' name='来料检验-表格-IQC' type="grid" inherit_id="wms-qc.iqc_sheet_grid"
+          model='iqc.sheet'>
+        <xpath expr="grid" position="inside">
+            <field name="mode"/>
+            <field name="quality_class_spec_id"/>
+            <field name="material_spec_id"/>
+            <field name='inspect_uid'/>
+            <field name='inspect_date'/>
+        </xpath>
+        <xpath expr="toolbar" position="inside">
+            <button label="审核" name="approve" t-enable="ids:status=='inspected'" auth="approve"
+                    t-click="approveOrder" class="btn btn-info"/>
+            <button label="驳回" ref="approve" t-enable="ids:status=='done'"
+                    auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+            <button label="关闭" auth="close" t-enable="!['to-inspect', 'done', 'close'].includes(status)"
+                    t-click="closeOrder" ref="edit"/>
+            <button label="取消关闭" auth="close" t-enable="status=='close'" t-click="reopenOrder" ref="edit"/>
+        </xpath>
+    </view>
+    <view id='iqc_sheet_form' name='来料检验-表单-IQC' type="form" inherit_id="wms-qc.iqc_sheet_form"
+          model='iqc.sheet'>
+        <xpath expr="form field[name=unit_id]" position="after">
+            <field name="mode" required="1" t-readonly="id and status!='to-inspect'"/>
+            <field name="quality_class_spec_id"
+                   lookup="[['class_id.material_ids','=',material_id],['type','=','iqc.sheet']]"
+                   t-readonly="id and status!='to-inspect'" t-reset="material_id" t-change="onSpecChange"/>
+            <field name="material_spec_id" lookup="[['material_id','=',material_id],['type','=','iqc.sheet']]"
+                   t-readonly="id and status!='to-inspect'" t-reset="material_id" t-change="onSpecChange"/>
+        </xpath>
+        <xpath expr="form field[name=result]" position="replace">
+            <field name='result' allow-null="1" t-visible="id" readonly="1"/>
+            <field name='inspect_uid' t-visible="id" readonly="1"/>
+            <field name='inspect_date' t-visible="id" readonly="1"/>
+        </xpath>
+        <xpath expr="form" position="attribute">
+            <form logAccess="0"/>
+        </xpath>
+        <xpath expr="toolbar" position="replace">
+            <toolbar buttons='default'>
+                <button name="save" t-enable="status=='to-inspect' || status=='inspecting'"/>
+                <button label="开始检验" auth="commit" t-click="commence" t-visible="id and status=='to-inspect'"
+                        class="btn-success"/>
+                <button label="提交" auth="commit" t-enable="status=='inspecting'" t-visible="status!='to-inspect'"
+                        t-click="commitOrder" class="btn-success"/>
+                <button label="审核" auth="approve" t-enable="status=='inspected'" t-click="approveOrder"
+                        class="btn-info"/>
+                <button label="驳回" ref="approveOrder" t-enable="status=='inspected' || status=='done'"
+                        auth="reject" t-click="rejectOrder" class="btn-danger"/>
+                <button label="关闭" ref="save" auth="close" t-click="closeOrder" class="btn-danger"
+                        t-enable="!['to-inspect', 'done', 'close'].includes(status)"/>
+                <button label="重新修改" auth="close" t-enable="status!='to-inspect' and status!='done'"
+                        t-click="reopenOrder" ref="save"/>
+                <button label="MRB" t-visible="['done'].includes(status) and result=='ng' and !mrb_id"
+                        service="createMrb" class="btn-info btn-mrb" confirm="确认创建MRB？"/>
+                <field name="status" editor="statusbar" t-visible="id"
+                       values="to-inspect,inspecting,inspected,done"/>
+            </toolbar>
+        </xpath>
+        <xpath expr="tabs" position="inside">
+            <tab label="检验项目">
+                <field name="inspection_item_ids" nolabel="1" colspan="4" t-readonly="!id" limit="1000">
+                    <grid on-row-dblclick="onRowDblClick" on-load="onInspectionItemLoad"
+                          on-edit-load="onInspectionEditLoad">
+                        <toolbar>
+                            <button label="定性项目一键合格" auth="inspect" t-click="setAllPass"
+                                    class="btn-success btn-inspect-group"/>
+                            <button label="检验" t-click="inspect" t-enable="id" class="btn-info btn-inspect-group"/>
+                        </toolbar>
+                        <field name="name"/>
+                        <field name="sample_size"/>
+                        <field name="test_values"/>
+                        <field name="result"/>
+                        <field name="ac"/>
+                        <field name="re"/>
+                        <field name="ng_qty"/>
+                        <field name="mark"/>
+                        <field name="category"/>
+                        <field name="tools"/>
+                        <field name="methods"/>
+                        <field name="standards"/>
+                        <field name="limit_upper"/>
+                        <field name="limit_lower"/>
+                        <field name="unit"/>
+                        <field name="sampling_process_id"/>
+                        <field name="remark"/>
+                        <edit logAccess="0">
+                            <field name='name'/>
+                            <field name='mark'/>
+                            <field name="category"/>
+                            <field name="tools"/>
+                            <field name="methods"/>
+                            <field name='standards'/>
+                            <field name="sampling_process_id"/>
+                            <field name="limit_upper" t-visible="mark=='quan'" required="1" t-reset="mark"/>
+                            <field name="limit_lower" t-visible="mark=='quan'" required="1" t-reset="mark"/>
+                            <field name="unit" t-visible="mark=='quan'" t-reset="mark"/>
+                        </edit>
+                    </grid>
+                </field>
+            </tab>
+            <tab label="附件">
+                <field name="attachments" nolabel="1" colspan="4" limit="10"
+                       t-readonly="id and status != 'inspecting'"/>
+            </tab>
+        </xpath>
+    </view>
+    <view id='iqc_sheet_form-msg' name='来料检验-表单-消息' type="form" priority="200"
+          inherit_id="wms-qc.iqc_sheet_form" model='iqc.sheet'>
+        <xpath expr="tabs" position="inside">
+            <tab label='消息' t-visible="id">
+                <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+            </tab>
+        </xpath>
+    </view>
+
+    <view id='iqc_inspect_dialog' name='来料检验-报检表单' model='iqc.inspect_item' key="iqc_inspect_dialog"
+          type='form'>
+        <form logAccess="0">
+            <field name='name' readonly="1"/>
+            <field name='mark' readonly="1"/>
+            <field name='sample_size' readonly="1"/>
+            <field name='test_values' rowspan="6" t-visible="mark=='quan'" editor="qsd_test_values_editor"
+                   style1="grid-row: 1 / 5 !important; grid-column: 4 / 4 !important;"/>
+            <field name='limit_upper' readonly="1" t-visible="mark=='quan'"/>
+            <field name='limit_lower' readonly="1" t-visible="mark=='quan'"/>
+            <field name='unit' readonly="1" t-visible="mark=='quan'"/>
+            <field name="tools" readonly="1"/>
+            <field name="methods" readonly="1" colspan="2"/>
+            <field name='standards' readonly="1" colspan="2"/>
+            <editor name='need_test_qty' type="integer" readonly="1" t-visible="mark=='quan'" label="还需测试数量"/>
+            <field name='ng_qty' t-readonly="mark=='quan'" on-value-change="updateResult"/>
+            <field name='ac' readonly="1"/>
+            <field name='re' readonly="1"/>
+            <field name='result' readonly="1"/>
+            <field name='remark' colspan="2"/>
+        </form>
+    </view>
+</data>

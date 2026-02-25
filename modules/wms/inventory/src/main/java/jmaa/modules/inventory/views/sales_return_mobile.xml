@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_sales_return_mobile_resource" name="销售退货-移动端-资源" model="wms.sales_return_mobile">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/sales_return_mobile.js"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+
+    <view id="wms_sales_return_mobile_view" name="销售退货-移动端" model="wms.sales_return_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2><t>销售退货</t></h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-sales-return-input focus" type="text" t-enter="searchOrder"
+                               placeholder="单号/物料编码/标签条码"/>
+                        <button type="button" class="clear-input" t-click="resetSearchOrder"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="orderList" load-on-init="1" load-method="loadOrderList" on-item-click="openDetails">
+                        <card style="margin-bottom:5px;">
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name='customer_id' colspan="2"/>
+                            <field name='warehouse_id'/>
+                            <field name='status'/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2><t>销售退货</t></h2>
+                    <a class="back-link" t-click="searchOrder" focus-to=".search-sales-return-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="salesReturnTab" label="销售退货">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input class="sales-return-input" type="text" t-enter="scanCode"
+                                           placeholder="请扫描标签条码"/>
+                                    <button type="button" class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <div class="flex-fill"/>
+                                    <div class="toolbar auto-confirm">
+                                        <label for="check-auto"><t>自动确认</t></label>
+                                        <input id="check-auto" type="checkbox"/>
+                                    </div>
+                                    <button type="button" t-click="returnMaterial"
+                                            class="ui-btn ui-mini btn-primary return-material">
+                                        <t>确认</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height: calc(100% - 79px)">
+                                <form ref="salesReturnForm">
+                                    <field name='material_id' link="0"/>
+                                    <field name="status" readonly="1"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='return_qty' label="已扫码数量"/>
+                                    <field name='unit_id'/>
+                                    <field name='qty' min="0" label="标签数量" readonly="0" required="1"/>
+                                    <field name='warehouse_id'/>
+                                    <field name='message' colspan="2" readonly="1" rowspan="2" editor="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="物料明细" t-click="showLineList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="materialScope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未完成</t>
+                                            <input checked="checked" name="materialScope" type="radio"
+                                                   value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <list ref="lineList" load-method="loadLineList" model="wms.sales_return_line"
+                                  style="height:calc(100% - 28px)">
+                                <card>
+                                    <field name='material_id' colspan="1"/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name="request_qty" />
+                                    <field name="return_qty"/>
+                                    <field name="unit_id"/>
+                                    <field name="status"/>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab label="退货明细" t-click="showDetailsList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="detailScope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未完成</t>
+                                            <input checked="checked" name="detailScope" type="radio" value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                    <div class="flex-fill"/>
+                                    <button t-click="stockIn" type="button" class="btn-primary stock-in">
+                                        <t>生成入库单</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList" model="wms.sales_return_details"
+                                  style="height:calc(100% - 40px)">
+                                <card>
+                                    <field name='sn' />
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_id'/>
+                                    <field name='warehouse_id' colspan="2"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='unit_id'/>
+                                    <field name='qty'/>
+                                    <div style="position:absolute;right:20px;bottom:10px">
+                                        <button class="ui-btn delete-detail" t-click="deleteDetail"><t>删除</t></button>
+                                    </div>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+
+
+        </mobile>
+    </view>
+</data>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_station_search' name='工位-查询' model='md.work_station'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_id'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_work_station_grid' name='工位-表格' model='md.work_station'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_id'/>
+            <field name='work_step_id'/>
+            <field name='workshop_id'/>
+            <field name='resource_id'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_work_station_form' name='工位-表单' model='md.work_station'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_id' view="default"/>
+            <field name='work_step_id' t-reset="process_id" lookup="[['process_id','=',process_id]]"/>
+            <field name='workshop_id' link="0"/>
+            <field name='resource_id' view="default" on-change-action="workResourceChangeAction"/>
+            <field name='active'/>
+        </form>
+    </view>
+    <view id='md_work_station_lookup' name='工位-下拉' model='md.work_station'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_id'/>
+        </lookup>
+    </view>
+    <view id='md_work_station_lookup_mobile' key="mobile-lookup" name='工位-下拉-移动端' model='md.work_station'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='process_id' colspan="2"/>
+        </lookup>
+    </view>
+</data>

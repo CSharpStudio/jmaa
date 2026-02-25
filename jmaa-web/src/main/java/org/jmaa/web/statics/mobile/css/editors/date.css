@@ -1,0 +1,90 @@
+.e-date .date-dropdown {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+    background-color: #4e4e4e1e;
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.e-date .dropdown-body {
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .6);
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+.e-date .date-dropdown .header {
+    padding: 15px;
+    background: #8B8888;
+    text-shadow: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.e-date .date-dropdown .header label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold !important;
+}
+
+.e-date .date-dropdown .header .ui-link {
+    color: #fff;
+}
+
+.e-date .date-dropdown .bootstrap-datetimepicker-widget {
+    width: calc(100% - 8px);
+}
+
+
+.e-date .bootstrap-datetimepicker-widget.dropdown-menu:after,
+.e-date .bootstrap-datetimepicker-widget.dropdown-menu:before {
+    display: none;
+}
+
+.e-date .bootstrap-datetimepicker-widget table td,
+.e-date .bootstrap-datetimepicker-widget table th {
+    height: 40px;
+    line-height: 40px;
+}
+
+.e-date .bootstrap-datetimepicker-widget table td span.active,
+.e-date .bootstrap-datetimepicker-widget table td.active,
+.e-date .bootstrap-datetimepicker-widget table td.active:hover {
+    background-color: #017e84;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.e-date .timepicker .timepicker-picker a.btn {
+    color: #7f7f7f;
+}
+
+.e-datetime .timepicker {
+    border-top: 1px solid #dee2e6;
+}
+
+.e-datetime .bootstrap-datetimepicker-widget table td,
+.e-datetime .bootstrap-datetimepicker-widget table th,
+.e-datetime .bootstrap-datetimepicker-widget table td span{
+    height: 35px;
+    line-height: 35px;
+}
+
+.e-date .date-dropdown .dropdown-menu{
+    position: unset;
+    border: none;
+    box-shadow: none;
+}
+
+.e-date .timepicker .timepicker-picker span[data-action]:hover,
+.e-date .timepicker .timepicker-picker span[data-action]:focus,
+.e-date .timepicker .timepicker-picker a.btn:hover{
+    color: #000;
+}

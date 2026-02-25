@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu name="租户管理" id="tenant_menus" parent="base.system_menus" seq="70">
+        <menu name="租户" id="tenant_info_menu" model="tenant.info" view="grid,form"/>
+        <menu name="租户数据源" id="tenant_data_source_menu" model="tenant.data_source" view="grid,form"/>
+    </menu>
+</data>

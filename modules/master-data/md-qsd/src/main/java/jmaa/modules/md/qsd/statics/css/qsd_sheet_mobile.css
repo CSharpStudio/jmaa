@@ -1,0 +1,31 @@
+.yi-radio label.ok {
+    color: #8FC31F;
+    font-weight: 600!important;
+}
+
+.yi-radio label.ng {
+    color: #dc3545;
+    font-weight: 600!important;
+}
+
+.yi-radio label.ok::before {
+    border: #8FC31F solid 1px;
+}
+
+.yi-radio label.ng::before {
+    border: #dc3545 solid 1px;
+}
+
+.yi-radio input:checked + label.ng::before {
+    border-color: #dc3545;
+}
+
+.yi-radio input:checked + label.ng::after {
+    background-color: #dc3545;
+    border: #dc3545 solid 1px;
+}
+
+.yi-radio input:checked:focus + label.ng::before,
+.yi-radio input:focus + label.ng::before {
+    box-shadow: inset 0 0 0 transparent, 0 0 0 1px #fff, 0 0 0 .2rem rgba(220, 55, 70, 0.25);
+}

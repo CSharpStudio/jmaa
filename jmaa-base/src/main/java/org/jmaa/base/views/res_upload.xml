@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='res_upload_search' name='导入记录-查询' model='res.upload'>
+        <search criteria="[['user_id', '=', env.user.id]]">
+            <field name="title"/>
+        </search>
+    </view>
+    <view id='res_upload_grid' name='导入记录-表格' model='res.upload'>
+        <grid>
+            <toolbar buttons="none">
+            </toolbar>
+            <field name="title"/>
+            <field name="message"/>
+            <field name="file"/>
+            <field name="success"/>
+            <field name="state"/>
+            <field name="upload_time"/>
+        </grid>
+    </view>
+</data>

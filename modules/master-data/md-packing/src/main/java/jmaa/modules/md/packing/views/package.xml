@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='packing_package_search' name='包装-查询' model='packing.package'>
+        <search>
+            <field name="code"/>
+            <field name="upper_code"/>
+            <field name="top_code"/>
+            <field name="related_code"/>
+        </search>
+    </view>
+    <view id='packing_package_grid' name='包装-表格' model='packing.package'>
+        <grid>
+            <toolbar buttons="query|export"></toolbar>
+            <field name="code"/>
+            <field name="state"/>
+            <field name="material_id"/>
+            <field name="material_name_spec"/>
+            <field name="qty"/>
+            <field name="unit_id"/>
+            <field name="upper_code"/>
+            <field name="top_code"/>
+            <field name="package_qty"/>
+            <field name="packing_level"/>
+            <field name="packing_level_id"/>
+            <field name="related_model"/>
+            <field name="related_code"/>
+            <field name="supplier_id"/>
+            <field name="customer_id"/>
+        </grid>
+    </view>
+    <view id='packing_package_form' name='包装-表单' model='packing.package'>
+        <form>
+            <field name="code"/>
+            <field name="state"/>
+            <field name="material_id"/>
+            <field name="material_name_spec"/>
+            <field name="qty"/>
+            <field name="unit_id"/>
+            <field name="upper_code"/>
+            <field name="top_code"/>
+            <field name="package_qty"/>
+            <field name="packing_level"/>
+            <field name="packing_level_id"/>
+            <field name="related_model"/>
+            <field name="related_code"/>
+            <field name="supplier_id"/>
+            <field name="customer_id"/>
+        </form>
+    </view>
+</data>

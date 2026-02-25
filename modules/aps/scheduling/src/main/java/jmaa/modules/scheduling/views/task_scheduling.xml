@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='task_scheduling_resource' name='车间排程-资源' model='as.task_scheduling'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <link rel="stylesheet"
+                  href="/web/org/jmaa/web/statics/plugins/bootstrap-slider/css/bootstrap-slider.min.css"/>
+            <link rel="stylesheet"
+                  href="/web/org/jmaa/web/statics/plugins/bootstrap-submenu/css/bootstrap-submenu.min.css"/>
+            <link debug="true" rel="stylesheet" href="/web/jmaa/modules/scheduling/statics/css/gantt.css"/>
+            <link debug="false" rel="stylesheet" href="/web/jmaa/modules/scheduling/statics/assets/gantt.css"/>
+            <link debug="true" rel="stylesheet" href="/web/jmaa/modules/scheduling/statics/css/scheduling.css"/>
+            <link debug="false" rel="stylesheet" href="/web/jmaa/modules/scheduling/statics/assets/scheduling.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/jquery-ui/jquery-ui.min.js?etag=1.12.1"/>
+            <script src="/web/org/jmaa/web/statics/plugins/bootstrap-slider/bootstrap-slider.min.js?etag=11.0.2"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/org/jmaa/web/statics/diagram/CommandMemo.js"/>
+            <script debug="true" type="module" src="/web/jmaa/modules/scheduling/statics/js/gantt.js"/>
+            <script debug="false" src="/web/jmaa/modules/scheduling/statics/assets/gantt.min.js"/>
+            <script debug="true" type="module" src="/web/jmaa/modules/scheduling/statics/js/scheduling.js"/>
+            <script debug="false" src="/web/jmaa/modules/scheduling/statics/assets/scheduling.min.js"/>
+            <script src="/web/jmaa/modules/scheduling/statics/js/task_scheduling.js"/>
+        </resource>
+    </view>
+    <view id='task_scheduling_custom' name='车间排程-主界面' model='as.task_scheduling'>
+        <custom>
+            <div class="panel-main">
+                <div class="m-header">
+                    <div class="toolbar">
+                        <button type="button" t-click="showToPlanOrder" class="btn btn-flat btn-primary">
+                            <t>待排单</t>
+                        </button>
+                        <button type="button" t-click="showOrder" class="btn btn-flat btn-success">
+                            <t>已排单</t>
+                        </button>
+                        <div class="divider"></div>
+                        <div class="btn-group">
+                            <button type="button" t-click="enableEdit" class="btn btn-flat btn-info" style="opacity:.6">
+                                <t>编辑</t>
+                            </button>
+                            <button type="button" class="btn btn-flat btn-info dropdown-toggle dropdown-icon"
+                                    data-toggle="dropdown"/>
+                            <div class="dropdown-menu" role="menu">
+                                <button type="button" t-click="deleteTask" class="dropdown-item">
+                                    <t>删除</t>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" t-click="undo" class="btn btn-flat btn-default">
+                            <t>撤销</t>
+                        </button>
+                        <button type="button" t-click="redo" class="btn btn-flat btn-default">
+                            <t>恢复</t>
+                        </button>
+                        <button type="button" t-click="reload" class="btn btn-flat btn-default">
+                            <t>刷新</t>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" t-click="locate" class="btn btn-flat btn-default">
+                                <t>定位</t>
+                            </button>
+                            <button type="button" class="btn btn-flat btn-default dropdown-toggle dropdown-icon"
+                                    data-toggle="dropdown"/>
+                            <div class="dropdown-menu" role="menu">
+                                <button type="button" t-click="locateToday" class="dropdown-item">
+                                    <t>当天</t>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" t-click="kitting" class="btn btn-flat btn-default">
+                            <t>齐套分析</t>
+                        </button>
+                        <button type="button" t-click="editUserSettings" class="btn btn-flat btn-default">
+                            <t>设置</t>
+                        </button>
+                    </div>
+                </div>
+                <div class="m-body"></div>
+                <div class="m-footer">
+                    <div class="mf-tabs tabs grid-sm">
+                        <tab label="相关计划">
+                            <div class="task-related"></div>
+                        </tab>
+                        <tab label="计划下达信息">
+                        </tab>
+                    </div>
+                </div>
+            </div>
+            <aside class="panel-right">
+                <div class="rp-tabs tabs">
+                    <tab label="详细信息" class="task-info-panel">
+                        <div class="task-info"></div>
+                    </tab>
+                    <tab label="排产KPI">
+                    </tab>
+                </div>
+                <div class="rp-footer">
+                    <div class="title">消息</div>
+                    <div class="msg-box"></div>
+                </div>
+            </aside>
+        </custom>
+    </view>
+</data>

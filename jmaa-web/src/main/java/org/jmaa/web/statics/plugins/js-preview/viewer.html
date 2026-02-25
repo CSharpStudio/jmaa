@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>预览</title>
+    <link rel="stylesheet" href="docx.min.css"/>
+    <link rel="stylesheet" href="excel.min.css"/>
+    <script src="docx.min.js"></script>
+    <script src="excel.min.js"></script>
+</head>
+<body style="height:100%">
+    <div id="viewer" style="height:100%"></div>
+    <script type="text/javascript">
+        function getUrlParam(name) {
+            const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+            const r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+        let type = getUrlParam('type') || '';
+        let src = getUrlParam('src') || '';
+        if (src) {
+            if ('docx' === type.toLowerCase()) {
+                let viewer = window.jsPreviewDocx.init(document.getElementById('viewer'), {
+                    // 默认和文档样式类的类名/前缀
+                    className: 'docx',
+                    // 启用围绕文档内容渲染包装器
+                    inWrapper: true,
+                    // 禁止页面渲染宽度
+                    ignoreWidth: false,
+                    // 禁止页面渲染高度
+                    ignoreHeight: false,
+                    // 禁止字体渲染
+                    ignoreFonts: false,
+                    // 在分页符上启用分页
+                    breakPages: true,
+                    // 禁用lastRenderedPageBreak元素的分页
+                    ignoreLastRenderedPageBreak: false,
+                    // 启用实验性功能（制表符停止计算）
+                    experimental: false,
+                    // 如果为真，xml声明将在解析之前从xml文档中删除
+                    trimXmlDeclaration: true,
+                    // 如果为true，图像，字体等将转换为base 64 URL，否则为URL。使用了createObjectURL
+                    useBase64URL: false,
+                    // 包括用于chrome, edge等的MathML多边形。
+                    useMathMLPolyfill: false,
+                    // 支持实验性地呈现文档更改(插入/删除)
+                    showChanges: false,
+                    // 启用额外的日志记录
+                    debug: false,
+                });
+                viewer.preview(src);
+            } else if ('xlsx' === type.toLowerCase()) {
+                let viewer = window.jsPreviewExcel.init(document.getElementById('viewer'), {
+                    // excel最少渲染多少列
+                    minColLength: 15,
+                    // 在默认渲染的列表宽度上再加20px宽
+                    widthOffset: 20,
+                    // 在默认渲染的列表高度上再加20px高
+                    heightOffset: 20,
+                });
+                viewer.preview(src);
+            }
+        }
+    </script>
+</body>
+</html>

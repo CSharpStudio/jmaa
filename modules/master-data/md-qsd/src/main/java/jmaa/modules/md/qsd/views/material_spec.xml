@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='qsd_material_spec_resource' name='料号检验标准-资源' model='qsd.material_spec'>
+        <resource>
+            <script src="/web/jmaa/modules/md/qsd/statics/js/aql_editor.js"></script>
+        </resource>
+    </view>
+    <view id='qsd_material_spec_search' name='料号检验标准-查询' model='qsd.material_spec'>
+        <search>
+            <field name="code"/>
+            <field name='material_id'/>
+            <field name='version'/>
+            <field name='type'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='qsd_material_spec_grid' name='料号检验标准-表格' model='qsd.material_spec'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name="code"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='version'/>
+            <field name='type'/>
+            <field name='remark'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='qsd_material_spec_form' name='料号检验标准-表单' model='qsd.material_spec'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name="code"/>
+            <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+            <field name='material_name_spec'/>
+            <field name='version'/>
+            <field name='type' t-readonly="id"/>
+            <field name='active'/>
+            <field name='remark' colspan="2"/>
+            <tabs>
+                <tab label="检验项目" t-visible="id">
+                    <field name="item_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="name"/>
+                            <field name="mode"/>
+                            <field name="mark"/>
+                            <field name="category"/>
+                            <field name="tools"/>
+                            <field name="methods"/>
+                            <field name="standards"/>
+                            <field name="limit_upper"/>
+                            <field name="limit_lower"/>`
+                            <field name="unit"/>
+                            <field name='sampling_process_id'/>
+                            <field name="remark"/>
+                            <edit>
+                                <field name="name"/>
+                                <field name="mode"/>
+                                <field name='mark'/>
+                                <field name="category"/>
+                                <field name="tools"/>
+                                <field name="methods"/>
+                                <field name="standards"/>
+                                <field name="limit_upper" t-visible="mark=='quan'" required="1" t-reset="mark"/>
+                                <field name="limit_lower" t-visible="mark=='quan'" required="1" t-reset="mark"/>
+                                <field name="unit" t-visible="mark=='quan'" t-reset="mark"/>
+                                <field name='sampling_process_id'/>
+                                <field name="remark"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

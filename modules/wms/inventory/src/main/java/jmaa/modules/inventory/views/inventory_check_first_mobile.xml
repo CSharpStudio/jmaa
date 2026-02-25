@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_inventory_check_first_mobile_resource" name="初盘-移动端-资源"
+          model="wms.inventory_check_first_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/inventory_check_first_mobile.js"/>
+        </resource>
+    </view>
+    <view id="wms_inventory_check_first_mobile_view" name="初盘-移动端-资源" model="wms.inventory_check_first_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>初盘</t>
+                    </h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-input focus" type="text" t-enter="searchOrder"
+                               placeholder="盘点单号"/>
+                        <button type="button" class="clear-input" t-click="searchOrder"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="orderList" load-method="loadOrderList" on-item-click="openDetails">
+                        <card>
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name='name' colspan="2"/>
+                            <field name='warehouse_id' colspan="2"/>
+                            <field name='store_area_ids' colspan="2"/>
+                            <field name='store_location_ids' colspan="2"/>
+                            <field name='abc_type'/>
+                            <field name='category'/>
+                            <field name='remark' colspan="2"/>
+                            <field name='blind'/>
+                            <field name='status'/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2>
+                        <t>初盘</t>
+                    </h2>
+                    <a class="back-link" t-click="searchOrder" focus-to=".search-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab label="盘点">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input type="text" class="code-input" t-enter="scanCode" placeholder="标签条码"/>
+                                    <button class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <div class="flex-fill"/>
+                                    <div class="d-flex">
+                                        <button t-click="scanConfirm" class="btn-primary scan-confirm">
+                                            <t>确认</t>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="height:calc(100% - 84px)">
+                                <form ref="scanMaterialForm" model="wms.inventory_check_details">
+                                    <field name="warehouse_id" colspan="2" readonly="1"/>
+                                    <field name="location_id" colspan="1" label="库位" readonly="0" editor="scanner"
+                                           t-enter="checkLocation"/>
+                                    <field name="first_qty" label="盘点数量" readonly="0"/>
+                                    <field name="qty" label="库存数量" readonly="1" t-visible="0"/>
+                                    <field name='blind_qty' label="库存数量"/>
+                                    <field name="material_id" readonly="1" required="0"/>
+                                    <field name="material_name_spec" type="char" label="名称规格" colspan="2" readonly="1"/>
+                                    <editor name="message" type="msg_editor" label="扫描结果" colspan="2"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="物料明细" t-click="searchLine">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input type="text" class="code-line-input" t-enter="scanLineCode"
+                                           placeholder="物料条码/标签条码,定位物料"/>
+                                    <button class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="materialScope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未初盘</t>
+                                            <input checked="checked" name="materialScope" type="radio"
+                                                   value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <list ref="lineList" load-method="loadLineList" model="wms.inventory_check_line"
+                                  style="height:calc(100% - 80px)">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='status'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='stock_rule'/>
+                                    <field name='abc_type'/>
+                                    <field name='category'/>
+                                    <field name='blind_qty' label="库存数量"/>
+                                    <field name='first_qty'/>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab label="扫码明细" t-click="searchDetails">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input type="text" class="code-details-input" t-enter="scanDetailsCode"
+                                           placeholder="物料条码/标签条码,定位标签"/>
+                                    <button class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <div class="flex-fill"/>
+                                    <button t-click="firstCheckFinal" type="button"
+                                            class="btn-primary first-check-final">
+                                        <t>盘点完成</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList" model="wms.inventory_check_details"
+                                  style="height:calc(100% - 80px)">
+                                <card>
+                                    <field name='material_id' colspan="1"/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name="sn" colspan="2"/>
+                                    <field name="lot_num" colspan="2"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='blind_qty' label="库存数量"/>
+                                    <field name='first_qty' colspan="1"/>
+                                    <field name='status' colspan="1"/>
+                                    <field name='warehouse_id'/>
+                                    <field name='area_id'/>
+                                    <field name='location_id'/>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+    <view id="scan_label_form" key="scan_label_form" name="移动端-扫描标签"
+          model="wms.inventory_check_first_mobile">
+        <form logAccess="0" cols="3">
+            <field name='material_id'/>
+            <field name='$rownum' nolabel="1" render="rownum"/>
+            <field name="sn"/>
+            <field name="lot_num"/>
+            <field name='material_name_spec'/>
+            <field name='qty'/>
+            <field name='first_qty'/>
+            <field name='warehouse_id'/>
+            <field name='area_id'/>
+            <field name='location_id'/>
+            <field name='status'/>
+        </form>
+    </view>
+</data>

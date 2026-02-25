@@ -1,0 +1,1970 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="sp_gb282812012" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012</field>
+        <field name="source">system</field>
+        <field name="sub_levels">true</field>
+        <field name="remark">国家标准《计数抽样检验程序 第1部分：按接收质量限（AQL）检索的逐批检验抽样计划》</field>
+    </record>
+    <record id="sp_gb282812012_s1" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012(S-1)</field>
+        <field name="source">system</field>
+        <field name="parent_id" ref="sp_gb282812012"></field>
+        <field name="level">s1</field>
+    </record>
+    <record id="sp_gb282812012_s2" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012(S-2)</field>
+        <field name="source">system</field>
+        <field name="parent_id" ref="sp_gb282812012"></field>
+        <field name="level">s2</field>
+    </record>
+    <record id="sp_gb282812012_s3" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012(S-3)</field>
+        <field name="source">system</field>
+        <field name="parent_id" ref="sp_gb282812012"></field>
+        <field name="level">s3</field>
+    </record>
+    <record id="sp_gb282812012_s4" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012(S-4)</field>
+        <field name="source">system</field>
+        <field name="parent_id" ref="sp_gb282812012"></field>
+        <field name="level">s4</field>
+    </record>
+    <record id="sp_gb282812012_g1" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012(Ⅰ)</field>
+        <field name="source">system</field>
+        <field name="parent_id" ref="sp_gb282812012"></field>
+        <field name="level">g1</field>
+    </record>
+    <record id="sp_gb282812012_g2" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012(Ⅱ)</field>
+        <field name="source">system</field>
+        <field name="parent_id" ref="sp_gb282812012"></field>
+        <field name="level">g2</field>
+    </record>
+    <record id="sp_gb282812012_g3" model="qsd.sampling_plan">
+        <field name="name">GB2828.1-2012(Ⅲ)</field>
+        <field name="source">system</field>
+        <field name="parent_id" ref="sp_gb282812012"></field>
+        <field name="level">g3</field>
+    </record>
+    <!--样本量 normal-->
+    <record id="normal_sample_size_a" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">A</field>
+        <field name="size">2</field>
+    </record>
+    <record id="normal_sample_size_b" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">B</field>
+        <field name="size">3</field>
+    </record>
+    <record id="normal_sample_size_c" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">C</field>
+        <field name="size">5</field>
+    </record>
+    <record id="normal_sample_size_d" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">D</field>
+        <field name="size">8</field>
+    </record>
+    <record id="normal_sample_size_e" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">E</field>
+        <field name="size">13</field>
+    </record>
+    <record id="normal_sample_size_f" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">F</field>
+        <field name="size">20</field>
+    </record>
+    <record id="normal_sample_size_g" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">G</field>
+        <field name="size">32</field>
+    </record>
+    <record id="normal_sample_size_h" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">H</field>
+        <field name="size">50</field>
+    </record>
+    <record id="normal_sample_size_j" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">J</field>
+        <field name="size">80</field>
+    </record>
+    <record id="normal_sample_size_k" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">K</field>
+        <field name="size">125</field>
+    </record>
+    <record id="normal_sample_size_l" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">L</field>
+        <field name="size">200</field>
+    </record>
+    <record id="normal_sample_size_m" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">M</field>
+        <field name="size">315</field>
+    </record>
+    <record id="normal_sample_size_n" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">N</field>
+        <field name="size">500</field>
+    </record>
+    <record id="normal_sample_size_p" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">P</field>
+        <field name="size">800</field>
+    </record>
+    <record id="normal_sample_size_q" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">Q</field>
+        <field name="size">1250</field>
+    </record>
+    <record id="normal_sample_size_r" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">R</field>
+        <field name="size">2000</field>
+    </record>
+    <record id="normal_sample_size_r" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">normal</field>
+        <field name="letter">S</field>
+        <field name="size">3150</field>
+    </record>
+    <!--样本量 tightened-->
+    <record id="tightened_sample_size_a" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">A</field>
+        <field name="size">2</field>
+    </record>
+    <record id="tightened_sample_size_b" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">B</field>
+        <field name="size">3</field>
+    </record>
+    <record id="tightened_sample_size_c" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">C</field>
+        <field name="size">5</field>
+    </record>
+    <record id="tightened_sample_size_d" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">D</field>
+        <field name="size">8</field>
+    </record>
+    <record id="tightened_sample_size_e" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">E</field>
+        <field name="size">13</field>
+    </record>
+    <record id="tightened_sample_size_f" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">F</field>
+        <field name="size">20</field>
+    </record>
+    <record id="tightened_sample_size_g" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">G</field>
+        <field name="size">32</field>
+    </record>
+    <record id="tightened_sample_size_h" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">H</field>
+        <field name="size">50</field>
+    </record>
+    <record id="tightened_sample_size_j" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">J</field>
+        <field name="size">80</field>
+    </record>
+    <record id="tightened_sample_size_k" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">K</field>
+        <field name="size">125</field>
+    </record>
+    <record id="tightened_sample_size_l" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">L</field>
+        <field name="size">200</field>
+    </record>
+    <record id="tightened_sample_size_m" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">M</field>
+        <field name="size">315</field>
+    </record>
+    <record id="tightened_sample_size_n" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">N</field>
+        <field name="size">500</field>
+    </record>
+    <record id="tightened_sample_size_p" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">P</field>
+        <field name="size">800</field>
+    </record>
+    <record id="tightened_sample_size_q" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">Q</field>
+        <field name="size">1250</field>
+    </record>
+    <record id="tightened_sample_size_r" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">R</field>
+        <field name="size">2000</field>
+    </record>
+    <record id="tightened_sample_size_s" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="letter">S</field>
+        <field name="size">3150</field>
+    </record>
+    <!--样本量 reduced-->
+    <record id="reduced_sample_size_a" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">A</field>
+        <field name="size">2</field>
+    </record>
+    <record id="reduced_sample_size_b" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">B</field>
+        <field name="size">2</field>
+    </record>
+    <record id="reduced_sample_size_c" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">C</field>
+        <field name="size">2</field>
+    </record>
+    <record id="reduced_sample_size_d" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">D</field>
+        <field name="size">3</field>
+    </record>
+    <record id="reduced_sample_size_e" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">E</field>
+        <field name="size">5</field>
+    </record>
+    <record id="reduced_sample_size_f" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">F</field>
+        <field name="size">8</field>
+    </record>
+    <record id="reduced_sample_size_g" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">G</field>
+        <field name="size">13</field>
+    </record>
+    <record id="reduced_sample_size_h" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">H</field>
+        <field name="size">20</field>
+    </record>
+    <record id="reduced_sample_size_j" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">J</field>
+        <field name="size">32</field>
+    </record>
+    <record id="reduced_sample_size_k" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">K</field>
+        <field name="size">50</field>
+    </record>
+    <record id="reduced_sample_size_l" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">L</field>
+        <field name="size">80</field>
+    </record>
+    <record id="reduced_sample_size_m" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">M</field>
+        <field name="size">125</field>
+    </record>
+    <record id="reduced_sample_size_n" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">N</field>
+        <field name="size">200</field>
+    </record>
+    <record id="reduced_sample_size_p" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">P</field>
+        <field name="size">315</field>
+    </record>
+    <record id="reduced_sample_size_q" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">Q</field>
+        <field name="size">500</field>
+    </record>
+    <record id="reduced_sample_size_r" model="qsd.sample_size">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="letter">R</field>
+        <field name="size">800</field>
+    </record>
+    <!--AQL normal-->
+    <record id="aql_normal-0_010" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.010</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">-1</field>
+        <field name="q">0</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-0_015" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.015</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">0</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-0_025" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.025</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">0</field>
+        <field name="p">-2</field>
+        <field name="q">-1</field>
+        <field name="r">1</field>
+    </record>
+    <record id="aql_normal-0_040" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.040</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">0</field>
+        <field name="n">-2</field>
+        <field name="p">-1</field>
+        <field name="q">1</field>
+        <field name="r">2</field>
+    </record>
+    <record id="aql_normal-0_065" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.065</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">0</field>
+        <field name="m">-2</field>
+        <field name="n">-1</field>
+        <field name="p">1</field>
+        <field name="q">2</field>
+        <field name="r">3</field>
+    </record>
+    <record id="aql_normal-0_10" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.10</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">0</field>
+        <field name="l">-2</field>
+        <field name="m">-1</field>
+        <field name="n">1</field>
+        <field name="p">2</field>
+        <field name="q">3</field>
+        <field name="r">5</field>
+    </record>
+    <record id="aql_normal-0_15" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.15</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">0</field>
+        <field name="k">-2</field>
+        <field name="l">-1</field>
+        <field name="m">1</field>
+        <field name="n">2</field>
+        <field name="p">3</field>
+        <field name="q">5</field>
+        <field name="r">7</field>
+    </record>
+    <record id="aql_normal-0_25" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.25</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">0</field>
+        <field name="j">-2</field>
+        <field name="k">-1</field>
+        <field name="l">1</field>
+        <field name="m">2</field>
+        <field name="n">3</field>
+        <field name="p">5</field>
+        <field name="q">7</field>
+        <field name="r">10</field>
+    </record>
+    <record id="aql_normal-0_40" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.40</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">0</field>
+        <field name="h">-2</field>
+        <field name="j">-1</field>
+        <field name="k">1</field>
+        <field name="l">2</field>
+        <field name="m">3</field>
+        <field name="n">5</field>
+        <field name="p">7</field>
+        <field name="q">10</field>
+        <field name="r">14</field>
+    </record>
+    <record id="aql_normal-0_65" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">0.65</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">0</field>
+        <field name="g">-2</field>
+        <field name="h">-1</field>
+        <field name="j">1</field>
+        <field name="k">2</field>
+        <field name="l">3</field>
+        <field name="m">5</field>
+        <field name="n">7</field>
+        <field name="p">10</field>
+        <field name="q">14</field>
+        <field name="r">21</field>
+    </record>
+    <record id="aql_normal-1_0" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">1.0</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">0</field>
+        <field name="f">-2</field>
+        <field name="g">-1</field>
+        <field name="h">1</field>
+        <field name="j">2</field>
+        <field name="k">3</field>
+        <field name="l">5</field>
+        <field name="m">7</field>
+        <field name="n">10</field>
+        <field name="p">14</field>
+        <field name="q">21</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-1_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">1.5</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">0</field>
+        <field name="e">-2</field>
+        <field name="f">-1</field>
+        <field name="g">1</field>
+        <field name="h">2</field>
+        <field name="j">3</field>
+        <field name="k">5</field>
+        <field name="l">7</field>
+        <field name="m">10</field>
+        <field name="n">14</field>
+        <field name="p">21</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-2_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">2.5</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">0</field>
+        <field name="d">-2</field>
+        <field name="e">-1</field>
+        <field name="f">1</field>
+        <field name="g">2</field>
+        <field name="h">3</field>
+        <field name="j">5</field>
+        <field name="k">7</field>
+        <field name="l">10</field>
+        <field name="m">14</field>
+        <field name="n">21</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-4_0" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">4.0</field>
+        <field name="a">-1</field>
+        <field name="b">0</field>
+        <field name="c">-2</field>
+        <field name="d">-1</field>
+        <field name="e">1</field>
+        <field name="f">2</field>
+        <field name="g">3</field>
+        <field name="h">5</field>
+        <field name="j">7</field>
+        <field name="k">10</field>
+        <field name="l">14</field>
+        <field name="m">21</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-6_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">6.5</field>
+        <field name="a">0</field>
+        <field name="b">-2</field>
+        <field name="c">-1</field>
+        <field name="d">1</field>
+        <field name="e">2</field>
+        <field name="f">3</field>
+        <field name="g">5</field>
+        <field name="h">7</field>
+        <field name="j">10</field>
+        <field name="k">14</field>
+        <field name="l">21</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-10" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">10</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">1</field>
+        <field name="d">2</field>
+        <field name="e">3</field>
+        <field name="f">5</field>
+        <field name="g">7</field>
+        <field name="h">10</field>
+        <field name="j">14</field>
+        <field name="k">21</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-15" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">15</field>
+        <field name="a">-1</field>
+        <field name="b">1</field>
+        <field name="c">2</field>
+        <field name="d">3</field>
+        <field name="e">5</field>
+        <field name="f">7</field>
+        <field name="g">10</field>
+        <field name="h">14</field>
+        <field name="j">21</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-25" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">25</field>
+        <field name="a">1</field>
+        <field name="b">2</field>
+        <field name="c">3</field>
+        <field name="d">5</field>
+        <field name="e">7</field>
+        <field name="f">10</field>
+        <field name="g">14</field>
+        <field name="h">21</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-40" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">40</field>
+        <field name="a">2</field>
+        <field name="b">3</field>
+        <field name="c">5</field>
+        <field name="d">7</field>
+        <field name="e">10</field>
+        <field name="f">14</field>
+        <field name="g">21</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-65" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">65</field>
+        <field name="a">3</field>
+        <field name="b">5</field>
+        <field name="c">7</field>
+        <field name="d">10</field>
+        <field name="e">14</field>
+        <field name="f">21</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-100" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">100</field>
+        <field name="a">5</field>
+        <field name="b">7</field>
+        <field name="c">10</field>
+        <field name="d">14</field>
+        <field name="e">21</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-150" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">150</field>
+        <field name="a">7</field>
+        <field name="b">10</field>
+        <field name="c">14</field>
+        <field name="d">21</field>
+        <field name="e">30</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-250" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">250</field>
+        <field name="a">10</field>
+        <field name="b">14</field>
+        <field name="c">21</field>
+        <field name="d">30</field>
+        <field name="e">44</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-400" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">400</field>
+        <field name="a">14</field>
+        <field name="b">21</field>
+        <field name="c">30</field>
+        <field name="d">44</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-650" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">650</field>
+        <field name="a">21</field>
+        <field name="b">30</field>
+        <field name="c">44</field>
+        <field name="d">-2</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_normal-1000" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="name">1000</field>
+        <field name="a">30</field>
+        <field name="b">44</field>
+        <field name="c">-2</field>
+        <field name="d">-2</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <!--AQL tightened-->
+    <record id="aql_tightened-0_010" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.010</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">-1</field>
+        <field name="q">-1</field>
+        <field name="r">0</field>
+    </record>
+    <record id="aql_tightened-0_015" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.015</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">-1</field>
+        <field name="q">0</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-0_025" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.025</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">0</field>
+        <field name="q">-1</field>
+        <field name="r">-1</field>
+        <field name="s">1</field>
+    </record>
+    <record id="aql_tightened-0_040" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.040</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">0</field>
+        <field name="p">-1</field>
+        <field name="q">-1</field>
+        <field name="r">1</field>
+    </record>
+    <record id="aql_tightened-0_065" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.065</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">0</field>
+        <field name="n">-1</field>
+        <field name="p">-1</field>
+        <field name="q">1</field>
+        <field name="r">2</field>
+    </record>
+    <record id="aql_tightened-0_10" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.10</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">0</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">1</field>
+        <field name="q">2</field>
+        <field name="r">3</field>
+    </record>
+    <record id="aql_tightened-0_15" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.15</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">0</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">1</field>
+        <field name="p">2</field>
+        <field name="q">3</field>
+        <field name="r">5</field>
+    </record>
+    <record id="aql_tightened-0_25" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.25</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">0</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">1</field>
+        <field name="n">2</field>
+        <field name="p">3</field>
+        <field name="q">5</field>
+        <field name="r">8</field>
+    </record>
+    <record id="aql_tightened-0_40" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.40</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">0</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">1</field>
+        <field name="m">2</field>
+        <field name="n">3</field>
+        <field name="p">5</field>
+        <field name="q">8</field>
+        <field name="r">12</field>
+    </record>
+    <record id="aql_tightened-0_65" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">0.65</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">0</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">1</field>
+        <field name="l">2</field>
+        <field name="m">3</field>
+        <field name="n">5</field>
+        <field name="p">8</field>
+        <field name="q">12</field>
+        <field name="r">18</field>
+    </record>
+    <record id="aql_tightened-1_0" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">1.0</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">0</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">1</field>
+        <field name="k">2</field>
+        <field name="l">3</field>
+        <field name="m">5</field>
+        <field name="n">8</field>
+        <field name="p">12</field>
+        <field name="q">18</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-1_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">1.5</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">0</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">1</field>
+        <field name="j">2</field>
+        <field name="k">3</field>
+        <field name="l">5</field>
+        <field name="m">8</field>
+        <field name="n">12</field>
+        <field name="p">18</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-2_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">2.5</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">0</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">1</field>
+        <field name="h">2</field>
+        <field name="j">3</field>
+        <field name="k">5</field>
+        <field name="l">8</field>
+        <field name="m">12</field>
+        <field name="n">18</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-4_0" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">4.0</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">0</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">1</field>
+        <field name="g">2</field>
+        <field name="h">3</field>
+        <field name="j">5</field>
+        <field name="k">8</field>
+        <field name="l">12</field>
+        <field name="m">18</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-6_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">6.5</field>
+        <field name="a">-1</field>
+        <field name="b">0</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">1</field>
+        <field name="f">2</field>
+        <field name="g">3</field>
+        <field name="h">5</field>
+        <field name="j">8</field>
+        <field name="k">12</field>
+        <field name="l">18</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-10" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">10</field>
+        <field name="a">0</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">1</field>
+        <field name="e">2</field>
+        <field name="f">3</field>
+        <field name="g">5</field>
+        <field name="h">8</field>
+        <field name="j">12</field>
+        <field name="k">18</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-15" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">15</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">1</field>
+        <field name="d">2</field>
+        <field name="e">3</field>
+        <field name="f">5</field>
+        <field name="g">8</field>
+        <field name="h">12</field>
+        <field name="j">18</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-25" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">25</field>
+        <field name="a">-1</field>
+        <field name="b">1</field>
+        <field name="c">2</field>
+        <field name="d">3</field>
+        <field name="e">5</field>
+        <field name="f">8</field>
+        <field name="g">12</field>
+        <field name="h">18</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-40" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">40</field>
+        <field name="a">1</field>
+        <field name="b">2</field>
+        <field name="c">3</field>
+        <field name="d">5</field>
+        <field name="e">8</field>
+        <field name="f">12</field>
+        <field name="g">18</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-65" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">65</field>
+        <field name="a">2</field>
+        <field name="b">3</field>
+        <field name="c">5</field>
+        <field name="d">8</field>
+        <field name="e">12</field>
+        <field name="f">18</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-100" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">100</field>
+        <field name="a">3</field>
+        <field name="b">5</field>
+        <field name="c">8</field>
+        <field name="d">12</field>
+        <field name="e">18</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-150" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">150</field>
+        <field name="a">5</field>
+        <field name="b">8</field>
+        <field name="c">12</field>
+        <field name="d">18</field>
+        <field name="e">27</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-250" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">250</field>
+        <field name="a">8</field>
+        <field name="b">12</field>
+        <field name="c">18</field>
+        <field name="d">27</field>
+        <field name="e">41</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-400" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">400</field>
+        <field name="a">12</field>
+        <field name="b">18</field>
+        <field name="c">27</field>
+        <field name="d">41</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-650" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">650</field>
+        <field name="a">18</field>
+        <field name="b">27</field>
+        <field name="c">41</field>
+        <field name="d">-2</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_tightened-1000" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">tightened</field>
+        <field name="name">1000</field>
+        <field name="a">27</field>
+        <field name="b">41</field>
+        <field name="c">-2</field>
+        <field name="d">-2</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <!--AQL reduced-->
+    <record id="aql_reduced-0_010" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.010</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">-1</field>
+        <field name="q">0</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-0_015" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.015</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">-1</field>
+        <field name="p">0</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-0_025" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.025</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">-1</field>
+        <field name="n">0</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-0_040" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.040</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">-1</field>
+        <field name="m">0</field>
+        <field name="n">-2</field>
+        <field name="p">-1</field>
+        <field name="q">-1</field>
+        <field name="r">1</field>
+    </record>
+    <record id="aql_reduced-0_065" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.065</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">-1</field>
+        <field name="l">0</field>
+        <field name="m">-1</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">1</field>
+        <field name="r">2</field>
+    </record>
+    <record id="aql_reduced-0_10" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.10</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">-1</field>
+        <field name="k">0</field>
+        <field name="l">-1</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">1</field>
+        <field name="q">2</field>
+        <field name="r">3</field>
+    </record>
+    <record id="aql_reduced-0_15" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.15</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">-1</field>
+        <field name="j">0</field>
+        <field name="k">-1</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">1</field>
+        <field name="p">2</field>
+        <field name="q">3</field>
+        <field name="r">5</field>
+    </record>
+    <record id="aql_reduced-0_25" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.25</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">-1</field>
+        <field name="h">0</field>
+        <field name="j">-1</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">1</field>
+        <field name="n">2</field>
+        <field name="p">3</field>
+        <field name="q">5</field>
+        <field name="r">6</field>
+    </record>
+    <record id="aql_reduced-0_40" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.40</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">-1</field>
+        <field name="g">0</field>
+        <field name="h">-1</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">1</field>
+        <field name="m">2</field>
+        <field name="n">3</field>
+        <field name="p">5</field>
+        <field name="q">6</field>
+        <field name="r">8</field>
+    </record>
+    <record id="aql_reduced-0_65" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">0.65</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">-1</field>
+        <field name="f">0</field>
+        <field name="g">-1</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">1</field>
+        <field name="l">2</field>
+        <field name="m">3</field>
+        <field name="n">5</field>
+        <field name="p">6</field>
+        <field name="q">8</field>
+        <field name="r">10</field>
+    </record>
+    <record id="aql_reduced-1_0" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">1.0</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">-1</field>
+        <field name="e">0</field>
+        <field name="f">-1</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">1</field>
+        <field name="k">2</field>
+        <field name="l">3</field>
+        <field name="m">5</field>
+        <field name="n">6</field>
+        <field name="p">8</field>
+        <field name="q">10</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-1_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">1.5</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">0</field>
+        <field name="e">-1</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">1</field>
+        <field name="j">2</field>
+        <field name="k">3</field>
+        <field name="l">5</field>
+        <field name="m">6</field>
+        <field name="n">8</field>
+        <field name="p">10</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-2_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">2.5</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">0</field>
+        <field name="d">-1</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">1</field>
+        <field name="h">2</field>
+        <field name="j">3</field>
+        <field name="k">5</field>
+        <field name="l">6</field>
+        <field name="m">8</field>
+        <field name="n">10</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-4_0" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">4.0</field>
+        <field name="a">-1</field>
+        <field name="b">0</field>
+        <field name="c">-1</field>
+        <field name="d">-2</field>
+        <field name="e">-2</field>
+        <field name="f">1</field>
+        <field name="g">2</field>
+        <field name="h">3</field>
+        <field name="j">5</field>
+        <field name="k">6</field>
+        <field name="l">8</field>
+        <field name="m">10</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-6_5" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">6.5</field>
+        <field name="a">0</field>
+        <field name="b">-1</field>
+        <field name="c">-2</field>
+        <field name="d">-2</field>
+        <field name="e">1</field>
+        <field name="f">2</field>
+        <field name="g">3</field>
+        <field name="h">5</field>
+        <field name="j">6</field>
+        <field name="k">8</field>
+        <field name="l">10</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-10" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">10</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">-1</field>
+        <field name="d">1</field>
+        <field name="e">2</field>
+        <field name="f">3</field>
+        <field name="g">5</field>
+        <field name="h">6</field>
+        <field name="j">8</field>
+        <field name="k">10</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-15" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">15</field>
+        <field name="a">-1</field>
+        <field name="b">-1</field>
+        <field name="c">1</field>
+        <field name="d">2</field>
+        <field name="e">3</field>
+        <field name="f">5</field>
+        <field name="g">6</field>
+        <field name="h">8</field>
+        <field name="j">10</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-25" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">25</field>
+        <field name="a">1</field>
+        <field name="b">1</field>
+        <field name="c">2</field>
+        <field name="d">3</field>
+        <field name="e">5</field>
+        <field name="f">6</field>
+        <field name="g">8</field>
+        <field name="h">10</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-40" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">40</field>
+        <field name="a">2</field>
+        <field name="b">2</field>
+        <field name="c">3</field>
+        <field name="d">5</field>
+        <field name="e">6</field>
+        <field name="f">8</field>
+        <field name="g">10</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-65" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">65</field>
+        <field name="a">3</field>
+        <field name="b">3</field>
+        <field name="c">5</field>
+        <field name="d">6</field>
+        <field name="e">8</field>
+        <field name="f">10</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-100" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">100</field>
+        <field name="a">5</field>
+        <field name="b">5</field>
+        <field name="c">6</field>
+        <field name="d">8</field>
+        <field name="e">10</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-150" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">150</field>
+        <field name="a">7</field>
+        <field name="b">7</field>
+        <field name="c">8</field>
+        <field name="d">10</field>
+        <field name="e">14</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-250" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">250</field>
+        <field name="a">10</field>
+        <field name="b">10</field>
+        <field name="c">10</field>
+        <field name="d">14</field>
+        <field name="e">21</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-400" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">400</field>
+        <field name="a">14</field>
+        <field name="b">14</field>
+        <field name="c">14</field>
+        <field name="d">21</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-650" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">650</field>
+        <field name="a">21</field>
+        <field name="b">21</field>
+        <field name="c">21</field>
+        <field name="d">-2</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+    <record id="aql_reduced-1000" model="qsd.aql_table">
+        <field name="plan_id" ref="sp_gb282812012"></field>
+        <field name="strictness">reduced</field>
+        <field name="name">1000</field>
+        <field name="a">30</field>
+        <field name="b">30</field>
+        <field name="c">-2</field>
+        <field name="d">-2</field>
+        <field name="e">-2</field>
+        <field name="f">-2</field>
+        <field name="g">-2</field>
+        <field name="h">-2</field>
+        <field name="j">-2</field>
+        <field name="k">-2</field>
+        <field name="l">-2</field>
+        <field name="m">-2</field>
+        <field name="n">-2</field>
+        <field name="p">-2</field>
+        <field name="q">-2</field>
+        <field name="r">-2</field>
+    </record>
+</data>

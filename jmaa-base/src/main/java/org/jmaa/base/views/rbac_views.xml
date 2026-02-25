@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='view_user_resource' name='用户-资源' model='rbac.user'>
+        <resource>
+            <script src="/web/org/jmaa/base/statics/js/rbac_user.js"></script>
+        </resource>
+    </view>
+    <view id='view_user_search' name='用户-查询' model='rbac.user'>
+        <search criteria="[['mode','=','user']]">
+            <field name="name"/>
+            <field name="login"/>
+            <field name="email"/>
+            <field name="mobile"/>
+            <field name="active" default="true"/>
+        </search>
+    </view>
+    <view id='view_user_grid' name='用户-表格' model='rbac.user'>
+        <grid>
+            <toolbar buttons="default">
+                <button label="重置密码" t-enable="id" service="resetPassword"/>
+                <button label="设置密码" t-enable="id" t-click="setPassword" auth="setPassword"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="login"/>
+            <field name="email"/>
+            <field name="mobile"/>
+            <field name="active"/>
+        </grid>
+    </view>
+    <view id='view_user_form' name='用户-表单' model='rbac.user'>
+        <form>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="image" rowspan="3" compress-width="60" compress-height="60" max-width="60" max-height="60"/>
+            <field name="name"/>
+            <field name="login" t-readonly="id"/>
+            <field name="email"/>
+            <field name="mobile"/>
+            <field name="lang"/>
+            <field name="tz"/>
+            <field name="shared"/>
+            <field name="company_ids" editor="many2many-tags" defaultValue="[env.company.id]"/>
+            <field name="active"/>
+            <tabs>
+                <tab label="角色">
+                    <field colspan="4" name="role_ids" nolabel="1">
+                        <grid>
+                            <field name="name"/>
+                            <field name="is_admin"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+
+    <view id='view_user_personal_resource' key="personal" name='我的账号-资源' model='rbac.user'>
+        <resource>
+            <script src="/web/org/jmaa/base/statics/js/personal.js"></script>
+        </resource>
+    </view>
+    <view id='view_user_personal_form' key="personal" name='我的账号-表单' model='rbac.user'>
+        <form logAccess="0" on-init="onFormInit">
+            <toolbar buttons="0">
+                <a class="btn btn-flat btn-info" t-click="saveData">保存</a>
+                <a class="btn btn-flat btn-info" t-click="updatePwd">修改密码</a>
+                <a class="btn btn-flat btn-default" t-click="reload">刷新</a>
+            </toolbar>
+            <field name="name"/>
+            <field name="login" readonly="1"/>
+            <field name="email"/>
+            <field name="image" rowspan="3" compress-width="60" compress-height="60" max-width="60" max-height="60"/>
+            <field name="mobile"/>
+            <field name="lang"/>
+            <field name="tz"/>
+            <field name="company_ids" editor="many2many-tags" readonly="1"/>
+            <field name="company_id" editor="user-company"/>
+        </form>
+    </view>
+    <view id='view_user_personal_mobile' key="personal-mobile" name='我的账号-表单-移动端' model='rbac.user'>
+        <form>
+            <field name="image" nolabel="1" rowspan="3" compress-width="60" compress-height="60" max-width="60" max-height="60"/>
+            <field name="name"/>
+            <field name="login" readonly="1"/>
+            <field name="mobile" colspan="2"/>
+            <field name="email" colspan="2"/>
+            <field name="tz" colspan="2"/>
+            <field name="company_ids" editor="many2many-tags" readonly="1" colspan="2"/>
+            <field name="company_id" readonly="1" colspan="2"/>
+        </form>
+    </view>
+
+    <view id='rbac_role_resource' name='角色-资源' model='rbac.role'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/rbac_role.css"></link>
+            <script src="/web/org/jmaa/base/statics/js/rbac_role.js"></script>
+        </resource>
+    </view>
+
+    <view id='view_role_search' name='角色-查询' model='rbac.role'>
+        <search>
+            <field name="name"/>
+            <field name="active" default="true"/>
+        </search>
+    </view>
+
+    <view id='view_role_grid' name='角色-表格' type='grid' model='rbac.role'>
+        <grid>
+            <toolbar buttons="default">
+                <button name="setAdmin" label="设置为管理员" t-enable="id:!is_admin" t-click="setAdmin"/>
+                <button ref="setAdmin" auth="setAdmin" label="取消管理员" t-enable="id:is_admin" t-click="revokeAdmin"/>
+                <button auth="savePermission" label="权限" t-enable="id:!is_admin" t-click="editPermission"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="is_admin"/>
+            <field name="active"/>
+        </grid>
+    </view>
+
+    <view id='view_role_form' name='角色-表单' model='rbac.role'>
+        <form>
+            <toolbar buttons="default">
+                <button auth="savePermission" label="权限" t-enable="id:!is_admin" t-click="editPermission"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="is_admin" readonly="1" allow-null="1"/>
+            <field name="active"/>
+            <tabs>
+                <tab label="用户">
+                    <field colspan="4" name="user_ids" nolabel="1">
+                        <grid>
+                            <field name="name"/>
+                            <field name="login"/>
+                            <field name="email"/>
+                            <field name="mobile"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+
+    <view id='view_permission_search' name='权限码-查询' model='rbac.permission'>
+        <search>
+            <field name="model"/>
+            <field name="name"/>
+            <field name="auth"/>
+            <field name="type"/>
+            <field name="origin"/>
+            <field name="active" default="true"/>
+        </search>
+    </view>
+
+    <view id='view_permission_grid' name='权限码-表格' type='grid' model='rbac.permission'>
+        <grid>
+            <toolbar buttons="default">
+                <button name="delete" t-enable="ids:origin!='base'" t-click="target.delete()" confirm="确定删除?">删除</button>
+                <button label="更新" service="refresh"/>
+            </toolbar>
+            <field name="model"/>
+            <field name="name"/>
+            <field name="auth"/>
+            <field name="type"/>
+            <field name="origin"/>
+            <field name="active"/>
+        </grid>
+    </view>
+
+    <view id='view_permission_form' name='权限码-表单' model='rbac.permission'>
+        <form>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="model" t-readonly="origin=='base'"/>
+            <field name="name"/>
+            <field name="auth" t-readonly="origin=='base'"/>
+            <field name="type" t-readonly="origin=='base'"/>
+            <field name="origin" readonly="1"/>
+            <field name="active" t-readonly="type=='service' AND origin=='base'"/>
+            <tabs>
+                <tab label="角色">
+                    <field name="role_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <field name="name"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+
+	<view id='view_jwt_search' name='JWT-查询' model='rbac.jwt'>
+		<search criteria="[['mode','=','jwt']]">
+			<field name="name" label="名称"/>
+			<field name="login" label="AppID"/>
+			<field name="active" default="true"/>
+		</search>
+	</view>
+	<view id='view_jwt_grid' name='JWT-表格' model='rbac.jwt'>
+		<grid>
+			<toolbar buttons="default">
+			</toolbar>
+			<field name="name" label="名称"/>
+			<field name="login" label="AppID"/>
+			<field name="active"/>
+		</grid>
+	</view>
+	<view id='view_jwt_form' name='JWT-表单' model='rbac.jwt'>
+		<form>
+			<toolbar buttons="default">
+			</toolbar>
+			<field name="name" label="名称"/>
+			<field name="login" t-readonly="id" label="AppID" help="AppID"/>
+			<field name="company_ids" editor="many2many-tags"/>
+			<field name="active"/>
+			<field name="secret" colspan="4" readonly="1" t-visible="id"/>
+			<tabs>
+				<tab label="角色">
+					<field colspan="4" name="role_ids" nolabel="1">
+						<grid>
+							<field name="name"/>
+							<field name="is_admin"/>
+						</grid>
+					</field>
+				</tab>
+			</tabs>
+		</form>
+	</view>
+</data>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='qsd_quality_class_search' name='检验项目组-查询' model='qsd.quality_class'>
+        <search>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='qsd_quality_class_grid' name='检验项目组-表格' model='qsd.quality_class'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='name'/>
+            <field name='remark'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='qsd_quality_class_form' name='检验项目组-表单' model='qsd.quality_class'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='remark'/>
+            <field name='active'/>
+            <tabs>
+                <tab label="物料">
+                    <field name="material_ids" nolabel="1" colspan="4" editor="many2many">
+                        <grid>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="spec"/>
+                            <field name="unit_id"/>
+                            <field name="abc_type"/>
+                            <field name="category"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

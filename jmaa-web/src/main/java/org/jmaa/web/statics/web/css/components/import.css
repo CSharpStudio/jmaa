@@ -1,0 +1,154 @@
+.import-xls .import-file-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: 2.25rem;
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #e9ecef;
+    border-left: inherit;
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.import-xls .import-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    margin-bottom: 0;
+}
+
+.import-xls .import-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.import-xls .import-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    overflow: hidden;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: none;
+}
+
+.import-xls .head-rows-panel {
+    display: flex;
+}
+
+.import-xls .header-rows {
+    text-align: center !important;
+    padding: 0;
+    width: 30px;
+    height: 22px;
+}
+
+.import-xls .nav-tabs {
+    margin: 0;
+    padding: 0;
+}
+
+.import-xls .x-table {
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    border-color: #ededed;
+    color: #000;
+    font: normal 13px/15px helvetica, arial, verdana, sans-serif;
+    background-color: #fff;
+    table-layout: fixed;
+    outline: none;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.import-xls .x-table thead {
+    position: sticky;
+    top: 0;
+}
+
+.import-xls .x-table td {
+    border-style: solid;
+    border-color: #ededed;
+    border-width: 1px 1px 0 0;
+    overflow: hidden;
+    vertical-align: top;
+    padding: 2px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.import-xls .x-table th {
+    border-right: 1px solid #ededed;
+    color: #666;
+    font: bold 13px/15px helvetica, arial, verdana, sans-serif;
+    outline: 0;
+    background-color: #f5f5f5;
+    padding: 5px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 92px;
+    text-align: center;
+}
+
+.import-xls .x-table .x-row-head {
+    background-color: #f5f5f5;
+    min-width: 0;
+    padding: 2px 2px;
+}
+
+.import-xls .x-table:last-child {
+    border-bottom-width: 1px;
+}
+
+.import-xls .x-table select {
+    border: none;
+    width: 100%;
+}
+
+.import-xls .x-table select .required-field {
+    color: red;
+}
+
+.import-xls .x-table .x-field {
+    padding: 2px 2px;
+}
+
+.import-xls .nav-link {
+    padding: 0 1.2rem;
+    font-size: 0.85rem;
+    height: 26px;
+}
+
+.import-xls .nav-link.active {
+    padding: 0 1.2rem;
+    font-size: 0.85rem !important;
+    height: 26px;
+}
+
+.import-xls .data-preview {
+    overflow: auto;
+    min-height: 80px;
+    max-height: 200px;
+}
+
+.import-xls option {
+    color: black;
+}

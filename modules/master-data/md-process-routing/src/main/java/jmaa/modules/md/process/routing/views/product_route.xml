@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='pr_product_route_search' name='产品工艺路线-查询' model='pr.product_route'>
+        <search>
+            <field name='material_id' label="产品编码"/>
+        </search>
+    </view>
+    <view id='pr_product_route_grid' name='产品工艺路线-表格' model='pr.product_route'>
+        <grid>
+            <toolbar buttons="default"/>
+            <field name='material_id' label="产品编码"/>
+            <field name='material_name_spec'/>
+            <field name='route_version_id'/>
+            <field name='begin_date'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='pr_product_route_form' name='产品工艺路线-表单' model='pr.product_route'>
+        <form>
+            <toolbar buttons="default"/>
+            <field name='material_id' label="产品编码" view="default" on-change-action="onMaterialChange"/>
+            <field name='material_name_spec'/>
+            <field name='product_family_id'/>
+            <field name='route_version_id' view="default" lookup="[['route_id.family_id','=', product_family_id]]"/>
+            <field name='begin_date'/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

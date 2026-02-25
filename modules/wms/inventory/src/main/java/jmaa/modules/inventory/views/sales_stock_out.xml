@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_sales_stock_out_resource" name="销售出库-资源" model="wms.sales_stock_out">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/sales_stock_out.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"></script>
+        </resource>
+    </view>
+    <view id='wms_sales_stock_out_search' name='销售出库-查询' model='wms.sales_stock_out'>
+        <search>
+            <field name='code'/>
+            <field name='status'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='wms_sales_stock_out_grid' name='销售出库-表格' model='wms.sales_stock_out'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="提交" t-enable="ids:['draft', 'reject'].includes(status)" auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve" t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"  auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="status!='close'" t-click="closeOrder" class="btn-grey" ref="edit"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status' column="status_column"/>
+            <field name='customer_id'/>
+            <field name='remark'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+    <view id='wms_sales_stock_out_form' name='销售出库-表单' model='wms.sales_stock_out'>
+        <form>
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="ids:['draft', 'reject'].includes(status)" auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve" t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:status=='commit'" auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="status!='close'" t-click="closeOrder" class="btn-grey" ref="save"/>
+                <field name='status' editor="statusbar" values="draft,commit,approve,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='customer_id' t-readonly="status != 'draft'"/>
+            <field name='remark' colspan="2"/>
+            <field name='company_id' t-readonly="id"/>
+            <tabs>
+                <tab label='出库明细'>
+                    <field name='details_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='none'>
+                            </toolbar>
+                            <field name='sn'/>
+                            <field name='lot_num'/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='unit_id'/>
+                            <field name='material_category'/>
+                            <field name='qty'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'></field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

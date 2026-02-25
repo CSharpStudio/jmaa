@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+
+    <view id='md_equipment_model_resource' name='设备型号-资源' model='md.equipment_model'>
+        <resource>
+
+        </resource>
+    </view>
+
+    <view id='md_equipment_model_search' name='设备型号-查询' model='md.equipment_model'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_equipment_model_grid' name='设备型号-表格' model='md.equipment_model'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='specification'/>
+            <field name='manufacturer'/>
+            <field name='type_id'/>
+            <field name='type_category'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_equipment_model_form' name='设备型号-表单' model='md.equipment_model'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='specification'/>
+            <field name='manufacturer'/>
+            <field name='type_id' on-change-action="onTypeChange" view="default"/>
+            <field name='type_category'/>
+            <field name='active'/>
+            <tabs></tabs>
+        </form>
+    </view>
+    <view id='md_equipment_model_lookup' name='设备型号-下拉' model='md.equipment_model'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='specification'/>
+            <field name='manufacturer'/>
+            <field name='type_id' />
+            <field name='type_category'/>
+        </lookup>
+    </view>
+</data>

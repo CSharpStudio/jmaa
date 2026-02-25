@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='res_config_form' inherit_id="base.view_config_form" type="form" name='上料配置项-表单' model='res.config'>
+        <xpath not="tabs tab[label=MES设置]" expr="tabs" position="inside">
+            <tab label="MES设置"></tab>
+        </xpath>
+        <xpath expr="tabs tab[label=MES设置]" position="inside">
+            <field name='feed_qty_modifiable'/>
+            <field name='check_issue_material'/>
+        </xpath>
+    </view>
+</data>

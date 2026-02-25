@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="label_menus" name="标签管理" seq="40">
+        <menu id="label_print_menu" name="标签打印" model="lbl.label_print" view="grid"/>
+        <menu id="material_label_menu" name="序列号标签" model="lbl.material_label" view="grid,form"/>
+        <menu id="package_menu" name="包装标签" model="packing.package" view="grid,form"/>
+    </menu>
+</data>

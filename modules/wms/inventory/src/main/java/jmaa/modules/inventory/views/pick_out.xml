@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_pick_out_resource" name="挑选-资源" model="wms.pick_out">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/pick_out.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+        </resource>
+    </view>
+    <view id='wms_pick_out_search' name='挑选-查询' model='wms.pick_out'>
+        <search>
+            <field name='code'/>
+            <field name='related_code'/>
+            <field name='material_id'/>
+            <field name='supplier_id'/>
+            <field name='type'/>
+            <field name='status'/>
+        </search>
+    </view>
+    <view id='wms_pick_out_grid' name='挑选-表格' model='wms.pick_out'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='status' tags="{draft:'warning',commit:'primary',approve:'info',reject:'danger',_:'secondary',done:'success'}"/>
+            <field name='related_code'/>
+            <field name='material_id'/>
+            <field name='supplier_id'/>
+            <field name='type'/>
+        </grid>
+    </view>
+    <view id='wms_pick_out_form' name='挑选-表单' model='wms.pick_out'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button name="save" t-enable="['draft', 'reject'].includes(status)"/>
+                <button label="挑选" t-enable="id and ['draft','reject'].includes(status)" class="btn-primary" auth="read"  t-click="openPickOutView"/>
+                <button label="提交" t-enable="id and ['draft','reject'].includes(status)" class="btn-primary" auth="commit" t-click="commitOrder"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <field name="status" editor="statusbar" values="draft,commit,approve,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='type' t-readonly="status === 'done'"/>
+            <field name='related_code' on-change-action="onRelatedCodeChange" editor="related_code_editor"
+                   t-readonly="status === 'done'"/>
+            <field name='material_id' on-change-action="onMaterialChange" view="default" readonly="1" required="0"/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='supplier_id' readonly="1"/>
+            <field name='qty' t-readonly="status === 'done'"/>
+            <field name='pick_type' t-readonly="status === 'done'"/>
+            <field name="material_stock_rule" visible="0"/>
+            <tabs>
+                <tab label="挑选明细">
+                    <field name='detail_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='delete|export|reload'/>
+                            <field name='sn'/>
+                            <field name='status' tags="{draft:'warning',commit:'primary',approve:'info',reject:'danger',_:'secondary',done:'success'}"/>
+                            <field name='material_id'/>
+                            <field name='qty'/>
+                            <field name='material_name_spec'/>
+                            <field name='material_category'/>
+                            <field name='material_stock_rule'/>
+                            <field name='unit_id'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id="wms_pick_out_dialog" key="pick_out_dialog"
+          name="挑选弹框" type="form" model="wms.pick_out_details">
+        <form logAccess="0">
+            <field name='sn' colspan="3" placeholder="请扫描标签"/>
+            <field name="material_stock_rule" visible="0"/>
+            <field name="qty" t-visible="material_stock_rule !== 'sn'" label="挑选数量"/>
+        </form>
+    </view>
+</data>

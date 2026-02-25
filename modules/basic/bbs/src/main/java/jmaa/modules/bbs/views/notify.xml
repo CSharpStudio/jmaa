@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <web id="web_app" inherit_id="base.web_app" name="web.app.notify">
+        <xpath expr="[data-widget=upload]" position="after">
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" data-widget="notify" href="#"
+                   aria-expanded="false">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge"></span>
+                </a>
+                <div class="dropdown-notify dropdown-menu dropdown-menu-lg dropdown-menu-right"
+                     style="left: inherit; right: 0px; min-width: 360px;">
+                    <div class="dropdown-notify-header">
+                        <button type="button" role="tab" data-tab="all" class="btn btn-link active">
+                            <t>全部</t>
+                        </button>
+                        <button type="button" role="tab" data-tab="chat" class="btn btn-link">
+                            <t>私信</t>
+                        </button>
+                        <div class="flex-grow-1"/>
+                        <button type="button" class="btn btn-link btn-send">
+                            <t>发消息</t>
+                        </button>
+                    </div>
+                    <div class="feed-message">
+
+                    </div>
+                </div>
+            </li>
+        </xpath>
+        <xpath expr="body" position="inside">
+            <script src="/web/jmaa/modules/bbs/statics/js/date.js"></script>
+            <script src="/web/jmaa/modules/bbs/statics/js/notify.js"></script>
+        </xpath>
+        <xpath expr="head" position="inside">
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/feed.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/notify.css"/>
+        </xpath>
+    </web>
+    <web id="pad_app" inherit_id="base.pad_app" name="pad.app.notify">
+        <xpath expr="[data-widget=upload]" position="after">
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" data-widget="notify" href="#"
+                   aria-expanded="false">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge"></span>
+                </a>
+                <div class="dropdown-notify dropdown-menu dropdown-menu-lg dropdown-menu-right"
+                     style="left: inherit; right: 0px; min-width: 360px;">
+                    <div class="dropdown-notify-header">
+                        <button type="button" role="tab" data-tab="all" class="btn btn-link active">
+                            <t>全部</t>
+                        </button>
+                        <button type="button" role="tab" data-tab="chat" class="btn btn-link">
+                            <t>私信</t>
+                        </button>
+                        <div class="flex-grow-1"/>
+                        <button type="button" class="btn btn-link btn-send">
+                            <t>发消息</t>
+                        </button>
+                    </div>
+                    <div class="feed-message">
+
+                    </div>
+                </div>
+            </li>
+        </xpath>
+        <xpath expr="body" position="inside">
+            <script src="/web/jmaa/modules/bbs/statics/js/date.js"></script>
+            <script src="/web/jmaa/modules/bbs/statics/js/notify.js"></script>
+        </xpath>
+        <xpath expr="head" position="inside">
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/feed.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/notify.css"/>
+        </xpath>
+    </web>
+    <web id="mobile_app" inherit_id="base.mobile_app" name="mobile.app.notify">
+        <xpath expr="head" position="inside">
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/feed.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/mobile.css"/>
+        </xpath>
+        <xpath expr="body" position="inside">
+            <script src="/web/jmaa/modules/bbs/statics/js/date.js"></script>
+            <script src="/web/jmaa/modules/bbs/statics/js/mobile.js"></script>
+        </xpath>
+        <xpath expr="[name=link-main]" position="after">
+            <a class="page-link link-notify" href="#notify">
+                <i class="fa fa-bell"></i>
+                <t>消息</t>
+            </a>
+        </xpath>
+        <xpath expr="#user" position="before">
+            <div data-role="page" class="notify-page d-none" id="notify">
+                <div data-role="header">
+                    <h2>消息</h2>
+                </div>
+                <div class="ui-content">
+                </div>
+                <div data-role="footer" class="ui-footer">
+                    <a class="page-link link-home" href="#home">
+                        <i class="fa fa-envelope-open"></i>
+                        <t>首页</t>
+                    </a>
+                    <a class="page-link link-main" href="#main">
+                        <i class="fa fa-list-alt"></i>
+                        <t>工作台</t>
+                    </a>
+                    <a class="page-link link-notify active">
+                        <i class="fa fa-bell"></i>
+                        <t>消息</t>
+                    </a>
+                    <a class="page-link link-user" href="#user">
+                        <i class="fa fa-user"></i>
+                        <t>我</t>
+                    </a>
+                </div>
+            </div>
+        </xpath>
+    </web>
+</data>

@@ -1,0 +1,38 @@
+.e-checklist .ui-checkbox {
+    display: inline-flex;
+    margin: .3em 0;
+}
+
+.e-checklist .ui-checkbox .ui-btn {
+    padding: 2px 0 0 32px;
+    border: none;
+    background: transparent;
+    white-space: nowrap;
+}
+
+.e-checklist .ui-checkbox input {
+    visibility: hidden;
+}
+
+.e-checklist .ui-checkbox-on:after {
+    background-color: #017e84;
+    border: 1px solid #017e84;
+    width: 16px;
+    height: 16px;
+    text-shadow: none;
+}
+
+.e-checklist.readonly .ui-checkbox-on:after {
+    background-color: rgba(143, 195, 31, .6);
+}
+
+.e-check label.right::before,
+.e-check label:not(.right)::after {
+    border: none;
+}
+
+.ui-checkbox .ui-checkbox-on:after{
+    background-color: #017e84;
+    border-color: #017e84;
+    text-shadow: 0 1px 0 #017e84;
+}

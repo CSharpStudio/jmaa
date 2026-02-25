@@ -1,0 +1,71 @@
+.e-statusbar > .statusbar_status {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    align-content: space-around;
+    margin-left: auto;
+    flex-flow: row-reverse wrap-reverse;
+    align-self: stretch;
+    align-items: stretch;
+}
+
+.e-statusbar > .statusbar_status > .arrow_button {
+    min-height: 40px;
+    position: relative;
+    padding-left: 22px;
+    border-width: 0;
+    font-size: 0.94791667rem;
+    border-radius: 0;
+}
+
+.e-statusbar > .statusbar_status > .arrow_button:first-child {
+    padding-right: 16px;
+    overflow-x: hidden;
+}
+
+.e-statusbar > .statusbar_status > .arrow_button:last-child {
+    padding-left: 15px;
+    border-left: 1px solid #dee2e6;
+}
+
+.e-statusbar > .statusbar_status > .arrow_button:not(:first-child):before,
+.e-statusbar > .statusbar_status > .arrow_button:not(:first-child):after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: auto;
+    bottom: auto;
+    right: -10px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: none;
+    border-left: 11px solid white;
+    -moz-transform: scale(0.9999);
+}
+
+.e-statusbar > .statusbar_status > .arrow_button:not(:first-child):before {
+    right: -11px;
+    border-left-color: #dee2e6 !important;
+}
+
+.e-statusbar > .statusbar_status > .arrow_button.disabled {
+    opacity: 1;
+    pointer-events: none;
+}
+
+.e-statusbar > .statusbar_status > .arrow_button.disabled:not(.arrow_button_current),
+.e-statusbar > .statusbar_status > .arrow_button.disabled:not(.arrow_button_current):hover,
+.e-statusbar > .statusbar_status > .arrow_button.disabled:not(.arrow_button_current):focus {
+    color: rgba(73, 80, 87, 0.76);
+}
+
+.e-statusbar > .statusbar_status > .arrow_button.arrow_button_current.disabled {
+    background-color: #017e84;
+    color: #FFFFFF;
+}
+
+.e-statusbar > .statusbar_status > .arrow_button.arrow_button_current.disabled:after,
+.e-statusbar > .statusbar_status > .arrow_button.arrow_button_current.disabled:before {
+    border-left-color: #017e84;
+}

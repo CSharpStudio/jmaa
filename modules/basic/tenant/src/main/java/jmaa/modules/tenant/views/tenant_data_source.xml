@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id="tenant_data_source_search" name="租户数据源-查询" model="tenant.data_source">
+        <search>
+            <field name="name"></field>
+        </search>
+    </view>
+    <view id="tenant_data_source_grid" name="租户数据源-表格" model="tenant.data_source">
+        <grid>
+            <toolbar buttons="default"></toolbar>
+            <field name="name"></field>
+            <field name="server"></field>
+        </grid>
+    </view>
+    <view id="tenant_data_source_form" name="租户数据源-表单" model="tenant.data_source">
+        <form>
+            <toolbar buttons="default"></toolbar>
+            <field name="name"></field>
+            <field name="server"></field>
+            <field name="settings" colspan="4" editor="text" rows="10"></field>
+        </form>
+    </view>
+</data>

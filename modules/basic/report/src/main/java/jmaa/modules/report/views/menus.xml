@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="report_menus" name="查询报表" seq="60"/>
+    <menu id="report_menu" name="报表开发" model="rpt.report" view="grid,form,custom" seq="100"
+          parent="base.model_menus"/>
+</data>

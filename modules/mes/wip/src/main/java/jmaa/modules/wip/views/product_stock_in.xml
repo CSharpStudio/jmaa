@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="mfg_product_storage_notice_resource" type="resource" inherit_id="common-data.wms_product_storage_notice_resource"
+          name="成品入库通知-资源" model="mfg.product_storage_notice">
+        <xpath expr="resource" position="replace">
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+            <script src="/web/jmaa/modules/wip/statics/js/product_storage_notice.js"/>
+        </xpath>
+    </view>
+    <view id='mfg_product_storage_notice_search' type="search" inherit_id="common-data.wms_product_storage_notice_search"
+          name='成品入库通知-查询' model='mfg.product_storage_notice'>
+        <xpath expr="field[name=related_code]" position="replace">
+            <field name='work_order_id'/>
+        </xpath>
+    </view>
+    <view id='mfg_product_storage_notice_grid' inherit_id="common-data.wms_product_storage_notice_grid" type="grid"
+          name='成品入库通知-表格' model='mfg.product_storage_notice'>
+        <xpath expr="field[name=related_code]" position="replace">
+            <field name='work_order_id'/>
+        </xpath>
+        <xpath expr="field[name=related_code]" position="after">
+            <field name='workshop_id'/>
+            <field name='resource_id'/>
+            <field name='product_order_id'/>
+            <field name='product_order_id'/>
+            <field name='output'/>
+        </xpath>
+    </view>
+    <view id='mfg_product_storage_notice_form' inherit_id="common-data.wms_product_storage_notice_form" type="form"
+          name='成品入库通知-表单' model='mfg.product_storage_notice'>
+        <xpath expr="field[name=related_code]" position="replace">
+            <field name='work_order_id' on-change-action="onWorkOrderIdChange" view="default"/>
+        </xpath>
+        <xpath expr="field[name=plan_qty]" position="after">
+            <field name='output' readonly="1"/>
+        </xpath>
+        <xpath expr="field[name=scan_qty]" position="after">
+            <field name='workshop_id' readonly="1"/>
+            <field name='resource_id' readonly="1"/>
+            <field name='product_order_id' readonly="1"/>
+        </xpath>
+    </view>
+</data>

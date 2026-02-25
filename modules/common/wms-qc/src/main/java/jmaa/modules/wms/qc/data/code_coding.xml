@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <!--IQC单号编码-->
+    <record id="rule_iqc_code" model="code.coding">
+        <field name="code">iqc.sheet</field>
+        <field name="name">来料检验单号编码</field>
+        <field name="rule">code.rule</field>
+        <field name="source">system</field>
+        <field name="active">true</field>
+    </record>
+    <record id="rule_iqc_code_part1" model="code.part">
+        <field name="coding_id" ref="rule_iqc_code"></field>
+        <field name="seq">1</field>
+        <field name="content">{"code":"IQC"}</field>
+        <field name="part_code">code.part.chars_code</field>
+    </record>
+    <record id="rule_iqc_code_part3" model="code.part">
+        <field name="coding_id" ref="rule_iqc_code"></field>
+        <field name="seq">3</field>
+        <field name="content">{"format_code":"yyMMdd"}</field>
+        <field name="part_code">code.part.date_template</field>
+    </record>
+    <record id="rule_iqc_code_part4" model="code.part">
+        <field name="coding_id" ref="rule_iqc_code"></field>
+        <field name="seq">4</field>
+        <field name="content">{"length":"4","start":"0","step":"1"}</field>
+        <field name="part_code">code.part.day_sequence</field>
+    </record>
+    <!--OQC单号编码-->
+    <record id="rule_oqc_code" model="code.coding">
+        <field name="code">oqc.sheet</field>
+        <field name="name">来料检验单号编码</field>
+        <field name="rule">code.rule</field>
+        <field name="source">system</field>
+        <field name="active">true</field>
+    </record>
+    <record id="rule_oqc_code_part1" model="code.part">
+        <field name="coding_id" ref="rule_oqc_code"></field>
+        <field name="seq">1</field>
+        <field name="content">{"code":"OQC"}</field>
+        <field name="part_code">code.part.chars_code</field>
+    </record>
+    <record id="rule_oqc_code_part3" model="code.part">
+        <field name="coding_id" ref="rule_oqc_code"></field>
+        <field name="seq">3</field>
+        <field name="content">{"format_code":"yyMMdd"}</field>
+        <field name="part_code">code.part.date_template</field>
+    </record>
+    <record id="rule_oqc_code_part4" model="code.part">
+        <field name="coding_id" ref="rule_oqc_code"></field>
+        <field name="seq">4</field>
+        <field name="content">{"length":"4","start":"0","step":"1"}</field>
+        <field name="part_code">code.part.day_sequence</field>
+    </record>
+    <!--MRB单号编码-->
+    <record id="rule_mrb_code" model="code.coding">
+        <field name="code">qsd.mrb</field>
+        <field name="name">MRB单号编码</field>
+        <field name="rule">code.rule</field>
+        <field name="source">system</field>
+        <field name="active">true</field>
+    </record>
+    <record id="rule_mrb_code_part1" model="code.part">
+        <field name="coding_id" ref="rule_mrb_code"></field>
+        <field name="seq">1</field>
+        <field name="content">{"code":"M"}</field>
+        <field name="part_code">code.part.chars_code</field>
+    </record>
+    <record id="rule_mrb_code_part3" model="code.part">
+        <field name="coding_id" ref="rule_mrb_code"></field>
+        <field name="seq">3</field>
+        <field name="content">{"format_code":"yyMMdd"}</field>
+        <field name="part_code">code.part.date_template</field>
+    </record>
+    <record id="rule_mrb_code_part4" model="code.part">
+        <field name="coding_id" ref="rule_mrb_code"></field>
+        <field name="seq">4</field>
+        <field name="content">{"length":"4","start":"0","step":"1"}</field>
+        <field name="part_code">code.part.day_sequence</field>
+    </record>
+</data>

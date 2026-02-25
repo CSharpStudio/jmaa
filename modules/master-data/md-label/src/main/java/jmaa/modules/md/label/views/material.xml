@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_material_grid' name='物料-仓库-表格' type="grid" inherit_id="md-enterprise.md_material_grid"
+          model='md.material'>
+        <xpath expr="field[name=unit_id]" position="after">
+            <field name='min_packages'/>
+            <field name='stock_rule'/>
+        </xpath>
+    </view>
+    <view id='md_material_form' name='物料-仓库-表单' type="form" inherit_id="md-enterprise.md_material_form"
+          model='md.material'>
+        <xpath expr="tab[label=库存]" position="inside">
+            <field name='stock_rule'/>
+            <field name='sn_coding_id' t-reset="stock_rule" t-visible="stock_rule=='sn'"
+                   lookup="[['rule','like','material']]"/>
+            <field name='lot_coding_id' t-reset="stock_rule" t-visible="['sn', 'lot'].includes(stock_rule)"
+                   lookup="[['rule','like','material']]"/>
+            <field name="print_tpl_id"
+                   lookup="['|',['category','=','material_label'],['category','=','product_label']]"/>
+            <field name='min_packages'/>
+        </xpath>
+        <xpath expr="field[name=unit_id]" position="attribute">
+            <field on-change-action="onUnitChange"/>
+        </xpath>
+    </view>
+</data>

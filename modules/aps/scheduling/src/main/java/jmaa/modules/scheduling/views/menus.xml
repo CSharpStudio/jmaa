@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <menu id="@manufacturing.planing_menus" name="计划管理" seq="100">
+        <menu id="gantt_menu" name="车间排程" seq="10" view="custom" model="as.task_scheduling"/>
+        <menu id="craft_order_menu" name="制程单" seq="30" model="as.craft_order" view="grid,form"/>
+        <menu id="scheduler_menu" name="排产权限" seq="300" model="as.scheduler" view="grid,form"/>
+        <menu id="plan_task_menu" name="计划任务" seq="300" model="as.plan_task" view="grid,form"/>
+    </menu>
+    <menu id="craft_quota_menu" name="制程工时定额" seq="150" view="grid,form" model="as.craft_quota"
+          parent="md-craft.craft_menus"/>
+</data>

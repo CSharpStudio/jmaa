@@ -1,0 +1,35 @@
+.e-priority ul {
+    line-height: 30px;
+    margin: 0;
+    padding-left: 0;
+    display: flex;
+}
+
+.e-priority input[type=radio] {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+
+.e-priority > div > label {
+    cursor: pointer;
+    color: #f3cc00;
+    font-weight: 600;
+    margin-right: -4px;
+    font-size: large;
+}
+
+.e-priority input[type=radio]:checked ~ label:not(input:checked+label) {
+    color: #dcdcdc;
+}
+
+.e-priority.readonly label {
+    cursor: default;
+    opacity: .6;
+    font-weight: 100 !important;
+}
+
+.e-priority input[type=radio]:focus + label:before {
+    text-shadow: 0 0 5px #f3cc00, 0 0 10px #f3cc00;
+}

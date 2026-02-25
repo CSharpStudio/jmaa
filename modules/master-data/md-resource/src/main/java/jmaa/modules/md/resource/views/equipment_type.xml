@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_equipment_type_search' name='设备类型-查询' model='md.equipment_type'>
+        <search>
+            <field name='name'/>
+            <field name='category'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_equipment_type_grid' name='设备类型-表格' model='md.equipment_type'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='name'/>
+            <field name='category'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_equipment_type_form' name='设备类型-表单' model='md.equipment_type'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='category'/>
+            <field name='active'/>
+        </form>
+    </view>
+    <view id='md_equipment_type_lookup' name='设备类型-下拉' model='md.equipment_type'>
+        <lookup>
+            <field name='name'/>
+            <field name='category'/>
+        </lookup>
+    </view>
+</data>

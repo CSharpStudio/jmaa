@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <menu id="job_menus" name="定时任务" parent="base.system_manager_menus" seq="50">
+        <menu id="xxl_job_menu" name="定时配置" model="job.task" view="grid,form"/>
+        <menu id="xxl_job_handler_menu" name="定时方法" model="job.handler" view="grid,form"/>
+    </menu>
+</data>

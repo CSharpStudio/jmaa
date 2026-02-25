@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id="mobile_demo_resource" name="demo.mobile_demo-移动端资源" model="demo.mobile_demo">
+        <resource>
+            <script src="/web/jmaa/modules/demo/statics/js/mobile_demo.js"/>
+        </resource>
+    </view>
+    <view id="mobile_demo_view" name="demo.mobile_demo-移动端" model="demo.mobile_demo">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>示例</h2>
+                    <a class="home-link"></a>
+                </div>
+                <div class="jui-content">
+                    <tabs position="footer">
+                        <tab label="表单">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <button t-click="saveEdit" type="button" class="btn-primary">
+                                        <t>保存</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="jui-content">
+                                <form ref="form">
+                                    <field name="f_text" rows="16" colspan="2"/>
+                                    <field name="f_char" required="1" length="10" trim="1"/>
+                                    <field name="f_bool" required="1"/>
+                                    <field name="f_float" required="1" min="0" max="5" step="0.5"/>
+                                    <field name="f_bool_nullable" allow-null="1"/>
+                                    <field name="f_radio" editor="radio"/>
+                                    <field name="f_check_list" editor="checklist" required="1"/>
+                                    <field name="f_int" required="1" min="0" max="6" step="1"
+                                           on-change-action="getDecimals"/>
+                                    <field name="f_multi_selection" editor="multi-selection"/>
+                                    <field name="f_selection" required="1"/>
+                                    <field name="f_time" editor="time"/>
+                                    <field name="f_time_mm" editor="time" format="HH:mm"/>
+                                    <field name="f_date" required="1" min="2020-1-1" max="2201-1-1"/>
+                                    <field name="f_datetime" required="1" min="2020-1-1" max="2023-1-1"/>
+                                    <!--                        <field name="f_date_range" editor="date-range" required="1"/>-->
+                                    <!--                        <field name="f_time_range" editor="time-range"/>-->
+                                    <field name="f_m2o_id"/>
+                                    <field name="f_m2o_grid_id"/>
+                                    <field name="f_m2m_tags" editor="many2many-tags"/>
+                                    <field name="f_image" limit="3" width="100"/>
+                                    <field name="f_image_db" width="100"/>
+                                    <field name="f_file" sync="1" colspan="2"/>
+                                    <field name="f_file_db" colspan="2"/>
+                                    <field name="f_big_file" size="50" colspan="2"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="列表1" focus-to="[for=list1]">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input type="text" t-enter="searchList" for="list1" placeholder="标签条码"/>
+                                    <button type="button" class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="jui-content">
+                                <div class="header-bar">
+                                    <div class="toolbar">
+                                        <button class="ui-button" t-click="showPage" to="page-create">
+                                            <t>创建</t>
+                                        </button>
+                                    </div>
+                                </div>
+                                <list ref="list1" load-method="loadList" on-init="onListInit" on-load="onListLoad"
+                                      on-reload="onListReload" model="demo.mobile_demo" on-item-click="onListClick"
+                                      class="jui-content">
+                                    <card>
+                                        <field name="f_char"/>
+                                        <field name="f_bool"/>
+                                        <field name="f_date"/>
+                                        <field name="f_selection"/>
+                                        <field name="f_multi_selection" column="multi-selection" tags="{_:'success'}"/>
+                                        <template>
+                                            {@helper statusToCss}
+                                            function(s){
+                                            let css = {'6':'secondary','7':'secondary'};
+                                            return css[s] || 'info';
+                                            }
+                                            {@/helper}
+                                            <div class="card-body">
+                                                <div class="ribbon-wrapper">
+                                                    <div class="ribbon bg-${f_selection[0]|statusToCss}">
+                                                        <small>${f_selection[1]}</small>
+                                                    </div>
+                                                </div>
+                                                <div class="text-title">${f_char}</div>
+                                                <div class="text-content">
+                                                    ${f_bool}
+                                                </div>
+                                                <div class="text-content">
+                                                    ${f_date}
+                                                    <div class="float-right text-content">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </card>
+                                </list>
+                            </div>
+                        </tab>
+                        <tab label="列表2" focus-to="[for=list2]">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input type="text" t-enter="searchList" for="list2" placeholder="标签条码"/>
+                                    <button type="button" class="clear-input"/>
+                                </div>
+                            </div>
+                            <list ref="list2" load-method="loadList" on-init="onListInit" on-load="onListLoad"
+                                  on-reload="onListReload" model="demo.mobile_demo" on-item-click="onListClick"
+                                  class="jui-content">
+                                <card>
+                                    <field name="f_char"/>
+                                    <field name="f_bool"/>
+                                    <field name="f_date"/>
+                                    <field name="f_selection"/>
+                                    <field name="f_multi_selection" column="multi-selection" tags="{_:'success'}"/>
+                                    <div colspan="2">
+                                        <button class="ui-btn">提交</button>
+                                    </div>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+            <div class="ui-page" id="page-create">
+                <div data-role="header">
+                    <h2>创建</h2>
+                    <a class="back-link"></a>
+                    <a class="menu-link"></a>
+                </div>
+                <div class="jui-content">
+                    <div class="jui-content">
+                        <form>
+                            <field name="f_text" rows="16" colspan="2"/>
+                            <field name="f_char" required="1" length="10" trim="1"/>
+                            <field name="f_bool" required="1"/>
+                            <field name="f_float" required="1" min="0" max="5" step="0.5"/>
+                            <field name="f_bool_nullable" allow-null="1"/>
+                            <field name="f_radio" editor="radio"/>
+                            <field name="f_check_list" editor="checklist" required="1"/>
+                            <field name="f_int" required="1" min="0" max="6" step="1" on-change-action="getDecimals"/>
+                            <field name="f_multi_selection" editor="multi-selection"/>
+                            <field name="f_selection" required="1"/>
+                            <field name="f_time" editor="time"/>
+                            <field name="f_time_mm" editor="time" format="HH:mm"/>
+                            <field name="f_date" required="1" min="2020-1-1" max="2201-1-1"/>
+                            <field name="f_datetime" required="1" min="2020-1-1" max="2023-1-1"/>
+                            <!--                        <field name="f_date_range" editor="date-range" required="1"/>-->
+                            <!--                        <field name="f_time_range" editor="time-range"/>-->
+                            <field name="f_m2o_id"/>
+                            <field name="f_m2o_grid_id"/>
+                            <field name="f_m2m_tags" editor="many2many-tags"/>
+                            <field name="f_image" limit="3" width="100"/>
+                            <field name="f_image_db" width="100"/>
+                            <field name="f_file" sync="1"/>
+                            <field name="f_file_db"/>
+                            <field name="f_big_file" size="50"/>
+                        </form>
+                    </div>
+                    <div data-role="footer" class="footer-bar">
+                        <div class="toolbar">
+                            <button class="ui-button" t-click="showPage" to="page-create">创建</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

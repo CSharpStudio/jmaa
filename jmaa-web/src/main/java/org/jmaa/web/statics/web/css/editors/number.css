@@ -1,0 +1,26 @@
+.e-number .input-group .form-control {
+    padding-right: 60px !important;
+}
+
+.e-number .form-control.is-invalid:last-child {
+    padding-right: 0 !important;
+}
+
+.e-number .form-control.is-invalid:not(:last-child) {
+    padding-right: 5.5rem !important;
+    background-position: right 4rem center;
+}
+
+.e-number:has(.input-suffix) .form-control.is-invalid {
+    padding-right: 5.5rem !important;
+    background-position: right 4rem center;
+}
+
+.e-number.readonly button {
+    display: none;
+
+}
+
+.e-number.readonly .form-control {
+    padding-right: 5px!important;
+}

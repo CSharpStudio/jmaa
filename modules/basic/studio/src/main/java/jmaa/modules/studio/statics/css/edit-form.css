@@ -1,0 +1,60 @@
+.edit-form .d-body {
+    height: calc(100% - 40px);
+    display: flex;
+}
+
+.edit-form .m-body {
+    flex: 1;
+}
+
+.edit-form .e-form .form-group textarea,
+.edit-form .e-form .form-group select,
+.edit-form .e-form .form-group input {
+    pointer-events: none;
+}
+
+.edit-form .tab-pane {
+    min-height: 60px;
+}
+
+.edit-form .e-form .group-header,
+.edit-form .e-form .form-group label {
+    cursor: move;
+}
+
+.edit-form .group-item:has(.group-header:hover),
+.edit-form .e-form .form-group:hover {
+    outline: 1px dashed #3c8dbc;
+    outline-offset: 5px;
+}
+
+.btn-remove-tab {
+    position: absolute;
+    right: 5px;
+    display: none;
+}
+
+.edit-form .tabs-item .nav-link.active:hover .btn-remove-tab {
+    display: inline;
+}
+
+.edit-form .holder-item {
+    min-height: 40px;
+    background: #f8f9fa;
+    grid-template-columns: repeat(4, 1fr) !important;
+    display: block;
+    text-align: center;
+    align-content: center;
+    font-size: 12px;
+    color: #6c757d !important;
+    font-style: italic;
+}
+
+.group-item .group-header {
+    position: relative;
+}
+
+.group-item .group-header:hover .component-tools {
+    display: flex;
+}
+

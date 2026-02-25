@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_currency_search' name='币别-查询' model='md.currency'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_currency_grid' name='币别-表格' model='md.currency'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='symbol'/>
+            <field name='accuracy'/>
+            <field name='price_accuracy'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_currency_form' name='币别-表单' model='md.currency'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='symbol'/>
+            <field name='accuracy'/>
+            <field name='price_accuracy'/>
+            <field name='active'/>
+        </form>
+    </view>
+    <view id='md_currency_lookup' name='币别-下拉' model='md.currency'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='symbol'/>
+            <field name='accuracy'/>
+            <field name='price_accuracy'/>
+        </lookup>
+    </view>
+</data>

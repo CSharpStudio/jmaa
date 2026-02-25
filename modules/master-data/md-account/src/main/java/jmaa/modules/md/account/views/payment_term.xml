@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_payment_term_search' name='结算方式-查询' model='md.payment_term'>
+        <search>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_payment_term_grid' name='结算方式-表格' model='md.payment_term'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='business'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_payment_term_form' name='结算方式-表单' model='md.payment_term'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='business'/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

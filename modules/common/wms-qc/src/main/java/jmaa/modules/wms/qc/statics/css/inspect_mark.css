@@ -1,0 +1,49 @@
+.inspect_mark {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    opacity: 0.8;
+    left: 10px;
+    top: -10px;
+    transform:  rotate(-20deg) scale(0);
+    opacity: 0;
+    animation: stamp 1.5s ease-in-out forwards;
+}
+
+.inspect_mark .text {
+    line-height: 120px;
+    color: #70b603;
+    position: absolute;
+    font-size: 2rem;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+}
+
+.inspect_mark.ng .text {
+    color: #e04b38;
+    font-size: 1.6rem;
+}
+
+.inspect_mark.ok img {
+    width: 120px;
+    padding: 16px 0;
+}
+
+/* 盖章动画关键帧 */
+@keyframes stamp {
+    0% {
+        transform: rotate(-20deg) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: rotate(-20deg) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-20deg) scale(1);
+        opacity: .8;
+    }
+}

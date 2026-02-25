@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='mfg_unload_dialog_form' name='下料-表单' model='mfg.unload_dialog'>
+        <form>
+            <field name='station_id' readonly="1" link="0"/>
+            <field name='material_id' readonly="1" link="0"/>
+            <field name='material_name_spec' colspan="2"/>
+            <field name='lot_num' readonly="1"/>
+            <field name='qty'/>
+            <field name='unit_id' readonly="1" link="0"/>
+            <div></div>
+            <editor name="code" type="char" label="条码" t-change="loadMaterialByCode"/>
+            <editor name="unload_qty" type="float" gt="0" label="下料数量" required="1"/>
+            <editor name='print_label' type="boolean" label="打印标签"/>
+            <div>
+                <button type="button" class="btn btn-lg text-lg btn-success" name="submitUnload">下料</button>
+            </div>
+            <editor name='msg' label="提示信息" colspan="4" type="msg_editor"/>
+        </form>
+    </view>
+</data>

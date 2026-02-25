@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_enterprise_tpl_form' name='企业层级-表单' model='md.enterprise_tpl'>
+        <form>
+            <tree></tree>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='parent_id' readonly="1"/>
+            <field name='type'/>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='wms_sales_order_report_search' name='采购订单-查询' model='wms.sales_order_report'>
+        <search>
+            <field name='so_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='customer_id'/>
+            <field name='type'/>
+            <field name='company_id'/>
+            <field name='order_date' editor="date-range"/>
+        </search>
+    </view>
+    <view id='wms_sales_order_report_grid' name='采购订单-表格' model='wms.sales_order_report'>
+        <grid footer="1">
+            <toolbar buttons='query|export'>
+            </toolbar>
+            <field name='so_id'/>
+            <field name='line_no' t-readonly="1"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='sales_qty' class="sum col-info"/>
+            <field name="delivery_qty" class="sum col-success"/>
+            <field name='return_qty' class="sum col-danger"/>
+            <field name='unit_id'/>
+            <field name='customer_id'/>
+            <field name='order_date'/>
+            <field name='order_status'/>
+            <field name='type'/>
+            <field name='material_category'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+</data>

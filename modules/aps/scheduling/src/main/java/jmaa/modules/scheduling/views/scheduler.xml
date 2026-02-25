@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="as_scheduler_resource" name="排产权限-资源" model="as.scheduler">
+        <resource>
+            <script src="/web/jmaa/modules/scheduling/statics/js/scheduler.js"></script>
+        </resource>
+    </view>
+    <view id='as_scheduler_search' name='排产权限-查询' model='as.scheduler'>
+        <search>
+            <field name='name'/>
+            <field name='login'/>
+        </search>
+    </view>
+    <view id='as_scheduler_grid' name='排产权限-表格' model='as.scheduler'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='login'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='as_scheduler_form' name='排产权限-表单' model='as.scheduler'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='user_id'/>
+            <field name='active'/>
+            <tabs>
+                <tab label="资源权限" t-visible="id">
+                    <field name="permission_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <toolbar buttons="create|export">
+                                <button name="create" label="编辑" t-click="editPermission"></button>
+                            </toolbar>
+                            <field name='permission'/>
+                            <field name='resource_code'/>
+                            <field name='resource_name'/>
+                            <field name='workshop_id'/>
+                            <field name='resource_type'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="mfg_feeding_mobile_resource" name="上料-移动端-资源" model="mfg.feeding_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/wip/statics/js/feeding_mobile.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id='mfg_feeding_mobile' name='上料-移动端' model='mfg.feeding_mobile'>
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>上料</t>
+                    </h2>
+                    <a class="home-link"></a>
+                </div>
+                <tabs position="footer" style="height:calc(100% - 42px)">
+                    <tab label="上料">
+                        <div data-role="header">
+                            <div widget="scanner">
+                                <a class="scan-icon"/>
+                                <input class="code-input" type="text" t-enter="submitCode" placeholder="请扫描工位"/>
+                                <button class="clear-input"></button>
+                            </div>
+                        </div>
+                        <div style="height:calc(100% - 42px)">
+                            <form ref="stationForm">
+                                <field name='workshop_id' link="0" colspan="2"/>
+                                <field name='resource_id' t-reset="workshop_id"
+                                       lookup="[['workshop_id','=',workshop_id]]" link="0"/>
+                                <field name='process_id' t-reset="workshop_id,resource_id" link="0"/>
+                                <field name='station_id' t-reset="workshop_id,resource_id,process_id" link="0"
+                                       t-filter="filterFeedingStation" t-change="onStationChange"
+                                       on-change-action="onStationChange"/>
+                                <field name='work_order_id' t-reset="resource_id,workshop_id,process_id,station_id" link="0"
+                                       lookup="[['resource_id','=',resource_id]]" view="mobile-lookup"/>
+                                <editor name="msg" rowspan="2" colspan="4" type="msg_editor" label="消息"></editor>
+                            </form>
+                        </div>
+                    </tab>
+                    <tab label="工位库存" t-click="searchStock">
+                        <div data-role="header">
+                            <div widget="scanner">
+                                <a class="scan-icon"/>
+                                <input class="stock-input" type="text" t-enter="searchStock"
+                                       placeholder="物料标签/编码/名称规格"/>
+                                <button type="button" class="clear-input" t-click="searchStock"></button>
+                            </div>
+                        </div>
+                        <list ref="stockList" load-method="loadStockList" model="mfg.work_station_material"
+                              style="height:calc(100% - 42px)">
+                            <card>
+                                <field name='material_id'/>
+                                <field name='$rownum' nolabel="1" render="rownum"/>
+                                <field name='material_name_spec' colspan="2"/>
+                                <field name='material_category'/>
+                                <field name='qty'/>
+                                <field name='unit_id'/>
+                                <field name='lot_num'/>
+                                <field name='update_uid' colspan="2"/>
+                                <field name='update_date' colspan="2"/>
+                                <div style="position:absolute;right:20px;bottom:10px">
+                                    <button type="button" class="ui-btn ui-mini btn-unload" t-click="unload"><t>下料</t>
+                                    </button>
+                                </div>
+                            </card>
+                        </list>
+                    </tab>
+                </tabs>
+            </div>
+            <div class="ui-page" id="unload">
+                <div data-role="header">
+                    <a class="back-link" t-click="showStockList"></a>
+                    <h2><t>下料</t></h2>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="unload-code" type="text" t-enter="submitUnloadCode" placeholder="请扫条码"/>
+                        <button class="clear-input"></button>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 82px)">
+                    <form ref="unloadForm" model="mfg.unload_dialog">
+                        <field name='station_id' readonly="1"/>
+                        <field name='material_id' readonly="1"/>
+                        <field name='material_name_spec' colspan="2"/>
+                        <field name='lot_num' readonly="1"/>
+                        <field name='qty'/>
+                        <editor name="unload_qty" type="float" gt="0" label="下料数量" required="1"/>
+                        <field name='unit_id' readonly="1" link="0"/>
+                        <editor name='print_label' type="boolean" label="打印标签"/>
+                        <div>
+                            <button type="button" class="ui-btn btn-primary" t-click="submitUnload"><t>下料</t></button>
+                        </div>
+                        <editor name='msg' label="提示信息" colspan="4" type="msg_editor"/>
+                    </form>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

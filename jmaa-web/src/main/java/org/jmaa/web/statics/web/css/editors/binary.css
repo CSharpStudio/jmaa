@@ -1,0 +1,194 @@
+.e-binary .btn-upload {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.e-binary .file-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.e-binary .file-item:not(.file-image) {
+    display: flex;
+    padding: 2px 2px;
+    background-color: #c9ccd1;
+    border-radius: 5px;
+    overflow: hidden;
+    align-items: center;
+    min-width: 140px;
+    max-width: 260px;
+    height: 40px;
+}
+
+.e-binary .file-item.file-image {
+    display: flex;
+    position: relative;
+}
+
+.e-binary .file-item.file-image .tbar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: .74rem;
+    padding: 2px 2px;
+    background-color: #c9ccd1;
+    border-radius: 5px;
+}
+
+.e-binary .file-item.file-image img {
+    max-height: 200px;
+    max-width: 200px;
+    min-width: 60px;
+    min-height: 40px;
+    object-fit: contain;
+}
+
+.e-binary .file-item .icon {
+    width: 26px;
+    height: 32px;
+    display: flex;
+    align-items: end;
+    position: relative;
+    border-radius: 5px;
+    background-color: #0a4b72;
+    margin: 0 4px;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 10px;
+    padding: 0 2px 3px;
+    justify-content: end;
+}
+
+.e-binary .file-item .icon.sm-text {
+    font-size: 9px;
+}
+
+.e-binary .file-item .icon:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 16px;
+    height: 16px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: none;
+    border-left: 8px solid #c9ccd1;
+    transform: rotate(-45deg);
+}
+
+.e-binary .file-item .icon:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    border: 2px solid #c9ccd1;
+}
+
+.e-binary .content {
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+.e-binary .content .header {
+    font-size: .8rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.e-binary .content .footer {
+    font-size: .74rem;
+    display: flex;
+    justify-content: space-between;
+    color: #7f7f7f;
+    white-space: nowrap;
+}
+
+.e-binary .file-item .progress {
+    display: none;
+    width: 120px;
+    margin: 5px 0;
+}
+
+.e-binary .file-item.loading .tbar,
+.e-binary .file-item.loading .size {
+    display: none;
+}
+
+.e-binary .file-item.loading .progress {
+    display: flex;
+}
+
+.e-binary .tbar {
+    white-space: nowrap;
+    margin-left: 5px;
+}
+
+.e-binary .tbar a {
+    color: #7f7f7f;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+.e-binary a:hover {
+    opacity: .8;
+}
+
+.e-binary.readonly .btn-delete {
+    display: none;
+}
+
+.e-binary .file-item .icon.xls,
+.e-binary .file-item .icon.xlsx {
+    background-color: #32bb72;
+}
+
+.e-binary .file-item .icon.rtf,
+.e-binary .file-item .icon.ttf,
+.e-binary .file-item .icon.txt,
+.e-binary .file-item .icon.doc,
+.e-binary .file-item .icon.docx {
+    background-color: #4587d2;
+}
+
+.e-binary .file-item .icon.jfif,
+.e-binary .file-item .icon.png,
+.e-binary .file-item .icon.gif,
+.e-binary .file-item .icon.jpg,
+.e-binary .file-item .icon.jpeg {
+    background-color: #c53fc2;
+}
+
+.e-binary .file-item .icon.ppt,
+.e-binary .file-item .icon.pdf {
+    background-color: #cd2020;
+}
+
+.e-binary .file-item .icon.zip,
+.e-binary .file-item .icon.rar {
+    background-color: #b336a5;
+}
+
+.e-binary .file-item .icon.avi,
+.e-binary .file-item .icon.mov,
+.e-binary .file-item .icon.mp3,
+.e-binary .file-item .icon.mp4 {
+    background-color: #3acda6;
+}
+
+.e-binary .file-item .icon.aep,
+.e-binary .file-item .icon.eps,
+.e-binary .file-item .icon.psd,
+.e-binary .file-item .icon.ai {
+    background-color: #e3680c;
+}

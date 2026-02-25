@@ -1,0 +1,12 @@
+id,name,code,type,category,frozen,active,over_send,location_manage,company_id,user_ids,workshop_ids
+0484j4z0z88hs,顺德半成品仓,23,physical,semi-finished,0,1,0,0,base.company_default,"[[4,ref(base.user_admin)]]",
+0484j4z11q4u8,顺德原材料仓,24,physical,raw,0,1,0,0,base.company_default,"[[4,ref(base.user_admin)]]","[[4,ref(md-enterprise.04lpmpv8y64u8)]]"
+0484j4z14816o,顺德成品仓,22,physical,finished,0,1,1,0,base.company_default,"[[4,ref(base.user_admin)]]",
+0484j4z16pxj4,中山半成品仓,05,physical,semi-finished,0,1,0,0,base.company_default,"[[4,ref(base.user_admin)]]",
+0484j4z1bpq80,中山原材料仓,01,physical,raw,0,1,0,0,base.company_default,"[[4,ref(base.user_admin)]]",
+0484j4z1bpq81,中山贴片材料仓,09,physical,raw,0,1,1,0,base.company_default,"[[4,ref(base.user_admin)]]",
+0484j4z1gpiww,专用材料暂存仓,04,physical,raw,0,1,0,0,base.company_default,,
+0484j4z1j7f9c,顺德车间半成品仓,25,physical,semi-finished,0,1,0,0,base.company_default,,
+0484j4z1lpbls,车间周转仓(成）(返修）,17,physical,raw,0,1,0,0,base.company_default,,
+0484j4z1o77y8,中山成品仓(成),02,physical,finished,0,1,0,0,base.company_default,,
+0484j4z1qp4ao,废品仓(呆料）,W8,physical,raw,0,1,0,0,base.company_default,,

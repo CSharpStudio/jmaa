@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="data" type="dataType"/>
+    <xs:complexType name="menuType">
+        <xs:sequence>
+            <xs:element type="menuType" name="menu" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+        <xs:attribute type="xs:string" name="seq" use="optional"/>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="icon" use="optional"/>
+        <xs:attribute type="xs:string" name="model" use="optional"/>
+        <xs:attribute type="xs:string" name="view" use="optional"/>
+        <xs:attribute type="xs:string" name="parent" use="optional"/>
+        <xs:attribute type="xs:string" name="url" use="optional"/>
+        <xs:attribute type="xs:string" name="click" use="optional"/>
+        <xs:attribute type="xs:string" name="target" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="mobileMenuType">
+        <xs:sequence>
+            <xs:element type="mobileMenuType" name="m-menu" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+        <xs:attribute type="xs:string" name="seq" use="optional"/>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="icon" use="optional"/>
+        <xs:attribute type="xs:string" name="model" use="optional"/>
+        <xs:attribute type="xs:string" name="view" use="optional"/>
+        <xs:attribute type="xs:string" name="parent" use="optional"/>
+        <xs:attribute type="xs:string" name="url" use="optional"/>
+        <xs:attribute type="xs:string" name="click" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="resourceType">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="viewType">
+        <xs:sequence>
+            <xs:element type="resourceType" name="resource" minOccurs="0"/>
+            <xs:element type="xpathType" name="xpath" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="searchType" name="search" minOccurs="0"/>
+            <xs:element type="gridType" name="grid" minOccurs="0"/>
+            <xs:element type="formType" name="form" minOccurs="0"/>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="model" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+        <xs:attribute type="xs:string" name="inherit_id" use="optional"/>
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="priority" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="xpathType">
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="expr" use="optional"/>
+        <xs:attribute type="xs:string" name="position" use="optional"/>
+        <xs:attribute type="xs:string" name="has" use="optional"/>
+        <xs:attribute type="xs:string" name="not" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="columnType" mixed="true">
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="label" use="optional"/>
+        <xs:attribute type="xs:string" name="style" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+        <xs:attribute type="xs:string" name="tags" use="optional"/>
+        <xs:attribute type="xs:string" name="criteria" use="optional"/>
+        <xs:attribute type="xs:string" name="class" use="optional"/>
+        <xs:attribute type="xs:string" name="lookup" use="optional"/>
+        <xs:attribute type="xs:string" name="nolabel" use="optional"/>
+        <xs:attribute type="xs:string" name="width" use="optional"/>
+        <xs:attribute type="xs:string" name="visible" use="optional"/>
+        <xs:attribute type="xs:string" name="ordering" use="optional"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+    <xs:complexType name="fieldType" mixed="true">
+        <xs:sequence>
+            <xs:element type="gridType" name="grid" minOccurs="0"/>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="label" use="optional"/>
+        <xs:attribute type="xs:string" name="style" use="optional"/>
+        <xs:attribute type="xs:string" name="t-readonly" use="optional"/>
+        <xs:attribute type="xs:string" name="t-visible" use="optional"/>
+        <xs:attribute type="xs:string" name="t-reset" use="optional"/>
+        <xs:attribute type="xs:string" name="editor" use="optional"/>
+        <xs:attribute type="xs:string" name="column" use="optional"/>
+        <xs:attribute type="xs:string" name="tags" use="optional"/>
+        <xs:attribute type="xs:string" name="criteria" use="optional"/>
+        <xs:attribute type="xs:string" name="default" use="optional"/>
+        <xs:attribute type="xs:string" name="colspan" use="optional"/>
+        <xs:attribute type="xs:string" name="required" use="optional"/>
+        <xs:attribute type="xs:string" name="length" use="optional"/>
+        <xs:attribute type="xs:string" name="trim" use="optional"/>
+        <xs:attribute type="xs:string" name="class" use="optional"/>
+        <xs:attribute type="xs:string" name="lookup" use="optional"/>
+        <xs:attribute type="xs:string" name="on-change-action" use="optional"/>
+        <xs:attribute type="xs:string" name="action-context" use="optional"/>
+        <xs:attribute type="xs:string" name="t-change" use="optional"/>
+        <xs:attribute type="xs:string" name="nolabel" use="optional"/>
+        <xs:attribute type="xs:string" name="width" use="optional"/>
+        <xs:attribute type="xs:string" name="rowspan" use="optional"/>
+        <xs:attribute type="xs:string" name="min" use="optional"/>
+        <xs:attribute type="xs:string" name="max" use="optional"/>
+        <xs:attribute type="xs:string" name="lt" use="optional"/>
+        <xs:attribute type="xs:string" name="gt" use="optional"/>
+        <xs:attribute type="xs:string" name="step" use="optional"/>
+        <xs:attribute type="xs:string" name="defaultValue" use="optional"/>
+        <xs:attribute type="xs:string" name="rows" use="optional"/>
+        <xs:attribute type="xs:string" name="visible" use="optional"/>
+        <xs:attribute type="xs:string" name="placeholder" use="optional"/>
+        <xs:attribute type="xs:string" name="readonly" use="optional"/>
+        <xs:attribute type="xs:string" name="link" use="optional"/>
+        <xs:attribute type="xs:string" name="limit" use="optional"/>
+        <xs:attribute type="xs:string" name="pager" use="optional"/>
+        <xs:attribute type="xs:string" name="on-init" use="optional"/>
+        <xs:attribute type="xs:string" name="on-value-change" use="optional"/>
+        <xs:attribute type="xs:string" name="view" use="optional"/>
+        <xs:attribute type="xs:string" name="t-filter" use="optional"/>
+        <xs:attribute type="xs:string" name="ordering" use="optional"/>
+        <xs:attribute type="xs:string" name="decimals" use="optional"/>
+        <xs:attribute type="xs:string" name="allow-null" use="optional"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+    <xs:complexType name="tabType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="fieldType" name="field"/>
+            <xs:any minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="label" use="optional"/>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+        <xs:attribute type="xs:string" name="t-visible" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="fixedType">
+        <xs:sequence>
+            <xs:element type="fieldType" name="field" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="asideType">
+        <xs:attribute type="xs:string" name="field"/>
+        <xs:attribute type="xs:string" name="present" use="optional"/>
+        <xs:attribute type="xs:string" name="parent" use="optional"/>
+        <xs:attribute type="xs:string" name="label" use="optional"/>
+        <xs:attribute type="xs:string" name="tree" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="searchType">
+        <xs:sequence>
+            <xs:element type="fieldType" name="field" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="fixedType" name="fixed"/>
+            <xs:element type="asideType" name="aside"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="criteria"/>
+        <xs:attribute type="xs:string" name="on-init" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="buttonType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="type" use="optional"/>
+                <xs:attribute type="xs:string" name="name" use="optional"/>
+                <xs:attribute type="xs:string" name="label" use="optional"/>
+                <xs:attribute type="xs:string" name="t-enable" use="optional"/>
+                <xs:attribute type="xs:string" name="confirm" use="optional"/>
+                <xs:attribute type="xs:string" name="service" use="optional"/>
+                <xs:attribute type="xs:string" name="ref" use="optional"/>
+                <xs:attribute type="xs:string" name="auth" use="optional"/>
+                <xs:attribute type="xs:string" name="t-click" use="optional"/>
+                <xs:attribute type="xs:string" name="t-visible" use="optional"/>
+                <xs:attribute type="xs:string" name="class" use="optional"/>
+                <xs:attribute type="xs:string" name="style" use="optional"/>
+                <xs:attribute type="xs:string" name="position" use="optional"/>
+                <xs:attribute type="xs:string" name="title" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="toolbarType" mixed="true">
+        <xs:sequence>
+            <xs:element type="buttonType" name="button" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="buttons" use="optional"/>
+        <xs:attribute type="xs:string" name="on-init" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="hiliteType" mixed="true">
+        <xs:attribute type="xs:string" name="t-if" use="optional"/>
+        <xs:attribute type="xs:string" name="color" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="gridType">
+        <xs:sequence>
+            <xs:element type="toolbarType" name="toolbar"/>
+            <xs:element type="fieldType" name="field" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="columnType" name="column" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="formType" name="edit" minOccurs="0"/>
+            <xs:element type="hiliteType" name="hilite" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="limit" use="optional"/>
+        <xs:attribute type="xs:string" name="footer" use="optional"/>
+        <xs:attribute type="xs:string" name="showRowNum" use="optional"/>
+        <xs:attribute type="xs:string" name="multiSelect" use="optional"/>
+        <xs:attribute type="xs:string" name="checkSelect" use="optional"/>
+        <xs:attribute type="xs:string" name="editable" use="optional"/>
+        <xs:attribute type="xs:string" name="filterColumn" use="optional"/>
+        <xs:attribute type="xs:string" name="ordering" use="optional"/>
+        <xs:attribute type="xs:string" name="inline" use="optional"/>
+        <xs:attribute type="xs:string" name="dialog" use="optional"/>
+        <xs:attribute type="xs:string" name="on-init" use="optional"/>
+        <xs:attribute type="xs:string" name="on-load" use="optional"/>
+        <xs:attribute type="xs:string" name="on-create" use="optional"/>
+        <xs:attribute type="xs:string" name="on-save" use="optional"/>
+        <xs:attribute type="xs:string" name="on-edit-load" use="optional"/>
+        <xs:attribute type="xs:string" name="on-edit-load-action" use="optional"/>
+        <xs:attribute type="xs:string" name="on-valid" use="optional"/>
+        <xs:attribute type="xs:string" name="on-select" use="optional"/>
+        <xs:attribute type="xs:string" name="on-row-dblclick" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="groupType" mixed="true">
+        <xs:sequence>
+            <xs:element type="fieldType" name="field" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="gridType" name="grid" minOccurs="0"/>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="label" use="optional"/>
+        <xs:attribute type="xs:string" name="collapsable" use="optional"/>
+        <xs:attribute type="xs:string" name="cols" use="optional"/>
+        <xs:attribute type="xs:string" name="colspan" use="optional"/>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="style" use="optional"/>
+        <xs:attribute type="xs:string" name="t-readonly" use="optional"/>
+        <xs:attribute type="xs:string" name="t-visible" use="optional"/>
+        <xs:attribute type="xs:string" name="t-reset" use="optional"/>
+        <xs:attribute type="xs:string" name="editor" use="optional"/>
+        <xs:attribute type="xs:string" name="criteria" use="optional"/>
+        <xs:attribute type="xs:string" name="default" use="optional"/>
+        <xs:attribute type="xs:string" name="required" use="optional"/>
+        <xs:attribute type="xs:string" name="length" use="optional"/>
+        <xs:attribute type="xs:string" name="trim" use="optional"/>
+        <xs:attribute type="xs:string" name="class" use="optional"/>
+        <xs:attribute type="xs:string" name="lookup" use="optional"/>
+        <xs:attribute type="xs:string" name="onchange" use="optional"/>
+        <xs:attribute type="xs:string" name="nolabel" use="optional"/>
+        <xs:attribute type="xs:string" name="width" use="optional"/>
+        <xs:attribute type="xs:string" name="rowspan" use="optional"/>
+        <xs:attribute type="xs:string" name="min" use="optional"/>
+        <xs:attribute type="xs:string" name="max" use="optional"/>
+        <xs:attribute type="xs:string" name="step" use="optional"/>
+        <xs:attribute type="xs:string" name="defaultValue" use="optional"/>
+        <xs:attribute type="xs:string" name="rows" use="optional"/>
+        <xs:attribute type="xs:string" name="placeholder" use="optional"/>
+        <xs:attribute type="xs:string" name="readonly" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="tabsType">
+        <xs:sequence>
+            <xs:element type="tabType" name="tab" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="t-visible"/>
+    </xs:complexType>
+    <xs:complexType name="treeType">
+        <xs:attribute type="xs:string" name="on-select" use="optional"/>
+        <xs:attribute type="xs:string" name="sort-field" use="optional"/>
+        <xs:attribute type="xs:string" name="drag-inner" use="optional"/>
+        <xs:attribute type="xs:string" name="before-drop" use="optional"/>
+        <xs:attribute type="xs:string" name="present-field" use="optional"/>
+        <xs:attribute type="xs:string" name="parent-field" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="formType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="toolbarType" name="toolbar"/>
+            <xs:element type="fieldType" name="field" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="groupType" name="group" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="tabsType" name="tabs"/>
+            <xs:element type="treeType" name="tree"/>
+            <xs:any minOccurs="0"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="logAccess"/>
+        <xs:attribute type="xs:string" name="sort_field"/>
+        <xs:attribute type="xs:string" name="cols"/>
+        <xs:attribute type="xs:string" name="on-init" use="optional"/>
+        <xs:attribute type="xs:string" name="on-load" use="optional"/>
+        <xs:attribute type="xs:string" name="on-load-action" use="optional"/>
+        <xs:attribute type="xs:string" name="on-create" use="optional"/>
+        <xs:attribute type="xs:string" name="on-save" use="optional"/>
+        <xs:attribute type="xs:string" name="on-valid" use="optional"/>
+        <xs:attribute type="xs:string" name="on-select" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="dataType">
+        <xs:sequence>
+            <xs:element type="menuType" name="menu"/>
+            <xs:element type="mobileMenuType" name="m-menu"/>
+            <xs:element type="viewType" name="view"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

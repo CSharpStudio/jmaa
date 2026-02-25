@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='qsd_sampling_plan_resource' name='抽样方案-资源' model='qsd.sampling_plan'>
+        <resource>
+            <script src="/web/jmaa/modules/md/qsd/statics/js/sampling_plan.js"></script>
+        </resource>
+    </view>
+    <view id='qsd_sampling_plan_search' name='抽样方案-查询' model='qsd.sampling_plan'>
+        <search criteria="[['parent_id','=',null]]">
+            <field name='name'/>
+            <field name='company_ids'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='qsd_sampling_plan_grid' name='抽样方案-表格' model='qsd.sampling_plan'>
+        <grid>
+            <toolbar buttons='default|copy'/>
+            <field name='name'/>
+            <field name='source'/>
+            <field name='remark'/>
+            <field name='company_ids'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='qsd_sampling_plan_form' name='抽样方案-表单' model='qsd.sampling_plan'>
+        <form>
+            <toolbar buttons='default|copy'></toolbar>
+            <field name='name'/>
+            <field name='company_ids' editor="many2many-tags"/>
+            <field name='source' readonly="1"/>
+            <field name='active'/>
+            <field name='remark' colspan="2"/>
+            <field name='sub_levels' visible="0"/>
+            <tabs>
+                <tab label="样本量字码" t-visible="sub_levels">
+                    <editor name="level_letter_table" type="level-letter-table" nolabel="1" colspan="4"/>
+                </tab>
+                <tab label="AQL(正常)" t-visible="sub_levels">
+                    <field name="aql_normal_ids" editor="aql-table" nolabel="1" colspan="4"/>
+                </tab>
+                <tab label="AQL(加严)" t-visible="sub_levels">
+                    <field name="aql_tightened_ids" editor="aql-table" strictness="tightened" nolabel="1" colspan="4"/>
+                </tab>
+                <tab label="AQL(放宽)" t-visible="sub_levels">
+                    <field name="aql_reduced_ids" editor="aql-table" strictness="reduced" nolabel="1" colspan="4"/>
+                </tab>
+                <tab label="抽样标准" t-visible="!sub_levels">
+                    <field name="aql_custom_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="name"/>
+                            <field name="strictness"/>
+                            <field name="limit_lower"/>
+                            <field name="limit_upper"/>
+                            <field name="sample_size"/>
+                            <field name="ac" required="1" on-change-action="acChangeAction"/>
+                            <field name="re"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

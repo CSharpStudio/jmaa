@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='as_scheme_grid' name='排产方案-表格' model='as.scheme'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='as_scheme_form' name='排产方案-表单' model='as.scheme'>
+        <form>
+            <toolbar buttons='none'></toolbar>
+            <field name='name'/>
+            <field name='remark'/>
+            <tabs>
+                <tab label="方案明细">
+                    <field name="details_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <toolbar buttons="create|delete">
+                            </toolbar>
+                            <field name='filter_ids' editor="char"/>
+                            <field name='sort_ids' editor="char"/>
+                            <field name='resource_rule'/>
+                            <field name='auxiliary_rule'/>
+                            <field name='direction'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

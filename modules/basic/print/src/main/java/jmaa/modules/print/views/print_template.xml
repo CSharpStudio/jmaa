@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='print_template_resource' name='打印模板-资源' model='print.template'>
+        <resource>
+            <script src="/web/jmaa/modules/print/statics/js/print_template.js"></script>
+        </resource>
+    </view>
+    <view id='print_template_search' name='打印模板-查询' model='print.template'>
+        <search>
+            <field name='name'/>
+            <field name='adapter'/>
+            <field name='rule'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='print_template_grid' name='打印模板-表格' model='print.template'>
+        <grid>
+            <toolbar buttons='default'>
+                <button type="button" label="设计" t-enable="id" t-click="designTemplate" auth="update"/>
+                <button type="button" label="上传模板" t-enable="id" t-click="uploadTemplate" auth="update"/>
+                <button type="button" ref="uploadTemplate" label="下载模板" t-enable="upload_status" t-click="downloadTemplate" auth="update"/>
+            </toolbar>
+            <field name='name'/>
+            <field name='adapter'/>
+            <field name='rule'/>
+            <field name='category'/>
+            <field name='upload_status'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='print_template_form' name='打印模板-表单' model='print.template'>
+        <form>
+            <toolbar buttons='default'>
+                <button type="button" label="设计" t-enable="id" t-click="designTemplate" auth="update"/>
+                <button type="button" label="上传模板" t-enable="id" t-click="uploadTemplate" auth="update"/>
+                <button type="button" ref="uploadTemplate" label="下载模板" t-enable="upload_status" t-click="downloadTemplate" auth="update"/>
+            </toolbar>
+            <field name='name'/>
+            <field name='adapter'/>
+            <field name='rule'/>
+            <field name='category'/>
+            <field name='upload_status' readonly="1"/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

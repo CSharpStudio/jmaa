@@ -1,0 +1,251 @@
+.jui-form {
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.jui-form .form-content {
+    height: 100%;
+    overflow: hidden;
+}
+
+.jui-form .form-body {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+}
+
+.jui-form .form-card {
+    margin: 15px;
+}
+
+.jui-form .d-grid {
+    column-gap: 1rem;
+}
+
+.jui-form .form-group {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.jui-form .form-group.is-invalid {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500 !important;
+    margin-bottom: 0;
+    display: inline-block;
+    color: #7f7f7f;
+}
+
+.form-group label sup {
+    font-weight: 500;
+    padding: 0 0 0 5px !important;
+}
+
+.form-group .form-control {
+    padding: 0;
+    text-align: left !important;
+    color: black;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-group .ui-input-text {
+    border: 0;
+    margin: 0;
+}
+
+.form-group .ui-input-text .form-control {
+    background: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    outline: none;
+    border: none;
+    padding: 0px 5px;
+    border-bottom: 1px solid #B2B0B0;
+}
+
+.form-group .e-text .form-control {
+    padding: 0px 5px;
+    border-bottom: 1px solid #B2B0B0;
+}
+
+.form-group .ui-select .ui-btn-icon-right:after {
+    right: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.form-group .readonly .ui-select .ui-btn-icon-right:after {
+    display: none;
+}
+
+.form-group .ui-select .form-control {
+    min-height: 2.1em;
+    line-height: 2.1em;
+    padding: 0 24px 0 5px;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #B2B0B0;
+}
+
+.form-group .ui-select.form-control input {
+    min-height: 2.2em;
+    padding: 0 24px 0 5px;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #B2B0B0;
+    border-radius: unset;
+}
+
+.form-group .readonly .ui-select.form-control input {
+    color: #747474;
+    background-color: #fff;
+    padding: 0 5px;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.form-group .ui-input-text.ui-focus {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-group .ui-input-text.ui-shadow-inset {
+    box-shadow: none;
+}
+
+.form-group .ui-select .ui-btn {
+    border: 0;
+    background-color: white !important;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    min-height: 1.25em;
+}
+
+.form-group .ui-select {
+    margin: 0;
+}
+
+.form-group .form-control:disabled {
+    color: #747474;
+    background-color: #fff;
+    opacity: 1;
+    border: none;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.input-group {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group .ui-input-text {
+    flex: 1;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 12px;
+    color: #dc3545;
+}
+
+.jui-form .editor .ui-state-disabled {
+    opacity: 1;
+}
+
+.jui-form .label-left {
+    display: flex;
+}
+
+.jui-form .label-left [data-editor],
+.jui-form .label-left [data-field] {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.jui-form .label-left > label {
+    line-height: 30px;
+}
+
+.jui-form .group-header {
+    display: flex;
+    justify-content: center;
+    font-size: .85rem;
+    color: #7f7f7f;
+}
+
+.jui-form .group-header .group-expender {
+    margin: 0 5px;
+}
+
+.jui-form .field-group.collapsed .group-body {
+    display: none;
+}
+
+.jui-form .field-group.collapsed .group-expender span:before {
+    content: "\f078";
+}
+
+.form-button {
+    display: flex;
+    justify-content: space-between;
+    padding-top: .85rem !important;
+    padding-bottom: .85rem !important;
+}
+
+.form-button .ui-btn {
+    width: auto;
+    margin: 0;
+    height: 34px;
+}
+
+.card-view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background: #fff;
+    margin: -5px 0 5px 0;
+    column-gap: 1rem;
+    row-gap: .25rem;
+    grid-column: span 2;
+    font-size: 14px;
+    position: relative;
+}
+
+.card-view .form-group {
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+.card-view .form-group label ~ [data-field],
+.card-view .form-group label ~ [data-editor] {
+    max-width: calc(100% - 74px);
+    margin-left: auto;
+    padding-left: 10px;
+    flex: auto;
+}
+
+.jui-form input[disabled] {
+    pointer-events: none;
+}

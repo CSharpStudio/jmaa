@@ -1,0 +1,26 @@
+.view-group {
+    display: flex;
+}
+
+input.view-key {
+    outline: none;
+    width: 60px;
+    border: none;
+    border-bottom: 1px solid #B2B0B0;
+    min-height: calc(1.75rem + 2px);
+    padding: 0 0 0 5px;
+    font-size: 1rem;
+    text-align: left !important;
+    color: black;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+}
+
+input.view-key.focus {
+    border-color: #017e84 !important;
+}
+
+.select-results {
+    flex: 1;
+}
+

@@ -1,0 +1,1 @@
+import{d as s,r as a,c as t,w as e,o as n,a as o,b as i,u as r,g as c}from"./index.js";const d=s({__name:"index",setup:s=>(s,d)=>{const l=a("n-button"),u=a("n-empty");return n(),t(u,{description:"你什么也找不到"},{extra:e(()=>[o(l,{size:"small",onClick:r(c)},{default:e(()=>[i("看看别的")]),_:1},8,["onClick"])]),_:1})}});export{d as default};

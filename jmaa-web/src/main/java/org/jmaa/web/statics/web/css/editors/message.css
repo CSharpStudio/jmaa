@@ -1,0 +1,179 @@
+.e-message {
+    min-height: 100px;
+}
+
+.e-message .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.e-message .toolbar {
+    align-self: flex-start;
+}
+
+.e-message .rbar {
+    display: flex;
+}
+
+.e-message .btn-subscribe.following {
+    color: #008818;
+}
+
+.e-message .btn-subscribe.unfollow {
+    color: #9a6b01;
+}
+
+.e-message .btn-subscribe.following:before {
+    content: '\f00c';
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.e-message .btn-subscribe.unfollow:before {
+    content: '\f00d';
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.e-message .followers {
+    position: relative;
+}
+
+.e-message .message {
+    margin: 8px 0;
+    background: #f6f7fa;
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    padding: 0.25rem .5rem .25rem .25rem;
+}
+
+.e-message .message:hover {
+    background-color: #f8f9fa;
+}
+
+.e-message .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #3e3a39;
+    color: white;
+    text-align: center;
+    line-height: 36px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 7px;
+}
+
+.e-message .m-body {
+    display: flex;
+    flex-flow: column;
+}
+
+.e-message .m-header {
+    color: #495057;
+    display: flex;
+    font-weight: 500;
+    font-size: 13px;
+    align-items: center;
+}
+
+.e-message .m-content {
+    color: #78838e;
+    font-size: 13px;
+}
+
+.e-message .m-content ul {
+    margin-bottom: 5px;
+}
+
+.e-message .follower-item {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    padding: .25rem;
+}
+
+.e-message .follower-item .avatar {
+    position: unset;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    font-size: .85rem;
+    margin-right: 5px;
+}
+
+.e-message .chatter {
+    margin-top: -3px;
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    padding: 1rem 1rem 1.5rem 0.25rem;
+    grid-template-columns: 50px 1fr;
+    display: grid;
+}
+
+.e-message .chatter .avatar {
+    position: unset;
+    justify-self: center;
+}
+
+.e-message .chatter-body {
+    background: #fff;
+    border: 1px solid #C9CCD2;
+    border-radius: 0.6rem;
+}
+
+.e-message .chat-body {
+    background: #fff;
+    border: 1px solid #C9CCD2;
+    border-radius: 0.6rem;
+}
+
+.e-message .chat-input {
+    width: calc(100% - 1.6rem);
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #C9CCD2;
+    margin: .25rem .8rem 0;
+    padding: .25rem;
+}
+
+.e-message .toolbar .btn.active {
+    border-bottom-color: #f8f9fa;
+}
+
+.e-message .to-followers {
+    font-style: italic;
+    font-size: .8rem;
+    margin-bottom: .25rem;
+    height: 0;
+}
+
+.e-message .empty {
+    text-align: center;
+    line-height: 60px;
+}
+
+.e-message .fa-smile {
+    color: #fdb105;
+}
+
+.e-message .chatter .toolbar {
+    margin: .25rem 1rem;
+}
+
+.e-message .face-dropdown {
+    width: 400px;
+}
+
+.e-message .emoji {
+    margin: 2px;
+    display: inline-block;
+    width: 19px;
+    cursor: pointer;
+}

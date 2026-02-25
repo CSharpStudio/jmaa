@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='wms_transfer_order_report_search' name='调拨明细查询-查询' model='wms.transfer_order_report'>
+        <search>
+            <field name='transfer_order_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='status'/>
+            <field name='required_time'/>
+        </search>
+    </view>
+    <view id='wms_transfer_order_report_grid' name='调拨明细查询-表格' model='wms.transfer_order_report'>
+        <grid footer="1">
+            <toolbar buttons='query|export'/>
+            <field name='code'/>
+            <field name='status' tags="{'new':'warning','transfering':'info','transfered':'primary','done':'success','_':'secondary'}"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='request_qty' class="sum col-info"/>
+            <field name='transfer_qty' class="sum col-success"/>
+            <field name='unit_id'/>
+            <field name='material_category'/>
+            <field name='target_warehouse_id'/>
+            <field name='source_warehouse_ids' column="many2many-tags"/>
+        </grid>
+    </view>
+</data>

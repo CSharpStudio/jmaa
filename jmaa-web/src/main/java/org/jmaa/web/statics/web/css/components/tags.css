@@ -1,0 +1,47 @@
+.tags {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 12px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    color: #036ea7;
+    min-width: 46px;
+    text-align: center;
+}
+
+.tags + .tags {
+    margin-left: 5px;
+}
+
+.tags.tag-primary {
+    background-color: #8ff881;
+}
+
+.tags.tag-secondary {
+    background-color: #e1e1e1;
+}
+
+.tags.tag-info {
+    background-color: #bac8dc;
+}
+
+.tags.tag-success {
+    background-color: #a0d5a9;
+}
+
+.tags.tag-danger {
+    background-color: #f8b4cb;
+}
+
+.tags.tag-warning {
+    background-color: #ffeb3b;
+}
+
+.tags.tag-default {
+    background-color: #fff;
+}
+
+.tags .fa {
+    margin-right: 3px;
+}

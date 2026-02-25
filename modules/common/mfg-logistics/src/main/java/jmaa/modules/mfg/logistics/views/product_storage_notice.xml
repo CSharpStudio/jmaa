@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="mfg_product_storage_notice_resource" name="成品入库通知-资源" model="mfg.product_storage_notice">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/mfg/logistics/statics/js/product_storage_notice.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id='mfg_product_storage_notice_search' name='成品入库通知-查询' model='mfg.product_storage_notice'>
+        <search>
+            <field name='code'/>
+            <field name='related_code'/>
+            <field name='material_id'/>
+            <field name='plan_qty'/>
+            <field name='status'/>
+        </search>
+    </view>
+    <view id='mfg_product_storage_notice_grid' name='成品入库通知-表格' model='mfg.product_storage_notice'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="生成入库单" t-enable="ids:['draft', 'stocking'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status' tags="{draft:'warning',stocking:'primary',done:'success'}"/>
+            <field name='related_code'/>
+            <field name='material_id'/>
+            <field name='plan_qty'/>
+            <field name='scan_qty'/>
+            <field name='remark' colspan="2"/>
+        </grid>
+    </view>
+    <view id='mfg_product_storage_notice_form' name='成品入库通知-表单' model='mfg.product_storage_notice'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button label="扫码" t-visible="['draft','stocking'].includes(status)" t-click="scanCode"
+                        class="btn-primary"/>
+                <button label="生成入库单" t-enable="ids:['draft', 'stocking'].includes(status)" auth="commit"
+                        t-click="createStockIn" class="btn btn-success"/>
+                <field name='status' editor="statusbar" values="draft,stocking,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='related_code'/>
+            <field name="warehouse_id" label="入库仓库" required="1"/>
+            <field name='material_id' view="default"/>
+            <field name='plan_qty'/>
+            <field name='scan_qty' readonly="1"/>
+            <field name='remark' colspan="2"/>
+            <tabs>
+                <tab label='入库明细'>
+                    <field name='details_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='delete|export|reload'>
+                                <button name="delete" t-click="deleteDetails"/>
+                            </toolbar>
+                            <field name='sn'/>
+                            <field name='lot_num'/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='qty'/>
+                            <field name='unit_id'/>
+                            <field name='material_category'/>
+                            <field name="warehouse_id" label="入库仓库"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='mfg_product_storage_notice_dialog' name='成品入库通知-对话框' model='mfg.product_storage_notice_dialog'>
+        <form logAccess="0" cols="3">
+            <editor label="条码" name='sn' type="char" colspan="2" placeholder="请扫描标签" class="lg"/>
+            <editor label="扫描结果" name='result' rowspan="2" type="msg_editor"/>
+            <field name='material_id' link="0"/>
+            <editor label="ABC分类" name='abc_type' type="char" readonly="1"/>
+            <editor label="名称规格" name="material_name_spec" type="char" colspan="2" readonly="1"/>
+            <field name='stock_rule'/>
+            <editor label="标签数量" name="qty" gt="0" type="float" required="1" readonly="1"/>
+            <field name="auto_confirm"/>
+            <div>
+                <button type="button" class="btn btn-lg btn-success stock-material">
+                    <t>确认</t>
+                </button>
+            </div>
+        </form>
+    </view>
+</data>

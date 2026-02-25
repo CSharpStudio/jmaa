@@ -1,0 +1,173 @@
+/* 模态对话框 */
+.modal {
+    background-color: #4e4e4e1e;
+}
+
+.modal-backdrop {
+    background-color: #616161;
+}
+
+.modal-backdrop.show {
+    opacity: 0.2;
+}
+
+.modal .loading {
+    color: #818181;
+}
+
+.modal-xl {
+    width: 90%;
+    max-width: 90%;
+    margin: 1.75rem auto;
+}
+
+.modal-lg {
+    width: 80%;
+    max-width: 80%;
+    margin: 1.75rem auto;
+}
+
+.modal-dialog.modal-sticky .modal-header {
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    z-index: 900;
+}
+
+.modal-dialog.modal-sticky .modal-footer {
+    position: sticky;
+    bottom: 0;
+    background-color: inherit;
+    z-index: 900;
+}
+
+.modal-dialog.modal-max {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+.modal-dialog.modal-max .modal-content {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.modal-dialog.modal-max:not(.dialog-close) .modal-content {
+    height: 100%;
+}
+
+.modal-dialog.modal-max .modal-content .modal-body {
+    overflow: auto;
+}
+
+.modal-dialog.modal-max .modal-content .modal-body .container-fluid {
+    margin-bottom: 0;
+}
+
+.modal-dialog.modal-max .modal-header-button .fa-expand:before {
+    content: "\f066";
+}
+
+.modal-dialog.dialog-close .modal-header-button .fa-chevron-down:before {
+    content: "\f077";
+}
+
+.modal-dialog.dialog-close .modal-body,
+.modal-dialog.dialog-close .modal-footer {
+    display: none;
+}
+
+.modal-dialog .dialog-top-button {
+    border: none;
+    padding: 1.25rem;
+    margin: -1rem 0 -1rem auto;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #999;
+    vertical-align: sub;
+}
+
+.modal-dialog .dialog-top-button:hover {
+    color: #000;
+}
+
+.modal-dialog .form-body {
+    overflow-y: unset;
+}
+
+.modal-dialog .modal-header {
+    padding: .5rem 1rem;
+}
+
+.modal-dialog .modal-title {
+    width: calc(100% - 99px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.modal-dialog .modal-footer {
+    padding: .2rem .75rem;
+}
+
+.modal-body {
+    padding: 0;
+    /*overflow: auto;*/
+}
+
+.modal-body .dataTables_wrapper {
+    overflow: auto;
+    padding-bottom: 30px;
+}
+
+.modal-body .dataTables_wrapper .row {
+    margin: 0;
+}
+
+.modal-body .m2m-cogrid {
+    overflow: auto;
+}
+
+.modal-body .form-content {
+    overflow: visible;
+}
+
+.modal-dialog .jui-form .form-body .form-card {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+}
+
+.modal-dialog .jui-form .form-body .e-form {
+    padding: 1.5rem;
+}
+
+.loading-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1050;
+    align-items: center;
+    background-color: #e5e5e5a8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    outline: 0;
+}
+
+.loading-mask > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 180px;
+    min-height: 60px;
+    background-color: #17a2b8;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+}

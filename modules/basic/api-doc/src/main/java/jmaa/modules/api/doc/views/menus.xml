@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="api_menu" name="API" seq="100" parent="base.model_menus" target="blank" url="/{tenant}/api"></menu>
+</data>

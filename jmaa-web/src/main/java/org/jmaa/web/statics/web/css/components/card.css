@@ -1,0 +1,17 @@
+.jui-card .card-item{
+    min-width: 18rem;
+}
+
+.jui-card .card-item-field {
+    display: flex;
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.jui-card .card-item-field label {
+    font-size: .875rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: #7f7f7f;
+    white-space: nowrap;
+}

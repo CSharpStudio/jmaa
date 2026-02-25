@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_material_stock_in_mobile_resource" name="来料入库-资源" model="wms.material_stock_in_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/material_stock_in_mobile.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+        </resource>
+    </view>
+    <view id="wms_material_stock_in_mobile_view" name="来料入库-移动端" model="wms.material_stock_in_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>入库单</t>
+                    </h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input type="text" class="search-order-input focus" t-enter="searchStockIn"
+                               placeholder="单号/物料编码/标签条码"/>
+                        <button class="clear-input" t-click="searchStockIn"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="stockInList" load-method="loadStockInList" on-item-click="openStockDetails">
+                        <card>
+                            <field name='code'/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name='related_code' colspan="2"/>
+                            <field name='type'/>
+                            <field name="status"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2>
+                        <t>入库</t>
+                    </h2>
+                    <a class="back-link" t-click="searchStockIn" focus-to=".search-order-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab label="入库">
+                            <div class="tab-header-scan">
+                                <div widget="scanner" ref="codeScanner">
+                                    <a class="scan-icon"/>
+                                    <input type="text" class="code-input" t-enter="scanCode" placeholder="标签条码"/>
+                                    <button class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <label for="check-auto">
+                                        <t>自动确认</t>
+                                    </label>
+                                    <input id="check-auto" type="checkbox"/>
+                                    <div class="flex-fill"></div>
+                                    <button t-click="submitCode" class="btn-primary ml-1">
+                                        <t>确认</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height:calc(100% - 84px)">
+                                <form ref="stockInForm">
+                                    <div class="card-view">
+                                        <div class="form-group grid-colspan-2 grid-rowspan-1">
+                                            <label>
+                                                <t>入库单号</t>
+                                            </label>
+                                            <span data-field="code" class="stock-in-code"></span>
+                                        </div>
+                                        <editor label="物料编码" name="material_id" colspan="2" type="card-item"/>
+                                        <editor label="名称规格" name="material_name_spec" colspan="2"
+                                                type="card-item"/>
+                                        <editor label="应入库" name="should_qty" type="card-item"/>
+                                        <editor label="单位" name="unit_id" type="card-item"/>
+                                        <editor label="已入库" name='stock_qty' type="card-item"/>
+                                        <editor label="待入库" name='left_qty' type="card-item"/>
+                                        <editor label="入库仓库" name='warehouse_id' colspan="2" type="card-item"/>
+                                        <editor label="推荐库位" name='suggest_location' colspan="2" type="card-item"/>
+                                    </div>
+                                    <editor name="unit_accuracy" type="integer" visible="0"/>
+                                    <editor name="lock_qty" type="boolean" visible="0"/>
+                                    <editor name="location" type="scanner" label="入库库位"/>
+                                    <editor name="confirm_qty" t-readonly="lock_qty" type="accuracy"
+                                            accuracy="unit_accuracy" label="确认数量" required="1"/>
+                                    <editor name="result" type="msg_editor" label="扫描结果" colspan="2"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="入库明细" t-click="searchStockInDetails">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="scope" type="radio" value="all"></input>
+                                        </label>
+                                        <label>
+                                            <t>待入库</t>
+                                            <input checked="checked" name="scope" type="radio" value="to-stock"></input>
+                                        </label>
+                                        <label>
+                                            <t>已完成</t>
+                                            <input name="scope" type="radio" value="done"></input>
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList" model="stock.stock_in_details"
+                                  style="height:calc(100% - 43px);">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='sn' colspan="2"/>
+                                    <field name='lot_num' colspan="2"/>
+                                    <field name='warehouse_id' colspan="2"/>
+                                    <field name='should_stock_qty'/>
+                                    <field name="stock_qty"/>
+                                    <field name="wait_stock_qty"/>
+                                    <field name='unit_id'/>
+                                    <field name='status'/>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

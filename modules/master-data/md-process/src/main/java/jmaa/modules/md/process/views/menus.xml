@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="process_menus" name="生产工艺" seq="300" parent="md-enterprise.master_data_menus">
+        <menu id="work_process_menu" name="工序" model="md.work_process" view="grid,form"/>
+        <menu id="work_station_menu" name="工位" model="md.work_station" view="grid,form"/>
+    </menu>
+</data>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <menu id="sub_resource_menus" name="辅助资源" seq="110" parent="md-enterprise.master_data_menus">
+        <menu id="sub_resource_menu" name="辅助资源台账" model="md.sub_resource" view="grid,form"/>
+        <menu id="sub_resource_model_menu" name="辅助资源型号" model="md.sub_resource_model" view="grid,form"/>
+        <menu id="sub_resource_type_menu" name="辅助资源类型" model="md.sub_resource_type" view="grid,form"/>
+    </menu>
+</data>

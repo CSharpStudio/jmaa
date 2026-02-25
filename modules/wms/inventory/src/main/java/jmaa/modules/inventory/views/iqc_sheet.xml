@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='wms_iqc_sheet_grid' name='来料检验-表格-WMS' type="grid" inherit_id="wms-qc.iqc_sheet_grid"
+          model='iqc.sheet'>
+        <xpath expr="field[name=related_code]" position="attribute">
+            <field column="ref-link" id-field="related_id" model-field="related_model"/>
+        </xpath>
+    </view>
+    <view id='wms_iqc_sheet_form' name='来料检验-表单-WMS' type="form" priority="100" inherit_id="wms-qc.iqc_sheet_form"
+          model='iqc.sheet'>
+        <xpath expr="tabs" position="inside">
+            <tab label="送检明细">
+                <field name="details_ids" colspan="4" nolabel="1">
+                    <grid>
+                        <toolbar buttons="export"/>
+                        <field name='lot_num'/>
+                        <field name='sn'/>
+                        <field name='material_id'/>
+                        <field name='material_name_spec'/>
+                        <field name='qty' class="sum col-success"/>
+                        <field name='unit_id'/>
+                        <field name='product_date'/>
+                        <field name='warehouse_id'/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='wip_block_code_resource' name='拼板条码-资源' model='wip.block_code'>
+        <resource>
+            <script src="/web/jmaa/modules/wip/statics/js/block_code.js"></script>
+        </resource>
+    </view>
+    <view id='wip_block_code_search' name='拼板条码-查询' model='wip.block_code'>
+        <search>
+            <field name='code'/>
+            <field name="product_code"/>
+        </search>
+    </view>
+    <view id='wip_block_code_grid' name='拼板条码-表格' model='wip.block_code'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name="product_code"/>
+        </grid>
+    </view>
+</data>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="work_menus" name="公共数据" seq="40" parent="md-enterprise.master_data_menus">
+        <menu id="work_team_menu" name="班组" model="md.work_team" view="grid,form"/>
+        <menu id="work_shift_menu" name="班制" model="md.work_shift" view="grid,form"/>
+        <menu id="work_calendar_menu" name="工作日历" model="md.work_calendar" view="grid,form"/>
+        <menu id="work_holiday_menu" name="法定假期" model="md.work_holiday" view="grid,form"/>
+    </menu>
+</data>

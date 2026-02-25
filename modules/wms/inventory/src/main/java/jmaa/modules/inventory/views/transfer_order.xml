@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='transfer_order_resource' name='调拨单-资源' model='wms.transfer_order'>
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/transfer_order.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+        </resource>
+    </view>
+    <view id='transfer_order_search' name='调拨单-查询' model='wms.transfer_order'>
+        <search>
+            <field name='code'/>
+            <field name='material_id' label="物料编码" criteria="[['details_ids.material_id.code', 'like', value]]"
+                   editor="char"/>
+            <field name='material_name_spec' label="物料名称规格"
+                   criteria="[['details_ids.material_id.name_spec', 'like', value]]" editor="char"/>
+            <field name='status'/>
+            <field name='source_warehouse_ids'/>
+            <field name='target_warehouse_id'/>
+        </search>
+    </view>
+    <view id='transfer_order_grid' name='调拨单-表格' model='wms.transfer_order'>
+        <grid>
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="ids:id AND ['draft', 'reject'].includes(status)"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button name="print" label="单据打印" auth="read" class="btn-warning" t-click="printTransferOrder" t-enable="status!='draft'"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status' tags="{draft:'warning',commit:'primary',approve:'info',reject:'danger',_:'secondary',done:'success'}"/>
+            <field name='source_warehouse_ids' column="many2many-tags"/>
+            <field name='target_warehouse_id'/>
+            <field name='target_warehouse_contact'/>
+            <field name='required_time'/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='transfer_order_form' name='调拨单-表单' model='wms.transfer_order'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="ids:id AND ['draft', 'reject'].includes(status)"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="调拨" t-visible="status=='approve'" t-click="transfer" auth="transfer" class="btn-primary" />
+                <button label="出库" t-visible="status=='approve'" t-click="stockOut" auth="stockOut" class="btn-success" confirm="提交后会生成后续单据,且无法修改,确定提交?"/>
+                <button name="print" label="单据打印" auth="read" class="btn-warning" t-click="printTransferOrder" t-enable="status!='draft'"/>
+                <field name='status' editor="statusbar" values="draft,commit,approve,done" />
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='source_warehouse_ids' editor="many2many-tags"/>
+            <field name='target_warehouse_id' on-change-action="onTargetWarehouseIdChange"/>
+            <field name='target_warehouse_contact'/>
+            <field name='required_time'/>
+            <field name='remark'/>
+            <tabs>
+                <tab label='调拨需求明细'>
+                    <field name='line_ids' colspan='4' nolabel='1'>
+                        <grid checkSelect="1" footer="1">
+                            <toolbar buttons='default'/>
+                            <field name='status' tags="{'new':'warning','transfering':'info','transfered':'primary','done':'success','_':'secondary'}"/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='request_qty' class="sum col-info"/>
+                            <field name='transfer_qty' class="sum col-success"/>
+                            <field name="warehouse_id"/>
+                            <field name='unit_id'/>
+                            <field name='material_category'/>
+                            <field name='update_uid'/>
+                            <field name='update_date'/>
+                            <edit>
+                                <field name='material_id' on-change-action="onMaterialChange" view="default"
+                                       order="code"/>
+                                <field name="unit_accuracy" visible="0"/>
+                                <field name='material_name_spec'/>
+                                <field name='request_qty' editor="accuracy" accuracy="unit_accuracy"/>
+                                <field name='unit_id'/>
+                                <field name='material_category'/>
+                                <field name="status" default="new" visible="0"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='调拨物料明细'>
+                    <field name='details_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='delete|reload|export' >
+                                <button name="delete" class="btn-danger delete-class" t-click="deleteDetails"/>
+                            </toolbar>
+                            <field name="status" tags="{'new':'warning','done':'success'}"/>
+                            <field name='sn'/>
+                            <field name='lot_num'/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='qty'/>
+                            <field name='unit_id'/>
+                            <field name='warehouse_id'/>
+                            <field name='location_id'/>
+                            <field name='material_category'/>
+                            <field name='update_uid'/>
+                            <field name='update_date'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='wms_transfer_order_dialog' name='调拨-对话框' model='wms.transfer_order_dialog'>
+        <form logAccess="0" cols="3">
+            <editor label="条码" name='sn' type="char" colspan="2" placeholder="请扫描标签" class="lg"/>
+            <editor label="扫描结果" name='result' rowspan="2" type="msg_editor"/>
+            <field name='material_id' link="0"/>
+            <editor label="ABC分类" name='abc_type' type="char" readonly="1"/>
+            <editor label="名称规格" name="material_name_spec" type="char" colspan="2" readonly="1"/>
+            <field name='stock_rule'/>
+            <field name="warehouse_id" t-filter="filterWarehouse"
+                   on-change-action="onWarehouseChange" required="1"/>
+            <editor label="推荐库位" name="suggest_location" type="char" readonly="1"/>
+            <editor label="推荐条码" name="suggest_sn" type="char" readonly="1"/>
+            <editor label="待调拨数量" name="to_transfer_qty" type="float" readonly="1"/>
+            <editor label="库存数量" name="onhand_qty" type="float" readonly="1"/>
+            <editor label="库存单位" name='unit' type="char" readonly="1"/>
+            <editor label="调拨数量" name="transfer_qty" gt="0" type="float" required="1" t-visible="stock_rule !=='sn'"/>
+            <field label="调拨库位" name="location_id" type="char" lookup="[['warehouse_id','=',warehouse_id]]"/>
+            <div t-visible="stock_rule=='num' || stock_rule=='lot'">
+                <button type="button" t-click="transferMaterial" class="btn btn-lg btn-success btn-flat"><t>确认</t></button>
+            </div>
+            <field label="打印新标签" name="print_flag" t-visible="stock_rule=='num' || stock_rule=='lot'"/>
+            <field label="标签模板" name="template_id" t-visible="stock_rule=='num' || stock_rule=='lot'" lookup="[['category','=','material_label']]"/>
+        </form>
+    </view>
+</data>

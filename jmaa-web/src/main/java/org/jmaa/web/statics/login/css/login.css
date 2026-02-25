@@ -1,0 +1,244 @@
+
+/**/
+.animation {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.login {
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    height: 100vh;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    z-index: 100;
+    border-radius: 18px;
+    overflow: hidden;
+    padding: 30px 30px 15px;
+    margin-top: -240px;
+    top: 50%;
+}
+
+.login-content .login-sketch {
+    width: 460px;
+    height: 300px;
+    background-image: url("/web/org/jmaa/web/statics/img/login.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 20px;
+}
+
+.login-content .login-box {
+    width: 250px;
+}
+
+.login-footer {
+    bottom: 0px;
+    position: absolute;
+    height: 120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    width: 200px;
+}
+
+.hide {
+    display: none;
+}
+
+.back-to-login {
+    text-align: right;
+    margin: 5px 0;
+}
+
+.box-header {
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.login-options {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.footer-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.6;
+    font-size: 0.75rem;
+}
+
+.box-footer {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: right;
+    opacity: 0.6;
+}
+
+.box-footer a {
+    color: #fff;
+}
+
+.reset-form {
+    color: #fff;
+}
+
+.select-box select:focus-visible {
+    outline: 0 !important;
+}
+
+.select-box select {
+    padding: 3px;
+    border-color: transparent;
+    background: transparent;
+    color: #c2483f;
+    font-weight: 600;
+}
+
+.pointer {
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid #fff;
+}
+
+.pointer:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-height: 480px) {
+    .login-footer {
+        display: none;
+    }
+
+    .login-content {
+        margin-top: -178px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .login-sketch {
+        display: none;
+    }
+}
+
+.mobile .f-browser {
+    display: none;
+}
+
+.mobile .login-footer {
+    height: 80px;
+}
+
+[class*=icheck-] > input:first-child:not(:checked):not(:disabled):focus + label::before {
+    border-width: 2px;
+}
+
+.link-page {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    z-index: 1000;
+}
+
+.link-page .p-header {
+    display: flex;
+    background: #017e84;
+    padding: 10px;
+    color: #fff;
+    justify-content: center;
+}
+
+.link-page .back {
+    position: absolute;
+    color: #fff;
+    left: 10px;
+    cursor: pointer;
+}
+
+.link-page .p-body {
+    height: calc(100% - 46px);
+}
+
+.link-page iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/**/
+.theme-jmaa body {
+    background: #fff;
+}
+
+.theme-jmaa .login-content {
+    background: #4a5b7599;
+}
+
+.theme-jmaa .login-footer,
+.theme-jmaa .login-footer a {
+    background: #017e84;
+    color: #fff;
+}
+
+.theme-jmaa .box-header {
+    color: #fff;
+}
+
+.theme-jmaa .btn-primary {
+    color: #fff;
+    background-color: #017e84;
+    border-color: #017e84;
+    box-shadow: none;
+}
+
+.theme-jmaa .btn-primary:hover,
+.theme-jmaa .btn-primary:focus {
+    background-color: #015a5e;
+    border-color: #015a5e;
+}
+
+.theme-dark .btn-primary:focus {
+    border-color: #fff;
+}
+
+.theme-jmaa .btn-primary:not(:disabled):not(.disabled):active {
+    background-color: #014e51;
+    border-color: #014e51;
+}
+
+.theme-jmaa .form-control:not(.is-invalid),
+.theme-jmaa .input-group-text {
+    background-color: #fff;
+    border-color: #ddd;
+    color: #343a40;
+}
+
+.theme-jmaa .form-control:not(.is-invalid):focus {
+    border: 1px solid #017e84;
+}
+
+.theme-jmaa .link-page .p-header{
+    background: #017e84;
+}

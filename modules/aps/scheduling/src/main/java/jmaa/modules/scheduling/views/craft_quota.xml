@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='as_craft_quota_search' name='制程标准工时-查询' model='as.craft_quota'>
+        <search>
+            <field name='craft_process_id'/>
+            <field name='material_id'/>
+        </search>
+    </view>
+    <view id='as_craft_quota_grid' name='制程标准工时-表格' model='as.craft_quota'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='craft_process_id'/>
+            <field name='resource_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='transfer_time'/>
+            <field name='cycle_time'/>
+            <field name='priority'/>
+        </grid>
+    </view>
+    <view id='as_craft_quota_form' name='制程标准工时-表单' model='as.craft_quota'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='craft_process_id' on-change-action="onProcessChange"/>
+            <field name='resource_id'/>
+            <field name='material_id' on-change-action="onMaterialChange"/>
+            <field name='material_name_spec'/>
+            <field name='transfer_time'/>
+            <field name='cycle_time'/>
+            <field name='priority'/>
+        </form>
+    </view>
+</data>

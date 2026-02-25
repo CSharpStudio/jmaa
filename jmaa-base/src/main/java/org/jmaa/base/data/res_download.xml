@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="jmaa-apk" model="res.download">
+        <field name="code">jmaa-apk</field>
+        <field name="name">安卓APP</field>
+        <field name="version">1.0</field>
+        <field name="active">false</field>
+    </record>
+</data>

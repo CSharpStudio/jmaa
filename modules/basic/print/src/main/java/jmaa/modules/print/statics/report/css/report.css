@@ -1,0 +1,6 @@
+.stiDesignerToolBar{
+    border-bottom: 1px solid #c6c6c6;
+}
+.stiDesignerToolBar>.stiDesignerClearAllStyles {
+    width: auto !important;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="0">
+    <report id="demo" name="示例报表">
+        <menu seq="50" parent="report_menus"></menu>
+        <script>
+            jmaa.column('test', { render() { return function (data) { if (data) {
+            return `<a class="btn btn-link">${data}</a>`; } return ''; }}});
+        </script>
+        <search>
+            <editor name="name" label="名称" type="char"/>
+            <editor name="model" label="模型" type="char"/>
+            <editor name="module_id" label="应用" type="lookup" dataset="demo-module-ds"/>
+            <editor name="origin" label="来源" type="multi-selection" options="{'base':'内置','manual':'自建'}"/>
+            <editor name="date" label="创建时间" type="date-range"/>
+        </search>
+        <grid dataset="demo-model-ds">
+            <column name="name" label="名称"/>
+            <column name="model" label="模型" type="test"/>
+            <column name="table" label="表名"/>
+            <column name="origin" label="来源"/>
+            <column name="app" label="应用"/>
+            <on-init>
+                console.log('init', grid);
+            </on-init>
+            <on-load>
+                console.log('load', grid);
+            </on-load>
+        </grid>
+        <dataset id="demo-model-ds" name="模型数据源">
+            <sql dialect="mysql">
+                select a.*,b.name app from ir_model a join ir_module b on a.module_id=b.id where 1=1
+                <if test="model?">
+                    AND a.model like concat('%', #{model}, '%')
+                </if>
+                <if test="name?">
+                    AND a.name like concat('%', #{name}, '%')
+                </if>
+                <if test="date?">AND a.create_date >= #{date[0]} AND a.create_date &lt;= #{date[1]}</if>
+                <if test="origin?">AND a.origin in #{origin}</if>
+                <if test="is_abstract?">AND a.is_abstract = #{is_abstract}</if>
+                <if test="module_id?">AND a.module_id in #{module_id}</if>
+            </sql>
+        </dataset>
+        <dataset id="demo-module-ds" name="应用数据源">
+            <sql dialect="mysql">
+                select id,label present from ir_module where state='installed'
+                <if test="keyword != '' and keyword != null">
+                    AND (name like concat('%', #{keyword}, '%') OR label like concat('%', #{keyword}, '%'))
+                </if>
+            </sql>
+        </dataset>
+    </report>
+</data>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='view_res_company' name='物料检验类别-资源' model='res.company'>
+        <resource>
+            <script src="/web/org/jmaa/base/statics/js/res_company.js"></script>
+        </resource>
+    </view>
+    <view id='view_res_company_search' name='公司-查询' model='res.company'>
+        <search>
+            <field name="name"/>
+            <field name="inv_org"/>
+            <field name="org_code"/>
+        </search>
+    </view>
+    <view id='view_res_company_grid' name='公司-表格' model='res.company'>
+        <grid>
+            <toolbar buttons="default"/>
+            <field name="name"/>
+            <field name="inv_org"/>
+            <field name="org_code"/>
+            <field name="active"/>
+        </grid>
+    </view>
+    <view id='view_res_company_form' name='公司-表单' model='res.company'>
+        <form>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="name"/>
+            <field name="inv_org"/>
+            <field name="org_code" t-readonly="id" editor="company"/>
+            <field name="active"/>
+        </form>
+    </view>
+</data>

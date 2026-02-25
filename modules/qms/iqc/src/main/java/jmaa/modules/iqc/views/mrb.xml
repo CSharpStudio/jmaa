@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='qsd_mrb_resource' name='MRB-资源' model='qsd.mrb' type="resource" inherit_id="wms-qc.qsd_mrb_resource">
+        <xpath expr="resource" position="inside">
+            <script src="/web/jmaa/modules/iqc/statics/js/qsd_mrb.js"/>
+        </xpath>
+    </view>
+    <view id='qsd_mrb_form' name='MRB-表单' model='qsd.mrb' type="form" inherit_id="wms-qc.qsd_mrb_form">
+        <xpath expr="tab[label=消息]" position="before">
+            <tab label="检验项目" t-visible="related_model">
+                <field name="inspection_item_ids" nolabel="1" colspan="4" readonly="1" editor="mrb-inspect-items">
+                    <grid>
+                        <field name="name"/>
+                        <field name="sample_size"/>
+                        <field name="test_values"/>
+                        <field name="result"/>
+                        <field name="ac"/>
+                        <field name="re"/>
+                        <field name="ng_qty"/>
+                        <field name="mark"/>
+                        <field name="category"/>
+                        <field name="tools"/>
+                        <field name="methods"/>
+                        <field name="standards"/>
+                        <field name="limit_upper"/>
+                        <field name="limit_lower"/>
+                        <field name="unit"/>
+                        <field name="sampling_process_id"/>
+                        <field name="remark"/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_material_search' name='物料-查询' model='md.material'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='spec'/>
+            <field name='category'/>
+            <field name='active'/>
+            <field name='company_ids' editor="many2one"/>
+            <aside tree="1" field='type_id' present="display"/>
+        </search>
+    </view>
+    <view id='md_material_grid' name='物料-表格' model='md.material'>
+        <grid>
+            <toolbar buttons="default"></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='spec'/>
+            <field name='category'/>
+            <field name='unit_id'/>
+            <field name='active'/>
+            <field name='type_id'/>
+            <field name='abc_type'/>
+            <field name='company_ids'/>
+        </grid>
+    </view>
+    <view id='md_material_form' name='物料-表单' model='md.material'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code' t-readonly="id" class="lg"/>
+            <field name='name' class="lg" colspan="1"/>
+            <field name='spec' class="lg"/>
+            <field name='image' rowspan="2"/>
+            <field name='category' t-readonly="id"/>
+            <field name='active'/>
+            <field name='company_ids' editor="many2many-tags" defaultValue="[env.company.id]"/>
+            <tabs>
+                <tab label="基本属性">
+                    <field name='type_id'/>
+                    <field name="attribute" on-change-action="onAttributeChange"/>
+                    <field name='purchasable'/>
+                    <field name='producible'/>
+                    <field name='salable'/>
+                    <field name='outsourcable'/>
+                </tab>
+                <tab label="采购">
+                    <field name='purchase_unit_id'/>
+                    <field name='allow_rtv'/>
+                </tab>
+                <tab label="库存">
+                    <field name='abc_type'/>
+                    <field name='unit_id'/>
+                </tab>
+                <tab label="销售">
+                    <field name='sales_unit_id'/>
+                    <field name='allow_return'/>
+                </tab>
+                <tab label="质检">
+                    <field name='shelf_life'/>
+                    <field name='iqc'/>
+                    <field name='ipqc'/>
+                    <field name='oqc'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='md_material_lookup' name="物料-lookup" model="md.material">
+        <lookup>
+            <field name='code' colspan="2"/>
+            <field name='name_spec' colspan="2"/>
+        </lookup>
+    </view>
+</data>

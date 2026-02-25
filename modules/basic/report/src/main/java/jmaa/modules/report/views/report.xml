@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='rpt_report_resource' name='查询报表-资源' model='rpt.report'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_ui_view.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/editors/code-editor.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/report/statics/css/rpt_report.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/report/statics/css/report.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/jquery-ui/jquery-ui.min.js?etag=1.12.1"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/xml/xml.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/sql/sql.js"></script>
+            <script src="/web/org/jmaa/web/statics/web/editors/CodeEditor.js"></script>
+            <script src="/web/org/jmaa/web/statics/diagram/CommandMemo.js"></script>
+            <script src="/web/jmaa/modules/report/statics/js/ReportDataSet.js"></script>
+            <script src="/web/jmaa/modules/report/statics/js/ReportDesigner.js"></script>
+            <script src="/web/jmaa/modules/report/statics/js/rpt_report.js"></script>
+        </resource>
+    </view>
+    <view id='rpt_report_search' name='查询报表-查询' model='rpt.report'>
+        <search>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="status"/>
+        </search>
+    </view>
+    <view id='rpt_report_grid' name='查询报表-表格' model='rpt.report'>
+        <grid>
+            <toolbar buttons="default">
+                <button label="发布" name="publish" auth="updateStatus" t-click="updateStatus" t-enable="ids:status=='0'"
+                        class="btn-success" confirm="确认发布选中的报表?"/>
+                <button label="取消发布" ref="publish" t-click="updateStatus" t-enable="ids:status=='1'"
+                        confirm="确认取消发布选中的报表?"/>
+            </toolbar>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="status"/>
+        </grid>
+    </view>
+    <view id='rpt_report_custom' name='查询报表-自定义' model='rpt.report'>
+        <custom>
+            <div class="report-head">
+                <button class="btn btn-icon btn-flat btn-back" type="button">
+                    <t>返回</t>
+                </button>
+                <button class="btn btn-flat btn-default btn-undo" disabled="disabled" type="button">
+                    <t>撤销</t>
+                </button>
+                <button class="btn btn-flat btn-default btn-redo" disabled="disabled" type="button">
+                    <t>恢复</t>
+                </button>
+                <button class="btn btn-flat btn-default btn-source" type="button">
+                    <t>XML</t>
+                </button>
+                <button class="btn btn-flat btn-default btn-reload" type="button">
+                    <t>刷新</t>
+                </button>
+                <div class="r-title"><i class="fa fa-table"></i><span class="rpt-name"></span></div>
+            </div>
+            <div class="report-content">
+                <aside class="left-aside">
+                    <h6>查询控件</h6>
+                    <div class="s-components">
+                        <div type="char" class="s-field-char s-component">
+                            <t>文本</t>
+                        </div>
+                        <div type="integer" class="s-field-integer s-component">
+                            <t>整数</t>
+                        </div>
+                        <div type="float" class="s-field-float s-component">
+                            <t>小数</t>
+                        </div>
+                        <div type="date-range" class="s-field-date s-component">
+                            <t>日期范围</t>
+                        </div>
+                        <div type="datetime-range" class="s-field-datetime s-component">
+                            <t>日期时间</t>
+                        </div>
+                        <div type="boolean" class="s-field-boolean s-component">
+                            <t>是否</t>
+                        </div>
+                        <div type="multi-selection" class="s-field-selection s-component">
+                            <t>下拉框</t>
+                        </div>
+                        <div type="lookup" class="s-field-related s-component">
+                            <t>关联查找</t>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6>数据集</h6>
+                        <button type="button" class="btn btn-flat btn-icon btn-ds-add">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="ds-list"></div>
+                </aside>
+                <div class="r-body"></div>
+            </div>
+        </custom>
+    </view>
+    <view id='rpt_report_form' name='查询报表-表单' model='rpt.report'>
+        <form on-load="onFormLoad">
+            <toolbar buttons="default">
+                <field name="status" editor="statusbar" values="0,1"/>
+            </toolbar>
+            <field name="code"/>
+            <field name="name"/>
+            <tabs t-visible="id">
+                <tab label="内容">
+                    <field name="content" editor="code-editor" colspan="4" rows="20" nolabel="1"/>
+                </tab>
+                <tab label="数据源">
+                    <field name="dataset_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="content"/>
+                            <edit on-load="onDataSetLoad">
+                                <field name="code"/>
+                                <field name="name"/>
+                                <field name="content" editor="code-editor" colspan="4" rows="20"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

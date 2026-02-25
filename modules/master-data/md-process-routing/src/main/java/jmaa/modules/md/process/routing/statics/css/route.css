@@ -1,0 +1,302 @@
+.route-version .version-toolbar {
+    height: 40px;
+}
+
+.route-version .left-aside {
+    width: 250px;
+}
+
+.form-panel .route-version .version-item {
+    padding-left: 0;
+}
+
+.route-version .right-content {
+    width: calc(100% - 250px);
+}
+
+.route-version .route-details {
+    width: 100%;
+    overflow: auto;
+    padding: 0 7.5px;
+    padding-bottom: 30px;
+}
+
+.route-flow {
+    height: 100%;
+    overflow: hidden;
+}
+
+.route-flow .content-header .toolbar {
+    height: auto;
+    margin: 4px 0 4px 25px;
+}
+
+.route-flow .left-aside {
+    background: #fff;
+    width: 250px;
+}
+
+.route-flow .route-version {
+    overflow: auto;
+    height: calc(100% - 40px);
+    margin-top: 0 !important;
+    display: block;
+}
+
+.route-flow .toolbar {
+    margin: 4px 7.5px;
+}
+
+.route-flow .content {
+    height: calc(100% - 41px);
+    display: flex;
+}
+
+.route-flow .content-header {
+    display: flex;
+}
+
+.route-flow .title {
+    text-align: center;
+    line-height: 40px;
+    flex: 1;
+    padding-right: 70px;
+}
+
+.route-flow .route-details {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.route-flow .route-details .toolbar {
+    min-height: 28px;
+}
+
+.route-flow .route-diagram {
+    height: calc(100% - 36px);
+}
+
+.jui-diagram .diagram-item.start,
+.jui-diagram .diagram-item.end {
+    border: gray solid 1px;
+    border-radius: 25px;
+    min-width: 80px;
+}
+
+.jui-diagram .diagram-item.start .title,
+.jui-diagram .diagram-item.end .title {
+    margin: 0;
+    line-height: 50px;
+}
+
+.jui-diagram .diagram-item .output {
+    width: 20px;
+    height: 20px;
+    background-color: #28a745;
+    position: absolute;
+    top: calc(50% - 10px);
+    right: -10px;
+    border-radius: 10px;
+}
+
+.jui-diagram:not(.readonly) .diagram-item .output {
+    cursor: pointer;
+}
+
+.jui-diagram .diagram-item .output.dragging {
+    cursor: none;
+    background-color: transparent;
+}
+
+.jui-diagram .diagram-item .output.ok {
+    top: 4px;
+}
+
+.jui-diagram .diagram-item .output.ng {
+    top: calc(100% - 24px);
+    background-color: #dc3545;
+}
+
+.jui-diagram .connecting.ok {
+    stroke: #28a745;
+}
+
+.jui-diagram .connecting.ng {
+    stroke: #dc3545;
+}
+
+.jui-diagram .diagram-item.ui-droppable-active {
+}
+
+.jui-diagram .diagram-canvas .diagram-item.ui-droppable-hover {
+    background-color: #f2f6fc;
+}
+
+.jui-diagram .diagram-canvas .diagram-connector.editing {
+    opacity: 0.2;
+}
+
+.jui-diagram .diagram-canvas .diagram-connector.ng path,
+.jui-diagram .diagram-canvas .diagram-connector.ng polyline {
+    stroke: #dc3545;
+}
+
+.jui-diagram .diagram-item .type {
+    width: 5px;
+    background: #646160;
+}
+
+.jui-diagram .diagram-item .type.test,
+.jui-diagram .diagram-item .type.inspect {
+    background: #ff851b;
+}
+
+.jui-diagram .diagram-item .type.assemble {
+    background: #117a8b;
+}
+
+.jui-diagram .diagram-item .type.package {
+    background: #28a745;
+}
+
+.jui-diagram .diagram-item .type.rework,
+.jui-diagram .diagram-item .type.repair {
+    background: #c82333;
+}
+
+.jui-diagram .diagram-item .type.process,
+.jui-diagram .diagram-item .type.burn-in {
+    background: #17a2b8;
+}
+
+.jui-diagram .diagram-item .item-menu {
+    cursor: pointer;
+}
+
+.jui-diagram.readonly .diagram-canvas .dropdown-menu .menu-delete {
+    display: none;
+}
+
+.jui-diagram.readonly .diagram-canvas .btn-add {
+    display: none;
+}
+
+.editor .jui-diagram .diagram-panel {
+    border: 1px solid #dee2e6;
+}
+
+.jui-diagram .item-group {
+    display: block !important;
+}
+
+.jui-diagram .item-group .item-bar {
+    height: 22px;
+    display: flex;
+    column-gap: 5px;
+    margin: 0 5px;
+}
+
+.jui-diagram .diagram-item.item-group .b-bar {
+    margin: 0 5px;
+}
+
+.jui-diagram .item-group .output {
+    top: 5px;
+}
+
+.jui-diagram .item-group .group-item {
+    border: 1px solid #dee2e6;
+    margin: 5px;
+    display: flex;
+    position: relative;
+}
+
+.jui-diagram .diagram-canvas .diagram-item.item-group .title {
+    font-size: 1rem;
+    margin: 0 0 -5px 0;
+    line-height: 30px;
+}
+
+.jui-diagram .diagram-canvas .diagram-item.item-group .group-item .title {
+    text-align: left;
+    font-size: .8rem;
+    margin: 0 5px;
+}
+
+.jui-diagram .item-group .btn-add {
+    cursor: pointer;
+}
+
+.jui-diagram .diagram-item.gateway.selected,
+.jui-diagram .diagram-item.gateway {
+    min-width: 92px;
+    min-height: 92px;
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.jui-diagram .gateway .bg-border {
+    width: 64px;
+    height: 64px;
+    top: 12px;
+    left: 12px;
+    transform: rotate(45deg);
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #494747;
+    z-index: -1;
+}
+
+.jui-diagram .diagram-canvas .diagram-item.gateway .title {
+    margin: auto;
+}
+
+.jui-diagram .diagram-item.gateway.selected .bg-border {
+    box-shadow: 0 0 0 2px #3c8dbc;
+    border-color: transparent;
+}
+
+.jui-diagram .diagram-item.gateway.dragging .bg-border {
+    box-shadow: none;
+    border: 1px dashed #494747;
+}
+
+.jui-diagram .diagram-item.gateway .item-menu {
+    left: calc(50% - 7px);
+    bottom: 15px;
+    position: absolute;
+}
+
+.jui-diagram .diagram-item.gateway .output.ok {
+    top: -11px;
+    left: calc(50% - 11px);
+}
+
+.jui-diagram .diagram-item.gateway .output.ng {
+    top: calc(100% - 11px);
+    left: calc(50% - 11px);
+}
+
+
+.jui-diagram .diagram-item .title {
+    margin: 4px 15px 0 5px;
+    line-height: 26px;
+}
+
+.jui-diagram .diagram-item .b-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 5px;
+    margin: 0 12px 0 5px;
+}
+
+.jui-diagram .diagram-item .params {
+    font-size: 10px;
+    cursor: default;
+    color: #6c757d;
+    white-space: nowrap;
+}
+

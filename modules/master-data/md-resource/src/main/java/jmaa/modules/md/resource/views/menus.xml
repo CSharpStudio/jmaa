@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="master_equipment_menus" name="设备信息" seq="100" parent="md-enterprise.master_data_menus">
+        <menu id="equipment_menu" name="设备台账" seq="10" model="md.equipment" view="grid,form"/>
+        <menu id="equipment_model_menu" name="设备型号" seq="20" model="md.equipment_model" view="grid,form"/>
+        <menu id="equipment_type_menu" name="设备类型" seq="30" model="md.equipment_type" view="grid,form"/>
+    </menu>
+    <menu id="work_resource_menu" name="制造资源" seq="180" model="md.work_resource" view="grid,form"
+          parent="md-enterprise.enterprise_menus"/>
+</data>

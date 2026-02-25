@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='res_download_search' name='文件下载-查询' model='res.download'>
+        <search>
+            <field name="code"/>
+            <field name="name"/>
+        </search>
+    </view>
+    <view id='res_download_grid' name='文件下载-表格' model='res.download'>
+        <grid>
+            <toolbar buttons="default"/>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="version"/>
+            <field name="count"/>
+            <field name="file"/>
+            <field name="path"/>
+            <field name="active"/>
+        </grid>
+    </view>
+    <view id='res_download_form' name='文件下载-表单' model='res.download'>
+        <form>
+            <toolbar buttons="default"/>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="version"/>
+            <field name="image" rowspan="3"/>
+            <field name="file" size="100"/>
+            <field name="active"/>
+            <field name="path" t-visible="id"/>
+        </form>
+    </view>
+</data>

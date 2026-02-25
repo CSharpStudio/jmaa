@@ -1,0 +1,20 @@
+.e-multi-selection .select-results {
+    font-size: 12px;
+    margin: 0 0 3px 0;
+}
+
+.e-multi-selection .select-results .remove-item {
+    display: none;
+}
+
+.e-multi-selection .form-control {
+    min-height: calc(1.75rem + 1px);
+}
+
+.e-multi-selection .input-item input {
+    min-height: 2em;
+}
+
+.e-multi-selection .lookup-data ul{
+    height: 100%;
+}

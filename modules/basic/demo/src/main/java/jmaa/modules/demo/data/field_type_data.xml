@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <record id="demo.m2o1" model="demo.many2one">
+        <field name="name">多对一1</field>
+        <field name="code">one</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o2" model="demo.many2one">
+        <field name="name">多对一2</field>
+        <field name="code">two</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o3" model="demo.many2one">
+        <field name="name">多对一3</field>
+        <field name="code">three</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o4" model="demo.many2one">
+        <field name="name">多对一4</field>
+        <field name="code">code4</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o5" model="demo.many2one">
+        <field name="name">多对一5</field>
+        <field name="code">code5</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o6" model="demo.many2one">
+        <field name="name">多对一6</field>
+        <field name="code">code6</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o7" model="demo.many2one">
+        <field name="name">多对一7</field>
+        <field name="code">code7</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o8" model="demo.many2one">
+        <field name="name">多对一8</field>
+        <field name="code">code8</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o9" model="demo.many2one">
+        <field name="name">多对一9</field>
+        <field name="code">code9</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o10" model="demo.many2one">
+        <field name="name">多对一10</field>
+        <field name="code">code10</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o11" model="demo.many2one">
+        <field name="name">多对一11</field>
+        <field name="code">code11</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o12" model="demo.many2one">
+        <field name="name">多对一12</field>
+        <field name="code">code12</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o13" model="demo.many2one">
+        <field name="name">多对一13</field>
+        <field name="code">code13</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o14" model="demo.many2one">
+        <field name="name">多对一14</field>
+        <field name="code">code14</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o15" model="demo.many2one">
+        <field name="name">多对一15</field>
+        <field name="code">code15</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o16" model="demo.many2one">
+        <field name="name">多对一16</field>
+        <field name="code">code16</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o17" model="demo.many2one">
+        <field name="name">多对一17</field>
+        <field name="code">code17</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o18" model="demo.many2one">
+        <field name="name">多对一18</field>
+        <field name="code">code18</field>
+        <field name="active">true</field>
+    </record>
+    <record id="demo.m2o19" model="demo.many2one">
+        <field name="name">多对一19</field>
+        <field name="code">code19</field>
+        <field name="active">true</field>
+    </record>
+
+    <record id="demo.m2m1" model="demo.many2many">
+        <field name="name">多对多1</field>
+    </record>
+    <record id="demo.m2m2" model="demo.many2many">
+        <field name="name">多对多2</field>
+    </record>
+    <record id="demo.m2m3" model="demo.many2many">
+        <field name="name">多对多3</field>
+    </record>
+    <record id="demo.m2m4" model="demo.many2many">
+        <field name="name">多对多4</field>
+    </record>
+
+    <record id="demo.o2m1" model="demo.one2many">
+        <field name="name">一对多1</field>
+    </record>
+    <record id="demo.o2m2" model="demo.one2many">
+        <field name="name">一对多2</field>
+    </record>
+    <record id="demo.o2m3" model="demo.one2many">
+        <field name="name">一对多3</field>
+    </record>
+
+    <record id="demo.d1" model="demo.field_type">
+        <field name="f_char">demo</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-01</field>
+        <field name="f_datetime">2021-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">demo\r\ntest</field>
+        <field name="f_selection">1</field>
+        <field name="f_m2o_id" ref="demo.m2o1"/>
+        <field name="f_m2m_ids" eval="[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)]]"/>
+        <field name="f_m2m_tags" eval="[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)]]"/>
+    </record>
+    <!-- 新添加 -->
+    <record id="demo.d100" model="demo.field_type">
+        <field name="f_char">demo100</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-01</field>
+        <field name="f_datetime">2021-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">demo\r\ntest</field>
+        <field name="f_selection">1</field>
+        <field name="f_m2o_id" ref="demo.m2o1"/>
+        <field name="f_m2m_ids" eval="[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)],[4,ref(demo.m2m3)]]"/>
+        <field name="f_m2m_tags" eval="[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)],[4,ref(demo.m2m3)]]"/>
+    </record>
+
+    <record id="demo.d2" model="demo.field_type">
+        <field name="f_char">char1</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-02</field>
+        <field name="f_datetime">2021-01-02 01:01:01</field>
+        <field name="f_int">2</field>
+        <field name="f_float">2.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d3" model="demo.field_type">
+        <field name="f_char">char2</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-03</field>
+        <field name="f_datetime">2021-01-03 01:01:01</field>
+        <field name="f_int">3</field>
+        <field name="f_float">3.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">3</field>
+    </record>
+    <record id="demo.d4" model="demo.field_type">
+        <field name="f_char">char3</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-04</field>
+        <field name="f_datetime">2021-01-04 00:00:00</field>
+        <field name="f_int">4</field>
+        <field name="f_float">4.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">4</field>
+    </record>
+    <record id="demo.d5" model="demo.field_type">
+        <field name="f_char">char4</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-05</field>
+        <field name="f_datetime">2021-01-05 01:01:01</field>
+        <field name="f_int">5</field>
+        <field name="f_float">5.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">5</field>
+    </record>
+    <record id="demo.d6" model="demo.field_type">
+        <field name="f_char">char5</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-06</field>
+        <field name="f_datetime">2021-01-06 01:01:01</field>
+        <field name="f_int">6</field>
+        <field name="f_float">6.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">6</field>
+    </record>
+    <record id="demo.d7" model="demo.field_type">
+        <field name="f_char">char6</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-07</field>
+        <field name="f_datetime">2021-01-07 01:01:01</field>
+        <field name="f_int">7</field>
+        <field name="f_float">7.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">7</field>
+    </record>
+    <record id="demo.d8" model="demo.field_type">
+        <field name="f_char">char7</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-08</field>
+        <field name="f_datetime">2021-01-08 01:01:01</field>
+        <field name="f_int">8</field>
+        <field name="f_float">8.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d9" model="demo.field_type">
+        <field name="f_char">char8</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-09</field>
+        <field name="f_datetime">2021-01-09 01:01:01</field>
+        <field name="f_int">9</field>
+        <field name="f_float">9.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d11" model="demo.field_type">
+        <field name="f_char">char9</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-01</field>
+        <field name="f_datetime">2021-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d12" model="demo.field_type">
+        <field name="f_char">char10</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-02</field>
+        <field name="f_datetime">2021-01-02 01:01:01</field>
+        <field name="f_int">2</field>
+        <field name="f_float">2.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d13" model="demo.field_type">
+        <field name="f_char">char11</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-03</field>
+        <field name="f_datetime">2021-01-03 01:01:01</field>
+        <field name="f_int">3</field>
+        <field name="f_float">3.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">3</field>
+    </record>
+    <record id="demo.d14" model="demo.field_type">
+        <field name="f_char">char12</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-04</field>
+        <field name="f_datetime">2021-01-04 01:01:01</field>
+        <field name="f_int">4</field>
+        <field name="f_float">4.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">4</field>
+    </record>
+    <record id="demo.d15" model="demo.field_type">
+        <field name="f_char">char13</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-05</field>
+        <field name="f_datetime">2021-01-05 01:01:01</field>
+        <field name="f_int">5</field>
+        <field name="f_float">5.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">5</field>
+    </record>
+    <record id="demo.d16" model="demo.field_type">
+        <field name="f_char">char14</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-06</field>
+        <field name="f_datetime">2021-01-06 01:01:01</field>
+        <field name="f_int">6</field>
+        <field name="f_float">6.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">6</field>
+    </record>
+    <record id="demo.d17" model="demo.field_type">
+        <field name="f_char">char15</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-07</field>
+        <field name="f_datetime">2021-01-07 01:01:01</field>
+        <field name="f_int">7</field>
+        <field name="f_float">7.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">7</field>
+    </record>
+    <record id="demo.d18" model="demo.field_type">
+        <field name="f_char">char16</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-08</field>
+        <field name="f_datetime">2021-01-08 01:01:01</field>
+        <field name="f_int">8</field>
+        <field name="f_float">8.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d19" model="demo.field_type">
+        <field name="f_char">char17</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-09</field>
+        <field name="f_datetime">2021-01-09 01:01:01</field>
+        <field name="f_int">9</field>
+        <field name="f_float">9.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d21" model="demo.field_type">
+        <field name="f_char">char18</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-01</field>
+        <field name="f_datetime">2021-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d22" model="demo.field_type">
+        <field name="f_char">char19</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-02</field>
+        <field name="f_datetime">2021-01-02 01:01:01</field>
+        <field name="f_int">2</field>
+        <field name="f_float">2.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d23" model="demo.field_type">
+        <field name="f_char">char20</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-03</field>
+        <field name="f_datetime">2021-01-03 01:01:01</field>
+        <field name="f_int">3</field>
+        <field name="f_float">3.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">3</field>
+    </record>
+    <record id="demo.d24" model="demo.field_type">
+        <field name="f_char">char21</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-04</field>
+        <field name="f_datetime">2021-01-04 01:01:01</field>
+        <field name="f_int">4</field>
+        <field name="f_float">4.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">4</field>
+    </record>
+    <record id="demo.d25" model="demo.field_type">
+        <field name="f_char">char22</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-05</field>
+        <field name="f_datetime">2021-01-05 01:01:01</field>
+        <field name="f_int">5</field>
+        <field name="f_float">5.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">5</field>
+    </record>
+    <record id="demo.d26" model="demo.field_type">
+        <field name="f_char">char23</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-06</field>
+        <field name="f_datetime">2021-01-06 01:01:01</field>
+        <field name="f_int">6</field>
+        <field name="f_float">6.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">6</field>
+    </record>
+    <record id="demo.d27" model="demo.field_type">
+        <field name="f_char">char24</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-07</field>
+        <field name="f_datetime">2021-01-07 01:01:01</field>
+        <field name="f_int">7</field>
+        <field name="f_float">7.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">7</field>
+    </record>
+    <record id="demo.d28" model="demo.field_type">
+        <field name="f_char">char25</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-08</field>
+        <field name="f_datetime">2021-01-08 01:01:01</field>
+        <field name="f_int">8</field>
+        <field name="f_float">8.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d29" model="demo.field_type">
+        <field name="f_char">char26</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-09</field>
+        <field name="f_datetime">2021-01-09 01:01:01</field>
+        <field name="f_int">9</field>
+        <field name="f_float">9.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d31" model="demo.field_type">
+        <field name="f_char">char27</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-01</field>
+        <field name="f_datetime">2021-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d32" model="demo.field_type">
+        <field name="f_char">char28</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-02</field>
+        <field name="f_datetime">2021-01-02 01:01:01</field>
+        <field name="f_int">2</field>
+        <field name="f_float">2.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d33" model="demo.field_type">
+        <field name="f_char">char29</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-03</field>
+        <field name="f_datetime">2021-01-03 01:01:01</field>
+        <field name="f_int">3</field>
+        <field name="f_float">3.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">3</field>
+    </record>
+    <record id="demo.d34" model="demo.field_type">
+        <field name="f_char">char30</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-04</field>
+        <field name="f_datetime">2021-01-04 01:01:01</field>
+        <field name="f_int">4</field>
+        <field name="f_float">4.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">4</field>
+    </record>
+    <record id="demo.d35" model="demo.field_type">
+        <field name="f_char">char31</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-05</field>
+        <field name="f_datetime">2021-01-05 01:01:01</field>
+        <field name="f_int">5</field>
+        <field name="f_float">5.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">5</field>
+    </record>
+    <record id="demo.d36" model="demo.field_type">
+        <field name="f_char">char32</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-06</field>
+        <field name="f_datetime">2021-01-06 01:01:01</field>
+        <field name="f_int">6</field>
+        <field name="f_float">6.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">6</field>
+    </record>
+    <record id="demo.d37" model="demo.field_type">
+        <field name="f_char">char33</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-07</field>
+        <field name="f_datetime">2021-01-07 01:01:01</field>
+        <field name="f_int">7</field>
+        <field name="f_float">7.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">7</field>
+    </record>
+    <record id="demo.d38" model="demo.field_type">
+        <field name="f_char">char34</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-08</field>
+        <field name="f_datetime">2021-01-08 01:01:01</field>
+        <field name="f_int">8</field>
+        <field name="f_float">8.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d39" model="demo.field_type">
+        <field name="f_char">char35</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-09</field>
+        <field name="f_datetime">2021-01-09 01:01:01</field>
+        <field name="f_int">9</field>
+        <field name="f_float">9.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d41" model="demo.field_type">
+        <field name="f_char">char36</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-01</field>
+        <field name="f_datetime">2021-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d42" model="demo.field_type">
+        <field name="f_char">char37</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-02</field>
+        <field name="f_datetime">2021-01-02 01:01:01</field>
+        <field name="f_int">2</field>
+        <field name="f_float">2.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+    <record id="demo.d43" model="demo.field_type">
+        <field name="f_char">char38</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-03</field>
+        <field name="f_datetime">2021-01-03 01:01:01</field>
+        <field name="f_int">3</field>
+        <field name="f_float">3.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">3</field>
+    </record>
+    <record id="demo.d44" model="demo.field_type">
+        <field name="f_char">char39</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-04</field>
+        <field name="f_datetime">2021-01-04 01:01:01</field>
+        <field name="f_int">4</field>
+        <field name="f_float">4.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">4</field>
+    </record>
+    <record id="demo.d45" model="demo.field_type">
+        <field name="f_char">char40</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-05</field>
+        <field name="f_datetime">2021-01-05 01:01:01</field>
+        <field name="f_int">5</field>
+        <field name="f_float">5.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">5</field>
+    </record>
+    <record id="demo.d46" model="demo.field_type">
+        <field name="f_char">char41</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-06</field>
+        <field name="f_datetime">2021-01-06 01:01:01</field>
+        <field name="f_int">6</field>
+        <field name="f_float">6.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">6</field>
+    </record>
+    <record id="demo.d47" model="demo.field_type">
+        <field name="f_char">char42</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-07</field>
+        <field name="f_datetime">2021-01-07 01:01:01</field>
+        <field name="f_int">7</field>
+        <field name="f_float">7.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">7</field>
+    </record>
+    <record id="demo.d48" model="demo.field_type">
+        <field name="f_char">char43</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-08</field>
+        <field name="f_datetime">2021-01-08 01:01:01</field>
+        <field name="f_int">8</field>
+        <field name="f_float">8.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">1</field>
+    </record>
+    <record id="demo.d49" model="demo.field_type">
+        <field name="f_char">char44</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-09</field>
+        <field name="f_datetime">2021-01-09 01:01:01</field>
+        <field name="f_int">9</field>
+        <field name="f_float">9.1</field>
+        <field name="f_text">Initializing Spring DispatcherServlet 'dispatcherServlet'</field>
+        <field name="f_selection">2</field>
+    </record>
+</data>

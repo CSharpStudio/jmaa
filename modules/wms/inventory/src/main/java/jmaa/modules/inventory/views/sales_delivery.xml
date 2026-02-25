@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='wms_sales_delivery_resource' name='销售发货-资源' model='wms.sales_delivery'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/sales_delivery.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id='wms_sales_delivery_search' name='销售发货-查询' model='wms.sales_delivery'>
+        <search>
+            <field name='code'/>
+            <field name='material_id' label="物料编码" criteria="[['line_ids.material_id.code', 'like', value]]"
+                   editor="char"/>
+            <field name='material_name_spec' label="物料名称规格"
+                   criteria="[['line_ids.material_id.name_spec', 'like', value]]" editor="char"/>
+            <field name='company_id'/>
+            <field name='related_code'/>
+            <field name='customer_id'/>
+            <field name='delivery_date' editor="date-range"/>
+            <field name='remark'/>
+        </search>
+    </view>
+    <view id='wms_sales_delivery_grid' name='销售发货-表格' model='wms.sales_delivery'>
+        <grid>
+            <toolbar buttons="default">
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="提交" t-enable="ids:id &amp;&amp; ['draft', 'reject'].includes(status)"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="!['draft', 'done'].includes(status)"
+                        t-click="closeOrder" class="btn-grey" ref="edit"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status' column="status_column"/>
+            <field name='related_code'/>
+            <field name='company_id'/>
+            <field name='warehouse_id'/>
+            <field name='customer_id'/>
+            <field name='delivery_date'/>
+            <field name='create_uid' label="建单人"/>
+            <field name='create_date' label="建单时间"/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='wms_sales_delivery_card' name='销售发货-卡片' model='wms.sales_delivery'>
+        <card cols="6">
+            <toolbar buttons="default">
+                <button name="delete" t-enable="ids:status[0]=='draft'"/>
+                <button label="提交" t-enable="ids:id &amp;&amp; ['draft', 'reject'].includes(status[0])"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status[0]=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status[0])"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="!['draft', 'done'].includes(status[0])"
+                        t-click="closeOrder" class="btn-grey" ref="edit"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status'/>
+            <field name='related_code'/>
+            <field name='warehouse_id'/>
+            <field name='customer_id'/>
+            <field name='delivery_date'/>
+            <template>
+                {@helper statusToCss}
+                function(s){
+                let css = {draft:'warning',commit:'success',approve:'info',reject:'danger'};
+                return css[s] || 'secondary';
+                }
+                {@/helper}
+                <div class="card-body">
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon bg-${status[0]|statusToCss}">
+                            <small>${status[1]}</small>
+                        </div>
+                    </div>
+                    <div class="text-title">${code}</div>
+                    <div class="text-title">${customer_id|$index,1}</div>
+                    <div class="text-content">
+                        ${related_code}
+                        <div class="float-right">
+                            ${warehouse_id|$index,1}
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        ${delivery_date}
+                    </div>
+                </div>
+            </template>
+        </card>
+    </view>
+    <view id='wms_sales_delivery_form' name='销售发货-表单' model='wms.sales_delivery'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button name="save" t-enable="['draft', 'reject'].includes(status)"/>
+                <button label="提交" t-enable="ids:id AND ['draft', 'reject'].includes(status)"
+                        auth="commit" t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="!['draft', 'done'].includes(status)"
+                        t-click="closeOrder" class="btn-grey" ref="save"/>
+                <button label="发货" auth="deliver" t-click="deliver" class="btn-primary"
+                        t-enable="status=='approve'"/>
+                <button label="生成出库单" auth="stockOut" t-enable="status=='approve'" t-click="stockOut"
+                        class="btn-success" confirm="确认生成出库单?"/>
+                <field name='status' editor="statusbar" values="draft,commit,approve,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成"/>
+            <field name='related_code' on-change-action="onRelatedCodeChange" editor="related_code_editor"
+                   on-value-change="onRelatedCodeChange" t-readonly="id" required="1"/>
+            <field name='customer_id'/>
+            <field name='warehouse_id'/>
+            <field name='delivery_date' min="moment()" defaultValue="moment()"/>
+            <field name='remark' colspan="2"/>
+            <field name='company_id' readonly="1"/>
+            <tabs>
+                <tab label='物料明细'>
+                    <field name='line_ids' colspan='4' nolabel='1' t-filter="lineFilter">
+                        <grid footer="1" checkSelect="1" showRowNum="0">
+                            <toolbar buttons='default' on-init="onToolbarInit">
+                                <button name="create" t-click="addLine"/>
+                                <button name="delete" t-enable="ids:delivered_qty==0"/>
+                                <div class="input-group" position="after">
+                                    <div class="e-check">
+                                        <input id="showUndone" type="checkbox" class="form-control"/>
+                                        <label for="showUndone" title="显示未完成物料">未完成</label>
+                                    </div>
+                                    <input id="searchInput" t-enter="searchLine" type="text" class="form-control"
+                                           placeholder="按物料编码搜索"/>
+                                    <div class="input-suffix">
+                                        <button type="button" auth="read" class="btn btn-default btn-lookup"
+                                                t-click="searchLine">
+                                            <i class="fa fa-search">
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </toolbar>
+                            <field name="line_no"/>
+                            <field name="status"/>
+                            <field name="material_id"/>
+                            <field name="material_name_spec"/>
+                            <field name="request_qty" class="sum col-info"/>
+                            <field name="delivered_qty" class="sum col-success"/>
+                            <field name="material_category"/>
+                            <field name="unit_id"/>
+                            <field name='so_line_id' visible="0"/>
+                            <edit>
+                                <field name="unit_accuracy" visible="0"/>
+                                <field name="line_no" placeholder="自动生成" t-readonly="1"/>
+                                <field name="material_id" on-change-action="onMaterialChange" t-readonly="id"
+                                       view="default"/>
+                                <field name="material_name_spec"/>
+                                <field name="request_qty" gt="0" editor="accuracy" accuracy="unit_accuracy"/>
+                                <field name="unit_id"/>
+                                <field name="material_category"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='发货明细'>
+                    <field name='details_ids' colspan='4' nolabel='1' t-filter="detailsFilter">
+                        <grid checkSelect="1">
+                            <toolbar buttons="delete|reload|export">
+                                <button name="delete" t-click="deleteDetails" class="btn-danger delete-class" confirm="确定删除?"/>
+                                <div class="input-group" position="after">
+                                    <input id="searchDetailsInput" t-enter="refresh" type="text" class="form-control"
+                                           placeholder="物料编码/标签条码"/>
+                                    <div class="input-suffix">
+                                        <button type="button" auth="read" class="btn btn-default btn-lookup"
+                                                t-click="refresh">
+                                            <i class="fa fa-search">
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </toolbar>
+                            <field name='sn'/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='qty' class="col-info"/>
+                            <field name='unit_id'/>
+                            <field name='warehouse_id'/>
+                            <field name='create_uid'/>
+                            <field name='create_date'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='wms_sales_delivery_dialog' name='销售发货-对话框' model='wms.sales_delivery_dialog'>
+        <form logAccess="0" cols="3">
+            <editor name="unit_accuracy" type="integer" visible="0"/>
+            <field name='sn' colspan="2" placeholder="请扫描标签" class="lg"/>
+            <editor label="扫描结果" name='message' rowspan="2" type="msg_editor"/>
+            <field name='material_id' link="0"/>
+            <field name='stock_rule' link="0"/>
+            <field name='material_name_spec' colspan="2"/>
+            <field name='unit_id'/>
+            <field name='deficit_qty' editor="accuracy" accuracy="unit_accuracy"/>
+            <field name='warehouse_id' on-change-action="onWarehouseChange"/>
+            <editor label="库存数量" name="onhand_qty" readonly="1" type="accuracy" accuracy="unit_accuracy"/>
+            <editor label="推荐库位" name="suggest_location" type="char" readonly="1"/>
+            <editor label="推荐条码" name="suggest_sn" type="char" readonly="1"/>
+            <field name='location_id' readonly="1"/>
+            <field name='commit_qty' min="0" label="标签数量" type="accuracy" accuracy="unit_accuracy"/>
+            <field name="auto_confirm"/>
+            <div>
+                <button type="button" t-click="deliveryMaterial" class="btn btn-lg btn-success btn-flat">
+                    <t>确认</t>
+                </button>
+            </div>
+        </form>
+    </view>
+    <view id='wms_sales_order_line_dialog' name='销售发货-选择销售单明细' model='sales.order_line'>
+        <grid checkSelect="1" ordering="0" on-load="soLineOnLoad">
+            <field name='line_no'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name="commit_qty" column="commit_qty_column" style="color:blue"/>
+            <field name='uncommit_qty'/>
+            <field name='sales_qty'/>
+            <field name='unit_id'/>
+            <field name="material_category"/>
+            <field name="unit_accuracy" visible="0"/>
+        </grid>
+    </view>
+</data>

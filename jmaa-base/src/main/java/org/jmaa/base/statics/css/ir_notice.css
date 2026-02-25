@@ -1,0 +1,32 @@
+.card-view .card {
+    margin-bottom: 0.25rem;
+}
+
+.card-view .selected {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header {
+    padding: 6px 1.25rem;
+    border-radius: unset;
+    color: #1f2d3d!important;
+    background-color: #f8f9fa!important;
+    border: none;
+}
+.card-header h4{
+    font-size: 1rem;
+}
+.card-body {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header a {
+    color: #1f2d3d!important;
+}
+
+.text-sender{
+    font-size: .75rem!important;
+    position: absolute;
+    top: 2px;
+    right: 14px;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='wms_return_supplier_report_search' name='退供应商报表-查询' model='wms.return_supplier_report'>
+        <search>
+            <field name='return_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='status'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='wms_return_supplier_report_grid' name='退供应商报表-表格' model='wms.return_supplier_report'>
+        <grid footer="1">
+            <toolbar buttons='query|export'/>
+            <field name='return_id' link="1"/>
+            <field name='po_id' link="1"/>
+            <field name="status"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='request_qty' class="sum col-info"/>
+            <field name='return_qty' class="sum col-success"/>
+            <field name='unit_id'/>
+            <field name='supplier_id' link="1"/>
+            <field name='material_category'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+</data>

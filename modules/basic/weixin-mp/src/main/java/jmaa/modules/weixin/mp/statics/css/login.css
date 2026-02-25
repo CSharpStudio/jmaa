@@ -1,0 +1,9 @@
+.wxmp-qr {
+    position: absolute;
+    top: 90px;
+}
+
+.wxmp-qr img {
+    width: 250px;
+    height: 250px;
+}

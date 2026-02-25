@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="enterprise_tpl_group" model="md.enterprise_tpl">
+        <field name="name">集团</field>
+        <field name="type">group</field>
+    </record>
+    <record id="enterprise_tpl_company" model="md.enterprise_tpl">
+        <field name="name">公司</field>
+        <field name="parent_id" ref="md-enterprise.enterprise_tpl_group"></field>
+        <field name="type">company</field>
+    </record>
+    <record id="enterprise_tpl_factory" model="md.enterprise_tpl">
+        <field name="name">工厂</field>
+        <field name="parent_id" ref="md-enterprise.enterprise_tpl_company"></field>
+        <field name="type">factory</field>
+    </record>
+    <record id="enterprise_tpl_department" model="md.enterprise_tpl">
+        <field name="name">部门</field>
+        <field name="parent_id" ref="md-enterprise.enterprise_tpl_factory"></field>
+        <field name="type">department</field>
+    </record>
+    <record id="enterprise_tpl_workshop" model="md.enterprise_tpl">
+        <field name="name">车间</field>
+        <field name="parent_id" ref="md-enterprise.enterprise_tpl_factory"></field>
+        <field name="type">workshop</field>
+    </record>
+    <record id="enterprise_tpl_company_c" model="md.enterprise_tpl">
+        <field name="name">公司</field>
+        <field name="type">company</field>
+    </record>
+    <record id="enterprise_tpl_factory_c" model="md.enterprise_tpl">
+        <field name="name">工厂</field>
+        <field name="parent_id" ref="md-enterprise.enterprise_tpl_company_c"></field>
+        <field name="type">factory</field>
+    </record>
+    <record id="enterprise_tpl_department_c" model="md.enterprise_tpl">
+        <field name="name">部门</field>
+        <field name="parent_id" ref="md-enterprise.enterprise_tpl_factory_c"></field>
+        <field name="type">department</field>
+    </record>
+    <record id="enterprise_tpl_workshop_c" model="md.enterprise_tpl">
+        <field name="name">车间</field>
+        <field name="parent_id" ref="md-enterprise.enterprise_tpl_factory_c"></field>
+        <field name="type">workshop</field>
+    </record>
+</data>

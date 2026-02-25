@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='res_config_form' inherit_id="base.view_config_form" type="form" name='WMS系统配置项-表单'
+          model='res.config'>
+        <xpath expr="tabs" position="inside">
+            <tab label="WMS设置">
+                <group label="入库管理" colspan="4">
+                    <field name='stock_in_timeout'/>
+                    <field name='lot_in_qty'/>
+                    <field name='receipt_auto_inspect'/>
+                    <field name='pick_out_auto_audit'/>
+                </group>
+                <group label="出库管理" colspan="4">
+                    <field name='abc_exceed' editor="checklist"/>
+                    <field name='fifo_date'/>
+                    <field name='lot_out_qty'/>
+                </group>
+                <!--<group label="库存管理" colspan="4">
+                    <field name='replay'/>
+                    &lt;!&ndash;<field name='replay_ratio' min="0" max="100"/>
+                    <field name='transfer_exceed'/>&ndash;&gt;
+                </group>-->
+            </tab>
+        </xpath>
+    </view>
+</data>

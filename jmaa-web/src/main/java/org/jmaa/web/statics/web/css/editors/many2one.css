@@ -1,0 +1,65 @@
+.e-many2one .lookup-data {
+    overflow-x: auto;
+}
+
+.e-many2one .lookup-data .row {
+    margin: 0;
+}
+
+.e-many2one .lookup-data .col-sm-12 {
+    padding: 0;
+}
+
+.e-many2one .lookup-data:has(table) {
+    margin-top: -.2rem;
+}
+
+.e-many2one .lookup-data table {
+    border: 0;
+    margin: 0 !important;
+}
+
+.e-many2one .lookup-data tr {
+    cursor: pointer;
+}
+
+.e-many2one .lookup-info {
+    text-align: center;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+.e-many2one .btn-create {
+    text-align: left;
+    margin-top: 15px;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.e-many2one .btn-create:hover,
+.e-many2one .btn-create:focus {
+    color: #0056b3;
+}
+
+.e-many2one:not(.link) .input-suffix {
+    pointer-events: none;
+}
+
+.e-many2one.link .input-suffix .icon-down,
+.e-many2one .input-suffix [data-btn=link] {
+    display: none;
+}
+
+.e-many2one.link .input-suffix [data-btn=link] {
+    display: block;
+}
+
+.e-many2one.readonly:not(.link) .input-suffix .icon-down {
+    display: none;
+}
+
+.e-many2one.readonly:not(.link) .form-control {
+    padding-right: 5px !important;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='qsd_material_form' name='物料-检验项目-表单' type="form" inherit_id="md-enterprise.md_material_form" model='md.material'>
+        <xpath expr="form tab[label=质检]" position="inside">
+            <field name="quality_class_id"/>
+        </xpath>
+    </view>
+</data>

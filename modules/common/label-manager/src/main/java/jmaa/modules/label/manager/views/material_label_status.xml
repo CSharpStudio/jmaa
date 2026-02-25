@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='lbl_material_label_status_resource' name='标签条码状态-资源' model='lbl.material_label_status'>
+        <resource>
+            <script src="/web/jmaa/modules/label/manager/statics/js/material_label_status.js"></script>
+        </resource>
+    </view>
+    <view id='lbl_material_label_status_search' name='标签条码状态-查询' model='lbl.material_label_status'>
+        <search>
+            <field name='sn'/>
+            <field name='status'/>
+            <field name='material_id' editor="char" criteria="[['material_id.code', 'like', value]]"/>
+            <field name='material_name'/>
+            <field name='material_spec'/>
+            <field name='create_date' editor="date-range"/>
+        </search>
+    </view>
+    <view id='lbl_material_label_status_grid' name='标签条码状态-表格' model='lbl.material_label_status'>
+        <grid ordering="0">
+            <toolbar buttons='query|export'></toolbar>
+            <field name='sn' column="sn_column"/>
+            <field name='status'/>
+            <field name='operation'/>
+            <field name='related_code' column="related_column"/>
+            <field name='create_date' label="操作时间"/>
+            <field name='create_uid' label="操作人"/>
+            <field name='material_id'/>
+            <field name='material_name'/>
+            <field name='material_spec'/>
+            <field name='qty'/>
+            <field name='company_id'/>
+            <field name='location'/>
+            <field name='quality_status' column="quality_status_column"/>
+            <field name='related_id' visible="0"/>
+        </grid>
+    </view>
+</data>

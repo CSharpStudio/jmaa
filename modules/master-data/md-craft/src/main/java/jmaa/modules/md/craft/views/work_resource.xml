@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_resource_form' name='制造资源-制程-表单' type="form"
+          inherit_id="md-resource.md_work_resource_form" model='md.work_resource'>
+        <xpath expr="field[name=workshop_id]" position="after">
+            <field name='craft_type_id'/>
+        </xpath>
+    </view>
+</data>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='pr_resource_route_search' name='产线工艺路线-查询' model='pr.resource_route'>
+        <search>
+            <field name='resource_id' label="产品编码" lookup="[['type','=','line']]"/>
+        </search>
+    </view>
+    <view id='pr_resource_route_grid' name='产线工艺路线-表格' model='pr.resource_route'>
+        <grid>
+            <toolbar buttons="default"/>
+            <field name='workshop_id'/>
+            <field name='resource_id'/>
+            <field name='route_version_id'/>
+            <field name='begin_date'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='pr_resource_route_form' name='产线工艺路线-表单' model='pr.resource_route'>
+        <form>
+            <toolbar buttons="default"/>
+            <field name='workshop_id'/>
+            <field name='resource_id' t-reset="workshop_id" lookup="[['workshop_id','=',workshop_id],['type','=','line']]"/>
+            <field name='route_version_id' view="default"/>
+            <field name='begin_date'/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

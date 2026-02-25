@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="print_template_menu" name="打印模板" seq="110" model="print.template" view="grid,form" parent="base.system_manager_menus"/>
+</data>

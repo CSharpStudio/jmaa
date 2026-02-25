@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_defect_search' name='产品缺陷-查询' model='md.defect'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='grade'/>
+            <field name='type'/>
+        </search>
+    </view>
+    <view id='md_defect_grid' name='产品缺陷-表格' model='md.defect'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='grade'/>
+            <field name='type'/>
+            <field name='remark'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_defect_form' name='产品缺陷-表单' model='md.defect'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='grade'/>
+            <field name='type'/>
+            <field name='active'/>
+            <field name='remark' colspan="2"/>
+        </form>
+    </view>
+    <view id='md_defect_lookup' name='产品缺陷-下拉' model='md.defect'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='grade'/>
+            <field name='type'/>
+        </lookup>
+    </view>
+</data>

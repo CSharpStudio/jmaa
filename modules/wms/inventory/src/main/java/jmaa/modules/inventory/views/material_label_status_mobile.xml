@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_material_label_status_mobile_resource" name="标签状态-移动端-资源"
+          model="lbl.material_label_status_mobile">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/material_label_status_mobile.js"></script>
+        </resource>
+    </view>
+    <view id="wms_material_label_status_mobile_view" name="标签状态-移动端" model="lbl.material_label_status_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>标签状态</h2>
+                    <a class="home-link"></a>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-label-input focus" type="text" t-enter="searchLabel" placeholder="标签条码"/>
+                        <button class="clear-input" t-click="searchLabel"></button>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="list" load-method="loadList">
+                        <card>
+                            <field name="sn"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name="operation"/>
+                            <field name="status"/>
+                            <field name="material_id"/>
+                            <field name="qty"/>
+                            <field name="material_name" colspan="2"/>
+                            <field name="material_spec" colspan="2"/>
+                            <field name="related_code" colspan="2"/>
+                            <field name="create_date" colspan="2" label="操作时间"/>
+                            <field name="create_uid" colspan="2" label="操作人"/>
+                            <field name="location" colspan="2"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

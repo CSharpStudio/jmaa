@@ -1,0 +1,12 @@
+.CodeMirror {
+    border: 1px solid #aaa;
+}
+
+.edit-notice {
+    grid-column: span 4 !important;
+    color: #855900;
+    background-color: #ffeecc;
+    border: 1px solid #f7c459;
+    padding: 10px;
+    margin-bottom: 10px;
+}

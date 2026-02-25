@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="template_material_label" model="print.template">
+        <field name="name">生产批次</field>
+        <field name="adapter">print.adapter.stimulsoft</field>
+        <field name="rule">print.rule.batch</field>
+        <field name="category">batch_label</field>
+        <field name="upload_status">true</field>
+        <field name="file" file="jmaa/modules/wip/statics/批次标签.mrt"/>
+        <field name="file_name">批次标签.mrt</field>
+    </record>
+</data>

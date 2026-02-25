@@ -1,0 +1,48 @@
+/* 顶部导航 */
+
+.navbar .nav-link {
+    border-top: solid 3px transparent;
+    border-bottom: solid 3px transparent;
+    padding: 6px 1rem;
+}
+
+.navbar .nav-account {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    border: 0;
+}
+
+.navbar .user-icon {
+    width: 36px;
+    height: 36px;
+    float: left;
+    margin: -6px 5px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    overflow: hidden;
+}
+
+.navbar .notice-title {
+    max-width: 220px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+.navbar .uploading i {
+    color: lightsalmon;
+}
+
+.navbar .uploading .toggle {
+    color: lightcoral;
+}
+
+.navbar-nav .nav-app-link {
+    padding-top: 0px;
+}

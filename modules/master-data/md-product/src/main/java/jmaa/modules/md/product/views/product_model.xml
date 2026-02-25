@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_product_model_search' name='产品机型-查询' model='md.product_model'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='md_product_model_grid' name='产品机型-表格' model='md.product_model'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_product_model_form' name='产品机型-表单' model='md.product_model'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+            <tabs>
+                <tab label="产品">
+                    <field name="material_ids" nolabel="1" colspan="4" editor="many2many">
+                        <grid>
+                            <field name="code"/>
+                            <field name="name_spec"/>
+                            <field name="category"/>
+                            <field name="type_id"/>
+                            <field name="attribute"/>
+                            <field name="purchasable"/>
+                            <field name="producible"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='md_product_model_lookup' name='产品机型-下拉' model='md.product_model'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+        </lookup>
+    </view>
+</data>

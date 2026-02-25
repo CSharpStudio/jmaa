@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_customer_search' name='客户-查询' model='md.customer'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_customer_grid' name='客户-表格' model='md.customer'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='name_en'/>
+            <field name='chars'/>
+            <field name='active'/>
+            <field name='contact'/>
+            <field name='phone'/>
+            <field name='zip'/>
+            <field name='email'/>
+            <field name='address'/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='md_customer_form' name='客户-表单' model='md.customer'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code' t-readonly="id" colspan="2" class="lg"/>
+            <field name='name' colspan="2" class="lg"/>
+            <field name='name_en'/>
+            <field name='chars'/>
+            <field name='active'/>
+            <field name='phone'/>
+            <field name='contact'/>
+            <field name='address'/>
+            <field name='zip'/>
+            <field name='email'/>
+            <field name='remark' colspan="2"/>
+        </form>
+    </view>
+</data>

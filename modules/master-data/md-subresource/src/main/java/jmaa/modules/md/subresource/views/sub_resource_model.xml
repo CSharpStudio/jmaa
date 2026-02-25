@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='md_sub_resource_model_search' name='辅助资源型号-查询' model='md.sub_resource_model'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='md_sub_resource_model_grid' name='辅助资源型号-表格' model='md.sub_resource_model'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='specification'/>
+            <field name='manufacturer'/>
+            <field name='type_id'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_sub_resource_model_form' name='辅助资源型号-表单' model='md.sub_resource_model'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='specification' colspan="2"/>
+            <field name='manufacturer'/>
+            <field name='type_id'/>
+            <field name='active'/>
+            <tabs>
+                <tab label="制造资源">
+                    <field name="work_resource_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name='priority' title="数值越大，优先级越高"/>
+                            <field name='work_resource_id' view="default" on-change-action="onResourceChange"/>
+                            <field name='type'/>
+                            <field name='workshop_id'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='md_sub_resource_model_lookup' name='辅助资源型号-下拉' model='md.sub_resource_model'>
+        <lookup>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='specification'/>
+            <field name='manufacturer'/>
+            <field name='type_id'/>
+        </lookup>
+    </view>
+</data>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='purchase_price_resource' name='采购价目-资源' model='purchase.price'>
+        <resource>
+            <script src="/web/jmaa/modules/account/statics/js/purchase_price.js"></script>
+        </resource>
+    </view>
+    <view id='purchase_price_search' name='采购价目-查询' model='purchase.price'>
+        <search>
+            <field name='name'/>
+            <field name='supplier_id'/>
+            <field name='material_id' editor="char" label="物料编码"
+                   criteria="[['details_ids.material_id.code','like',value]]"/>
+            <field name='type'/>
+            <field name='currency_id'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='purchase_price_grid' name='采购价目-表格' model='purchase.price'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='name'/>
+            <field name='supplier_id'/>
+            <field name='type'/>
+            <field name='currency_id'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+    <view id='purchase_price_form' name='采购价目-表单' model='purchase.price'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='supplier_id'/>
+            <field name='type'/>
+            <field name='currency_id' view="default"/>
+            <field name='company_id' readonly="1"/>
+            <tabs>
+                <tab label="明细">
+                    <field name="details_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <toolbar buttons="default">
+                                <button name="delete" t-enable="ids:status=='new'"/>
+                                <button name="edit" t-enable="status!='approve'"/>
+                                <button name="approve" service="approve" class="btn-success" confirm="确认审核选中行？"
+                                        label="审核" t-enable="ids:id and ['new','reject'].includes(status)"/>
+                                <button label="反审核" service="reject" class="btn-success" confirm="确认反审核选中行？"
+                                        t-enable="ids:id and status=='approve'" ref="approve"/>
+                                <button label="关闭" service="close" class="btn-success" confirm="确认关闭选中行？"
+                                        t-enable="ids:id and status!='new'" ref="approve"/>
+                            </toolbar>
+                            <field name='status'
+                                   tags="{'new':'warning','approve':'success','reject':'danger','_':'secondary'}"/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='min'/>
+                            <field name='max'/>
+                            <field name='price'/>
+                            <field name='tax_rate'/>
+                            <field name='price_tax'/>
+                            <field name='begin_date'/>
+                            <field name='end_date'/>
+                            <edit>
+                                <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+                                <field name='material_name_spec'/>
+                                <field name='min'/>
+                                <field name='max'/>
+                                <field name='price' decimals="6"/>
+                                <field name='tax_rate' t-change="computePrice"/>
+                                <field name='price_tax' t-change="computePrice" decimals="6"/>
+                                <field name='begin_date'/>
+                                <field name='end_date'/>
+                                <field name='status' visible="0"></field>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jmaa</groupId>
+        <artifactId>modules</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>master-data</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>md-enterprise</module>
+        <module>md-inventory</module>
+        <module>md-process</module>
+        <module>md-resource</module>
+        <module>md-product</module>
+        <module>md-packing</module>
+        <module>md-label</module>
+        <module>md-qsd</module>
+        <module>md-work</module>
+        <module>md-account</module>
+        <module>md-craft</module>
+        <module>md-subresource</module>
+        <module>md-process-routing</module>
+    </modules>
+</project>

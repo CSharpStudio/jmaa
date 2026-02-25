@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+    <title>打印模板设计</title>
+    <meta charset="utf-8"/>
+    <link href="/web/jmaa/modules/print/statics/report/css/report.css" rel="stylesheet">
+    <script src="/web/jmaa/modules/print/statics/report/scripts/stimulsoft.reports.js?etag=2025.3.3"
+            type="text/javascript"></script>
+    <script src="/web/jmaa/modules/print/statics/report/scripts/stimulsoft.viewer.js?etag=2025.3.3"
+            type="text/javascript"></script>
+    <script src="/web/jmaa/modules/print/statics/report/scripts/stimulsoft.designer.js?etag=2025.3.3"
+            type="text/javascript"></script>
+    <script>
+        Stimulsoft.Base.Localization.StiLocalization.addLocalizationFile("/web/jmaa/modules/print/statics/report/zh-chs.xml", true);
+        Stimulsoft.Base.Localization.StiLocalization.cultureName = "Chinese (Simplified)";
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        let reportData = JSON.parse(decodeURIComponent(urlParams.get('d')));
+
+        function createDesigner() {
+            let options = new Stimulsoft.Designer.StiDesignerOptions();
+            options.appearance.fullScreenMode = true;
+            options.appearance.htmlRenderMode = Stimulsoft.Report.Export.StiHtmlExportMode.Table;
+            options.appearance.showLocalization = false;
+            options.appearance.showReportTree = false;
+            options.toolbar.showFileMenu = false;
+            let designer = new Stimulsoft.Designer.StiDesigner(options, "StiDesigner", false);
+            designer.visible = true;
+            let report = new Stimulsoft.Report.StiReport();
+            reportData.template && report.loadFile(reportData.template);
+            report.dictionary.databases.clear();
+            let json = {"Data": reportData.data};
+            let dataSet = new Stimulsoft.System.Data.DataSet("JSON");
+            dataSet.readJson(json);
+            report.regData("JSON", "JSON", dataSet);
+            report.dictionary.synchronize();
+            designer.report = report;
+            designer.onSaveReport = function (args) {
+                let reportJson = designer.report.saveToJsonString();
+                save(reportJson);
+                args.preventDefault = true;
+            };
+            designer.renderHtml("designerContent");
+            for (let id of ['StiDesignerbuttonShare', 'StiDesignerbuttonPublish', 'StiDesigneraboutButton']) {
+                designer.jsObject.options.toolBar.querySelector('#' + id).parentNode.remove();
+            }
+            let tool = document.createElement('td');
+            tool.style.verticalAlign = 'top';
+            let btnDown = createButton('下载', 'data:image/webp;base64,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');
+            btnDown.addEventListener('click', () => {
+                let reportJson = designer.report.saveToJsonString();
+                download(reportJson);
+            });
+            tool.appendChild(btnDown);
+            let btnOpen = createButton('打开', 'data:image/webp;base64,UklGRvwAAABXRUJQVlA4TO8AAAAvF8AFEC/BKJIkRT3L5Ob8u7kf892yDcVt20ZK2i26/359XxbbSJKjtKsolbJC+MFEHj8gaiMpdXDBAf5fSDoU3KKA6P5/fdl4ki9TGCvdwXSHmF3MLrqL2UV30R3keptev5TDmwfnFt1lP18mIB0hBCVdD2UI3dGIRdrQYVMV3IaYLcOKAweRJCnSMTPj841/jz1/iwIi+j8BZP+RPyQ46LaHJMdtx9vzDcfxhiII+WQDd2T7OPxfPsCvQ+HmBVcqNv6gjYTihYhGtw+Fsx38Wqw64UrFug+0kVAwEfShcLwytVj+ZFKx5s3I/IL1AQA=');
+            btnOpen.addEventListener('click', () => {
+                designer.jsObject.ActionOpenReport();
+            });
+            tool.appendChild(btnOpen);
+            designer.jsObject.options.workPanel.querySelector('#StiDesignersaveReportHotButton').parentNode.parentNode.appendChild(tool);
+            setTimeout(() => document.title = reportData.title + " - 设计", 2000);
+        }
+
+        function download(reportJson) {
+            let blob = new Blob([reportJson], {type: "application/json"});
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement("a");
+            a.href = url;
+            a.download = reportData.title + ".mrt";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function save(reportJson) {
+            let formData = new FormData()
+            formData.set('fileName', reportData.title + ".mrt");
+            formData.set('template', reportJson);
+            fetch(reportData.tenant + "/print/save/" + reportData.id, {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (!response.ok) {
+                    response.text().then(r => console.error('Error:', r));
+                }
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        function createButton(text, img) {
+            let btn = document.createElement('div');
+            btn.style.height = "30px";
+            btn.classList.add(
+                'stiDesignerStandartSmallButton',
+                'stiDesignerStandartSmallButton_Mouse',
+                'stiDesignerStandartSmallButtonDefault'
+            );
+            btn.addEventListener('mouseover', () => {
+                btn.classList.remove('stiDesignerStandartSmallButtonDefault');
+                btn.classList.add('stiDesignerStandartSmallButtonOver');
+            });
+            btn.addEventListener('mouseout', () => {
+                btn.classList.remove('stiDesignerStandartSmallButtonOver');
+                btn.classList.add('stiDesignerStandartSmallButtonDefault');
+            });
+            btn.innerHTML = `<table class="stiDesignerClearAllStyles" cellpadding="0" cellspacing="0" style="height: 100%;">
+                <tr class="stiDesignerClearAllStyles">
+                    <td class="stiDesignerClearAllStyles" style="padding: 0px 4px; text-align: center; font-size: 0px;">
+                        <img src="${img}" style="pointer-events: none; width: 16px; height: 16px; opacity: 1;">
+                    </td>
+                    <td class="stiDesignerClearAllStyles" style="padding: 0px 10px 0px 0px; white-space: nowrap; text-align: left;">${text}</td>
+                </tr>
+            </table>`;
+            return btn;
+        }
+
+        function onBodyLoad() {
+            createDesigner();
+        }
+    </script>
+</head>
+
+<body onload="onBodyLoad()">
+<div id="designerContent"></div>
+</body>
+</html>

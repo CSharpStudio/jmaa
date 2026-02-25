@@ -1,0 +1,68 @@
+.jui-confirm .confirm-mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: #4e4e4e1e;
+}
+
+.jui-confirm .confirm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    z-index: 99999;
+    background-color: #fff;
+    min-width: 400px;
+    min-height: 150px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+}
+
+.jui-confirm .confirm .ui-btn {
+    width: auto;
+    padding: .4rem .5rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    border-radius: .2rem;
+}
+
+@media (max-width: 740px) {
+    .jui-confirm .confirm {
+        min-width: 100px;
+        width: 80%;
+    }
+}
+
+.jui-confirm .confirm .confirm-header {
+    padding: 8px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #fff;
+    color: #000;
+}
+
+.jui-confirm .confirm-body {
+    padding: 10px 24px 5px 24px;
+    font-size: 0.875rem;
+    color: #000;
+    min-height: 100px;
+}
+
+.jui-confirm .confirm-body p {
+    margin-top: 10px;
+    line-height: 2;
+}
+
+.jui-confirm .confirm-footer {
+    padding: 1rem;
+    justify-content: space-between;
+    display: flex;
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_initial_inventory_resource" name="初始化标签-资源" model="wms.initial_inventory">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/initial_inventory.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id='wms_initial_inventory_search' name='初始化标签-查询' model='wms.initial_inventory'>
+        <search>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='sn'/>
+            <field name='lot_num'/>
+        </search>
+    </view>
+    <view id='wms_initial_inventory_grid' name='初始化标签-表格' model='wms.initial_inventory'>
+        <grid>
+            <toolbar buttons='default'>
+                <button class="btn-blue" label="标签打印" t-enable="ids" t-click="reprintLabel"/>
+            </toolbar>
+            <field name='sn'/>
+            <field name='lot_num'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='stock_rule'/>
+            <field name='qty'/>
+            <field name='warehouse_id'/>
+            <field name='location_id'/>
+        </grid>
+    </view>
+    <view id='wms_initial_inventory_form' name='初始化标签-表单' model='wms.initial_inventory'>
+        <form >
+            <toolbar buttons="default">
+                <button name="save" t-click="initial"/>
+                <button label="生成条码" class="btn-primary" auth="read" t-click="createLabelCode"/>
+            </toolbar>
+            <field name="unit_accuracy" visible="0"/>
+            <field name='sn'/>
+            <field name='lot_num'/>
+            <field name='material_id' on-change-action="onMaterialChange" view="default"/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='stock_rule'/>
+            <field name='qty' gt="0" editor="accuracy" accuracy="unit_accuracy"/>
+            <field name='unit_id'/>
+            <field name='warehouse_id' required="1"/>
+            <field name='location_id' lookup="[['warehouse_id','=',warehouse_id]]" t-reset="warehouse_id"/>
+            <field name='product_date' readonly="0"/>
+            <field name='product_lot' readonly="0"/>
+            <field name='template_id'/>
+            <field name='supplier_id' />
+            <field name='customer_id'/>
+        </form>
+    </view>
+
+</data>

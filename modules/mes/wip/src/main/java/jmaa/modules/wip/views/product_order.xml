@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='mfg_product_order_resource' name='生产订单-资源' model='mfg.product_order'>
+        <resource>
+            <script src="/web/jmaa/modules/wip/statics/js/product_order.js"></script>
+        </resource>
+    </view>
+    <view id='mfg_product_order_form' inherit_id="manufacturing.mfg_product_order_form" name='生产订单-表单-生产'
+          model='mfg.product_order'>
+        <xpath expr="field[name=material_category]" position="after">
+            <field name="bom_version_id" lookup="[['bom_id.material_id','=',material_id]]"/>
+        </xpath>
+        <xpath expr="form tabs" position="inside">
+            <tab label="BOM">
+                <field name="bom_details_ids" nolabel="1" colspan="4">
+                    <grid>
+                        <field name="material_id" view="default" on-change-action="onMaterialChange"/>
+                        <field name="material_name_spec"/>
+                        <field name="material_category"/>
+                        <field name='qty'/>
+                        <field name='unit_id'/>
+                        <field name='is_alternative'/>
+                        <field name='main_material_id' view="default"/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

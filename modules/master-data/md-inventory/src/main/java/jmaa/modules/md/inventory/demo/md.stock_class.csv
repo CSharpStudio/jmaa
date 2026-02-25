@@ -1,0 +1,4 @@
+"id","code","name","remark","active","store_limit","company_ids","warehouse_ids"
+"04q9tp803afi8","K01","主料",,"1","warehouse","[[4,ref(base.c010)],[4,ref(base.company_default)]]","[[4,ref(0484j4z11q4u8)]]"
+"04q9tp803afi9","K02","半成品",,"1","warehouse","[[4,ref(base.c010)],[4,ref(base.company_default)]]","[[4,ref(0484j4z0z88hs)]]"
+"04q9tp803afi7","K03","成品",,"1","warehouse","[[4,ref(base.c010)],[4,ref(base.company_default)]]","[[4,ref(0484j4z14816o)]]"

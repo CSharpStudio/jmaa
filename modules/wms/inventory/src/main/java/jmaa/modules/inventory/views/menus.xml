@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <menu id="stock_onhand_menus" name="库存管理" seq="400">
+        <menu id="warehouse_onhand_report_menu" name="仓库库存查询" seq="10" model="wms.warehouse_onhand_report"
+              view="grid"/>
+        <menu id="material_onhand_report_menu" name="物料库存查询" seq="20" model="wms.material_onhand_report"
+              view="grid"/>
+        <menu id="onhand_report_menu" name="库存明细查询" seq="30" model="wms.onhand_report" view="grid"/>
+        <menu id="inventory_check_menu" name="仓库盘点" seq="50" model="wms.inventory_check" view="grid,form"/>
+        <menu id="inventory_balance_menu" name="盘点平账单" seq="60" model="wms.inventory_balance" view="grid,form"/>
+        <menu id="transfer_order_menu" name="仓库调拨" seq="70" model="wms.transfer_order" view="grid,form"/>
+        <menu id="transfer_order_report_menu" name="仓库调拨明细" seq="80" model="wms.transfer_order_report"
+              view="grid"/>
+    </menu>
+    <menu id="stock_in_menus" name="入库管理" seq="410">
+        <menu id="stock_in_report_menu" name="待入库查询" seq="40" model="stock.in_report" view="grid,form"/>
+        <menu id="material_receipt_menu" name="来料接收" seq="30" model="wms.material_receipt" view="grid,card,form"/>
+        <menu id="sales_return_menu" name="销售退货" seq="40" model="wms.sales_return" view="grid,card,form"/>
+        <menu id="sales_return_report_menu" name="销售退货明细" seq="50" model="wms.sales_return_report" view="grid"/>
+        <menu id="wms_pick_out_menu" name="挑选" seq="70" model="wms.pick_out" view="grid,form"/>
+        <menu id="wms_other_stock_in_menu" name="其它入库" seq="80" model="wms.other_stock_in" view="grid,form"/>
+        <menu id="stock_stock_in_menu" name="入库单" seq="100" model="stock.stock_in" view="grid,form"/>
+        <menu id="initial_inventory_menu" name="初始化标签" seq="1500" model="wms.initial_inventory" view="grid,form"/>
+    </menu>
+    <menu id="stock_out_menus" name="出库管理" seq="420">
+        <menu id="material_issue_report_menu" name="发料明细查询" seq="20" model="mfg.material_issue_report"
+              view="grid"/>
+        <menu id="return_supplier_menu" name="退供应商" seq="30" model="wms.return_supplier" view="grid,card,form"/>
+        <menu id="return_supplier_report_menu" name="退供应商查询" seq="40" model="wms.return_supplier_report"
+              view="grid"/>
+        <menu id="sales_delivery_menu" name="销售发货" seq="60" model="wms.sales_delivery" view="grid,card,form"/>
+        <menu id="sales_order_report_menu" name="销售出库查询" seq="70" model="wms.sales_order_report" view="grid"/>
+        <menu id="wms_other_stock_out_menu" name="其它出库" seq="80" model="wms.other_stock_out" view="grid,form"/>
+        <menu id="stock_stock_out_menu" name="出库单" seq="100" model="stock.stock_out" view="grid,form"/>
+    </menu>
+    <m-menu id="wms_mobile_menus" name="仓库管理" seq="90">
+        <m-menu id="material_receipt_mobile_menu" name="来料接收" seq="10" model="wms.material_receipt_mobile"
+                view="mobile"/>
+        <m-menu id="material_stock_in_mobile_menu" name="物料入库" seq="20" model="wms.material_stock_in_mobile"
+                view="mobile"/>
+        <m-menu id="return_supplier_mobile_menu" name="退供应商" seq="30" model="wms.return_supplier_mobile"
+                view="mobile"/>
+        <m-menu id="material_issue_mobile_menu" name="发料" seq="40" model="mfg.material_issue_mobile" view="mobile"/>
+        <m-menu id="sales_delivery_mobile_menu" name="销售发货" seq="70" model="wms.sales_delivery_mobile"
+                view="mobile"/>
+        <m-menu id="sales_return_mobile_menu" name="销售退货" seq="80" model="wms.sales_return_mobile" view="mobile"/>
+        <m-menu id="material_label_status_mobile_menu" name="标签状态" seq="90" model="lbl.material_label_status_mobile"
+                view="mobile"/>
+        <m-menu id="pick_out_mobile_menu" name="挑选" seq="100" model="wms.pick_out_mobile" view="mobile"/>
+        <m-menu id="location_move_mobile_menu" name="库位移动" seq="110" model="wms.location_move_mobile"
+                view="mobile"/>
+        <m-menu id="transfer_order_mobile_menu" name="仓库调拨" seq="120" model="wms.transfer_order_mobile"
+                view="mobile"/>
+        <m-menu id="inventory_check_first_mobile_menu" name="初盘" seq="200" model="wms.inventory_check_first_mobile"
+                view="mobile"/>
+        <m-menu id="inventory_check_second_mobile_menu" name="复盘" seq="210" model="wms.inventory_check_second_mobile"
+                view="mobile"/>
+        <m-menu id="other_stock_in_mobile_menu" name="其它入库" seq="220" model="wms.other_stock_in_mobile"
+                view="mobile"/>
+        <m-menu id="other_stock_out_mobile_menu" name="其它出库" seq="230" model="wms.other_stock_out_mobile"
+                view="mobile"/>
+        <m-menu id="material_split_mobile_menu" name="标签拆分" seq="200" model="wms.material_split_mobile"
+                view="mobile"/>
+        <m-menu id="initial_inventory_mobile_menu" name="初始化标签" seq="200" model="wms.initial_inventory_mobile"
+                view="mobile"/>
+    </m-menu>
+</data>

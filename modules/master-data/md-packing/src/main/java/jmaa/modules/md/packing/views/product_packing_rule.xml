@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='product_packing_rule_search' name='产品包装规则-查询' model='md.product_packing_rule'>
+        <search>
+            <field name='name'/>
+            <field name="material_id"/>
+        </search>
+    </view>
+    <view id='product_packing_rule_grid' name='产品包装规则-表格' model="md.product_packing_rule">
+        <grid>
+            <toolbar buttons='default'>
+                <button label="设置默认" service="setDefault" t-enable="id AND !is_default" confirm="确认设置为默认?"/>
+            </toolbar>
+            <field name='name'/>
+            <field name="material_id"/>
+            <field name="material_name_spec"/>
+            <field name="unit_id"/>
+            <field name='rule_id'/>
+            <field name='description'/>
+            <field name='is_default' readonly="1"/>
+            <field name='customer_id'/>
+        </grid>
+    </view>
+    <view id='product_packing_rule_form' name='产品包装规则-表单' model="md.product_packing_rule">
+        <form>
+            <toolbar buttons='default'>
+                <button label="设置默认" service="setDefault" t-enable="id AND !is_default" confirm="确认设置为默认?"/>
+            </toolbar>
+            <field name='name'/>
+            <field name="material_id" view="default" on-change-action="onMaterialChange"/>
+            <field name="material_name_spec"/>
+            <field name="unit_id"/>
+            <field name='rule_id'/>
+            <field name='description'/>
+            <field name='is_default' readonly="1"/>
+            <field name='customer_id'/>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,25 @@
+.msg-list {
+    border: 1px solid #dee2e6;
+    height: 100px;
+    font-size: 14px;
+    background: #efefef96;
+    overflow: auto;
+    padding: 2px 5px;
+    word-break: break-all;
+}
+
+.msg-list span {
+    display: block;
+}
+
+.msg-error {
+    color: darkred;
+}
+
+.msg-info {
+    color: green;
+}
+
+.msg-bold {
+    font-weight: bold;
+}

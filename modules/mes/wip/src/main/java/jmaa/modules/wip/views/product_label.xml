@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='lbl_product_label_resource' name='成品标签-资源' model='lbl.product_label'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"></link>
+            <script src="/web/jmaa/modules/wip/statics/js/product_label.js"></script>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/label/manager/statics/js/print_editors.js"></script>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"></script>
+        </resource>
+    </view>
+    <view id='lbl_product_label_search' name='成品标签-查询' model='lbl.product_label'>
+        <search criteria="[['material_id.is_make','=',true]]">
+            <field name='sn'/>
+            <field name='status'/>
+            <field name='material_id' editor="char" criteria="[['material_id.code', 'like', value]]"/>
+            <field name='material_name_spec'/>
+            <field name='create_date' editor="date-range"/>
+        </search>
+    </view>
+    <view id='lbl_product_label_grid' name='成品标签-表格' model='lbl.product_label'>
+        <grid>
+            <toolbar buttons='query|browse|export'>
+                <button class="btn-blue" label="打印" t-click="printLabel"></button>
+                <button class="btn-blue" label="补打" t-click="reprintLabel" t-enable="ids"></button>
+                <button label="拆分" t-enable="status=='onhand'" t-click="printSplitLabel"></button>
+            </toolbar>
+            <field name='sn'/>
+            <field name='work_order_id'/>
+            <field name='lot_num'/>
+            <field name='status'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='qty'/>
+            <field name='unit_id'/>
+            <field name='print_template_id'/>
+            <field name='abc_type'/>
+            <field name="material_category"/>
+            <field name='product_lot'/>
+            <field name='product_date'/>
+            <field name='warehouse_id'/>
+            <field name='location_id'/>
+            <field name='quality_status'/>
+            <field name='create_date'/>
+            <field name='create_uid'/>
+        </grid>
+    </view>
+    <view id='lbl_product_label_form' name='成品标签-表单' model='lbl.product_label'>
+        <form>
+            <toolbar>
+                <button class="btn-blue" label="补打" t-click="reprintLabel"></button>
+                <button label="拆分" t-enable="status=='onhand'" t-click="printSplitLabel"></button>
+            </toolbar>
+            <field name='sn'/>
+            <field name='work_order_id'/>
+            <field name='lot_num'/>
+            <field name='status'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='qty'/>
+            <field name='unit_id'/>
+            <field name='print_template_id'/>
+            <field name='abc_type'/>
+            <field name="material_category"/>
+            <field name='product_lot'/>
+            <field name='product_date'/>
+            <field name='warehouse_id'/>
+            <field name='location_id'/>
+            <field name='quality_status'/>
+            <tabs>
+                <tab label="状态记录">
+                    <field name="status_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name='status'/>
+                            <field name='operation'/>
+                            <field name='related_code' column="related_column"/>
+                            <field name='create_date'/>
+                            <field name='create_uid'/>
+                            <field name='material_id'/>
+                            <field name='material_name'/>
+                            <field name='material_spec'/>
+                            <field name='qty'/>
+                            <field name='company_id'/>
+                            <field name='warehouse_id'/>
+                            <field name='location_id'/>
+                            <field name='quality_status' column="quality_status_column"/>
+                            <field name='related_id' visible="0"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="拆分记录">
+                    <field name="split_ids" nolabel="1" colspan="4" t-filter="splitFilter">
+                        <grid>
+                            <field name='old_label_id'/>
+                            <field name='old_qty'/>
+                            <field name='new_label_id'/>
+                            <field name='new_qty'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='lbl_product_label_print_dialog_form' name='成品标签打印-表单' model='lbl.product_label_print_dialog'>
+        <form>
+            <field name='work_order_id' view="default" on-change-action="onWorkOrderChange" order="code"/>
+            <field name='material_id' readonly="1"/>
+            <field name='material_name_spec' colspan='2'/>
+            <field name='template_id' lookup="[['category','=','product_label']]"/>
+            <field name='supplier_id'/>
+            <field name='customer_id'/>
+            <field name='material_category'/>
+            <field name='min_packages' min="0" t-change="onMinPackagesChange"/>
+            <field name='unit_id'/>
+            <field name="stock_rule"/>
+            <field name='print_qty' min="0" t-change="onPrintQtyChange"/>
+            <field name='label_count' readonly="1"/>
+            <field name='product_date'/>
+            <field name='product_lot' editor="label-editor" nolabel="1"/>
+        </form>
+    </view>
+</data>

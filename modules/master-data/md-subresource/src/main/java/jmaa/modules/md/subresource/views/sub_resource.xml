@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="md_sub_resource_resource" name="辅助资源台账-资源" model="md.sub_resource">
+        <resource>
+            <script src="/web/jmaa/modules/md/subresource/statics/js/sub_resource.js"></script>
+        </resource>
+    </view>
+    <view id='md_sub_resource_search' name='辅助资源台账-查询' model='md.sub_resource'>
+        <search>
+            <field name='code'/>
+            <field name='model_id'/>
+            <field name='usable'/>
+        </search>
+    </view>
+    <view id='md_sub_resource_grid' name='辅助资源台账-表格' model='md.sub_resource'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='model_id'/>
+            <field name='specification'/>
+            <field name='type_id'/>
+            <field name='usable_begin'/>
+            <field name='usable_end'/>
+            <field name='usable'/>
+        </grid>
+    </view>
+    <view id='md_sub_resource_form' name='辅助资源台账-表单' model='md.sub_resource'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='model_id' view="default" on-change-action="onModelChange"/>
+            <field name='type_id'/>
+            <field name='specification' colspan="2"/>
+            <field name='usable_begin'/>
+            <field name='usable_end'/>
+            <field name='usable'/>
+            <tabs>
+                <tab label="产品适配">
+                    <field name="product_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='qty'/>
+                            <field name='unit_id'/>
+                            <field name='cycle_time'/>
+                            <field name='multi_product'/>
+                            <edit>
+                                <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+                                <field name='material_name_spec'/>
+                                <field name='qty'/>
+                                <field name='unit_id'/>
+                                <field name='cycle_time'/>
+                                <field name='multi_product'/>
+                                <tabs>
+                                    <tab label="附带产品" t-visible="multi_product">
+                                        <field name="sub_ids" nolabel="1" colspan="4">
+                                            <grid>
+                                                <field name='material_id' view="default"
+                                                       on-change-action="onMaterialChange"/>
+                                                <field name='material_name_spec'/>
+                                                <field name='qty'/>
+                                                <field name='unit_id'/>
+                                            </grid>
+                                        </field>
+                                    </tab>
+                                </tabs>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label="制造资源">
+                    <field name="work_resource_ids" editor="work-resource" nolabel="1" colspan="4" pager="0">
+                        <grid>
+                            <field name='work_resource_id'/>
+                            <field name='craft_type_id'/>
+                            <field name='priority'/>
+                            <field name='type'/>
+                            <field name='workshop_id'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='view_resource' name='视图-资源' model='ir.ui.view'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_ui_view.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/editors/code-editor.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/xml/xml.js"></script>
+            <script src="/web/org/jmaa/base/statics/js/model-lookup.js"></script>
+            <script src="/web/org/jmaa/web/statics/web/editors/CodeEditor.js"></script>
+            <script src="/web/org/jmaa/base/statics/js/ir_ui_view.js"></script>
+        </resource>
+    </view>
+    <view id='view_search' name='视图-查询' model='ir.ui.view'>
+        <search>
+            <field name="name"/>
+            <field name="model"/>
+            <field name="type"/>
+            <field name="mode"/>
+        </search>
+    </view>
+    <view id='view_grid' name='视图-表格' model='ir.ui.view'>
+        <grid>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="name"/>
+            <field name="model"/>
+            <field name="key"/>
+            <field name="priority"/>
+            <field name="type"/>
+            <field name="inherit_id"/>
+            <field name="mode"/>
+            <field name="module_id"/>
+            <field name="active"/>
+        </grid>
+    </view>
+    <view id='view_form' name='视图-表单' model='ir.ui.view'>
+        <form on-load="onFormLoad">
+            <toolbar buttons="default">
+            </toolbar>
+            <div class="edit-notice" t-visible="module and module!='studio'">
+                <t>不建议编辑当前视图结构，因为应用升级后会被覆盖。</t>
+            </div>
+            <field name="name"/>
+            <field name="model" editor="model-lookup"/>
+            <field name="key"/>
+            <field name="priority"/>
+            <field name="type"/>
+            <field name="inherit_id"/>
+            <field name="mode"/>
+            <field name="module_id" readonly="1"/>
+            <field name="active"/>
+            <field name="arch" editor="code-editor" colspan="4" rows="20"/>
+            <field name="module" visible="0"/>
+        </form>
+    </view>
+</data>

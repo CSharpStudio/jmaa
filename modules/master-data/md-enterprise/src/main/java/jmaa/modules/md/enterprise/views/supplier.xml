@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_supplier_search' name='供应商-查询' model='md.supplier'>
+        <search>
+            <field name='name'/>
+            <field name='code'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_supplier_grid' name='供应商-表格' model='md.supplier'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" ref="edit" t-enable="ids:active==false" class="btn-danger" t-click="delete"
+                        confirm="确定删除?">删除
+                </button>
+            </toolbar>
+            <field name='code' class="info"/>
+            <field name='name'/>
+            <field name='name_en'/>
+            <field name='chars'/>
+            <field name='active'/>
+            <field name='contact'/>
+            <field name='phone'/>
+            <field name='zip'/>
+            <field name='email'/>
+            <field name='address'/>
+            <field name='remark'/>
+        </grid>
+    </view>
+    <view id='md_supplier_form' name='供应商-表单' model='md.supplier'>
+        <form>
+            <toolbar buttons='default'/>
+            <field name='code' t-readonly="id" colspan="2" class="lg"/>
+            <field name='name' colspan="2" class="lg"/>
+            <field name='name_en'/>
+            <field name='chars'/>
+            <field name='active'/>
+            <field name='contact'/>
+            <field name='phone'/>
+            <field name='address'/>
+            <field name='zip'/>
+            <field name='email'/>
+            <field name='remark' colspan="2"/>
+        </form>
+    </view>
+</data>

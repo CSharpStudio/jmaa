@@ -1,0 +1,3 @@
+id,f_char,f_bool,f_date,f_datetime,f_int,f_float,f_text,f_selection,f_m2o_id,f_m2m_ids,f_m2m_tags
+demo.field_type_id31,typeCSV01,true,2021-01-01,2021-01-01 01:01:01,1,3.6,Textdemo,2,demo.m2o1,"[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)],[4,ref(demo.m2m3)]]","[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)],[4,ref(demo.m2m3)]]"
+demo.field_type_id32,typeCSV02,true,2021-01-01,2021-01-01 01:01:01,1,3.6,Textdemo,2,demo.m2o1,"[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)],[4,ref(demo.m2m3)]]","[[4,ref(demo.m2m1)],[4,ref(demo.m2m2)],[4,ref(demo.m2m3)]]"

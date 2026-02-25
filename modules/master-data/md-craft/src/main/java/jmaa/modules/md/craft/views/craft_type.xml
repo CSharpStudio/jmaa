@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_craft_type_search' name='制程类型-查询' model='md.craft_type'>
+        <search>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='md_craft_type_grid' name='制程类型-表格' model='md.craft_type'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='algorithm'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_craft_type_form' name='制程类型-表单' model='md.craft_type'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='algorithm'/>
+            <field name='active'/>
+        </form>
+    </view>
+</data>

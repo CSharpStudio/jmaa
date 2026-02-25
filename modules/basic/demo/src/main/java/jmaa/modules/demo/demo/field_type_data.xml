@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <record id="demo.m2o11" model="demo.many2one">
+        <field name="name">多对一1DemoXml</field>
+    </record>
+    <record id="demo.m2o12" model="demo.many2one">
+        <field name="name">多对一2DemoXml</field>
+    </record>
+    <record id="demo.m2o13" model="demo.many2one">
+        <field name="name">多对一3DemoXml</field>
+    </record>
+
+    <record id="demo.m2m11" model="demo.many2many">
+        <field name="name">多对多1DemoXml</field>
+    </record>
+    <record id="demo.m2m12" model="demo.many2many">
+        <field name="name">多对多2DemoXml</field>
+    </record>
+    <record id="demo.m2m13" model="demo.many2many">
+        <field name="name">多对多3DemoXml</field>
+    </record>
+    <record id="demo.m2m14" model="demo.many2many">
+        <field name="name">多对多4DemoXml</field>
+    </record>
+
+    <record id="demo.o2m11" model="demo.one2many">
+        <field name="name">一对多1DemoXml</field>
+    </record>
+    <record id="demo.o2m12" model="demo.one2many">
+        <field name="name">一对多2DemoXml</field>
+    </record>
+    <record id="demo.o2m13" model="demo.one2many">
+        <field name="name">一对多3DemoXml</field>
+    </record>
+
+    <record id="demo.d11" model="demo.field_type">
+        <field name="f_char">hello-DemoXml</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2021-01-01</field>
+        <field name="f_datetime">2021-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">鬼灭之刃 demo\r\ntest</field>
+        <field name="f_selection">2</field>
+        <field name="f_m2o_id" ref="demo.m2o11"/>
+        <field name="f_m2m_ids" eval="[[4,ref(demo.m2m11)],[4,ref(demo.m2m12)]]"/>
+        <field name="f_m2m_tags" eval="[[4,ref(demo.m2m11)],[4,ref(demo.m2m12)]]"/>
+    </record>
+    <!-- 新添加 -->
+    <record id="demo.d101" model="demo.field_type">
+        <field name="f_char">hello100-DemoXml</field>
+        <field name="f_bool">true</field>
+        <field name="f_date">2023-01-01</field>
+        <field name="f_datetime">2023-01-01 01:01:01</field>
+        <field name="f_int">1</field>
+        <field name="f_float">1.1</field>
+        <field name="f_text">一拳超人 demo\r\ntest</field>
+        <field name="f_selection">1</field>
+        <field name="f_m2o_id" ref="demo.m2o11"/>
+        <field name="f_m2m_ids" eval="[[4,ref(demo.m2m11)],[4,ref(demo.m2m12)],[4,ref(demo.m2m13)]]"/>
+        <field name="f_m2m_tags" eval="[[4,ref(demo.m2m11)],[4,ref(demo.m2m12)],[4,ref(demo.m2m13)]]"/>
+    </record>
+
+</data>

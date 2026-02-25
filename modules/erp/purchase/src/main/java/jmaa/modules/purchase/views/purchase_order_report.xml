@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='purchase_order_report_search' name='采购订单-查询' model='purchase.order_report'>
+        <search criteria="[['po_id.status','!=','draft']]">
+            <field name='po_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='supplier_id'/>
+            <field name='type'/>
+            <field name='company_id'/>
+            <field name='order_date' editor="date-range"/>
+        </search>
+    </view>
+    <view id='purchase_order_report_grid' name='采购订单-表格' model='purchase.order_report'>
+        <grid footer="1">
+            <toolbar buttons='query|export'>
+            </toolbar>
+            <field name='po_id' link="1"/>
+            <field name='line_no' t-readonly="1"/>
+            <field name='material_id' link="1"/>
+            <field name='material_name_spec'/>
+            <field name='purchase_qty' class="sum col-info"/>
+            <field name='receive_qty' class="sum col-warning"/>
+            <field name='stock_in_qty' class="sum col-success"/>
+            <field name='return_qty' class="sum col-danger"/>
+            <field name='unit_id'/>
+            <field name='deliver_date'/>
+            <field name='supplier_id' link="1"/>
+            <field name='order_date'/>
+            <field name='order_status'/>
+            <field name='type'/>
+            <field name='material_category'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+</data>

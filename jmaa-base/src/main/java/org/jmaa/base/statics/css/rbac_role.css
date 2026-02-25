@@ -1,0 +1,151 @@
+.per-app {
+    color: #fff;
+    background-color: #007bff;
+    padding: 0.75rem 1.25rem;
+}
+
+.per-menu {
+    padding: 0.5rem 1rem 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.per-menu .fa{
+    margin-right: .25rem;
+}
+
+.hilite{
+    color: #0056b3;
+}
+
+.form-check {
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+}
+
+.form-check-label{
+    margin: 0 10px 0 3px;
+    padding-bottom: 2px;
+}
+
+.check-box {
+    height: 100%;
+    display: none;
+    width: 100%;
+}
+
+.check-box>:last-child{
+    padding-bottom: 30px;
+}
+
+.check-box-show {
+    display: block;
+}
+
+.per-field, .per-related {
+    margin-left: 2rem;
+    margin-top: -0.8rem;
+}
+
+.per-related .per-menu {
+    margin-top: -0.8rem;
+}
+
+.role-box {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px solid rgb(234, 234, 234);
+}
+
+.role-box-menu {
+    width: 200px;
+    border-right: 1px solid rgb(234, 234, 234);
+    height: 560px;
+    overflow-y: auto;
+}
+
+.role-box-menu-con {
+    width: 100%;
+    background-color: #fff;
+}
+
+.role-box-menu-con .role-box-menu-con-txt {
+    padding: 10px 20px;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+}
+
+.role-box-menu-con:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.role-box-menu-con:hover .role-box-menu-con-txt {
+    color: #007bff;
+}
+
+.role-box-menu-con-active {
+    background-color: rgb(245, 245, 245);
+}
+
+.role-box-menu-con-active .role-box-menu-con-txt {
+    color: #007bff;
+}
+
+.role-box-info {
+    flex: 1;
+    padding: 10px 10px;
+    box-sizing: border-box;
+
+    height: 560px;
+    overflow-y: auto;
+}
+
+.search-results .list-group {
+    position: absolute;
+    width: 100%;
+    z-index: 1039;
+}
+
+.list-group {
+    box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014,
+    0 9px 28px 8px #0000000d;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    background-color: #fff;
+    padding: 0.575rem 1.275rem !important;
+    cursor: pointer;
+}
+
+.list-group-item .search-path {
+    color: #000;
+    font-size: 0.9rem !important;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.list-group-item:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.list-group-item:hover .search-path {
+    color: #007bff;
+    font-size: 0.9rem !important;
+}
+
+.search-results {
+    position: relative;
+    display: none;
+    width: 100%;
+}
+
+.search-open .search-results {
+    display: inline-block;
+}

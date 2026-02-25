@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='qsd_mrb_resource' name='MRB-资源' model='qsd.mrb'>
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/wms/qc/statics/js/mrb.js"/>
+        </resource>
+    </view>
+    <view id='qsd_mrb_search' name='MRB-查询' model='qsd.mrb'>
+        <search>
+            <field name='code'/>
+            <field name='material_id'/>
+            <field name='create_date' editor="date-range"/>
+        </search>
+    </view>
+    <view id='qsd_mrb_grid' name='MRB-表格' model='qsd.mrb'>
+        <grid>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='status' tags="{draft:'warning',commit:'primary',approve:'info',reject:'danger',_:'secondary',done:'success'}"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='related_code'/>
+            <field name='type'/>
+            <field name='result'/>
+            <field name='qty'/>
+            <field name='unit_id'/>
+        </grid>
+    </view>
+    <view id='qsd_mrb_form' name='MRB-表单' model='qsd.mrb'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="ids:['draft', 'reject'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <field name="status" editor="statusbar" values="draft,commit,approve,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='material_id' readonly="1"/>
+            <field name='material_name_spec'/>
+            <field name='related_code' readonly="1"/>
+            <field name='type' readonly="1"/>
+            <field name='supplier_id' readonly="1"/>
+            <field name='customer_id' readonly="1"/>
+            <field name='qty' readonly="1"/>
+            <field name='unit_id'/>
+            <field name='result' required="1"/>
+            <field name='attachments'/>
+            <field name='related_model' visible="0"/>
+            <tabs>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

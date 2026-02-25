@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='user_setting_order_form' key="order" name='排单用户设置-表单' model='as.user_settings'>
+        <form logAccess="0" cols="2">
+            <group label="自动拆单规则">
+                <field name='split_craft_order'/>
+                <field name='split_max_size'/>
+            </group>
+            <group label="自动合单规则">
+                <field name="merge_craft_order"/>
+                <field name="merge_min_size"/>
+                <field name="merge_customer"/>
+                <field name="merge_factory_due_date"/>
+                <field name="merge_material_spec"/>
+            </group>
+        </form>
+    </view>
+    <view id='user_setting_task_form' key="task" name='排程用户设置-表单' model='as.user_settings'>
+        <form logAccess="0" cols="4">
+            <group label="显示设置" colspan="3">
+                <field name='task_begin_offset'/>
+                <field name='task_end_offset'/>
+                <field name='task_line_height'/>
+            </group>
+            <div style="max-height:460px;overflow-y:auto;min-width: 300px;" class="grid-colspan-1 grid-rowspan-3">
+                <field name='hide_resource_ids' editor="resource-visible" nolabel="1"/>
+            </div>
+            <group label="微调区设置" colspan="3">
+                <field name="task_minor_begin_offset"/>
+                <field name="task_minor_end_offset"/>
+            </group>
+            <group label="任务设置" colspan="3">
+                <field name="task_show_finished"/>
+                <field name="task_remove_gaps"/>
+                <field name="task_show_link"/>
+                <field name="task_move_linkage"/>
+                <field name="task_lock_related"/>
+                <field name="task_show_animate"/>
+                <field name="task_severe_delay_days"/>
+                <field name="task_advance_days"/>
+                <field name="task_severe_advance_days"/>
+            </group>
+        </form>
+    </view>
+</data>

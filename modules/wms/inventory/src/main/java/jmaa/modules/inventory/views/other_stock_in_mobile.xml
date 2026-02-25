@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_other_stock_in_mobile_resource" name="其它入库-移动端-资源" model="wms.other_stock_in_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/other_stock_in_mobile.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+
+    <view id="wms_other_stock_in_mobile_view" name="其它入库-移动端" model="wms.other_stock_in_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>其它入库</t>
+                    </h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-input focus" type="text" t-enter="searchOrder"
+                               placeholder="单号/物料编码/标签条码"/>
+                        <button type="button" class="clear-input" t-click="resetSearchOrder"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 84px)">
+                    <list ref="orderList" load-method="loadOrderList" on-item-click="openDetails">
+                        <card style="margin-bottom:5px;">
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name="supplier_id" colspan="2"/>
+                            <field name="customer_id" colspan="2"/>
+                            <field name="warehouse_id" colspan="2"/>
+                            <field name="type" colspan="1" label="入库类型"/>
+                            <field name="status" colspan="1"/>
+                            <field name="remark" colspan="2"/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2>
+                        <t>其它入库</t>
+                    </h2>
+                    <a class="back-link" t-click="searchOrder" focus-to=".search-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="otherStockInTab" label="其它入库">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input class="scan-label-input" type="text" t-enter="scanCode"
+                                           placeholder="标签条码"/>
+                                </div>
+                            </div>
+                            <div style="height:calc(100% - 40px)">
+                                <form ref="orderForm">
+                                    <field name="code" readonly="1"/>
+                                    <!--<field name="status" readonly="1"/>-->
+                                    <field name="supplier_id" readonly="1"/>
+                                    <field name="customer_id" readonly="1"/>
+                                    <field name="warehouse_id"/>
+                                    <editor name="location" type="scanner" label="入库库位" t-enter="checkLocation"/>
+                                    <editor name="location_id" type="char" visible="0"/>
+                                    <editor name="auto_confirm" type="boolean" label="自动确认"/>
+                                    <field name="remark" colspan="2"/>
+                                    <editor name='result' label="扫描结果" colspan="2" type="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="物料明细" t-click="showMaterialList">
+                            <list ref="materialList" load-method="loadMaterialList" model="wms.other_stock_in_line"
+                                  style="height:calc(100% - 28px)">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name="request_qty"/>
+                                    <field name="scan_qty"/>
+                                    <field name='unit_id'/>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab label="扫码明细" t-click="showDetailsList">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label>
+                                            <t>全部</t>
+                                            <input name="scope" type="radio" value="all"/>
+                                        </label>
+                                        <label>
+                                            <t>未完成</t>
+                                            <input checked="checked" name="scope" type="radio" value="undone"/>
+                                        </label>
+                                    </fieldset>
+                                    <div class="flex-fill"/>
+                                    <button t-click="createStockOut" type="button" class="btn-primary">
+                                        <t>生成入库单</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList" model="wms.other_stock_in_details"
+                                  style="height:calc(100% - 40px)">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='sn' colspan="2"/>
+                                    <field name='lot_num' colspan="2"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='qty' colspan="1"/>
+                                    <field name='unit_id'/>
+                                    <field name='warehouse_id'/>
+                                    <field name='location_id'/>
+                                    <field name='status'/>
+                                    <div style="position:absolute;right:20px;bottom:10px">
+                                        <button class="ui-btn" t-click="deleteDetail">
+                                            <t>删除</t>
+                                        </button>
+                                    </div>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+    <view id='wms_other_stock_in_dialog_mobile' name='其它入库-移动端-对话框' key="other_stock_in_dialog_mobile"
+          model='wms.other_stock_in_dialog'>
+        <form logAccess="0" cols="3">
+            <field name='sn' colspan="2" class="lg"/>
+            <field name="qty" colspan="1"/>
+            <field name='material_id' link="0" colspan="2"/>
+            <field name='stock_rule' colspan="1"/>
+            <field name='material_name_spec' colspan="2"/>
+            <field name='request_qty' colspan="1"/>
+            <field name='scan_qty' colspan="1"/>
+            <field name='unit_id' colspan="1"/>
+            <field name='warehouse_id' colspan="2"/>
+            <field name='location_id' colspan="2"/>
+        </form>
+    </view>
+</data>

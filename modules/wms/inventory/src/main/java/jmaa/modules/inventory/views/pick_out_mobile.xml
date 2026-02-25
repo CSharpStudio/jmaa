@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="pick_out_mobile_resource" name="挑选-移动端-资源" model="wms.pick_out_mobile">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/pick_out_mobile.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+        </resource>
+    </view>
+    <view id="pick_out_mobile_mobile_view" type="mobile" name="挑选-移动端" model="wms.pick_out_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2><t>挑选</t></h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-pick-input focus" type="text" t-enter="searchPickList"
+                               placeholder="来料检验单/挑选单/物料编码/标签"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 136px)">
+                    <list ref="pickList" load-on-init="1" load-method="loadPickList" model="wms.pick_out_mobile"
+                          on-item-click="openPick">
+                        <card>
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name='material_id' colspan="2"/>
+                            <field name='material_name_spec' colspan="2"/>
+                            <field name='related_code' colspan="2"/>
+                            <field name='type'/>
+                            <field name='qty'/>
+                            <field name='status'/>
+                        </card>
+                    </list>
+                </div>
+            </div>
+            <div class="ui-page" id="pick">
+                <div data-role="header">
+                    <h2><t>挑选</t></h2>
+                    <a class="back-link" t-click="backSearchList" focus-to=".search-pick-input"/>
+                </div>
+                <div style="height:calc(100% - 42px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab label="挑选" t-click="showDetailList" name="pickTab">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input class="pick-detail-input" type="text" t-enter="scanPickDetail"
+                                           placeholder="请扫描标签条码"/>
+                                    <button class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <fieldset data-role="controlgroup" data-type="horizontal">
+                                        <label><t>挑选入库</t>
+                                            <input name="pickType" type="radio" value="true"/>
+                                        </label>
+                                        <label><t>挑选退货</t>
+                                            <input checked="checked" name="pickType" type="radio" value="false"/>
+                                        </label>
+                                    </fieldset>
+                                    <div class="flex-fill"></div>
+                                    <button t-click="submitOrder" type="button" class="ui-btn btn-primary btn-submit-pick"><t>提交</t></button>
+                                </div>
+                            </div>
+                            <div class="list-panel">
+                                <list ref="detail_ids" model="wms.pick_out_details"
+                                      load-method="loadDetailMethod">
+                                    <card>
+                                        <field name="sn"/>
+                                        <field name='$rownum' nolabel="1" render="rownum"/>
+                                        <field name="material_code" colspan="2"/>
+                                        <field name="material_name_spec" colspan="2"/>
+                                        <field name="material_stock_rule" colspan="2"/>
+                                        <field name="qty" colspan="2"/>
+                                        <field name="status" colspan="1"/>
+                                        <div style="position:absolute;right:20px;bottom:10px">
+                                            <button class="ui-btn delete-detail" t-click="deleteDetail"><t>删除</t></button>
+                                        </div>
+                                    </card>
+                                </list>
+                            </div>
+                        </tab>
+                        <tab label="物料明细">
+                            <div class="border-bottom" style="height:100%">
+                                <form ref="pickForm" on-load="onPickFormLoad" >
+                                    <field name="code"/>
+                                    <field name='material_id'/>
+                                    <field name='qty'/>
+                                    <field name='material_name_spec'/>
+                                    <field name='related_code'/>
+                                    <field name='type'/>
+                                    <field name='status'/>
+                                    <field name='pick_type' visible="0"/>
+                                </form>
+                            </div>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+    <view id="pick_out_lot_num_form" key="pick_outlot_num_mobile" name="移动端-批次号挑选"
+          model="wms.pick_out_details">
+        <form logAccess="0" cols="3">
+            <field name="sn" readonly="1" colspan="2"/>
+            <field name="material_id" readonly="1" colspan="2"/>
+            <field name="material_name_spec" readonly="1" colspan="2"/>
+            <field name="material_stock_rule" readonly="1" colspan="2"/>
+            <field name="qty" colspan="2" label="挑选数量"/>
+        </form>
+    </view>
+
+</data>

@@ -1,0 +1,210 @@
+@import 'gantt.css';
+
+.custom-panel,
+.panel-main,
+.panel-right {
+    height: 100%;
+}
+
+.custom-panel {
+    display: flex;
+    overflow: hidden;
+}
+
+.panel-main {
+    width: calc(100% - 250px);
+}
+
+.panel-right {
+    width: 250px;
+    border-left: 1px solid #ddd;
+}
+
+.m-header {
+    border-bottom: 1px solid #ddd;
+    height: 34px;
+    display: flex;
+}
+
+.m-header .toolbar {
+    display: flex;
+    margin: auto 10px;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.m-header .toolbar .btn-group {
+    margin: 0;
+}
+
+.m-header .toolbar .divider {
+    border-left: 1px solid #ddd;
+    margin: 5px 5px 5px 2px;
+}
+
+.m-body {
+    height: calc(100% - 214px);
+    display: flex;
+}
+
+.m-footer {
+    border-top: 1px solid #ddd;
+    height: 180px;
+}
+
+.mf-tabs .tab-pane {
+    height: 100%;
+    overflow: auto;
+}
+
+
+.rp-tabs {
+    height: calc(100% - 180px);
+}
+
+.rp-footer {
+    height: 180px;
+    border-top: 1px solid #ddd;
+}
+
+.rp-footer .title {
+    border-bottom: 1px solid #ddd;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+
+.rp-footer .msg-box .msg-list {
+    height: 150px;
+    border: none;
+}
+
+.modal-body .to-order-grid .dataTables_wrapper {
+    min-height: 200px;
+    max-height: 280px;
+    margin-bottom: 5px;
+    padding-bottom: 0;
+}
+
+[t-click=enableEdit].active {
+    box-shadow: 0 0 0 .2rem #117A8B86 !important;
+}
+
+.custom-tooltip {
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.dropdown-menu {
+    z-index: 90000;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.task-info {
+    overflow: auto;
+    height: 100%;
+}
+
+.task-info.jui-form .form-body .form-card {
+    margin: 0;
+    box-shadow: none;
+    border: none;
+}
+
+.task-info.jui-form .form-body .e-form {
+    padding: 0 10px;
+}
+
+.task-info.jui-form .form-body [data-editor=details] .e-form {
+    padding: 0;
+}
+
+.task-info.jui-form .card-view {
+    grid-row: span 4 !important;
+    margin-bottom: 10px;
+}
+
+.task-info.jui-form .card-view .form-group {
+    grid-column: span 1 !important;
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+.task-info.jui-form .card-view .form-group label {
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+.task-info.jui-form .card-view .form-group label ~ [data-field],
+.task-info.jui-form .card-view .form-group label ~ [data-editor] {
+    max-width: calc(100% - 60px);
+    margin-left: auto;
+    flex: auto;
+}
+
+.task-info.jui-form .divider {
+    border-bottom: 1px solid #ddd;
+    margin: 2px;
+}
+
+.task-info.jui-form .card-view .form-control {
+    font-size: .875rem;
+    height: 20px;
+    border: none;
+}
+
+.scheme-form.jui-form {
+    grid-row: span 4 !important;
+    margin-bottom: 10px;
+}
+
+.scheme-form.jui-form .form-group {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.scheme-form.jui-form .form-group label {
+    line-height: 30px;
+    white-space: nowrap;
+}
+
+.scheme-form.jui-form .form-group label ~ [data-field],
+.scheme-form.jui-form .form-group label ~ [data-editor] {
+    max-width: calc(100% - 64px);
+    margin-left: auto;
+    padding-left: 10px;
+    flex: auto;
+}
+
+.scheme-form.jui-form .form-body .e-form {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.scheme-toolbar {
+    padding-left: 7px;
+}
+
+.task-related.jui-grid table.dataTable {
+    margin-top: -1px !important;
+}
+
+
+.task-related.jui-grid table.dataTable > thead > tr > th {
+    border-top: none;
+}
+
+.task-related.jui-grid > div > .row > .col-sm-12 {
+    padding-right: 0;
+}

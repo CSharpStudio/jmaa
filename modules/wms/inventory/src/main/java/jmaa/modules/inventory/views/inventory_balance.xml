@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='inventory_balance_resource' name='仓库平账单-资源' model='wms.inventory_balance'>
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/inventory_balance.js"/>
+        </resource>
+    </view>
+    <view id='inventory_balance_search' name='仓库平账单-查询' model='wms.inventory_balance'>
+        <search>
+            <field name='code'/>
+            <field name='status'/>
+            <field name="inventory_check_id"/>
+        </search>
+    </view>
+    <view id='inventory_balance_grid' name='仓库平账单-表格' model='wms.inventory_balance'>
+        <grid>
+            <toolbar buttons='query'/>
+            <field name='code'/>
+            <field name='status' tags="{draft:'warning',balance:'info',done:'success'}"/>
+            <field name="inventory_check_id"/>
+        </grid>
+    </view>
+    <view id='inventory_balance_form' name='仓库平账单-表单' model='wms.inventory_balance'>
+        <form>
+            <toolbar buttons='reload'>
+                <button label="平账" auth="read" class="btn-info" t-click="inventoryBalance" confirm="确定执行平账?" t-enable="status !=='done'"/>
+                <field name='status' editor="statusbar" values="draft,balance,done"/>
+            </toolbar>
+            <field name='code'/>
+            <field name="inventory_check_id"/>
+            <tabs>
+                <tab label='盘点物料明细'>
+                    <field name='line_ids' colspan='4' nolabel='1' t-filter="lineFilter">
+                        <grid>
+                            <toolbar buttons='export|reload'>
+                                <div class="input-group" position="after">
+                                    <input id="searchLineInput" t-enter="searchLine" type="text" class="form-control"
+                                           placeholder="按物料编码搜索"/>
+                                    <div class="input-suffix">
+                                        <button type="button" auth="read" class="btn btn-default btn-lookup"
+                                                t-click="searchLine">
+                                            <i class="fa fa-search">
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </toolbar>
+                            <field name='material_id'/>
+                            <field name='status'/>
+                            <field name='material_name_spec'/>
+                            <field name='stock_rule'/>
+                            <field name='abc_type'/>
+                            <field name='category'/>
+                            <field name='qty'/>
+                            <field name='first_qty'/>
+                            <field name='second_qty'/>
+                            <field name='diff_qty'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='盘点标签明细'>
+                    <field name='details_ids' colspan='4' nolabel='1' t-filter="detailsFilter">
+                        <grid>
+                            <toolbar buttons='export|reload'>
+                                <div class="input-group" position="after">
+                                    <input id="searchDetailsInput" t-enter="searchDetails" type="text"
+                                           class="form-control"
+                                           placeholder="按物料编码搜索"/>
+                                    <div class="input-suffix">
+                                        <button type="button" auth="read" class="btn btn-default btn-lookup"
+                                                t-click="searchDetails">
+                                            <i class="fa fa-search">
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </toolbar>
+                            <field name="sn"/>
+                            <field name="lot_num"/>
+                            <field name='status'/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='material_stock_rule'/>
+                            <field name='qty'/>
+                            <field name='first_qty'/>
+                            <field name='second_qty'/>
+                            <field name='warehouse_id'/>
+                            <field name='location_id'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'></field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='wip_container_resource' name='生产容器-资源' model='wip.container'>
+        <resource>
+            <script src="/web/jmaa/modules/wip/statics/js/container.js"></script>
+        </resource>
+    </view>
+    <view id='wip_container_search' name='生产容器-查询' model='wip.container'>
+        <search>
+            <field name='code'/>
+            <field name='work_order_id'/>
+            <field name="status"/>
+        </search>
+    </view>
+    <view id='wip_container_grid' name='生产容器-表格' model='wip.container'>
+        <grid>
+            <toolbar buttons='default'>
+                <button label="解绑" t-enable="ids:status=='in-use'" confirm="确认解绑容器?" service="unbind"></button>
+                <button label="启用" t-enable="ids:status=='unusable'" confirm="确认启用容器?"
+                        service="setUsable"></button>
+                <button label="禁用" t-enable="ids:status=='idle'" confirm="确认禁用容器?" service="setUsable"></button>
+            </toolbar>
+            <field name='code'/>
+            <field name="status" tags="{'in-use':'success','idle':'info','_':'secondary'}"/>
+            <field name='work_order_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='qty'/>
+            <field name='capacity'/>
+        </grid>
+    </view>
+    <view id='wip_container_form' name='生产容器-表单' model='wip.container'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='capacity'/>
+            <field name="status" readonly="1"/>
+            <field name='work_order_id' readonly="1"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='qty' readonly="1"/>
+        </form>
+    </view>
+</data>

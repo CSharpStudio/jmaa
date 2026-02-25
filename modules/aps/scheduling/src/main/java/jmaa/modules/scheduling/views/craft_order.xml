@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='as_craft_order_search' name='制程单-查询' model='as.craft_order'>
+        <search>
+            <field name='code'/>
+            <field name='product_order_id'/>
+        </search>
+    </view>
+    <view id='as_craft_order_grid' name='制程单-表格' model='as.craft_order'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='status'/>
+            <field name='product_order_id'/>
+            <field name='craft_process_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='plan_qty'/>
+            <field name='to_plan_qty'/>
+            <field name='material_ready_date'/>
+            <field name='transfer_batch'/>
+            <field name='transfer_time'/>
+            <field name='interval_days'/>
+            <field name='next_relationship'/>
+            <field name='next_order_id'/>
+        </grid>
+    </view>
+    <view id='as_craft_order_form' name='制程单-表单' model='as.craft_order'>
+        <form>
+            <toolbar buttons='default'>
+                <field name="status" editor="statusbar" values="new,plan,release"/>
+            </toolbar>
+            <field name='code' readonly="1"/>
+            <field name='product_order_id' readonly="1"/>
+            <field name='craft_process_id' readonly="1"/>
+            <field name='material_name_spec' readonly="1"/>
+            <field name='material_id' readonly="1"/>
+            <field name='plan_qty' readonly="1"/>
+            <field name='material_ready_date'/>
+            <field name='transfer_batch'/>
+            <field name='transfer_time'/>
+            <field name='interval_days'/>
+            <field name='next_relationship' readonly="1"/>
+            <field name='next_order_id' readonly="1"/>
+            <tabs>
+                <tab label="工时定额" t-visible="id">
+                    <field name="quota_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="resource_id"/>
+                            <field name="priority"/>
+                            <field name="cycle_time"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

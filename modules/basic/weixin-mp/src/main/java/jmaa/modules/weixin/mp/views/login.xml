@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <web id="wx_web_login" inherit_id="base.web_login" name="wx.web.login">
+        <xpath expr="head" position="inside">
+            <link rel="stylesheet" href="/web/jmaa/modules/weixin/mp/statics/css/login.css"/>
+        </xpath>
+        <xpath expr="body" position="inside">
+            <script src="/web/jmaa/modules/weixin/mp/statics/js/login.js"></script>
+        </xpath>
+        <xpath expr=".login-options" position="inside">
+            <div class="wxmp-qr d-none">
+                <img src="/web/jmaa/modules/weixin/mp/statics/about.jpg"/>
+                <a href="#" class="nav-link">
+                    <t>返回登录</t>
+                </a>
+            </div>
+            <a href="#" class="nav-link wxmp-link pl-0">
+                <t>关注公众号获取试用账号</t>
+            </a>
+        </xpath>
+    </web>
+</data>

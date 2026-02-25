@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="product_menus" name="产品资料" seq="30" parent="md-enterprise.master_data_menus">
+        <menu id="product_family_menu" name="产品族" model="md.product_family" view="grid,form"/>
+        <menu id="product_model_menu" name="产品机型" model="md.product_model" view="grid,form"/>
+        <menu id="bom_menu" name="产品BOM" model="md.bom" view="grid,form"/>
+        <menu id="defect_menu" name="产品缺陷" model="md.defect" view="grid,form"/>
+    </menu>
+</data>
+

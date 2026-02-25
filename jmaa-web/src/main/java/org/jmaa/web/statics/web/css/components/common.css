@@ -1,0 +1,51 @@
+.d-grid {
+    display: grid;
+}
+
+.grid-colspan-1 {
+    grid-column: span 1 !important;
+}
+
+.grid-colspan-2 {
+    grid-column: span 2 !important;
+}
+
+.grid-colspan-3 {
+    grid-column: span 3 !important;
+}
+
+.grid-colspan-4 {
+    grid-column: span 4 !important;
+}
+
+.grid-rowspan-1 {
+    grid-row: span 1 !important;
+}
+
+.grid-rowspan-2 {
+    grid-row: span 2 !important;
+}
+
+.grid-rowspan-3 {
+    grid-row: span 3 !important;
+}
+
+.grid-rowspan-4 {
+    grid-row: span 4 !important;
+}
+
+.grid-template-columns-1 {
+    grid-template-columns: repeat(1, 1fr) !important;
+}
+
+.grid-template-columns-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.grid-template-columns-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.grid-template-columns-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+}

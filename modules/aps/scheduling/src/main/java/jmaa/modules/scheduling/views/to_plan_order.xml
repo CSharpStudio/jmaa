@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='as_to_plan_order_search' name='待排订单-查询' model='as.to_plan_order'>
+        <search>
+            <field name='code'/>
+            <field name='material_id' view="default"/>
+            <field name='customer_id'/>
+            <field name='factory_due_date' editor="date-range"/>
+            <field name='customer_due_date' editor="date-range"/>
+        </search>
+    </view>
+    <view id='as_to_plan_order_grid' name='待排订单-表格' model='as.to_plan_order'>
+        <grid>
+            <toolbar buttons='query'>
+                <button label="生成计划单" class="btn-primary" t-click="generatePlanTask" t-enable="ids"></button>
+                <button label="生成规则" t-click="orderUserSettings"></button>
+            </toolbar>
+            <field name='id' style="width:1%" column="craft-column" label=" " ordering="0"/>
+            <field name='code'/>
+            <column name='result' type="result-column" label="生成提示"/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='plan_qty'/>
+            <field name='priority'/>
+            <field name='customer_id'/>
+            <field name="factory_due_date"/>
+            <field name="customer_due_date"/>
+        </grid>
+    </view>
+    <view id='as_craft_order_to_plan' key="to-plan" name='待排订单-制程单明细' model='as.craft_order'>
+        <grid>
+            <field name='code'/>
+            <column name='result' type="char" label="生成提示"/>
+            <column name='generate_status' type="char" label="状态"/>
+            <field name='product_order_id'/>
+            <field name='craft_process_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='plan_qty'/>
+            <field name='to_plan_qty'/>
+            <field name='material_ready_date'/>
+            <field name='workshop_id'/>
+            <field name='transfer_time'/>
+        </grid>
+    </view>
+    <view id='as_craft_order_plan_task' key="plan-task" name='待排订单-计划任务制程单' model='as.craft_order'>
+        <grid>
+            <column name='craft_order_code' type="char" label="制程单"/>
+            <column name='product_order_code' type="char" label="生产订单"/>
+            <column name='craft_process' type="char" label="制程名称"/>
+            <column name='material_code' type="char" label="产品编码"/>
+            <field name='material_name_spec'/>
+            <field name='plan_qty'/>
+            <field name='material_ready_date'/>
+            <column name='factory' type="char" label="指定工厂"/>
+            <field name='transfer_time'/>
+        </grid>
+    </view>
+    <view id='as_to_plan_task' key="to-plan" name='待排订单-待排计划任务' model='as.to_plan_order'>
+        <grid>
+            <field name='id' style="width:1%" column="craft-column" label=" " ordering="0"/>
+            <column name='code' type="char" label="制程单号"/>
+            <column name='craft_type' type="char" label="制程类型"/>
+            <column name='plan_qty' type="float" label="计划数量"/>
+            <column name='mold_code' type="char" label="模具条码"/>
+            <column name='mold_model' type="char" label="模具型号"/>
+        </grid>
+    </view>
+</data>

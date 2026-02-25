@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <menu id="product_storage_notice_menu" seq="400" name="成品入库通知" model="mfg.product_storage_notice"
+          view="grid,form" parent="manufacturing.mfg_menus"/>
+    <menu id="material_return_menu" name="生产退料" seq="410" model="mfg.material_return" view="grid,form"
+          parent="manufacturing.mfg_menus"/>
+    <menu id="@inventory.stock_out_menus" name="出库管理" seq="420">
+        <menu id="@mfg.material_issue_menu" name="生产发料" seq="10" model="mfg.material_issue" view="grid,card,form"/>
+    </menu>
+    <m-menu id="material_return_mobile_menu" name="生产退料" seq="110" model="mfg.material_return_mobile" view="mobile"
+            parent="manufacturing.m_mfg_menus"/>
+    <m-menu id="product_storage_notice_mobile_menu" name="成品入库通知" seq="60" parent="manufacturing.m_mfg_menus"
+            model="mfg.product_storage_notice_mobile" view="mobile"/>
+</data>

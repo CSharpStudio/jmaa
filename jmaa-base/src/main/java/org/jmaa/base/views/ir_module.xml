@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='module_resource' name='模块-资源' model='ir.module'>
+        <resource>
+            <script src="/web/org/jmaa/base/statics/js/ir_module.js"></script>
+            <link href="/web/org/jmaa/base/statics/css/ir_module.css" rel="stylesheet"></link>
+        </resource>
+    </view>
+    <view id='module_search' name='模块-查询' model='ir.module'>
+        <search>
+            <field name="label"/>
+            <field name="state"/>
+            <field name="application" editor="selection" options="{'1':'应用','0':'服务'}" label="类型" default="1"/>
+            <aside field="category_id"/>
+        </search>
+    </view>
+    <view id='module_grid' name='模块-表格' model='ir.module'>
+        <grid>
+            <toolbar buttons="query|create|edit|delete|export">
+                <button t-enable="ids:state=='installable'" label="安装" service="install"/>
+                <button t-enable="state=='installed'" label="卸载" service="uninstall" ref="install"/>
+                <button t-enable="state=='installed'" label="升级" service="upgrade" ref="install"/>
+                <button label="更新应用清单" service="updateModules" ref="install"/>
+                <button label="升级所有应用" service="upgradeAll" ref="install"/>
+                <button label="安装所有应用" ref="install" service="installAll"/>
+                <button label="重启租户" service="resetTenant"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="label"/>
+            <field name="category_id"/>
+            <field name="author"/>
+            <field name="license"/>
+            <field name="state"/>
+        </grid>
+    </view>
+    <view id='module_card' name='模块-卡片' model='ir.module'>
+        <card t-dblclick="0" limit="1000">
+            <toolbar buttons="query|create|edit|delete">
+                <button label="升级所有应用" service="upgradeAll"/>
+                <button label="安装所有应用" ref="upgradeAll" service="installAll"/>
+                <button label="更新应用清单" service="updateModules" ref="upgradeAll"/>
+                <button label="重启租户" service="resetTenant"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="label"/>
+            <field name="author"/>
+            <field name="license"/>
+            <field name="state"/>
+            <field name="image"/>
+            <template>
+                <div class="card-body">
+                    <div class="card-module">
+                        <div class="card-menu">
+                            <div class="nav-item dropdown">
+                                <span data-toggle="dropdown" role="button">
+                                    <span class="fa fa-bars"></span>
+                                </span>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <span role="button" t-click="edit" class="dropdown-item">${'模块信息'.t()}</span>
+                                    {@if state[0]==='installed'}
+                                    <span role="button" t-click="upgrade" class="dropdown-item">${'升级'.t()}</span>
+                                    <div role="separator" class="dropdown-divider">
+                                    </div>
+                                    {@if name!='base'}
+                                    <span role="button" t-click="uninstall" class="dropdown-item">${'卸载'.t()}</span>
+                                    {@/if}
+                                    {@/if}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="module-icon">
+                                {@if image &amp;&amp; image[0]}
+                                <img src="data:image/png;base64,${image[0].data}" alt="" style="width:100%"/>
+                                {@else}
+                                <img src="/web/org/jmaa/web/statics/img/placeholder.png" alt="" style="width:100%"/>
+                                {@/if}
+                            </i>
+                            <div>
+                                <div>${label}</div>
+                                <small>
+                                    ${author}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="module-tool">
+                            <div class="float-right" style="line-height: 26px;">
+                                {@if state[0]==='installable'}
+                                <button type="button" class="btn btn-sm btn-info" t-click="install">安装</button>
+                                {@else}
+                                <span class="text-xs">已安装</span>
+                                {@/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </card>
+    </view>
+    <view id='module_form' name='模块-表单' model='ir.module'>
+        <form>
+            <toolbar buttons="default">
+                <button type="button" t-enable="state=='installed'" auth="upgrade" t-click="upgrade"
+                        label="升级"></button>
+                <button type="button" t-enable="state=='installed'" service="updateData" label="更新视图"></button>
+                <field name='state' editor="statusbar" values="installable,installed"/>
+            </toolbar>
+            <field name="name"/>
+            <field name="label"/>
+            <field name="category_id"/>
+            <field name="image" rowspan="3"/>
+            <field name="package_info"/>
+            <field name="author"/>
+            <field name="license"/>
+            <field name="description" colspan="3"/>
+            <tabs>
+                <tab label="依赖">
+                    <field name="dependency_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="name"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+
+    <view id='module_category_form' name='模块分类-表单' model='ir.module.category'>
+        <form>
+            <toolbar buttons="default">
+            </toolbar>
+            <field name="name"/>
+            <tabs>
+                <tab label="应用">
+                    <field colspan="4" name="module_ids" nolabel="1" readonly="1">
+                        <grid>
+                            <field name="name"/>
+                            <field name="label"/>
+                            <field name="author"/>
+                            <field name="license"/>
+                            <field name="state"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

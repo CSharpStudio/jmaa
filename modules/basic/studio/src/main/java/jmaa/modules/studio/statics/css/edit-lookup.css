@@ -1,0 +1,64 @@
+.edit-lookup .d-body {
+    height: calc(100% - 40px);
+    display: flex;
+}
+
+.edit-lookup .m-body {
+    flex: 1;
+    padding: 15px;
+    overflow: auto;
+}
+
+.edit-lookup .e-many2one {
+    width: 300px;
+}
+
+.edit-lookup .dropdown-select {
+    display: block;
+    z-index: 100;
+    min-width: 300px;
+    position: relative;
+}
+
+.edit-lookup table.table-bordered.dataTable th,
+.edit-lookup table.table-bordered.dataTable td {
+    border-left-width: 1px;
+    border-left-color: transparent;
+}
+
+.edit-lookup table.dataTable > thead > tr > th.hover,
+.edit-lookup table.dataTable > tbody > tr > td.hover {
+    border-left: 1px dashed #017e84;
+    border-right: 1px dashed #017e84;
+}
+
+.edit-lookup [position=before].drop-target {
+    border-left: 2px solid #017e84 !important;
+    border-right: 1px solid #dee2e6 !important;
+    outline: none !important;
+}
+
+.edit-lookup [position=after].drop-target {
+    border-right: 2px solid #017e84 !important;
+    border-left-color: transparent !important;
+    outline: none !important;
+}
+
+.edit-lookup .holder-item.drop-target {
+    border-left: 2px solid #017e84 !important;
+    border-right: 2px solid #017e84 !important;
+    outline: none !important;
+}
+
+.edit-lookup table.dataTable thead tr th .title {
+    cursor: move;
+}
+
+.edit-lookup .component-tools {
+    top: 0;
+    margin: 0;
+}
+
+.edit-lookup table.dataTable > thead > tr > th.hover .component-tools {
+    display: flex;
+}

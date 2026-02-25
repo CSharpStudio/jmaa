@@ -1,0 +1,345 @@
+.gantt-view {
+
+}
+
+.gantt-view .left-panel {
+    width: 180px;
+    overflow: hidden;
+    border-right: 1px solid #ddd;
+}
+
+.gantt-view .main-panel {
+    flex: 1;
+    overflow: hidden;
+}
+
+.gantt-view .p-lines {
+    overflow: hidden;
+    height: calc(100% - 40px);
+    cursor: default;
+}
+
+.gantt-view .line-footer {
+    height: 30px;
+}
+
+.gantt-view .p-canvas {
+    overflow: auto;
+    position: relative;
+    height: calc(100% - 40px);
+}
+
+.gantt-view .p-canvas .g-lines {
+
+}
+
+.gantt-view .p-canvas .g-bars {
+    display: flex;
+    position: absolute;
+    height: calc(100% - 30px);
+}
+
+.gantt-view .p-canvas .g-bar {
+    border-right: 1px solid #ddd;
+}
+
+.gantt-view .p-canvas .g-deadline {
+    position: absolute;
+    border-left: 2px dashed red;
+    height: 100%;
+}
+
+.gantt-view .p-header {
+    display: flex;
+    justify-content: end;
+    padding: 5px 15px;
+}
+
+.gantt-view .zoom-title {
+    line-height: 26px;
+    padding-right: 10px;
+    font-size: .875rem;
+}
+
+.gantt-view .zoom-slider {
+    width: 80px;
+    margin: 0 10px;
+}
+
+.gantt-view .zoom-slider .slider.slider-horizontal {
+    width: 100%;
+}
+
+.gantt-view .zoom-slider .slider .slider-selection,
+.gantt-view .zoom-slider .slider .slider-track-high {
+    background: #e1e4e9;
+    box-shadow: none;
+}
+
+.gantt-view .zoom-slider .slider .slider-track {
+    margin: -5px -10px;
+    width: calc(100% + 20px);
+}
+
+.gantt-view .p-header,
+.gantt-view .p-calendar {
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.gantt-view .p-calendar {
+    font-size: 14px;
+    overflow: hidden;
+    cursor: default;
+    position: relative;
+}
+
+.gantt-view .p-calendar .c-groups {
+    display: flex;
+    width: 0;
+}
+
+.gantt-view .p-calendar .range {
+    position: absolute;
+    background-color: #67def438;
+    height: 40px;
+    pointer-events: none;
+}
+
+.gantt-view .p-calendar .range span {
+    position: absolute;
+    background-color: #d9f3f9;
+    top: -4px;
+    color: red;
+    max-width: 100%;
+}
+
+.gantt-view .p-calendar .c-header {
+    text-align: center;
+    height: 20px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.gantt-view .p-calendar .c-items {
+    display: flex;
+    height: 20px;
+}
+
+.gantt-view .p-calendar .c-item {
+    border-right: 1px solid #ddd;
+    text-align: center;
+}
+
+.gantt-view .c-item.c-holiday {
+    background-color: #fdd0d0;
+    font-weight: bold;
+    color: #fd7e14;
+}
+
+.gantt-view .g-bar.c-holiday {
+    background-image: radial-gradient(#fd7e14 1px, transparent 1px);
+    background-size: 3px 3px;
+}
+
+.gantt-view .line-group {
+    display: flex;
+    font-size: 12px;
+}
+
+.gantt-view .line-group .g-header {
+    align-self: center;
+    writing-mode: vertical-lr;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.gantt-view .line-group .g-header .title {
+    margin: 2px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    max-height: 220px;
+    align-items: center;
+    width: 26px;
+    overflow: hidden;
+    line-height: 1.1;
+}
+
+.gantt-view .line-group .g-lines {
+    flex: 1;
+    border-left: 1px solid #ddd;
+}
+
+.gantt-view .line-header {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 2px;
+    overflow: hidden;
+}
+
+.gantt-view .line-header .title {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.gantt-view .line-header .quota {
+    position: absolute;
+    right: 2px;
+    bottom: 0;
+    line-height: 12px;
+    text-align: right;
+    display: none;
+}
+
+.gantt-view .line-header.highlight {
+    background-color: #d9f3f9;
+}
+
+.gantt-view .line-header.highlight .quota {
+    display: block;
+}
+
+.gantt-view .g-line {
+    height: 30px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+.gantt-view .g-line.h-36 {
+    height: 36px;
+}
+
+.gantt-view .g-line.h-45 {
+    height: 45px;
+}
+
+.gantt-view .g-line.h-60 {
+    height: 60px;
+}
+
+.gantt-view .g-line.h-90 {
+    height: 90px;
+}
+
+.gantt-view .g-canvas .g-line.readonly {
+    background: repeating-linear-gradient(45deg, transparent, transparent 4px, #e9ecef 1px, #e9ecef 5px);
+}
+
+.gantt-view .p-lines .g-line.readonly {
+    background-color: #efefef;
+}
+
+.gantt-view .g-canvas {
+    position: relative;
+}
+
+.gantt-view .line-item {
+    position: absolute;
+    bottom: 4px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    height: 26px;
+}
+
+.gantt-view .line-item .item-body {
+    border: 1px solid #ddd;
+    border-bottom-width: 4px;
+    border-radius: 5px 5px 0 0;
+    height: 26px;
+    font-size: 12px;
+    background-color: #fff;
+    cursor: pointer;
+    padding-left: 1px;
+}
+
+.gantt-view .line-item .item-lead {
+    height: 80%;
+    background-color: black;
+    align-self: end;
+}
+
+.gantt-view .line-item .title {
+    position: sticky;
+    left: 0;
+    overflow: hidden;
+}
+
+.gantt-view .line-item.locked:before {
+    position: absolute;
+    right: 1px;
+    top: 0;
+    content: "\f023";
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    font-weight: 900;
+    color: #007bff;
+    z-index: 100;
+    font-size: 10px;
+}
+
+.gantt-view .line-item.warning .title:before {
+    content: "\f05a";
+    color: red;
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+
+.gantt-view .line-item.selected .item-body {
+    box-shadow: 0 -3px 6px -4px #000, 0px 6px 6px -4px #000;
+}
+
+.gantt-view .line-item.active .item-body {
+    box-shadow: 0 -3px 10px -3px #003764, 0px 6px 6px -4px #003764;
+}
+
+.gantt-view .line-item.dirty .item-body {
+    border-style: dashed;
+    border-bottom-style: solid;
+}
+
+.gantt-view .line-item .drag-handle {
+    display: flex;
+    flex: 1;
+}
+
+.gantt-view .line-item .ui-resizable-e {
+    width: 5px;
+    min-width: 5px;
+    cursor: col-resize;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    pointer-events: none;
+}
+
+.gantt-view .g-canvas.editable .line-item:not(.locked) .ui-resizable-e {
+    pointer-events: auto;
+}
+
+.gantt-view .line-item.ui-draggable-dragging {
+    opacity: .8;
+}
+
+.gantt-view .line-item.ui-draggable-dragging .item-lead {
+    display: none;
+}
+
+.gantt-view .g-canvas.editable .g-line:not(.readonly) .line-item:not(.locked) .item-body {
+    cursor: move;
+}
+
+.gantt-view .g-connector {
+    z-index: 500;
+    position: absolute;
+}
+
+.gantt-view .g-connector path,
+.gantt-view .g-connector polyline {
+    stroke: #28a745;
+    pointer-events: auto;
+}

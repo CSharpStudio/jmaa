@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="craft_menus" name="制程工艺" seq="400" parent="md-enterprise.master_data_menus">
+        <menu id="craft_type_menu" name="制程类型" model="md.craft_type" view="grid,form"/>
+        <menu id="craft_process_menu" name="制程工艺" model="md.craft_process" view="grid,form"/>
+        <menu id="craft_route_menu" name="制程路线" model="md.craft_route" view="grid,form"/>
+        <menu id="craft_route_product_menu" name="产品制程路线" model="md.craft_route_product" view="grid,form"/>
+    </menu>
+</data>

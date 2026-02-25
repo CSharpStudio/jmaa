@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="md_account_menus" name="财务基础" parent="md-enterprise.master_data_menus" seq="15">
+        <menu id="currency_menu" name="币别" model="md.currency" view="grid,form"></menu>
+        <menu id="bank_menu" name="银行" model="md.bank" view="grid,form"></menu>
+        <menu id="payment_term_menu" name="结算方式" model="md.payment_term" view="grid,form"></menu>
+    </menu>
+</data>

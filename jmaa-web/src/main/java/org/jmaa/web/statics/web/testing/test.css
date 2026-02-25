@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+}
+
+.summary {
+    padding: 5px;
+    background-color: #343a40;
+    color: white;
+}
+
+.apps {
+    height: calc(100vh - 31px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.app {
+    padding: 5px;
+    background-color: #757575;
+    color: white;
+}
+
+.name {
+    margin-left: 10px;
+}
+
+.success {
+    background-color: #80BA45;
+}
+
+.failure {
+    background-color: #B53351;
+}
+
+.error_count {
+    color: #e34747;
+}
+
+.error {
+    color: darkred;
+    background-color: #fff0f0;
+}
+

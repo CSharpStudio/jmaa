@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <web id="web_login" name="web.login">
+        <html class="{{THEME}}" lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+                <title>{{TITLE}}</title>
+                <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/fontawesome-free/css/all.min.css?etag=5.15.3"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/adminlte/css/adminlte.min.css?etag=3.2.0"/>
+                <link debug="false" rel="stylesheet" href="/web/org/jmaa/web/statics/assets/login/login.css"/>
+                <link debug="true" rel="stylesheet" href="/web/org/jmaa/web/statics/login/css/login.css"/>
+                <script>
+                    if (top.window.location != window.location) { top.window.location.reload(); }
+                </script>
+            </head>
+            <body style="overflow: hidden">
+                <canvas class="animation"></canvas>
+                <noscript>抱歉，你的浏览器不支持 JavaScript</noscript>
+                <div class="login">
+                    <div class="login-content">
+                        <div class="login-sketch"></div>
+                        <div class="login-box">
+                            <div class="box-header text-center">
+                                <h1 class="m-0">
+                                    <b style="font-size: 2rem">
+                                        {{TITLE}}
+                                    </b>
+                                </h1>
+                            </div>
+                            <div class="box-body">
+                                <div class="login-form">
+                                    <div class="form-group mb-3">
+                                        <div class="input-group">
+                                            <input type="input" class="form-control login-account"
+                                                   placeholder="账号/手机号/邮箱"/>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-envelope"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="input-group">
+                                            <input type="password" class="form-control login-password"
+                                                   placeholder="密码"/>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock" style="width: 16px"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-primary btn-block btn-login">
+                                            <t>登录</t>
+                                        </button>
+                                    </div>
+                                    <div class="login-options">
+                                        <div class="icheck-primary">
+                                            <input id="remember" type="checkbox" class="login-remember"/>
+                                            <label for="remember">
+                                                <t>7天免登录</t>
+                                            </label>
+                                        </div>
+                                        <div class="hide">
+                                            <select class="env-options">
+                                                <option value="" disabled="true" selected="true" style="display: none">
+                                                    请选择环境
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="icheck-primary hide">
+                                            <input id="force" type="checkbox" class="login-force"/>
+                                            <label for="force">
+                                                <t>强行登录</t>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hide reset-form">
+                                    <div class="mb-3">
+                                        <t>请重新设置密码</t>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="input-group">
+                                            <input type="input" readonly="readonly" class="form-control reset-account"
+                                                   placeholder="账号/手机号/邮箱"/>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-envelope"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="input-group">
+                                            <input type="password" class="form-control reset-password"
+                                                   placeholder="新密码"/>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock" style="width: 16px"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="input-group">
+                                            <input type="password" class="form-control reset-confirm"
+                                                   placeholder="确认密码"/>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock" style="width: 16px"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-primary btn-block btn-reset">
+                                            <t>修改密码</t>
+                                        </button>
+                                        <div class="d-flex justify-content-end">
+                                            <span class="back-to-login pointer">
+                                                <t>返回登录</t>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="login-error text-danger"></span>
+                            <div class="box-footer">
+                                {{COPYRIGHT}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-footer">
+                        <div class="footer-items">
+                            <div>
+                                <a class="pointer" href="/web/org/jmaa/web/statics/login/license.html">
+                                    开源协议
+                                </a>
+                                丨
+                                <a class="pointer" href="/web/org/jmaa/web/statics/login/privacy_policy.html">
+                                    隐私协议
+                                </a>
+                            </div>
+                            <div class="f-browser">
+                                <span>建议浏览器：Chrome</span>
+                                丨
+                                <span>分辨率：1280 × 1024</span>
+                            </div>
+                            <div>
+                                <span class="pointer clear-cache">清除本地缓存</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="/web/org/jmaa/web/statics/plugins/jquery/jquery.min.js?etag=3.6.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap/js/bootstrap.bundle.min.js?etag=4.6.0"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/jmaa.min.js"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/login/login.min.js"></script>
+                <script debug="true" src="/web/org/jmaa/web/statics/jmaa.js"></script>
+                <script debug="true" type="module" src="/web/org/jmaa/web/statics/login/login.js"></script>
+            </body>
+        </html>
+    </web>
+    <web id="web_view" name="web.view">
+        <html class="{{THEME}}">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/fontawesome-free/css/all.min.css?etag=5.15.3"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/overlayScrollbars/css/OverlayScrollbars.min.css?etag=1.13.0"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?etag=1.0"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/datatables-colreorder/css/colReorder.bootstrap4.min.css?etag=1.5.3"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css?etag=5.39.0"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/bootstrap-treeview/dist/bootstrap-treeview.min.css?etag=1.2.0"/>
+                <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/ztree/metroStyle.css?etag=3.4"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/daterangepicker/daterangepicker.min.css?etag=3.1"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/adminlte/css/adminlte.min.css?etag=3.2.0"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/calendar/simple-calendar.min.css?etag=1.0"/>
+
+                <link debug="false" rel="stylesheet" href="/web/org/jmaa/web/statics/assets/web/view.css"/>
+                <link debug="true" rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/view.css"/>
+
+                <script src="/web/org/jmaa/web/statics/plugins/jquery/jquery.min.js?etag=3.6.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap/js/bootstrap.bundle.min.js?etag=4.6.0"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/ztree/jquery.ztree.all.min.js?etag=3.5.48"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/datatables/jquery.dataTables.min.js?etag=1.10.24"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js?etag=1.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/datatables-buttons/js/dataTables.buttons.min.js?etag=1.7.0"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/jszip/jszip.min.js?etag=3.6.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/datatables-buttons/js/buttons.html5.min.js?etag=1.3.3"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/datatables-colreorder/js/dataTables.colReorder.min.js?etag=1.5.3"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/moment/moment.min.js?etag=2.29.1"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/daterangepicker/daterangepicker.js?etag=3.1"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js?etag=1.13.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js?etag=5.39.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap-input-spinner/js/bootstrap-input-spinner.js?etag=1.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap-treeview/dist/bootstrap-treeview.min.js?etag=1.2.0"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/juicer/juicer.min.js?etag=0.6.15"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/adminlte/js/adminlte.min.js?etag=3.2.0"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/sheetjs/xlsx.mini.js?etag=0.18.12"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/calendar/simple-calendar.js?etag=1.0"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/jmaa.min.js"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/web/view.min.js"></script>
+                <script debug="true" src="/web/org/jmaa/web/statics/jmaa.js"></script>
+                <script debug="true" type="module" src="/web/org/jmaa/web/statics/web/view.js"></script>
+                <script debug="true" src="/web/org/jmaa/web/statics/web/testing/automatic.js"></script>
+            </head>
+            <body class="page-body iframe-mode">
+                <script>
+                    $(jmaa.initView);
+                </script>
+            </body>
+        </html>
+    </web>
+    <web id="web_app" name="web.app">
+        <html class="{{THEME}}">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title>{{TITLE}}</title>
+                <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/fontawesome-free/css/all.min.css?etag=5.15.3"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/overlayScrollbars/css/OverlayScrollbars.min.css?etag=1.13.0"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/bootstrap-submenu/css/bootstrap-submenu.min.css"/>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/adminlte/css/adminlte.min.css?etag=3.2.0"/>
+                <link debug="false" rel="stylesheet" href="/web/org/jmaa/web/statics/assets/web/app.css"/>
+                <link debug="true" rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/app.css"/>
+            </head>
+            <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
+                <div class="wrapper">
+                    <nav class="main-header navbar navbar-expand">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                                    <i class="fas fa-bars"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div role="app-menu" class="navbar-nav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item app-menu">
+                                    <a href="#" class="nav-app-link nav-link pl-1">
+                                        <p style="font-size:1.3rem">
+                                            <t>首页</t>
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <button class="nav-link btn" data-widget="app-menu-scrollleft">
+                                <i class="fas fa-angle-double-left"></i>
+                            </button>
+                            <ul class="navbar-nav app-menus">
+                            </ul>
+                            <button class="nav-link btn" data-widget="app-menu-scrollright">
+                                <i class="fas fa-angle-double-right"></i>
+                            </button>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li debug="true" class="nav-item dropdown">
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-bug"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="#" data-widget="icon-lib" class="lnk-icon dropdown-item">
+                                        <t>图标库</t>
+                                    </a>
+                                    <a href="#" data-widget="lang-collect" class="dropdown-item">
+                                        <t>收集多语言</t>
+                                    </a>
+                                    <a href="#" data-widget="performance-analysis" class="dropdown-item">
+                                        <t>启用性能分析</t>
+                                    </a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <a href="#" data-widget="debug-exit" class="dropdown-item">
+                                        <t>退出调试</t>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item" data-widget="upload">
+                                <a class="nav-link" href="#" aria-expanded="false">
+                                    <i class="fa fa-cloud-upload-alt"></i>
+                                    <span class="badge badge-warning navbar-badge"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" style="display: none" data-widget="company" data-toggle="dropdown"
+                                   href="#" role="button"></a>
+                                <div class="dropdown-menu" style="max-height: 400px;overflow-y: auto;"></div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-account" href="#" data-toggle="dropdown" role="button">
+                                    <div class="img-circle user-icon">{{USERNAME}}</div>
+                                    <span>{{USERNAME}}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="#" data-widget="full-screen" class="dropdown-item">
+                                        <t>全屏</t>
+                                    </a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <a href="#" data-widget="user-upload" class="dropdown-item">
+                                        <t>导入记录</t>
+                                    </a>
+                                    <a href="#" data-widget="file-download" class="dropdown-item">
+                                        <t>文件下载</t>
+                                    </a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <a href="#" data-widget="user-account" class="dropdown-item" data-id="user-account">
+                                        <t>我的账号</t>
+                                    </a>
+                                    <a href="#" data-widget="user-logout" class="dropdown-item">
+                                        <t>退出登录</t>
+                                    </a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <a href="#" data-widget="about" class="lnk-about dropdown-item">
+                                        <t>关于</t>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <aside class="main-sidebar sidebar-light-primary elevation-4">
+                        <a href="#" class="brand-link">
+                            <div class="brand-icon"></div>
+                            <div class="brand-text"></div>
+                        </a>
+                        <div class="form-inline mt-2 menu-search-form">
+                            <div class="input-group" data-widget="menu-search">
+                                <input class="form-control form-control-sidebar" type="search" aria-label="Search"/>
+                                <div class="input-group-append">
+                                    <button class="btn btn-sidebar">
+                                        <i class="fas fa-search fa-fw"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar" style="height: calc(100% - 130px)">
+                            <nav class="mt-2">
+                                <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column nav-plus"
+                                    data-widget="treeview" role="menu" data-accordion="false"></ul>
+                            </nav>
+                        </div>
+                    </aside>
+                    <div class="content-wrapper jui-frame-mode" data-widget="jui-frame" data-loading-screen="750">
+                        <div class="nav navbar navbar-expand navbar-white navbar-light border-bottom p-0">
+                            <a class="nav-link bg-light nav-tool" href="#" data-widget="jui-frame-home">
+                                <i class="fas fa-home"></i>
+                            </a>
+                            <div class="nav-item dropdown bg-light nav-tool">
+                                <a class="nav-link bg-light" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu mt-0">
+                                    <a class="dropdown-item" href="#" data-widget="jui-frame-close" data-type="all">
+                                        <t>关闭所有</t>
+                                    </a>
+                                    <a class="dropdown-item" href="#" data-widget="jui-frame-close"
+                                       data-type="all-other">
+                                        <t>关闭其它</t>
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="nav-link bg-light" style="display:none" href="#"
+                               data-widget="jui-frame-scrollleft">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                            <ul class="navbar-nav overflow-hidden" role="tablist"></ul>
+                            <a class="nav-link bg-light" style="display:none" href="#"
+                               data-widget="jui-frame-scrollright">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                            <a class="nav-link bg-light nav-tool" href="#" data-widget="jui-frame-fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </a>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-empty">
+                                <iframe style="margin:0" data-widget="home-page"></iframe>
+                            </div>
+                            <div class="tab-loading">
+                                <div>
+                                    <h2 class="display-4">
+                                        <t>加载中</t>
+                                        <i class="fa fa-sync fa-spin"></i>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="main-footer">
+                        {{LICENSE-EXPIRE}}
+                        <div class="flex-grow-1"></div>
+                        <div>
+                            <strong>{{COPYRIGHT}}</strong>
+                        </div>
+                    </footer>
+                </div>
+                <script src="/web/org/jmaa/web/statics/plugins/jquery/jquery.min.js?etag=3.6.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap/js/bootstrap.bundle.min.js?etag=4.6.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/bootstrap-submenu/bootstrap-submenu.min.js?etag=1.0"></script>
+                <script
+                    src="/web/org/jmaa/web/statics/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js?etag=1.13.0"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/ChinesePY.js?etag=1.0"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/fly.js?etag=1.0"></script>
+                <script src="/web/org/jmaa/web/statics/plugins/adminlte/js/adminlte.min.js?etag=3.2.0"></script>
+
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/jmaa.min.js"></script>
+                <script debug="false" src="/web/org/jmaa/web/statics/assets/web/app.min.js"></script>
+                <script debug="true" src="/web/org/jmaa/web/statics/jmaa.js"></script>
+                <script debug="true" type="module" src="/web/org/jmaa/web/statics/web/app.js"></script>
+            </body>
+        </html>
+    </web>
+    <web id="web_test" name="web.test">
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title>冒烟测试</title>
+                <link rel="icon" href="/web/org/jmaa/web/statics/favicon.ico" type="image/x-icon"/>
+                <link rel="stylesheet" href="/web/org/jmaa/web/statics/web/testing/test.css"/>
+            </head>
+            <body style="overflow:hidden">
+                <script src="/web/org/jmaa/web/statics/plugins/jquery/jquery.min.js?etag=3.6.0"></script>
+                <script src="/web/org/jmaa/web/statics/jmaa.js"></script>
+                <script src="/web/org/jmaa/web/statics/web/testing/smoke.js"></script>
+            </body>
+        </html>
+    </web>
+    <web id="web_about" name="web.about">
+        <div>
+            <p>
+                <b>{{TITLE}}</b>
+            </p>
+            <p>版本：{{VERSION}}</p>
+            <p>
+                <div>微信公众号：</div>
+                <img width="100" src="/web/org/jmaa/web/statics/img/about.jpg"></img>
+            </p>
+            <p>
+                授权：{{LICENSE}}
+                <a href="#" class="update-license">更新</a>
+            </p>
+            <p>{{DEBUG}}</p>
+            <p>{{COPYRIGHT}}</p>
+        </div>
+    </web>
+    <web id="web_home" name="web.home">
+        <html style="height:100%">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title>{{TITLE}}</title>
+                <link rel="stylesheet"
+                      href="/web/org/jmaa/web/statics/plugins/adminlte/css/adminlte.min.css?etag=3.2.0"/>
+            </head>
+            <body style="height:100%;display:flex">
+                <div style="margin:auto">
+
+                </div>
+            </body>
+        </html>
+    </web>
+</data>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="master_data_menus" name="基础数据" seq="800">
+        <menu id="enterprise_menus" name="企业配置" seq="10">
+            <menu id="enterprise_model_menu" name="企业模型" model="md.enterprise_model" view="form"/>
+            <menu id="supplier_menu" name="供应商" model="md.supplier" view="grid,form"/>
+            <menu id="customer_menu" name="客户" model="md.customer" view="grid,form"/>
+            <menu id="staff_menu" name="员工" model="md.staff" view="grid,form"/>
+        </menu>
+        <menu id="common_data_menus" name="公共资料">
+        </menu>
+        <menu id="material_menus" name="物料资料">
+            <menu id="material_menu" name="物料" model="md.material" view="grid,form"/>
+            <menu id="material_type_menu" name="物料分类" model="md.material_type" view="form"/>
+            <menu id="unit_menu" name="单位" model="md.unit" view="grid,form"/>
+        </menu>
+    </menu>
+    <m-menu id="m_mfg_menus" name="生产管理" seq="100">
+    </m-menu>
+</data>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="purchase_menus" name="采购管理" seq="100">
+        <menu id="po_menu" name="采购订单" model="purchase.order" view="grid,card,form"/>
+        <menu id="po_report_menu" name="采购入库查询" model="purchase.order_report" view="grid"/>
+        <menu id="supplier_material_menu" name="供应商物料" model="purchase.supplier_material" view="grid,form"/>
+    </menu>
+</data>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='md_work_resource_form' name='制造资源-表单-辅助资源' inherit_id="md-resource.md_work_resource_form"
+          model='md.work_resource'>
+        <xpath not="tabs" expr="form" position="inside">
+            <tabs></tabs>
+        </xpath>
+        <xpath expr="tabs" position="inside">
+            <tab label='辅助资源'>
+                <field name='sub_resource_ids' colspan='4' nolabel='1'>
+                    <grid>
+                        <field name='priority' title="数值越大，优先级越高"/>
+                        <field name='model_id' view="default" on-change-action="onModelChange"/>
+                        <field name='specification'/>
+                        <field name='type_id'/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

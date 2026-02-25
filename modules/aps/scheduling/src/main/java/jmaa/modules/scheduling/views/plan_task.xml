@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='as_plan_task_search' name='计划任务-查询' model='as.plan_task'>
+        <search>
+            <field name='code'/>
+        </search>
+    </view>
+    <view id='as_plan_task_grid' name='计划任务-表格' model='as.plan_task'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='resource_id'/>
+            <field name='is_locked'/>
+            <field name='is_warning'/>
+            <field name='plan_qty'/>
+            <field name='output_qty'/>
+            <field name='duration'/>
+            <field name='transfer_time'/>
+            <field name='factory_due_date'/>
+            <field name='status'/>
+            <field name='plan_start'/>
+            <field name='plan_end'/>
+            <field name='work_start'/>
+        </grid>
+    </view>
+    <view id='as_plan_task_form' name='计划任务-表单' model='as.plan_task'>
+        <form>
+            <toolbar buttons='default'>
+            </toolbar>
+            <field name='code'/>
+            <field name='resource_id'/>
+            <field name='is_locked'/>
+            <field name='is_warning'/>
+            <field name='plan_qty'/>
+            <field name='output_qty'/>
+            <field name='duration'/>
+            <field name='transfer_time'/>
+            <field name='factory_due_date'/>
+            <field name='status'/>
+            <field name='plan_start'/>
+            <field name='plan_end'/>
+            <field name='work_start'/>
+            <tabs>
+                <tab label="明细">
+                    <field name="details_ids" nolabel="1" colspan="4">
+                        <grid>
+                            <field name="craft_order_id"/>
+                            <field name="plan_qty"/>
+                            <field name="cycle_time"/>
+                            <field name="efficiency"/>
+                            <field name="work_order_id"/>
+                            <field name="release_start"/>
+                            <field name="release_end"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id="as_plan_task_info" name="计划任务-详情" key="task-info" model="as.plan_task">
+        <form cols="1" logAccess="0">
+            <div class="card-view">
+                <field name='code'/>
+                <field name='resource_id'/>
+                <editor name='cycle_time' type="char" label="工时定额"/>
+                <field name='efficiency'/>
+                <field name='plan_qty'/>
+                <field name='output_qty'/>
+                <field name='duration' label="生产周期" editor="duration"/>
+                <field name='transfer_time' label="转款时间" editor="char"/>
+                <field name='factory_due_date'/>
+                <field name='status'/>
+                <editor name='mold_code' type="char" label="模具台账"/>
+                <editor name='mold_model' type="char" label="模具型号"/>
+                <field name='plan_start'/>
+                <field name='work_start'/>
+                <field name='plan_end'/>
+                <editor name='craft_type_id' type="many2one" model="md.craft_type" label="制程类型"/>
+                <editor name='details' type="task-details" nolabel="1"/>
+            </div>
+        </form>
+    </view>
+    <view id="as_plan_task_related" name="计划任务-相关任务" key="task-related" model="as.plan_task">
+        <grid>
+            <field name='code'/>
+            <field name='resource_id'/>
+            <column name='product_order' type="char" label="生产订单"/>
+            <column name='craft_process' type="char" label="制程名称"/>
+            <column name='material_code' type="char" label="物料编码"/>
+            <column name='material_name_spec' type="char" label="规格型号"/>
+            <field name='plan_qty'/>
+            <field name='output_qty'/>
+            <field name='status'/>
+            <field name='factory_due_date'/>
+            <column name='customer_due_date' type="datetime" label="客户交期"/>
+            <field name='plan_start'/>
+            <field name='plan_end'/>
+            <column name='material_ready_date' type="datetime" label="齐料日期"/>
+        </grid>
+    </view>
+</data>

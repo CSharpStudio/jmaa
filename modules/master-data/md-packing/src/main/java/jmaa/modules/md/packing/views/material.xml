@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_material_packing_rule_form' inherit_id="md-enterprise.md_material_form" type="form"
+          name='物料-产品包装规则-表单' model='md.material'>
+        <xpath expr="tabs" position="inside">
+            <tab label="包装规则">
+                <field name='packing_rule_ids' nolabel="1" colspan="4">
+                    <grid>
+                        <toolbar buttons='default'>
+                            <button label="设置默认" service="setDefault" confirm="确认设置为默认?"
+                                    t-enable="!id.startsWith('new') AND !is_default"/>
+                        </toolbar>
+                        <field name='name'/>
+                        <field name='rule_id'/>
+                        <field name='description'/>
+                        <field name='is_default' readonly="1"/>
+                        <field name='customer_id'/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

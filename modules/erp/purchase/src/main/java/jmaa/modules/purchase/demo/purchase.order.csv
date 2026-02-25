@@ -1,0 +1,16 @@
+id,code,supplier_id,type,order_date,remark,is_return,company_id
+0484w9hfu1se8,CG240927000X,md-enterprise.0484j8ks8cf7k,purchase,2024-10-01,,,base.company_default
+0484w9hg41ds0,CG2409270001,md-enterprise.0484j8ks8cf7k,purchase,2024-10-02,,,base.company_default
+0484w9hggivi8,CG2409270002,md-enterprise.0484j8ks8cf7k,purchase,2024-10-03,,,base.company_default
+0484w9hgqigw0,CG2409270003,md-enterprise.0484j8ks8cf7k,purchase,2024-10-01,,,base.company_default
+0484w9hgy05xc,CG2409270004,md-enterprise.0484j8ksktwxs,purchase,2024-10-02,,,base.company_default
+0484w9hh5huyo,CG2409270005,md-enterprise.0484j8ksktwxs,purchase,2024-10-03,,,base.company_default
+0484w9hhfhgcg,CG2409270006,md-enterprise.0484j8ksktwxs,purchase,2024-10-01,,,base.company_default
+0484w9hhmz5ds,CG2409270007,md-enterprise.0484j8ksktwxs,purchase,2024-10-02,,,base.company_default
+0484w9hhuguf4,CG2409270008,md-enterprise.0484j8ksnbta8,purchase,2024-10-03,,,base.company_default
+0484w9hi1yjgg,CG2409270009,md-enterprise.0484j8ksnbta8,purchase,2024-10-01,,,base.company_default
+0484w9hiby4u8,CG2409270010,md-enterprise.0484j8ksnbta8,purchase,2024-10-02,,,base.company_default
+0484w9hilxq80,CG2409270011,md-enterprise.0484j8ksnbta8,purchase,2024-10-03,,,base.company_default
+0484w9hivxbls,CG2409270012,md-enterprise.0484j8ksnbta8,purchase,2024-10-01,,,base.company_default
+0484w9hj3f0n4,CG2409270013,md-enterprise.0484j8ksnbta8,purchase,2024-10-02,,,base.company_default
+0484w9hjawpog,CG2409270014,md-enterprise.0484j8ksnbta8,purchase,2024-10-03,,,base.company_default

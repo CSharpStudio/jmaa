@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="@md-qsd.quality_menus" name="质量控制" seq="200">
+        <menu id="iqc_sheet_menu" name="来料检验" model="iqc.sheet" view="grid,form"/>
+        <menu id="oqc_sheet_menu" name="出货检验" model="oqc.sheet" view="grid,form"/>
+        <menu id="mrb_menu" name="MRB" seq="100" model="qsd.mrb" view="grid,form"/>
+        <menu id="iqc_exemption_list_menu" name="来料免检清单" seq="110" model="iqc.exemption_list" view="grid,form"/>
+    </menu>
+</data>

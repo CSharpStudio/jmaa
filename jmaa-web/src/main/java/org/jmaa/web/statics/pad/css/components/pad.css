@@ -1,0 +1,165 @@
+body {
+    overflow: hidden;
+}
+
+.nav-link {
+    white-space: nowrap;
+}
+
+.brand-link {
+    display: flex;
+}
+
+.brand-link .brand-icon {
+    height: 46px;
+    width: 46px;
+    background: url(/web/org/jmaa/web/statics/img/about.jpg) no-repeat;
+    background-size: contain;
+    margin: -1rem -0.5rem;
+}
+
+.main-header > ul.navbar-nav {
+    flex-shrink: 0;
+}
+
+.app-submenu .dropdown-submenu > .dropdown-menu {
+    top: 10px;
+}
+
+.toasts-top-right {
+    top: 40px;
+}
+
+@media (max-width: 620px) {
+    .main-header .app-menus {
+        display: none;
+    }
+
+    .main-header {
+        justify-content: space-between;
+    }
+
+    .main-header .user-icon + span {
+        display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    .content-wrapper .nav-tool {
+        display: none;
+    }
+}
+
+.m-menu,
+.m-view,
+.main-content {
+    height: 100%;
+}
+
+.btn {
+    padding: .4rem .5rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    border-radius: .2rem;
+}
+
+.m-menu .menu-search-form {
+    width: 300px;
+}
+
+.m-menu .m-header {
+    background: #fff;
+    border-bottom: 1px solid #dee2e6;
+    padding: 5px 10px;
+}
+
+.m-menu .m-header .btn-sidebar {
+    background-color: #787574;
+    border: 1px solid #787574;
+    color: #f8f9fa;
+}
+
+.m-menu .form-control:focus {
+    border-color: #787574;
+}
+
+.app-menu {
+    margin-right: auto;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.m-menu .sidebar-search-open .sidebar-search-results {
+    display: block;
+}
+
+.main-menus {
+    height: calc(100% - 49px);
+    overflow: auto;
+    width: 100%;
+    padding-right: 12.5px;
+    padding-left: 12.5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.m-menus {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.m-menus .menu-group {
+    border-radius: 10px;
+    background: #fff;
+    margin: 8px 0;
+    padding-bottom: 10px;
+    box-shadow: 0px 0px 6px -3px rgba(0, 0, 0, 0.4);
+}
+
+.m-menus .menu-group label {
+    padding: 5px 10px;
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+}
+
+.m-menus .menu-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.m-menus .menu-item {
+    flex-basis: 25%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #646566;
+    font-weight: 700;
+}
+
+.m-menus .m-icon {
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 1.25rem;
+    color: white;
+    overflow: hidden;
+}
+
+.m-menus .menu-text {
+    margin-top: 8px;
+    color: #646566;
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+.m-view iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin-bottom: -8px;
+}

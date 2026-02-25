@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_defect_form' inherit_id="md-product.md_defect_form" type="form" name='产品缺陷-表单扩展' model='md.defect'>
+        <xpath not="tabs" expr="form" position="inside">
+            <tabs></tabs>
+        </xpath>
+        <xpath expr="tabs" position="inside">
+            <tab label="工序">
+                <field name="process_ids" colspan="4" nolabel="1">
+                    <grid>
+                        <field name='code'/>
+                        <field name='name'/>
+                        <field name='process_type'/>
+                        <field name='product_family_id'/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

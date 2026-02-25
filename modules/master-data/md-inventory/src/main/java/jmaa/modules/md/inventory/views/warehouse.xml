@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_warehouse_resource' name='仓库' model='md.warehouse'>
+        <resource>
+            <script src="/web/jmaa/modules/md/inventory/statics/js/warehouse.js"></script>
+        </resource>
+    </view>
+    <view id='md_warehouse_search' name='仓库-查询' model='md.warehouse'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='category'/>
+            <field name='company_id'/>
+            <field name='active'/>
+            <field name='frozen'/>
+            <field name='contact'/>
+            <field name='phone'/>
+            <field name='address'/>
+            <field name='zip'/>
+        </search>
+    </view>
+    <view id='md_warehouse_grid' name='仓库-表格' model='md.warehouse'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='type'/>
+            <field name='category'/>
+            <field name='frozen'/>
+            <field name='active'/>
+            <field name='company_id'/>
+            <field name='location_manage'/>
+            <field name='over_send'/>
+            <field name='contact'/>
+            <field name='phone'/>
+            <field name='zip'/>
+            <field name='address'/>
+        </grid>
+    </view>
+    <view id='md_warehouse_form' name='仓库-表单' model='md.warehouse'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code' t-readonly="id" colspan='2' class="lg"/>
+            <field name='name' colspan='2' class="lg"/>
+            <field name='type'/>
+            <field name='category'/>
+            <field name='contact'/>
+            <field name='phone'/>
+            <field name='zip'/>
+            <field name='address' colspan='2'/>
+            <field name='frozen'/>
+            <field name='over_send'/>
+            <field name='location_manage'/>
+            <field name="workshop_ids" editor="many2many-tags"/>
+            <field name='active'/>
+            <field name='company_id' t-readonly="1" />
+            <tabs>
+                <tab label='库位'>
+                    <field name='location_ids' colspan='4' nolabel='1' t-filter="filterLocation">
+                        <grid>
+                            <toolbar buttons="default">
+                                <div class="input-group" position="after">
+                                    <input type="search" t-enter="searchLocation" class="form-control search-location" placeholder="库位编码、货架编码" style="width:220px"/>
+                                    <div class="input-suffix">
+                                        <button type="button" auth="read" class="btn btn-default" t-click="searchLocation">
+                                            <i class="fa fa-search"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </toolbar>
+                            <field name='code'/>
+                            <field name='area_id' t-filter="filterArea" link="0"/>
+                            <field name='shelf_code'/>
+                            <field name='description'/>
+                            <field name='capacity' visible="0"/>
+                            <field name='material_ids' column="many2many-tags" editor="many2many-tags" visible="0"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='库区'>
+                    <field name='area_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons="default"/>
+                            <field name='code'/>
+                            <field name='description'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='用户'>
+                    <field name='user_ids' colspan='4' nolabel='1' lookup="[['company_ids', '=', env.company.id]]">
+                        <grid>
+                            <toolbar buttons="default">
+                            </toolbar>
+                            <field name='login'/>
+                            <field name='name'/>
+                            <field name='role_ids' column="many2many-tags"/>
+                            <field name='active'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

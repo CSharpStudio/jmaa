@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_craft_route_product_resource' name='产品制程路线-资源' model='md.craft_route_product'>
+        <resource>
+            <script src="/web/jmaa/modules/md/craft/statics/js/craft_route_product.js"></script>
+        </resource>
+    </view>
+    <view id='md_craft_route_product_search' name='产品制程路线-查询' model='md.craft_route_product'>
+        <search>
+            <field name='material_id'/>
+            <field name='craft_route_id'/>
+        </search>
+    </view>
+    <view id='md_craft_route_product_grid' name='产品制程路线-表格' model='md.craft_route_product'>
+        <grid>
+            <toolbar buttons='default'>
+                <button service="setDefault" confirm="确认设置为默认？" t-enable="id:!is_default"
+                        label="设置为默认"></button>
+            </toolbar>
+            <field name='craft_route_id'/>
+            <field name='material_id'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='is_default'/>
+        </grid>
+    </view>
+    <view id='md_craft_route_product_form' name='产品制程路线-表单' model='md.craft_route_product'>
+        <form>
+            <toolbar buttons='default'>
+                <button service="setDefault" confirm="确认设置为默认？" t-enable="id:!is_default"
+                        label="设置为默认"></button>
+            </toolbar>
+            <field name='craft_route_id'/>
+            <field name='material_id' view="default"/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='is_default' readonly="1"/>
+            <tabs>
+                <tab label="物料清单">
+                    <field name="bom_ids" colspan="4" nolabel="1">
+                        <grid>
+                            <toolbar buttons="default"></toolbar>
+                            <field name='node_id' t-filter="filterNode"/>
+                            <field name='material_id' view="default" on-change-action="onMaterialChange"/>
+                            <field name='material_name_spec'/>
+                            <field name='material_category'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

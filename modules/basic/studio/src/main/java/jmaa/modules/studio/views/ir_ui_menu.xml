@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='ir_ui_menu_resource' inherit_id="base.menu_resource" name='菜单-资源' model='ir.ui.menu'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/base/statics/css/ir_model_feature.css"></link>
+            <script src="/web/jmaa/modules/studio/statics/js/ir_ui_menu.js"></script>
+        </resource>
+    </view>
+    <view id='ir_ui_menu_form' inherit_id="base.menu_form" name='菜单-表单-Studio' model='ir.ui.menu'>
+        <xpath expr="toolbar" position="inside">
+            <button label="设计" t-click="design" auth="read"/>
+            <button label="添加新功能" t-click="createModel" auth="read"/>
+        </xpath>
+        <xpath expr="form" position="attribute">
+            <form on-load="onFormLoad" on-init="onFormInit"/>
+        </xpath>
+    </view>
+</data>

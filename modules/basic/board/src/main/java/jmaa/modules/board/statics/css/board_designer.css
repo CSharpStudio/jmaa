@@ -1,0 +1,41 @@
+.card-board .state {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.card-board .state-0,
+.card-board .state-1 {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 2px;
+}
+
+.card-board .state-0 {
+    background-color: #3E3A39;
+}
+
+.card-board .state-1 {
+    background-color: #017e84;
+}
+
+.template-card {
+    margin: 0 10px;
+    min-height: 100px;
+}
+
+.template-menu{
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    display: flex;
+    background: #fff;
+}
+
+.template-preview{
+    margin-right: 5px;
+    cursor: pointer;
+}

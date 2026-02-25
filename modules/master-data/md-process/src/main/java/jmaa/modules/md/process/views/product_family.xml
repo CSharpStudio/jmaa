@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_product_family_form' inherit_id="md-product.md_product_family_form" name='产品族-表单' model='md.product_family'>
+        <xpath expr="tabs" position="inside">
+            <tab label="工序">
+                <field name="process_ids" nolabel="1" colspan="4" editor="many2many">
+                    <grid>
+                        <field name='code'/>
+                        <field name='name'/>
+                        <field name='process_type'/>
+                        <field name='product_family_id'/>
+                        <field name="collection_result"/>
+                        <field name='company_ids'/>
+                        <field name='active'/>
+                    </grid>
+                </field>
+            </tab>
+        </xpath>
+    </view>
+</data>

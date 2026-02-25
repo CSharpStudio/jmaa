@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='pr_route_resource' name='工艺路线-资源' model='pr.route'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.css"></link>
+            <link href="/web/org/jmaa/web/statics/plugins/bootstrap-slider/css/bootstrap-slider.min.css"
+                  rel="stylesheet"></link>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/assets/diagram/diagram.css"></link>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/process/routing/statics/css/route.css"></link>
+            <script src="/web/org/jmaa/web/statics/plugins/jquery-ui/jquery-ui.min.js?etag=1.12.1"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/contextmenu/contextMenu.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/bootstrap-slider/bootstrap-slider.min.js?etag=11.0.2"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/route.js"></script>
+            <script debug="true" src="/web/org/jmaa/web/statics/diagram/KeyValue.js"></script>
+            <script debug="true" src="/web/org/jmaa/web/statics/diagram/ToolItem.js"></script>
+            <script debug="true" src="/web/org/jmaa/web/statics/diagram/AerialView.js"></script>
+            <script debug="true" src="/web/org/jmaa/web/statics/diagram/CommandMemo.js"></script>
+            <script debug="true" src="/web/org/jmaa/web/statics/diagram/JDiagram.js"></script>
+            <script debug="true" src="/web/org/jmaa/web/statics/diagram/DiagramItem.js"></script>
+            <script debug="true" src="/web/org/jmaa/web/statics/diagram/Connector.js"></script>
+            <script debug="false" src="/web/org/jmaa/web/statics/assets/diagram/diagram.min.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteDiagram.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteFlow.js"></script>
+            <script src="/web/jmaa/modules/md/process/routing/statics/js/flow/RouteNode.js"></script>
+        </resource>
+    </view>
+    <view id='pr_route_search' name='工艺路线-查询' model='pr.route'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='family_id'/>
+        </search>
+    </view>
+    <view id='pr_route_grid' name='工艺路线-表格' model='pr.route'>
+        <grid>
+            <toolbar buttons='default'>
+                <button auth="update" t-click="editFlow" t-enable="id" label="设计"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='family_id'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='pr_route_form' name='工艺路线-表单' model='pr.route'>
+        <form>
+            <toolbar buttons='default'>
+                <button auth="update" t-click="editFlow" t-enable="id" label="设计"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='family_id' t-readonly="id"/>
+            <field name='active'/>
+            <field name='remark' colspan="2"/>
+            <tabs>
+                <tab label="工序">
+                    <field nolabel="1" name="version_ids" colspan="4" editor="route-version">
+                        <aside>
+                            <toolbar buttons="default">
+                                <button name="copy" ref="create" auth="create" t-enable="id"
+                                        class="btn-primary btn-edit-group" t-click="copyVersion" label="复制"></button>
+                                <button confirm="确定设为默认?" t-enable="is_publish" service="setDefault"
+                                        label="设为默认"></button>
+                            </toolbar>
+                            <field name='code'/>
+                            <field name='version'/>
+                            <field name='is_default' readonly="1" allow-null="1"/>
+                            <field name='active'/>
+                            <field name="is_publish" visible="0"/>
+                            <template>
+                                <div class="card-body">
+                                    {@if !active}
+                                    <div class="ribbon-wrapper">
+                                        <div class="ribbon bg-secondary">
+                                            <small>失效</small>
+                                        </div>
+                                    </div>
+                                    {@else if is_default}
+                                    <div class="ribbon-wrapper">
+                                        <div class="ribbon bg-success">
+                                            <small>默认</small>
+                                        </div>
+                                    </div>
+                                    {@/if}
+                                    <div><span>编码：</span>${code}
+                                    </div>
+                                    <div><span>版本：</span>${version}
+                                    </div>
+                                </div>
+                            </template>
+                        </aside>
+                        <details>
+                            <field name='process_id'/>
+                            <field name="process_type"/>
+                            <field name="ok_id"/>
+                            <field name="ng_id"/>
+                            <field name='is_optional'/>
+                            <field name='create_task'/>
+                            <field name='is_output'/>
+                            <field name='min_duration'/>
+                            <field name='min_interval'/>
+                            <field name='max_times'/>
+                            <field name='enable_move_in'/>
+                            <field name='is_repeatable'/>
+                            <field name='is_deduction'/>
+                            <field name='to_fqc'/>
+                        </details>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id="pr_route_node_form" name="工艺节点-表单" model="pr.route_node">
+        <form logAccess="0">
+            <field name="process_id" view="default" on-change-action="processChangeAction" t-filter="processFilter" required="1"/>
+            <field name="process_type" view="default"/>
+            <field name="min_interval" visible="0"/>
+            <field name="is_optional"/>
+            <field name="enable_move_in"/>
+            <field name="min_duration" t-reset="enable_move_in" t-visible="enable_move_in"/>
+            <field name="is_repeatable"/>
+            <field name="max_times" t-reset="is_repeatable" t-visible="is_repeatable"/>
+            <field name='create_task'/>
+            <field name="is_deduction"/>
+            <field name="to_fqc"/>
+            <field name="is_output"/>
+        </form>
+    </view>
+</data>

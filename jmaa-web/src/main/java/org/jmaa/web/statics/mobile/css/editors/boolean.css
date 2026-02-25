@@ -1,0 +1,17 @@
+.e-boolean div.ui-slider,
+.e-boolean .ui-controlgroup {
+    margin: 0;
+}
+
+.e-boolean .ui-btn {
+    padding: .46em 1em;
+}
+
+.e-boolean .ui-btn.ui-btn-active {
+    background-color: #017e84 !important;
+    border-color: #017e84 !important;
+}
+
+.e-boolean.readonly .ui-btn.ui-btn-active {
+    background-color: rgba(143, 195, 31, .6);
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='view_res_config' name='系统配置' model='res.config'>
+        <resource>
+            <script src="/web/org/jmaa/base/statics/js/res_config.js"></script>
+        </resource>
+    </view>
+    <view id='view_config_form' name='配置-表单' model='res.config'>
+        <form on-init="onFormInit">
+            <toolbar buttons="save|reload"></toolbar>
+            <tabs>
+                <tab label = "安全设置">
+                    <group label="密码规则">
+                        <field name="default_pwd"/>
+                        <field name="pwd_complexity"/>
+                        <field name="pwd_min_length" min="0"/>
+                        <field name="pwd_validity"/>
+                    </group>
+                    <group label="登录">
+                        <field name="login_try_times" min="0"/>
+                        <field name="login_lock_time" min="0"/>
+                    </group>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

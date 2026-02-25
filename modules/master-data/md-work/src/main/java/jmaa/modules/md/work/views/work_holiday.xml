@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_holiday_search' name='法定假期-查询' model='md.work_holiday'>
+        <search>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='md_work_holiday_grid' name='法定假期-表格' model='md.work_holiday'>
+        <grid>
+            <toolbar buttons='default'>
+            </toolbar>
+            <field name='name'/>
+            <field name='start_date'/>
+            <field name='end_date'/>
+        </grid>
+    </view>
+    <!-- 法定假期表单视图 -->
+    <view id='md_work_holiday_form' name='法定假期-表单' model='md.work_holiday'>
+        <form>
+            <toolbar buttons='default'/>
+            <field name='name'/>
+            <field name='start_date'/>
+            <field name='end_date'/>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,8 @@
+.e-number .ui-btn {
+    border: none;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.e-number.readonly button {
+    display: none;
+}

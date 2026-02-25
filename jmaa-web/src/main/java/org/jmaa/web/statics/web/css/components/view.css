@@ -1,0 +1,297 @@
+.page-body {
+    background-color: #f8f9fa;
+    overflow: hidden;
+}
+
+.content-header {
+    border-bottom: 1px solid #dee2e6;
+    background-color: white;
+    padding: 0;
+}
+
+.content-header:empty {
+    border: none;
+}
+
+.data-panel {
+    height: 100%;
+    /* overflow: hidden; */
+}
+
+.data-panel .content {
+    display: flex;
+    height: calc(100% - 181px);
+}
+
+.view-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.card-view .card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0.75rem;
+}
+
+.card-view .card-body {
+    padding: 0.75rem;
+}
+
+.card-view .selected {
+    border: 1px solid #017e84;
+}
+
+.card-view .text-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 20px;
+}
+
+.card-view .text-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: small;
+    min-height: 16px;
+}
+
+.form-panel {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+button[part=form-close]:hover,
+button[part=form-close]:focus {
+    color: #0056b3;
+}
+
+.left-aside {
+    height: 100%;
+    overflow-y: hidden;
+    min-width: 250px;
+    width: 20%;
+}
+
+.btn-row {
+    margin: 0px 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 18px);
+}
+
+.grid-edit-tbar {
+    padding: 0.75rem;
+}
+
+.grid-edit,
+.grid-edit-tbar {
+    max-width: 1200px;
+}
+
+.treeview {
+    height: calc(100% - 39px);
+    overflow-y: auto;
+}
+
+.ztree * {
+    font-size: 1rem;
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.ztree .fa,
+.ztree .far,
+.ztree .fas {
+    font-size: 0.6rem;
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+
+.ztree li a.curSelectedNode {
+    background-color: #c4e2ff;
+    color: black;
+}
+
+
+.toasts-bottom-right {
+    z-index: 2040;
+}
+
+.toasts-top-right {
+    z-index: 2040;
+}
+
+.pager-from,
+.pager-to,
+.pager-total {
+    cursor: pointer;
+}
+
+.pager-from input,
+.pager-to input {
+    height: 24px !important;
+}
+
+
+.custom-file-btn-input {
+    position: absolute;
+    cursor: pointer !important;
+    top: 0;
+    left: -10000px;
+    opacity: 0;
+}
+
+
+.span_field {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.dataTables_wrapper .col-sm-12 {
+    width: auto;
+    max-width: unset;
+}
+
+
+.ribbon-wrapper .ribbon::after, .ribbon-wrapper .ribbon::before {
+    border-top-width: 0;
+}
+
+.card-body {
+    background: #fff !important;
+    padding: 0.5rem 1rem;
+}
+
+.search .btn {
+    height: auto;
+}
+
+.container-fluid {
+    margin-bottom: 5px;
+}
+
+.card-body .toolbar {
+    height: auto;
+}
+
+.card-body .mt-3, .my-3 {
+    margin-top: 0.5rem !important;
+}
+
+
+aside .nav-link {
+    padding: 0.1rem 1rem;
+}
+
+.btn-search {
+    border-bottom: 1px solid #017e84;
+    border-radius: 0;
+}
+
+@media (max-width: 740px) {
+    .data-panel .btn-row {
+        display: inline-block;
+    }
+
+    .form-panel .content-header {
+        display: inline-block;
+    }
+
+    .form-panel .e-statusbar {
+        border-top: 1px solid #dee2e6;
+    }
+
+    .form-header,
+    .e-x2many .header,
+    .e-message .header {
+        flex-flow: column;
+    }
+
+    .e-x2many .header [role=pager],
+    .e-message .header .rbar {
+        align-self: flex-end;
+    }
+
+    .form-panel .e-statusbar > .statusbar_status > .arrow_button {
+        min-height: 30px;
+        padding-left: 15px;
+    }
+
+    .form-panel .e-statusbar > .statusbar_status > .arrow_button:not(:first-child):before,
+    .form-panel .e-statusbar > .statusbar_status > .arrow_button:not(:first-child):after {
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+    }
+
+    .jui-form .e-form,
+    .jui-form .e-form .d-grid,
+    .jui-form .e-form .log-access {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    .jui-form .e-form [form-editor],
+    .jui-form .e-form .tabs-panel,
+    .jui-form .e-form .field-group,
+    .jui-form .e-form .log-access {
+        grid-column: span 1 !important;
+    }
+
+    .col-sm-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .jui-form [data-field],
+    .jui-form [data-editor] {
+        flex: auto;
+    }
+
+    .jui-form label ~ [data-field],
+    .jui-form label ~ [data-editor] {
+        max-width: calc(100% - 80px);
+        margin-left: auto;
+        padding-left: 10px;
+    }
+
+    .jui-form .custom-switch .custom-control-label::before {
+        left: 0;
+    }
+
+    .jui-form .custom-switch .custom-control-label::after {
+        left: 2px;
+    }
+
+    .jui-form .form-group {
+        display: flex;
+    }
+
+    .jui-form .form-group label {
+        line-height: 30px;
+    }
+
+    .jui-form .form-body .form-card {
+        border: none;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .jui-form .form-body .e-form {
+        padding: 1rem;
+    }
+
+    .jui-form .lg label {
+        font-size: .875rem !important;
+    }
+
+    .jui-form .lg .form-control {
+        font-size: 1rem !important;
+    }
+}

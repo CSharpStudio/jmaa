@@ -1,0 +1,58 @@
+.btn-print{
+    width: 100px;
+    height: 39px;
+    background: rgba(112, 182, 3, 1);
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 1;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-left: 15px;
+}
+
+.btn-pre{
+    width: 100px;
+    height: 39px;
+    background: rgba(2, 167, 240, 1);
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 1;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-left: 15px;
+}
+
+.btn-reset {
+    width: 100px;
+    height: 39px;
+    background: rgba(245, 154, 35, 1);
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    letter-spacing: 14px;
+    text-indent: 15px;
+    line-height: 1;
+    margin-left: 15px;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.qualified_qty {
+    color: #4FA061;
+}
+
+
+.code_state {
+    color: #48d0e1;
+}
+

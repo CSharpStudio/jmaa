@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="board_jwt" model="rbac.jwt">
+        <field name="login">mom-board</field>
+        <field name="name">大屏看板</field>
+        <field name="company_id" ref="base.company_default"></field>
+        <field name="company_ids" eval="[[4, ref(base.company_default)]]"></field>
+    </record>
+</data>

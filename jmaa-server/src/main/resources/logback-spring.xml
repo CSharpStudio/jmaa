@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty name="APP_NAME" scope="context" source="spring.application.name"/>
+    <springProperty name="ENV" scope="context" source="spring.profiles.active"/>
+    <springProperty name="LOG_LEVEL" scope="context" source="logback.level" defaultValue="DEBUG"/>
+    <springProperty name="LOG_SERVER" scope="context" source="logback.plumelog.server"/>
+    <springProperty name="PLUME_LOG_ENABLE" scope="context" source="logback.plumelog" defaultValue="false"/>
+
+    <!-- 彩色日志 -->
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="[${APP_NAME}] %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%level){blue} %clr(${PID}){magenta} %clr([%X{traceId},%X{spanId},%X{parentId}]){yellow} %clr([%thread]){orange} %clr(%-40.40logger{39}){cyan} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+    <property name="CONSOLE_LOG_PATTERN_NO_COLOR" value="[${APP_NAME}] %d{yyyy-MM-dd HH:mm:ss.SSS} %level ${PID} [%X{traceId},%X{spanId},%X{parentId}] [%thread] %-40.40logger{39} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+
+    <!-- 控制台日志 -->
+    <appender name="StdoutAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>DENY</onMatch>
+        </filter>
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="PlumeLogLiteAppender" class="com.plumelog.logback.appender.LiteAppender">
+        <appName>${APP_NAME}-${ENV}</appName>
+        <plumelogHost>${LOG_SERVER}</plumelogHost>
+    </appender>
+
+    <appender name="PlumeLogLiteAsyncAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="PlumeLogLiteAppender"/>
+        <queueSize>500</queueSize>
+        <maxFlushTime>1000</maxFlushTime>
+    </appender>
+
+    <!-- 滚动文件输出（按大小和时间） -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/${APP_NAME}.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level> <!-- 只允许 INFO、WARN、ERROR -->
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 每天生成一个日志文件，并按大小压缩 -->
+            <fileNamePattern>logs/archive/${APP_NAME}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 每个日志文件最大 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 保留 30 天的历史日志 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <if condition='property("PLUME_LOG_ENABLE").equals("true")'>
+            <then>
+                <appender-ref ref="PlumeLogLiteAsyncAppender" />
+            </then>
+        </if>
+        <if condition='property("ENV").equals("dev")'>
+            <then>
+                <appender-ref ref="StdoutAppender"/>
+            </then>
+        </if>
+        <appender-ref ref="FILE"/>
+    </root>
+    <logger name="org.apache.poi.openxml4j.opc.ZipPackage" level="off" additivity="false"></logger>
+</configuration>
+
+

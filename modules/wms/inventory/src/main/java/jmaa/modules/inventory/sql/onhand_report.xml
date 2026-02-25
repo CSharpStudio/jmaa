@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <sql id="material_onhand_report">
+        SELECT material_code,material_name,abc_type,stock_rule,category,spec, unit,company,
+        sum(ok_qty) as ok_qty,sum(ng_qty) as ng_qty,sum(allot_qty) as allot_qty,
+        sum(frozen_qty) as frozen_qty,sum(usable_qty) as usable_qty
+        FROM (
+        SELECT b.code AS material_code,b.name AS material_name,b.abc_type,b.category,b.spec,b.stock_rule,
+        u.name as unit,c.name as company, a.ok_qty,a.ng_qty,a.allot_qty,a.frozen_qty,a.usable_qty
+        FROM stock_onhand a
+        LEFT JOIN md_material b ON a.material_id = b.id
+        LEFT JOIN md_unit u on b.unit_id = u.id
+        LEFT JOIN res_company c on a.company_id = c.id
+        ${WHERE}
+        ) v
+        GROUP BY material_code,material_name,abc_type,stock_rule,category,spec,unit,company
+    </sql>
+    <sql id="material_onhand_report_count">
+        SELECT count(1)
+        FROM stock_onhand a
+        JOIN md_material b on a.material_id=b.id
+        ${WHERE}
+        GROUP BY a.material_id,a.company_id
+    </sql>
+
+    <sql id="onhand_report">
+        SELECT b.code AS material_code,b.name AS material_name,b.abc_type,b.category,b.spec,
+        u.name as unit,co.name as company,w.code AS warehouse_code,w.name AS warehouse_name,l.code AS location,
+        a.lot_num,c.product_date,c.product_lot,a.status,c.quality_status,a.sn,
+        a.ok_qty,a.ng_qty,a.allot_qty,a.frozen_qty,a.usable_qty
+        FROM stock_onhand a
+        LEFT JOIN md_material b ON a.material_id = b.id
+        LEFT JOIN lbl_material_label c ON a.label_id = c.id
+        LEFT JOIN md_unit u on b.unit_id = u.id
+        LEFT JOIN md_warehouse w ON a.warehouse_id = w.id
+        LEFT JOIN md_store_location l ON a.location_id = l.id
+        LEFT JOIN res_company co on a.company_id = co.id
+        ${WHERE}
+    </sql>
+    <sql id="onhand_report_count">
+        SELECT count(1)
+        FROM stock_onhand a
+        LEFT JOIN md_material b ON a.material_id = b.id
+        LEFT JOIN lbl_material_label c ON a.label_id = c.id
+        LEFT JOIN md_unit u on b.unit_id = u.id
+        LEFT JOIN md_warehouse w ON a.warehouse_id = w.id
+        LEFT JOIN md_store_location l ON a.location_id = l.id
+        LEFT JOIN res_company co on a.company_id = co.id
+        ${WHERE}
+    </sql>
+
+    <sql id="warehouse_onhand_report">
+        SELECT material_code,material_name,abc_type,category,spec,warehouse_code,warehouse_name,unit,company,
+        sum(ok_qty) as ok_qty,sum(ng_qty) as ng_qty,sum(allot_qty) as allot_qty,
+        sum(frozen_qty) as frozen_qty,sum(usable_qty) as usable_qty
+        FROM (SELECT b.code AS material_code,b.name AS material_name,b.abc_type,b.category,b.spec,
+        u.name as unit,c.name as company,w.code AS warehouse_code,w.name AS warehouse_name,
+        a.ok_qty,a.ng_qty,a.allot_qty,a.frozen_qty,a.usable_qty
+        FROM stock_onhand a
+        LEFT JOIN md_material b ON a.material_id = b.id
+        LEFT JOIN md_unit u on b.unit_id = u.id
+        LEFT JOIN md_warehouse w ON a.warehouse_id = w.id
+        LEFT JOIN res_company c on a.company_id = c.id
+        ${WHERE} ) v
+        GROUP BY warehouse_code, warehouse_name, material_code, material_name, abc_type, category, spec, unit, company
+    </sql>
+    <sql id="warehouse_onhand_report_count">
+        SELECT count(1)
+        FROM stock_onhand a
+        JOIN md_material b on a.material_id=b.id
+        ${WHERE}
+        GROUP BY a.warehouse_id,a.material_id,a.company_id
+    </sql>
+    <sql id="stock_in_report">
+        SELECT
+        detail.material_id,
+        detail.return_id,
+        detail.receipt_id,
+        detail.iqc_id,
+        detail.stock_in_id,
+        detail.product_storage_notice_id,
+        detail.material_return_id,
+        sum(detail.qty) AS qty,
+        sum(detail.return_qty) AS return_qty,
+        sum(detail.qty) - sum(detail.return_qty) AS should_stock_qty,
+        sum(detail.stock_qty) AS stock_qty,
+        sum(detail.qty) - sum(detail.return_qty) - sum(detail.stock_qty)AS wait_stock_qty,
+        max(detail.id) as id,
+        base.code as code,
+        base.type,
+        mm.code as material_code,
+        mm.name as material_name,
+        mm.spec ,
+        iqc.code as iqc_code,
+        mpsi.code as product_stock_in_code,
+        mmr.code as material_return_code,
+        wmr.code as receipt_code,
+        wsr.code as return_code
+        FROM
+        `stock_stock_in_details` detail
+        LEFT JOIN stock_stock_in base on base.id = detail.stock_in_id
+        LEFT JOIN md_material mm on detail.material_id = mm.id
+        LEFT JOIN iqc_sheet iqc on iqc.id = detail.iqc_id
+        LEFT JOIN mfg_product_storage_notice mpsi on mpsi.id = detail.product_storage_notice_id
+        LEFT JOIN mfg_material_return mmr on mmr.id = detail.material_return_id
+        LEFT JOIN wms_material_receipt wmr on wmr.id = detail.receipt_id
+        LEFT JOIN wms_sales_return wsr on wsr.id = detail.return_id
+        ${WHERE}
+        GROUP BY
+        detail.material_id,
+        detail.return_id,
+        detail.receipt_id,
+        detail.iqc_id,
+        detail.stock_in_id,
+        detail.material_return_id,
+        detail.product_storage_notice_id,
+        detail.material_return_id,
+        base.type,
+        base.code
+    </sql>
+
+    <sql id="stock_in_report_count">
+        select count(1) from (
+        SELECT
+        count(1)
+        FROM
+        `stock_stock_in_details` detail
+        LEFT JOIN stock_stock_in base on base.id = detail.stock_in_id
+        ${WHERE}
+        GROUP BY
+        detail.material_id,
+        detail.return_id,
+        detail.receipt_id,
+        detail.iqc_id,
+        detail.stock_in_id,
+        detail.material_return_id,
+        detail.product_storage_notice_id,
+        detail.material_return_id ) a
+    </sql>
+    <sql id="stock_in_report_material_qty">
+        SELECT
+        sum(detail.qty) AS qty
+        FROM
+        `stock_stock_in_details` detail
+        ${WHERE}
+        GROUP BY
+        detail.material_id,
+        detail.return_id,
+        detail.receipt_id,
+        detail.iqc_id,
+        detail.stock_in_id,
+        detail.material_return_id,
+        detail.product_storage_notice_id,
+        detail.material_return_id
+    </sql>
+</data>

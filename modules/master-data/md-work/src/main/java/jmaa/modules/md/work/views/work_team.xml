@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_team_search' name='班组-查询' model='md.work_team'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+        </search>
+    </view>
+    <view id='md_work_team_grid' name='班组-表格' model='md.work_team'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+        </grid>
+    </view>
+    <view id='md_work_team_form' name='班组-表单' model='md.work_team'>
+        <form>
+            <toolbar buttons='default'/>
+            <field name='code'/>
+            <field name='name'/>
+            <tabs>
+                <tab label="成员">
+                    <field name='member_ids' colspan="4" nolabel="1" editor="many2many">
+                        <grid>
+                            <toolbar></toolbar>
+                            <field name='code'/>
+                            <field name='name'/>
+                            <field name='entry_date'/>
+                            <field name='birth_date'/>
+                            <field name='email'/>
+                            <field name='mobile'/>
+                            <field name='active'/>
+                            <field name='account_id'/>
+                            <field name='duty'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

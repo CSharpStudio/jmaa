@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <record id="rule_auto_seq" model="code.coding">
+        <field name="code">SYS-AUTO-SEQ</field>
+        <field name="name">自动流水号</field>
+        <field name="rule">code.rule</field>
+        <field name="source">system</field>
+        <field name="active">true</field>
+        <field name="description">8位全局自动流水号</field>
+    </record>
+    <record id="rule_auto_seq_part1" model="code.part">
+        <field name="coding_id" ref="code-rule.rule_auto_seq"></field>
+        <field name="seq">1</field>
+        <field name="content">{"length":"8","start":"1","step":"1"}</field>
+        <field name="part_code">code.part.global_sequence</field>
+    </record>
+</data>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="mfg_material_return_resource" type="resource" inherit_id="mfg-logistics.wms_material_return_resource"
+          name="生产退料-资源-扩展" model="mfg.material_return">
+        <xpath expr="resource" position="replace">
+            <script src="/web/jmaa/modules/wip/statics/js/material_return.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </xpath>
+    </view>
+    <view id="mfg_material_return_form" type="form" inherit_id="mfg-logistics.wms_material_return_form"
+          name="生产退料-表单-扩展" model="mfg.material_return">
+        <xpath expr="field[name=related_code]" position="replace">
+            <field name="work_order_id" view="default" lookup="[['status','!=','draft']]" on-change-action="onWorkOrderChange"/>
+        </xpath>
+        <xpath expr="field[name=workshop_id]" position="attribute">
+            <field name="workshop_id" readonly="1"/>
+        </xpath>
+    </view>
+</data>

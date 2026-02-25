@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_user_form' inherit_id="base.view_user_form" type="form" name='用户-仓库-表单' model='rbac.user'>
+        <xpath expr="field[name='active']" position="before">
+            <field name='warehouse_ids' editor="many2many-tags"/>
+        </xpath>
+    </view>
+</data>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="mfg_material_return_mobile_resource" name="生产退料-移动端-资源" model="mfg.material_return_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/mfg/logistics/statics/js/material_return_mobile.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id="mfg_material_return_mobile_view" name="生产退料-移动端" model="mfg.material_return_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2>
+                        <t>生产退料</t>
+                    </h2>
+                    <a class="home-link"/>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-return-input focus" type="text" t-enter="searchOrder"
+                               placeholder="单号/物料编码/标签条码"/>
+                        <button type="button" class="clear-input" t-click="searchOrder"/>
+                    </div>
+                </div>
+                <div style="height:calc(100% - 126px)">
+                    <list ref="orderList" load-on-init="1" load-method="loadOrderList" on-item-click="openOrder">
+                        <card>
+                            <field name="code"/>
+                            <field name='$rownum' nolabel="1" render="rownum"/>
+                            <field name="related_code" colspan="2"/>
+                            <field name="workshop_id" colspan="2"/>
+                            <field name="warehouse_id" colspan="2"/>
+                            <field name="return_type"/>
+                            <field name="status"/>
+                        </card>
+                    </list>
+                </div>
+                <div data-role="footer" class="footer-bar">
+                    <div class="toolbar">
+                        <button class="ui-button" t-click="createOrder">
+                            <t>创建</t>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-page" id="order">
+                <div data-role="header">
+                    <h2>
+                        <t>生产退料</t>
+                    </h2>
+                    <a class="back-link" t-click="backSearchOrder" focus-to=".search-return-input"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="orderTab" label="退料" t-click="loadOrder">
+                            <div class="tab-header-scan">
+                                <div widget="scanner">
+                                    <a class="scan-icon"/>
+                                    <input class="return-input" type="text" t-enter="scanReturn"
+                                           placeholder="请扫描标签条码"/>
+                                    <button type="button" class="clear-input"/>
+                                </div>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <div class="flex-fill"></div>
+                                    <button type="button" t-click="submitCode"
+                                            class="ui-btn ui-mini btn-primary btn-order-group">
+                                        <t>确定</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height:calc(100% - 40px)">
+                                <form ref="orderForm">
+                                    <div class="card-view">
+                                        <field name="code" colspan="2" editor="card-item"/>
+                                        <field name="return_type" readonly="1" required="0" colspan="2" editor="card-item"/>
+                                        <field name="related_code" readonly="1" colspan="2" editor="card-item"/>
+                                        <field name='workshop_id' readonly="1" colspan="2" editor="card-item"/>
+                                        <field name='return_reason' readonly="1" colspan="2" editor="card-item"/>
+                                        <field name='material_id' readonly="1" colspan="2" editor="card-item"/>
+                                        <editor name='material_name_spec' label="规格名称" readonly="1" colspan="2" type="card-item"/>
+                                    </div>
+                                    <field name="status" visible="0"/>
+                                    <editor label="退料数量" name='return_qty' type="float" required="1" gt="0"/>
+                                    <field name="warehouse_id" label="入库仓库"/>
+                                    <field label="打印标签" name='print_flag' colspan="1"/>
+                                    <field label="标签模板" name="template_id" colspan="1"
+                                           lookup="[['category','=','material_label']]"/>
+                                    <editor label="操作信息" name="result" type="msg_editor" colspan="2"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab name="detailsTab" label="退料明细" t-click="loadDetails">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <div/>
+                                    <button t-click="submitOrder" type="button"
+                                            class="ui-btn btn-primary btn-order-group">
+                                        <t>生成入库单</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList" on-load="onDetailsListLoad"
+                                  style="height:calc(100% - 34px);" model="mfg.material_return_details">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='sn' colspan="1"/>
+                                    <field name='qty'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='unit_id'/>
+                                    <field name='status'/>
+                                    <field name='product_date' colspan="2"/>
+                                    <field name='product_lot'/>
+                                    <div style="position:absolute;right:10px;bottom:10px">
+                                        <button class="ui-btn btn-primary btn-order-group" t-click="deleteDetails">
+                                            <t>删除</t>
+                                        </button>
+                                    </div>
+                                </card>
+                            </list>
+                        </tab>
+                        <tab name="lineTab" label="退料物料" t-click="loadLine">
+                            <list ref="lineList" load-method="loadLineList" model="mfg.material_return_line"
+                                  style="height:100%;">
+                                <card>
+                                    <field name='material_id'/>
+                                    <field name='$rownum' nolabel="1" render="rownum"/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name="return_qty"/>
+                                    <field name='unit_id'/>
+                                    <field name='status'/>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+    <view id="mfg_material_return_mobile_form" name="退料单-移动端-表单" model="mfg.material_return_mobile">
+        <form cols="1">
+            <field name='workshop_id'/>
+            <field name="return_type" required="1"/>
+            <field name="related_code"/>
+            <!--<field name='work_order_id' view="mobile-lookup" lookup="[['workshop_id','=',workshop_id]]"/>-->
+            <field name='warehouse_id' required="1"/>
+            <field name='return_reason'/>
+        </form>
+    </view>
+</data>

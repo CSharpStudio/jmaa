@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='view_res_company_grid' type="grid" inherit_id="base.view_res_company_grid" name='公司-表格-扩展' model='res.company'>
+        <xpath expr="field[name=org_code]" position="after">
+            <field name="supplier_ids"/>
+        </xpath>
+    </view>
+    <view id='view_res_company_form' type="form" inherit_id="base.view_res_company_form" name='公司-表单-扩展' model='res.company'>
+        <xpath expr="field[name=org_code]" position="after">
+            <field name="supplier_ids" editor="many2many-tags"/>
+        </xpath>
+    </view>
+</data>

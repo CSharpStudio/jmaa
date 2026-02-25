@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_enterprise_model_resource' name='企业模型-资源' model='md.enterprise_model'>
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/enterprise_model.js"></script>
+        </resource>
+    </view>
+    <view id='md_enterprise_model_form' name='企业模型-表单' model='md.enterprise_model'>
+        <form on-load-action="onTplChange">
+            <tree sort-field="seq" drag-inner="0" before-drop="beforeDrop"></tree>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='code'/>
+            <field name='parent_id' readonly="1"/>
+            <field name='tpl_id' editor="enterprise_tpl_selector" on-change-action="onTplChange"/>
+            <field name='seq'/>
+            <field name='company_id'/>
+        </form>
+    </view>
+    <view id='md_workshop_form' name='车间-表单' model='md.workshop'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='code'/>
+            <field name='parent_id' readonly="1"/>
+            <field name='tpl_id' readonly="1"/>
+            <field name='seq'/>
+            <field name='company_id'/>
+        </form>
+    </view>
+    <view id='md_factory_form' name='工厂-表单' model='md.factory'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='name'/>
+            <field name='code'/>
+            <field name='parent_id' readonly="1"/>
+            <field name='tpl_id' readonly="1"/>
+            <field name='seq'/>
+            <field name='company_id'/>
+        </form>
+    </view>
+</data>

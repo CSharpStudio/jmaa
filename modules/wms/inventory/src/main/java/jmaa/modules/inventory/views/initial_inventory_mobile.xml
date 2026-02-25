@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_initial_inventory_mobile_resource" name="初始化标签-移动端-资源" model="wms.initial_inventory_mobile">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/initial_inventory_mobile.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+
+    <view id="wms_initial_inventory_mobile_view" name="初始化标签-移动端" model="wms.initial_inventory_mobile">
+        <mobile>
+            <div class="ui-page" id="main">
+                <div style="height:100%">
+                    <tabs position="footer" ref="tabs">
+                        <tab name="initialTab" label="初始化">
+                            <div data-role="header">
+                                <h2>
+                                    <t>初始化标签</t>
+                                </h2>
+                                <a class="home-link"/>
+                            </div>
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <button t-click="createLabelCode">
+                                        <t>生成条码</t>
+                                    </button>
+                                    <button t-click="resetForm">
+                                        <t>清空</t>
+                                    </button>
+                                    <div class="flex-fill"/>
+                                    <button t-click="initial" class="ui-btn btn-primary ml-1">
+                                        <t>确认</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height: calc(100% - 79px)">
+                                <form ref="initialForm">
+                                    <field name='sn'/>
+                                    <field name='lot_num'/>
+                                    <field name="material_id" visible="0"/>
+                                    <field name="material_code" editor="scanner" t-enter="scanMaterial" required="1"/>
+                                    <field name='qty'/>
+                                    <field name='warehouse_id' required="1" t-visible="is_store==true"/>
+                                    <field name='location_id' visible="0" t-reset="warehouse_id"/>
+                                    <field name='location_code' editor="scanner" t-enter="scanLocation" required="1" t-visible="is_store==true" t-reset="warehouse_id"/>
+                                    <field name='product_date' readonly="0"/>
+                                    <field name='stock_rule' visible="0"/>
+                                    <field name='unit_id'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='product_lot' readonly="0"/>
+                                    <field name='template_id'/>
+                                    <field name='supplier_id'/>
+                                    <field name='customer_id'/>
+                                    <field name="is_store"/>
+                                    <field name="auto_print"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="初始化明细" t-click="showDetailsList">
+                            <div data-role="header">
+                                <h2>
+                                    <t>初始化明细</t>
+                                </h2>
+                                <a class="home-link"/>
+                            </div>
+                            <list ref="detailsList" load-method="loadDetailsList" model="wms.initial_inventory_mobile"
+                                  style="height:calc(100% - 76px);">
+                                <card>
+                                    <field name='sn'/>
+                                    <field name='lot_num'/>
+                                    <field name='material_id'/>
+                                    <field name='qty'/>
+                                    <field name='material_name_spec' colspan="2"/>
+                                    <field name='warehouse_id'/>
+                                    <field name='location_id'/>
+                                    <field name='stock_rule'/>
+                                    <div style="position:absolute;right:20px;bottom:10px">
+                                        <button class="ui-btn ui-button-material-delete"
+                                                t-click="deleteDetail">
+                                            <t>删除</t>
+                                        </button>
+                                    </div>
+                                </card>
+                            </list>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

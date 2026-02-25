@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='stock_in_report_search' name='待入库报表-查询' model='stock.in_report'>
+        <search>
+            <field name='material_id' editor="many2many" criteria="[['detail.material_id', 'in', value]]"/>
+            <field name='stock_in_code' criteria="[['base.code', '=', value]]"/>
+            <field name='receipt_code' criteria="[['wmr.code', '=', value]]"/>
+            <field name='iqc_code' criteria="[['iqc.code', '=', value]]"/>
+            <field name='product_stock_in_code' criteria="[['mpsi.code', '=', value]]"/>
+            <field name='material_return_code' criteria="[['mmr.code', '=', value]]"/>
+            <field name='return_code' criteria="[['wsr.code', '=', value]]"/>
+        </search>
+    </view>
+    <view id='stock_in_report_grid' name='待入库报表-表格' model='stock.in_report'>
+        <grid footer="1" ordering="0" checkSelect="0">
+            <toolbar buttons='query|edit|export'>
+                <button name="edit" label="详情"/>
+            </toolbar>
+            <field name='material_code'/>
+            <field name='name_spec'/>
+            <field name='code'/>
+            <field name='type'/>
+            <field name='qty' class="sum col-success" filter="0"/>
+            <field name='return_qty' class="col-warning" filter="0"/>
+            <field name='should_stock_qty' class="col-info" filter="0"/>
+            <field name='stock_qty' class="col-success" filter="0"/>
+            <field name='wait_stock_qty' class="col-olive" filter="0"/>
+            <field name='receipt_code'/>
+            <field name='iqc_code'/>
+            <field name='material_return_code'/>
+            <field name='product_stock_in_code'/>
+            <field name='return_code'/>
+        </grid>
+    </view>
+    <view id='stock_in_report_form' name='待入库报表-表单' model='stock.in_report'>
+        <form>
+            <toolbar buttons='none'/>
+            <field name='material_code' readonly="1"/>
+            <field name='name_spec' readonly="1"/>
+            <field name='code' readonly="1"/>
+            <field name='type' readonly="1"/>
+            <field name='qty' readonly="1"/>
+            <field name='receipt_code' readonly="1"/>
+            <field name='iqc_code' readonly="1"/>
+            <field name='material_return_code' readonly="1"/>
+            <field name='product_stock_in_code' readonly="1"/>
+            <field name='return_code' readonly="1"/>
+            <tabs>
+                <tab label='待入库明细'>
+                    <field name='details_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='export|reload'>
+                            </toolbar>
+                            <field name='lot_num'/>
+                            <field name='sn'/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='qty' class="col-info"/>
+                            <field name='return_qty' class="col-warning"/>
+                            <field name='should_stock_qty' class="col-info"/>
+                            <field name='stock_qty' class="col-success"/>
+                            <field name='wait_stock_qty' class="col-olive"/>
+                            <field name='product_date'/>
+                            <field name='unit_id'/>
+                            <field name='warehouse_id'/>
+                            <field name='location_id'/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='code_coding_resource' name='编码规则-资源' model='code.coding'>
+        <resource>
+            <script src="/web/jmaa/modules/code/rule/statics/js/code_coding.js"></script>
+        </resource>
+    </view>
+    <view id='code_coding_search' name='编码规则-查询' model='code.coding'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='rule'/>
+            <field name='source'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='code_coding_grid' name='编码规则-表格' model='code.coding'>
+        <grid>
+            <toolbar buttons='default|copy'>
+                <button name="delete" ref="edit" t-enable="ids:source!='system'" class="btn-danger"
+                        t-click="delete" confirm="确定删除?" label="删除"></button>
+            </toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='rule'/>
+            <field name='source'/>
+            <field name='active'/>
+            <field name='description'/>
+        </grid>
+    </view>
+    <view id='code_coding_form' name='编码规则-表单' model='code.coding'>
+        <form>
+            <toolbar buttons='default|copy'>
+            </toolbar>
+            <field name='code' t-readonly="source=='system'" class="lg" colspan="2"/>
+            <field name='name' class="lg" colspan="2"/>
+            <field name='rule'/>
+            <field name='active'/>
+            <field name='description' colspan="2"/>
+            <field name='source' visible="false"/>
+            <tabs>
+                <tab label='规则组成'>
+                    <field name='code_part_ids' colspan='4' nolabel='1' pager="0" limit="1000">
+                        <grid ordering="0" on-create="onCreatePart">
+                            <toolbar buttons='default'>
+                                <button name="moveUp" t-enable="id" t-click="moveUp" label="上移"></button>
+                                <button name="moveDown" t-enable="id" t-click="moveDown" label="下移"></button>
+                            </toolbar>
+                            <field name='seq' required="1" readonly="1"/>
+                            <field name='part_code' column="part-code" required="1"
+                                   editor="part-code" on-change-action="onPartChange"/>
+                            <field name='description' colspan="2"/>
+                            <field name='content' t-reset="part_code" t-visible="part_code and !part_code[0].startsWith('$')"
+                                   editor="part-content" colspan="4"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='code_part_chars_code_form' name='编码前缀-表单' model='code.part.chars_code'>
+        <form cols="2">
+            <span class="form-group" style="grid-column: span 2;">固定的字符</span>
+            <field name='code'/>
+        </form>
+    </view>
+    <view id='code_part_date_template_form' name='按日期序列号算法-表单' model='code.part.date_template'>
+        <form cols="2">
+            <span class="form-group" style="grid-column: span 2;">日期长度规则，如：yy-MM-dd</span>
+            <field name='format_code'/>
+        </form>
+    </view>
+    <view id='code_part_global_sequence_form' name='普通序列号算法-表单' model='code.part.global_sequence'>
+        <form cols="3">
+            <span class="form-group" style="grid-column: span 3;">普通流水号算法，一直累加序列</span>
+            <field name='length'/>
+            <field name='start'/>
+            <field name='step'/>
+        </form>
+    </view>
+    <view id='code_part_year_sequence_form' name='按年序列号算法-表单' model='code.part.year_sequence'>
+        <form cols="3">
+            <span class="form-group" style="grid-column: span 3;">日期长度规则，如：yy-MM-dd</span>
+            <field name='length'/>
+            <field name='start'/>
+            <field name='step'/>
+        </form>
+    </view>
+    <view id='code_part_month_sequence_form' name='按月序列号算法-表单' model='code.part.month_sequence'>
+        <form cols="3">
+            <span class="form-group" style="grid-column: span 3;">按月份生成流水号算法，每月重新编码</span>
+            <field name='length'/>
+            <field name='start'/>
+            <field name='step'/>
+        </form>
+    </view>
+    <view id='code_part_day_sequence_form' name='按日序列号算法-表单' model='code.part.day_sequence'>
+        <form cols="3">
+            <span class="form-group" style="grid-column: span 3;">按日期生成流水号算法，每天重新编码</span>
+            <field name='length' required="1"/>
+            <field name='start' required="1"/>
+            <field name='step' required="1"/>
+        </form>
+    </view>
+    <view id='code_part_field_template_form' name='字段模板-表单' model='code.field_template'>
+        <form cols="2">
+            <field name='field_name'/>
+        </form>
+    </view>
+</data>

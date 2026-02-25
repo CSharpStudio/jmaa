@@ -1,0 +1,44 @@
+.jui-mobile .header-bar,
+.jui-mobile .footer-bar {
+    padding: .1px 10px;
+    width: calc(100% - 20px) !important;
+}
+
+.jui-mobile .footer-bar {
+    border-top: 1px solid #dee2e6;
+}
+
+.jui-mobile .header-bar {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.jui-mobile .header-bar .title {
+    line-height: 34px;
+}
+
+.jui-mobile .header-bar .toolbar,
+.jui-mobile .footer-bar .toolbar {
+    display: flex;
+    column-gap: 5px;
+    margin: .25em 0;
+    position: relative;
+}
+
+.jui-mobile .toolbar .ui-btn{
+    font-size: 12.5px;
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    padding: 0.5em 1em;
+}
+
+.jui-mobile .toolbar .ui-btn-icon-left{
+    padding-left: 2.5em;
+}
+
+.jui-mobile .toolbar .ui-btn,
+.jui-mobile .toolbar .ui-controlgroup,
+.jui-mobile .toolbar .ui-checkbox,
+.jui-mobile .toolbar .ui-radio {
+    margin: 0;
+}

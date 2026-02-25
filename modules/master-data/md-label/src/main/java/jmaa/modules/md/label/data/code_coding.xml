@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data noupdate="1">
+    <!--标签条码默认规则-->
+    <record id="sn_code" model="code.coding">
+        <field name="code">SYS-SN</field>
+        <field name="name">标签条码</field>
+        <field name="rule">code.rule.material</field>
+        <field name="source">system</field>
+        <field name="active">true</field>
+        <field name="description">物料标签条码编码</field>
+    </record>
+    <record id="sn_code_part1" model="code.part">
+        <field name="coding_id" ref="sn_code"></field>
+        <field name="seq">1</field>
+        <field name="content">{"code":"R"}</field>
+        <field name="part_code">code.part.chars_code</field>
+    </record>
+    <record id="sn_code_part2" model="code.part">
+        <field name="coding_id" ref="sn_code"></field>
+        <field name="seq">2</field>
+        <field name="content"></field>
+        <field name="code">${org_code}</field>
+        <field name="name">组织代码</field>
+    </record>
+    <record id="sn_code_part3" model="code.part">
+        <field name="coding_id" ref="sn_code"></field>
+        <field name="seq">3</field>
+        <field name="content">{"format_code":"yyMMdd"}</field>
+        <field name="part_code">code.part.date_template</field>
+    </record>
+    <record id="sn_code_part4" model="code.part">
+        <field name="coding_id" ref="sn_code"></field>
+        <field name="seq">4</field>
+        <field name="content">{"length":"4","start":"0","step":"1"}</field>
+        <field name="part_code">code.part.day_sequence</field>
+    </record>
+    <!--物料批次号默认规则-->
+    <record id="lot_num_code" model="code.coding">
+        <field name="code">SYS-LOT</field>
+        <field name="name">物料批次号编码</field>
+        <field name="rule">code.rule.material</field>
+        <field name="source">system</field>
+        <field name="active">true</field>
+        <field name="description">物料批次号默认规则</field>
+    </record>
+    <record id="material_lot_part1" model="code.part">
+        <field name="coding_id" ref="lot_num_code"></field>
+        <field name="seq">1</field>
+        <field name="content">{"code":"L"}</field>
+        <field name="part_code">code.part.chars_code</field>
+    </record>
+    <record id="material_lot_part2" model="code.part">
+        <field name="coding_id" ref="lot_num_code"></field>
+        <field name="seq">2</field>
+        <field name="content"></field>
+        <field name="code">${org_code}</field>
+        <field name="name">组织代码</field>
+    </record>
+    <record id="material_lot_part3" model="code.part">
+        <field name="coding_id" ref="lot_num_code"></field>
+        <field name="seq">3</field>
+        <field name="content">{"format_code":"yyMMdd"}</field>
+        <field name="part_code">code.part.date_template</field>
+    </record>
+    <record id="material_lot_part4" model="code.part">
+        <field name="coding_id" ref="lot_num_code"></field>
+        <field name="seq">4</field>
+        <field name="content">{"length":"3","start":"0","step":"1"}</field>
+        <field name="part_code">code.part.day_sequence</field>
+    </record>
+</data>

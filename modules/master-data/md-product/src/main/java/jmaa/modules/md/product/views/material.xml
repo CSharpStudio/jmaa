@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_material_form' name='物料-产品-表单' type="form" inherit_id="md-enterprise.md_material_form"
+          model='md.material'>
+        <xpath expr="tab[label=基本属性]" position="inside">
+            <field name='model_id'/>
+            <field name='family_id'/>
+        </xpath>
+    </view>
+</data>

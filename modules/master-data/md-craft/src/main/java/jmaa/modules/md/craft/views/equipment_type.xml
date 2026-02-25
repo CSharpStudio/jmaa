@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_equipment_type_grid' name='设备类型-表格-制程' inherit_id="md-resource.md_equipment_type_grid"
+          model='md.equipment_type'>
+        <xpath expr="field[name=active]" position="before">
+            <field name='craft_type_id'/>
+        </xpath>
+    </view>
+    <view id='md_equipment_type_form' name='设备类型-表单-制程' inherit_id="md-resource.md_equipment_type_form"
+          model='md.equipment_type'>
+        <xpath expr="field[name=active]" position="before">
+            <field name='craft_type_id'/>
+        </xpath>
+    </view>
+</data>

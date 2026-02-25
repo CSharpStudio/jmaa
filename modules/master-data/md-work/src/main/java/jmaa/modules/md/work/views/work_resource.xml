@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_work_resource_grid' inherit_id="md-resource.md_work_resource_grid" name='制造资源-表格-扩展' model='md.work_resource'>
+        <xpath expr="field[name=work_type]" position="after">
+            <field name='calendar_id'/>
+        </xpath>
+    </view>
+    <view id='md_work_resource_form' inherit_id="md-resource.md_work_resource_form" name='制造资源-表单-扩展' model='md.work_resource'>
+        <xpath expr="field[name=work_type]" position="after">
+            <field name='calendar_id'/>
+        </xpath>
+    </view>
+</data>

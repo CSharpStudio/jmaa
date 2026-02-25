@@ -1,0 +1,11 @@
+.card-menu {
+    position: absolute;
+    right: 8px;
+}
+.module-icon{
+    width: 80px;
+    padding: 5px 10px 5px 5px;
+}
+.module-tool{
+    margin-top: -16px;
+}

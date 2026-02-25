@@ -1,0 +1,1 @@
+import{_ as e,r as a,o as s,c as n,w as t,j as o,K as r,d as u,u as d}from"./index.js";const i=e({},[["render",function(e,u){const d=a("router-view");return s(),n(d,null,{default:t(({Component:e,route:a})=>[a.meta.noKeepAlive?(s(),n(o(e),{key:0})):(s(),n(r,{key:1},[(s(),n(o(e)))],1024))]),_:1})}]]),l=u({__name:"index",setup:e=>(e,a)=>(s(),n(d(i)))});export{l as default};

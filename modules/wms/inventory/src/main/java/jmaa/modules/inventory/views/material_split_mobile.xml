@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="wms_material_split_mobile_resource" name="标签拆分-资源" model="wms.material_split_mobile">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/material_split_mobile.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"></script>
+        </resource>
+    </view>
+    <view id="wms_material_split_mobile_view" name="标签拆分-移动端" model="wms.material_split_mobile">
+        <mobile>
+            <div class="ui-page" id="details">
+                <div data-role="header">
+                    <h2>
+                        <t>标签拆分</t>
+                    </h2>
+                    <a class="home-link"/>
+                </div>
+                <div style="height:calc(100% - 40px)">
+                    <tabs position="footer" ref="tabs">
+                        <tab label="在库标签">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <button t-click="resetMaterialForm">
+                                        <t>重置</t>
+                                    </button>
+                                    <div class="flex-fill"/>
+                                    <button t-click="materialSplitConfirm">
+                                        <t>确认</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height:calc(100% - 84px)">
+                                <form ref="materialLabelForm">
+                                    <field name='code' focus="1" colspan="2" editor="scanner" t-enter="scanMaterialCode"
+                                           required="1" label="需拆分标签"/>
+                                    <field name='qty' colspan="2" readonly="1"/>
+                                    <editor name="split_qty" type="float" colspan="2" required="1" label="拆分数量"/>
+                                    <field name='print_old' label="打印新标签"/>
+                                    <field name='message' colspan="2" readonly="1" rowspan="2" editor="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                        <tab label="包装标签">
+                            <div class="header-bar">
+                                <div class="toolbar">
+                                    <button t-click="resetPackageForm">
+                                        <t>重置</t>
+                                    </button>
+                                    <div class="flex-fill"/>
+                                    <button t-click="packageSplit">
+                                        <t>拆箱</t>
+                                    </button>
+                                    <button t-click="packageMerge">
+                                        <t>合箱</t>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="height:calc(100% - 84px)">
+                                <form ref="packageLabelForm">
+                                    <field name='code' colspan="2" focus="1" editor="scanner" t-enter="scanPackageCode"
+                                           required="1" label="包装标签"/>
+                                    <field name='qty' colspan="2" readonly="1" label="包装数量"/>
+                                    <field name='sn' colspan="2" editor="scanner" t-enter="scanPackageSn" required="1"
+                                           label="物料标签"/>
+                                    <field name='label_qty' colspan="2" readonly="1" label="标签数量"/>
+                                    <field name='message' colspan="2" readonly="1" rowspan="2" editor="msg_editor"/>
+                                </form>
+                            </div>
+                        </tab>
+                    </tabs>
+                </div>
+            </div>
+        </mobile>
+    </view>
+</data>

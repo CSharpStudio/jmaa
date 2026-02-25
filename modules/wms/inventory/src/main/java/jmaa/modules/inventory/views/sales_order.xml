@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_sales_order_resource" name="销售订单-资源" model="sales.order">
+        <resource>
+            <script src="/web/jmaa/modules/inventory/statics/js/sales_order.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"></script>
+        </resource>
+    </view>
+    <view id='wms_sales_order_search' name='销售订单-查询' model='sales.order'
+          inherit_id="sales.sales_order_search">
+        <xpath expr="field[name=status]" position="after">
+            <field name='delivery_status'/>
+        </xpath>
+    </view>
+    <view id='wms_sales_order_grid' name='销售订单-表格' model='sales.order'
+          inherit_id="sales.sales_order_grid">
+        <xpath expr="field[name=type]" position="after">
+            <field name='delivery_status'/>
+        </xpath>
+    </view>
+    <view id='wms_sales_order_form' name='销售订单-表单' model='sales.order'
+          inherit_id="sales.sales_order_form">
+        <xpath expr="field[name=line_ids] grid field[name=status]" position="after">
+            <field name='delivery_qty'/>
+            <field name='return_qty'/>
+        </xpath>
+    </view>
+</data>

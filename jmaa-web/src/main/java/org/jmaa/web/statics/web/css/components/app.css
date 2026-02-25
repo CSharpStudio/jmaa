@@ -1,0 +1,116 @@
+body {
+    overflow: hidden;
+}
+
+.nav-link {
+    white-space: nowrap;
+}
+
+.brand-link {
+    display: flex;
+}
+
+.brand-link .brand-icon {
+    height: 54px;
+    width: 54px;
+    background: url("/web/org/jmaa/web/statics/img/about.jpg") no-repeat;
+    background-size: contain;
+}
+
+.brand-link .brand-text {
+    height: 54px;
+    background: url("/web/org/jmaa/web/statics/img/brand.png") no-repeat;
+    background-size: contain;
+    flex: 1;
+}
+
+.main-header > ul.navbar-nav {
+    flex-shrink: 0;
+}
+
+[role=app-menu] {
+    margin-right: auto;
+    display: flex;
+    overflow: hidden;
+}
+
+[role=app-menu] .app-menu p {
+    font-size: 1.3rem;
+}
+
+[role=app-menu] .app-menus {
+    overflow: hidden;
+}
+
+[role=app-menu] .app-menus .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.app-submenu .dropdown-submenu > .dropdown-menu {
+    top: 10px;
+}
+
+[data-widget=app-menu-scrollleft],
+[data-widget=app-menu-scrollright] {
+    margin-left: -10px;
+    margin-right: -10px;
+    display: none;
+}
+
+.theme-items {
+    margin: auto;
+    width: 146px;
+}
+
+.theme-items label.btn {
+    width: 70px;
+    padding: 5px;
+}
+
+.toasts-top-right {
+    top: 40px;
+}
+
+@media (max-width: 620px) {
+    .main-header .app-menus {
+        display: none;
+    }
+
+    .main-header {
+        justify-content: space-between;
+    }
+
+    .main-header .user-icon + span {
+        display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    .main-header [role=app-menu],
+    .content-wrapper .nav-tool {
+        display: none;
+    }
+}
+
+.main-footer {
+    padding: 0.4rem;
+    display: flex;
+}
+
+.main-footer strong {
+    font-size: 12px;
+    color: #c7c7c7;
+    vertical-align: text-top;
+}
+
+.main-footer strong a {
+    color: #c7c7c7;
+}
+
+.btn {
+    padding: .4rem .5rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    border-radius: .2rem;
+}

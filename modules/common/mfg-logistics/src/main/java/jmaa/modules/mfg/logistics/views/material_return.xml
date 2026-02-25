@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="wms_material_return_resource" name="生产退料-资源" model="mfg.material_return">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/mfg/logistics/statics/js/material_return.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </resource>
+    </view>
+    <view id='wms_material_return_search' name='生产退料-查询' model='mfg.material_return'>
+        <search>
+            <field name='code'/>
+            <field name='related_code'/>
+            <field name='status'/>
+            <field name='remark'/>
+        </search>
+    </view>
+    <view id='wms_material_return_grid' name='生产退料-表格' model='mfg.material_return'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="提交" t-enable="ids:['draft', 'returning'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status' tags="{draft:'warning',returning:'info',done:'success'}"/>
+            <field name='related_code'/>
+            <field name='return_type'/>
+            <field name='warehouse_id'/>
+            <field name='return_reason'/>
+            <field name='remark' colspan="2"/>
+        </grid>
+    </view>
+    <view id='wms_material_return_form' name='生产退料-表单' model='mfg.material_return'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button label="扫码" t-visible="['draft','returning'].includes(status)" t-click="scanCode" auth="commit"
+                        class="btn-primary"/>
+                <button label="生成入库单" t-enable="ids:['draft', 'returning'].includes(status)" auth="commit"
+                        t-click="createStockInOrder" class="btn btn-success"/>
+                <field name='status' editor="statusbar" values="draft,returning,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='return_type'/>
+            <field name='related_code'/>
+            <field name='workshop_id' link="0"/>
+            <field name='warehouse_id' label="入库仓库" required="1"/>
+            <field name='return_reason'/>
+            <tabs>
+                <tab label='退料物料'>
+                    <field name='line_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='export|reload'/>
+                            <field name="status" tags="{new:'warning',returning:'primary',returned:'info',done:'success'}"/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='unit_id'/>
+                            <field name='material_category'/>
+                            <field name='return_qty'/>
+                            <edit>
+                                <field name='material_id' on-change-action="onMaterialChange"/>
+                                <field name='material_name_spec'/>
+                                <field name='unit_id'/>
+                                <field name='material_category'/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='退料明细'>
+                    <field name='details_ids' colspan='4' nolabel='1'>
+                        <grid>
+                            <toolbar buttons='delete|export|reload'>
+                                <button name="delete" t-click="deleteDetails"/>
+                            </toolbar>
+                            <field name="status" tags="{'to-inspect':'warning','to-stock':'primary','return':'info','done':'success'}"/>
+                            <field name="label_id"/>
+                            <field name="lot_num"/>
+                            <field name='material_id'/>
+                            <field name='qty'/>
+                            <field name='material_name_spec'/>
+                            <field name='material_category'/>
+                            <field name='unit_id'/>
+                            <field name='warehouse_id' label="入库仓库"/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+    <view id='mfg_material_return_dialog' name='生产退料-对话框' model='mfg.material_return_dialog'>
+        <form logAccess="0" cols="3">
+            <editor name="unit_accuracy" type="integer" visible="0"/>
+            <editor label="条码" name='sn' type="char" colspan="2" placeholder="请扫描标签" class="lg"/>
+            <editor label="扫描结果" name='result' rowspan="2" type="msg_editor"/>
+            <field name='material_id' link="0"/>
+            <editor label="ABC分类" name='abc_type' type="char" readonly="1"/>
+            <editor label="名称规格" name="material_name_spec" type="char" colspan="2" readonly="1"/>
+            <field name='stock_rule'/>
+            <editor label="退料数量" name="return_qty" gt="0" type="accuracy" accuracy="unit_accuracy" required="1"/>
+            <field name="warehouse_id" label="入库仓库" required="1"/>
+            <div>
+                <button type="button" class="btn btn-lg btn-success return-material">
+                    <t>确认</t>
+                </button>
+            </div>
+            <field label="打印标签" name="print_flag"/>
+            <field label="标签模板" name="template_id" lookup="[['category','=','material_label']]"/>
+        </form>
+    </view>
+</data>

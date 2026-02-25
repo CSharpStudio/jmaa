@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='studio_resource' name='低代码平台-资源' model='dev.studio'>
+        <resource>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.css"/>
+            <link rel="stylesheet" href="/web/org/jmaa/web/statics/web/css/editors/code-editor.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/studio/statics/css/studio.css"/>
+            <script src="/web/org/jmaa/web/statics/plugins/jquery-ui/jquery-ui.min.js?etag=1.12.1"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/codemirror.min.js"></script>
+            <script src="/web/org/jmaa/web/statics/plugins/codemirror/mode/xml/xml.js"></script>
+            <script src="/web/org/jmaa/web/statics/web/editors/CodeEditor.js"></script>
+            <script src="/web/org/jmaa/web/statics/diagram/CommandMemo.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditView.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditSource.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditForm.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditGrid.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditCard.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditLookup.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditMobile.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/EditSearch.js"></script>
+            <script src="/web/jmaa/modules/studio/statics/js/studio.js"></script>
+            <script src="/web/org/jmaa/base/statics/js/model-lookup.js"></script>
+        </resource>
+    </view>
+    <view id='studio_custom' name='低代码平台' model='dev.studio'>
+        <custom>
+        </custom>
+    </view>
+</data>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='lbl_label_print_resource' name='标签打印-资源' model='lbl.label_print'>
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/label/manager/statics/js/print_editors.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+            <script src="/web/jmaa/modules/label/manager/statics/js/label_print.js"/>
+        </resource>
+    </view>
+    <view id='lbl_label_print_search' name='标签打印-查询' model='lbl.label_print'>
+        <search>
+            <field name='code' label="条码" editor="char"
+                   criteria="[['start_label_code','&lt;=',value],['end_label_code','&gt;=',value]]"/>
+            <field name='material_id' editor="char" criteria="[['material_id.code', 'like', value]]"/>
+            <field name='material_name_spec'/>
+            <field name='create_date' editor="date-range"/>
+        </search>
+    </view>
+    <view id='lbl_label_print_grid' name='标签打印-表格' model='lbl.label_print'>
+        <grid>
+            <toolbar buttons='query|browse|export'>
+                <button class="btn-primary" label="打印" t-click="printLabel"/>
+                <button class="btn-blue" label="补打" t-enable="ids" t-click="reprintLabel"/>
+            </toolbar>
+            <field name='material_id'/>
+            <field name="label_code_range" label="条码范围"/>
+            <field name='lot_num'/>
+            <field name='material_name_spec'/>
+            <field name='material_category'/>
+            <field name='stock_rule'/>
+            <field name='template_id'/>
+            <field name='min_packages'/>
+            <field name='print_qty'/>
+            <field name='product_date'/>
+            <field name='product_lot'/>
+            <field name='lot_attr'/>
+            <field name='supplier_id'/>
+            <field name='customer_id'/>
+            <field name='lpn'/>
+            <field name='print_count'/>
+        </grid>
+    </view>
+</data>

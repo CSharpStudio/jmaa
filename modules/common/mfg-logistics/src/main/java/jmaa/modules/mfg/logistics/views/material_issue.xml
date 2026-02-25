@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id="mfg_material_issue_resource" name="发料单-资源" model="mfg.material_issue">
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"></script>
+            <script src="/web/jmaa/modules/mfg/logistics/statics/js/material_issue.js"/>
+        </resource>
+    </view>
+    <view id='mfg_material_issue_search' name='发料单-查询' model='mfg.material_issue'>
+        <search>
+            <field name='code'/>
+            <field name='related_code'/>
+            <field name='status'/>
+            <field name='company_id'/>
+        </search>
+    </view>
+    <view id='mfg_material_issue_grid' name='发料单-表格' model='mfg.material_issue'>
+        <grid>
+            <toolbar buttons='default'>
+                <button name="delete" t-enable="ids:status=='draft'"/>
+                <button label="提交" t-enable="ids:['draft', 'reject'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="status!='close'" t-click="closeOrder" class="btn-grey"
+                        ref="edit"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='status'
+                   tags="{draft:'warning',commit:'success',approve:'info',reject:'danger',_:'secondary'}"/>
+            <field name='type'/>
+            <field name='related_code'/>
+            <field name='workshop_id'/>
+            <field name='warehouse_ids' column="many2many-tags"/>
+            <field name='remark'/>
+            <field name='company_id'/>
+        </grid>
+    </view>
+    <view id='mfg_material_issue_card' name='发料单-卡片' model='mfg.material_issue'>
+        <card cols="6">
+            <toolbar buttons="default">
+                <button name="delete" t-enable="ids:status[0]=='draft'"></button>
+            </toolbar>
+            <field name='code'/>
+            <field name='status'/>
+            <field name='type'/>
+            <field name='related_code'/>
+            <field name='warehouse_ids'/>
+            <template>
+                {@helper statusToCss}
+                function(s){
+                let css = {draft:'warning',commit:'success',approve:'info',reject:'danger'};
+                return css[s] || 'secondary';
+                }
+                {@/helper}
+                <div class="card-body">
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon bg-${status[0]|statusToCss}">
+                            <small>${status[1]}</small>
+                        </div>
+                    </div>
+                    <div class="text-title">${code}</div>
+                    <div class="text-content">${warehouse_ids|$tags}</div>
+                    <div class="text-content">
+                        ${related_code}
+                        <div class="float-right">
+                            ${type|$index,1}
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </card>
+    </view>
+    <view id='mfg_material_issue_form' name='发料单-表单' model='mfg.material_issue'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="id AND ['draft', 'reject'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="['commit', 'approve'].includes(status)"
+                        auth="reject" t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="关闭" auth="close" t-enable="status!='close'" t-click="closeOrder" ref="save"/>
+                <field name='status' editor="statusbar" values="draft,commit,approve,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='type'/>
+            <field name='related_code' t-reset="type"/>
+            <field name='workshop_id' link="0"/>
+            <field name='warehouse_ids' editor="many2many-tags" t-reset="workshop_id"/>
+            <field name='remark' colspan="2"/>
+            <field name='company_id' t-readonly="id"/>
+            <tabs>
+                <tab label='发料需求'>
+                    <field name='line_ids' colspan='4' nolabel='1'>
+                        <grid checkSelect="1" footer="1">
+                            <toolbar buttons='default'></toolbar>
+                            <field name="status"
+                                   tags="{'new':'warning','issuing':'info','issued':'success','_':'secondary'}"/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='request_qty' class="sum col-info"/>
+                            <field name='issued_qty' class="sum col-success"/>
+                            <field name="warehouse_id"/>
+                            <field name='unit_id'/>
+                            <field name='material_category'/>
+                            <field name='abc_type'/>
+                            <field name='update_uid'/>
+                            <field name='update_date'/>
+                            <field name="unit_accuracy" visible="0"/>
+                            <edit>
+                                <field name="unit_accuracy" visible="0"/>
+                                <field name='material_id' view="default" order="code"
+                                       on-change-action="onMaterialChange"/>
+                                <field name='material_name_spec'/>
+                                <field name='request_qty' editor="accuracy" accuracy="unit_accuracy"/>
+                                <field name='unit_id'/>
+                                <field name='material_category'/>
+                                <field name='status' visible="0"/>
+                                <field name="issued_qty" visible="0"/>
+                                <field name="warehouse_id"/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

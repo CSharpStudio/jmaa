@@ -1,0 +1,42 @@
+.cron .form-control[readonly],
+.cron .tabs .tab-panel .nav-tabs {
+    background-color: #fff;
+}
+
+.cron .dropdown-menu {
+    padding-top: 3px;
+}
+
+.cron .tabs,
+.cron .tabs .tab-content,
+.cron .tabs .tab-panel {
+    height: auto;
+}
+
+.cron .tab-pane {
+    padding: 10px;
+    min-width: 380px;
+    height: 285px;
+}
+
+.cron .tab-pane input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #017e84;
+}
+
+.cron-preview {
+    width: 180px;
+    border-left: 1px solid #ddd;
+}
+
+.cron-value {
+    border-bottom: 1px solid #ddd;
+    padding: 4px 10px;
+    word-wrap: break-word;
+}
+
+.preview-value,
+.preview-title {
+    margin: 2px 10px;
+}

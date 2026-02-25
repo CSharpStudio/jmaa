@@ -1,0 +1,230 @@
+.scan-input {
+    border-radius: .6rem;
+    margin: 0 6px 6px 6px;
+    display: flex;
+    background-color: white;
+    position: relative;
+    padding: 0 0 0 10px;
+}
+
+.scan-input .ui-input-text {
+    border: 0;
+    width: 100%;
+    margin: 0 0 0 8px;
+}
+
+.scan-input .ui-input-text:before {
+    content: '';
+    position: absolute;
+    border-left: 1px solid #dee2e6;
+    height: 20px;
+    top: calc(50% - 10px);
+}
+
+.scan-input .ui-input-text input {
+    background: inherit;
+    min-height: 2.1em;
+    padding: 2px 5px;
+}
+
+.scan-input .ui-input-text.ui-focus {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.scan-input .ui-input-text.ui-shadow-inset {
+    box-shadow: none;
+}
+
+.scan-input .scan-icon {
+    border: 2px solid #3c8dbc;
+    border-radius: 5px;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    flex-shrink: 0;
+}
+
+.scan-input .scan-icon i {
+    position: absolute;
+    border: 1px solid #3c8dbc;
+    width: 18px;
+    height: 0;
+    top: calc(50% - 1px);
+    left: 10px;
+    z-index: 1;
+}
+
+.scan-input .scan-icon:before {
+    content: '';
+    width: 6px;
+    height: 100%;
+    top: 0;
+    left: 17px;
+    background: #fff;
+    position: absolute;
+}
+
+.scan-input .scan-icon:after {
+    content: '';
+    width: 21px;
+    height: 8px;
+    top: calc(50% - 4px);
+    left: 10px;
+    background: #fff;
+    position: absolute;
+}
+
+.scan-input .scan-info {
+    font-size: 10px;
+    color: #8F93A2;
+    margin-left: 6px;
+    height: 10px;
+    position: absolute;
+    top: 55px;
+}
+
+.scan-input .clear-input {
+    border: none;
+    box-shadow: none;
+    text-overflow: clip;
+    margin: 0 7px 0 0;
+    background-color: transparent;
+    width: auto;
+    font-size: 12.5px;
+}
+
+.scan-input .clear-input:before {
+    content: "\f00d";
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    color: #000;
+}
+
+.tab-header-scan {
+    background: #714B67;
+    height: 40px;
+}
+
+.scan-mask {
+    background-color: #000000;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 8888;
+}
+
+.scan-mask .btn-close {
+    position: fixed;
+    top: 30px;
+    left: 20px;
+    width: 24px;
+    height: 24px;
+    background-color: darkgray;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.scan-mask .btn-close:before {
+    content: "\f00d";
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    display: block;
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands";
+    font-weight: 900;
+}
+
+.scan-mask .scan-line {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+}
+
+.scan-mask .scan-line-out {
+    padding-top: 20vh;
+    padding-left: 5vw;
+    position: absolute;
+    width: 90vw;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.scan-mask .scan-line-in {
+    width: inherit;
+    height: 5px;
+    box-shadow: 0 -10px 30px 4px #3b9e5f;
+    background: linear-gradient(#0000 0%, #3b9e5f 100%);
+    animation: scan 4s ease-in-out infinite;
+    -webkit-animation: scan 4s ease-in-out infinite;
+}
+
+.scan-mask .scan-video {
+    object-fit: cover;
+}
+
+@keyframes scan {
+    0% {
+        /*最开始块从顶部往下移动，块的位置需要溢出容器，处于容器顶部上方，块的背景颜色从底部到顶部由绿色逐渐透明*/
+        opacity: 1;
+        margin-top: 0;
+    }
+    100% {
+        opacity: 0;
+        margin-top: 100%;
+    }
+}
+
+@-webkit-keyframes scan /* Safari and Chrome */
+{
+    0% {
+        /*最开始块从顶部往下移动，块的位置需要溢出容器，处于容器顶部上方，块的背景颜色从底部到顶部由绿色逐渐透明*/
+        margin-top: 0;
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        margin-top: 100%;
+    }
+}
+
+.e-scanner.scan-input {
+    border-radius: 0;
+    margin: 0;
+    position: relative;
+    padding: 0;
+}
+
+.e-scanner.scan-input .scan-icon:before {
+    left: 7px;
+}
+
+.e-scanner.scan-input .scan-icon:after {
+    left: 0;
+}
+
+.e-scanner.scan-input .scan-icon i {
+    left: 0;
+}
+
+.e-scanner.scan-input .ui-input-text {
+    margin: 0 -6px 0 0;
+    font-size: .85rem;
+}
+
+.e-scanner.scan-input .ui-input-text:before {
+    border: none;
+}
+
+.e-scanner.scan-input .clear-input {
+    margin: 0;
+    padding: .5em .7em;
+}
+
+.e-scanner.form-control {
+    height: 29px;
+}

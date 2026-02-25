@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <web id="mobile_app" inherit_id="base.mobile_app" name="mobile.app">
+        <xpath expr="[id=user] [id=user-list]" position="inside">
+            <a class="list-item link show-on-duty">
+                <span class="title">
+                    <t>在岗</t>
+                </span>
+                <span class="text-end user-on-duty"></span>
+            </a>
+        </xpath>
+        <xpath expr="head" position="inside">
+            <link rel="stylesheet" href="/web/jmaa/modules/wip/statics/css/mobile.css"/>
+        </xpath>
+        <xpath expr="body" position="inside">
+            <script src="/web/jmaa/modules/wip/statics/js/mobile.js"/>
+        </xpath>
+    </web>
+</data>

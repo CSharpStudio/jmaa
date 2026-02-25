@@ -1,0 +1,179 @@
+.btn {
+    padding: .4rem .5rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    border-radius: .2rem;
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    padding: .5rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    border-radius: .3rem;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+    font-size: .76rem;
+    border-radius: .15rem;
+}
+
+.btn-default:focus {
+    background-color: #e9ecef;
+    color: #2b2b2b;
+}
+
+.btn.btn-circle {
+    border-radius: 50%;
+    border-width: 1px;
+    box-shadow: none;
+}
+
+.btn-icon,
+.btn-icon.disabled, .btn-icon:disabled {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.btn-icon:not(:disabled):not(.disabled):hover {
+    background-color: #e9ecef !important;
+    border-color: transparent !important;
+}
+
+.btn-icon:focus, .btn-icon.focus {
+    background-color: #e9ecef !important;
+    border-color: transparent !important;
+    box-shadow: none;
+}
+
+.btn-icon:not(:disabled):not(.disabled):active,
+.btn-icon:not(:disabled):not(.disabled).active,
+.show > .btn-icon.dropdown-toggle {
+    background-color: #dde0e3 !important;
+    border-color: transparent !important;
+}
+
+.btn-primary,
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #017e84;
+    border-color: #017e84;
+}
+
+.btn-primary:not(:disabled):not(.disabled):hover {
+    background-color: #015a5e;
+    border-color: #015a5e;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    background-color: #015a5e;
+    border-color: #015a5e;
+    box-shadow: 0 0 0 .2rem rgba(39, 145, 150, 0.5);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    background-color: #014e51;
+    border-color: #014e51;
+}
+
+.btn-secondary,
+.btn-secondary.disabled, .btn-secondary:disabled {
+    background-color: #646160;
+    border-color: #646160;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):hover {
+    background-color: #3E3A39;
+    border-color: #3E3A39;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+    background-color: #3E3A39;
+    border-color: #3E3A39;
+    box-shadow: 0 0 0 .2rem #3E3A3940;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+    background-color: #1c1a1a;
+    border-color: #1c1a1a;
+}
+
+.btn-warning,
+.btn-warning.disabled, .btn-warning:disabled {
+    background-color: #ff851b;
+    border-color: #ff851b;
+    color: #fff;
+}
+
+.btn-warning:not(:disabled):not(.disabled):hover {
+    background-color: #dc6d0d;
+    border-color: #dc6d0d;
+    color: #fff;
+}
+
+.btn-warning:focus, .btn-warning.focus {
+    background-color: #dc6d0d;
+    border-color: #dc6d0d;
+    color: #fff;
+    box-shadow: 0 0 0 .2rem #dc6d0d40;
+}
+
+.btn-warning:not(:disabled):not(.disabled):active,
+.btn-warning:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+    background-color: #d26202;
+    border-color: #d26202;
+}
+
+.btn-success:focus, .btn-success.focus {
+    box-shadow: 0 0 0 .2rem #1e7e3440;
+}
+
+.btn-info:focus, .btn-info.focus {
+    box-shadow: 0 0 0 .2rem #117a8b40;
+}
+
+.btn-warning:focus, .btn-warning.focus {
+    box-shadow: 0 0 0 .2rem #d39e0040;
+}
+
+.btn-danger:focus, .btn-danger.focus {
+    box-shadow: 0 0 0 .2rem #bd213040;
+}
+
+.btn-default:focus, .btn-default.focus {
+    box-shadow: 0 0 0 .2rem #dddddd40;
+}
+
+.btn-blue,
+.btn-blue:disabled, .btn-blue.disabled {
+    background: #3c8dbc;
+    border-color: #3c8dbc;
+    color: white;
+}
+
+.btn-blue:not(:disabled):not(.disabled):hover {
+    background: #136393;
+    border-color: #136393;
+    color: white;
+}
+
+.btn-blue:focus, .btn-blue.focus {
+    background-color: #136393;
+    border-color: #136393;
+    box-shadow: 0 0 0 .2rem #13639340;
+}
+
+.btn-blue:not(:disabled):not(.disabled):active,
+.btn-blue:not(:disabled):not(.disabled).active,
+.show > .btn-blue.dropdown-toggle {
+    background-color: #0a4b72;
+    border-color: #0a4b72;
+}
+
+.btn-help {
+    color: #7f7f7f;
+    font-weight: 500;
+}

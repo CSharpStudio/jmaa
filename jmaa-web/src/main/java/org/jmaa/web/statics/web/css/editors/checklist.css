@@ -1,0 +1,70 @@
+.e-checklist label {
+    position: relative;
+    margin-right: 1rem;
+    align-items: center;
+    display: inline-flex;
+    color: black;
+    font-weight: 500!important;
+    font-size: .8rem;
+}
+
+.e-checklist input[type=checkbox] {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+
+.e-checklist label::before {
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    content: "";
+    background-color: #dee2e6;
+    margin-right: 0.35rem;
+    border-radius: .25rem;
+    box-shadow: inset 0 .25rem .25rem rgba(0, 0, 0, .1);
+}
+
+.e-checklist label::after {
+    pointer-events: none;
+    content: "";
+    margin-right: 0.35rem;
+    position: absolute;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    border-radius: .25rem;
+    border: #adb5bd solid 1px;
+    background: 50% / 50% 50% no-repeat;
+}
+
+.e-checklist input[type=checkbox]:checked + label::before {
+    background-color: #017e84;
+    box-shadow: none;
+}
+
+.e-checklist input[type=checkbox]:checked + label::after {
+    border-color: #017e84;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+}
+
+.e-checklist input[type=checkbox]:disabled + label {
+    color: #7f7f7f;
+}
+
+.e-checklist input[type=checkbox]:disabled + label::before {
+    opacity: .6;
+    box-shadow: none;
+}
+
+.e-checklist input[type=checkbox]:focus + label::before {
+    box-shadow: inset 0 0 0 transparent, 0 0 0 1px #fff, 0 0 0 .2rem rgba(143, 195, 31, .25);
+}
+
+.e-checklist input[type=checkbox]:not(:disabled):active + label::before {
+    background-color: rgba(143, 195, 31, .5);
+    border-color: rgba(143, 195, 31, .5);
+    box-shadow: none;
+}

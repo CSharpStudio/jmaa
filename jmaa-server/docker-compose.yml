@@ -1,0 +1,20 @@
+version: '3'
+services:
+  crm:
+    restart: always
+    build:
+      context: ../docker                  # 指定dockerfile文件的所在路径
+      dockerfile: ../docker/Dockerfile    # 指定Dockerfile文件名称
+    image: jmaa:1.0             #自定义镜像名和版本号
+    container_name: jmaa
+    networks:
+      wkcrm_network:
+    ports:
+      - 6067:6067
+    environment:
+      TZ: Asia/Shanghai
+
+networks:
+  wkcrm_network:
+    external:
+      name: wkcrm_network

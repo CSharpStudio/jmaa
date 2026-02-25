@@ -1,0 +1,54 @@
+.one2many_aside_column {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.one2many_aside_column_left {
+    width: 260px;
+    margin-right: 5px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    height: 100%;
+    /* background: skyblue; */
+    float: left;
+    border: 1px solid rgb(215, 215, 215);
+    position: relative;
+}
+
+.resize-line {
+    width: 5px;
+    position: absolute;
+    top: 0;
+    right: -5px;
+    bottom: 0;
+
+    cursor: col-resize;
+}
+
+.one2many_aside_column_right {
+    float: right;
+    width: calc(100% - 265px);
+    height: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    /* background: tomato; */
+}
+
+.one2many_aside_column::after {
+    content: "";
+    height: 0;
+    display: block;
+    clear: both;
+    zoom: 1;
+}
+
+#asideRight > .container-fluid > .card-body > .col-md-12 > .grid > .form-group {
+    padding: 0 0 !important;
+}
+
+#asideLeft > #DataTables_Table_0_wrapper > .row > .col-sm-12 {
+    padding: 0 0 !important;
+}
+
+

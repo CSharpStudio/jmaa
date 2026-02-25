@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='bbs_message_resource' name='消息-资源' model='bbs.message'>
+        <resource>
+            <script src="/web/jmaa/modules/bbs/statics/js/date.js"></script>
+            <script src="/web/jmaa/modules/bbs/statics/js/message.js"></script>
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/feed.css"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/bbs/statics/css/message.css"/>
+        </resource>
+    </view>
+    <view id='bbs_message_form' name='消息-表单' model='bbs.message'>
+        <custom class="bbs-message">
+            <aside class="left-aside border-right">
+                <div class="left-header">
+                    <div class="bbs-link-item">
+                        <i class="fa fa-bell"></i>
+                        <t>消息通知</t>
+                    </div>
+                </div>
+                <div class="left-content">
+                    <div class="aside-group">
+                        <div class="aside-group-title">
+                            <t>私信</t>
+                        </div>
+                        <div class="buttons">
+                            <button type="button" class="btn btn-icon btn-join" data-type="chat">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="aside-group-body">
+                        <div class="join-channel d-none" type="chat">
+                            <input type="text" class="form-control"/>
+                            <div class="dropdown-menu">
+                            </div>
+                        </div>
+                        <div class="chat-items"></div>
+                    </div>
+                </div>
+            </aside>
+            <div class="main-content">
+                <div class="message-content">
+                    <div class="message-tab tab-content active">
+                        <div class="message-tab-header">
+                            <div>
+                                <i class="fa fa-bell text-olive"></i>
+                                <t>消息通知</t>
+                            </div>
+                        </div>
+                        <div class="message-tab-toolbar">
+                            <select class="message-filter mr-1 btn btn-default btn-flat">
+                                <option value="all"><t>全部</t></option>
+                                <option value="unread"><t>未读</t></option>
+                            </select>
+                            <button type="button" class="btn btn-flat btn-default btn-mark-read">标记为已读</button>
+                            <div class="flex-grow-1"/>
+                            <div class="message-pager"></div>
+                        </div>
+                        <div class="message-tab-body e-message">
+                        </div>
+                    </div>
+                    <div class="chat-tab tab-content">
+                        <div class="d-flex align-items-center border-bottom p-1" style="height:39px">
+                            <button type="button" class="btn btn-icon btn-join" data-type="chat">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <div class="join-channel d-none flex-fill" type="chat">
+                                <input type="text" class="form-control"/>
+                                <div class="dropdown-menu">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-content-items feed-message"></div>
+                    </div>
+                    <div class="bbs-tabs">
+                        <div class="tab-item active" tab="message">
+                            <i class="fa fa-bell"></i>
+                            <t>消息</t>
+                        </div>
+                        <div class="tab-item" tab="chat">
+                            <i class="fa fa-user"></i>
+                            <t>私信</t>
+                        </div>
+                    </div>
+                </div>
+                <div class="thread-content d-flex flex-column flex-grow-1">
+                    <div class="thread-header">
+                        <button type="button" class="btn btn-icon btn-thread-back" title="返回">
+                            <i class="fa fa-lg fa-arrow-left"></i>
+                        </button>
+                        <div class="title d-flex flex-grow-1">lrz</div>
+                        <div class="commands">
+                            <button title="添加用户" class="btn btn-icon btn-thead-join">
+                                <i class="fa fa-lg fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="thread-body d-flex flex-column flex-grow-1">
+                        <div class="message-list e-message">
+                            <div class="flex-grow-1"></div>
+                        </div>
+                        <div class="thread-footer">
+                            <div class="img-circle profile"></div>
+                            <div class="footer-main">
+                                <div class="thread-text-input">
+                                    <textarea placeholder="发送消息..." class="thread-textarea" style="height: 42px;"></textarea>
+                                </div>
+                                <div class="d-flex thread-buttons">
+                                    <div class="d-flex thread-tool">
+                                        <div class="thread-tool-separator"></div>
+                                        <div class="thread-tool-buttons">
+                                            <div>
+                                                <button class="btn-thread-emojis btn btn-icon" data-toggle="dropdown">
+                                                    <i class="fa fa-smile"></i>
+                                                </button>
+                                                <div class="dropdown-menu emojis-dropdown"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button type="button" class="btn btn-primary btn-thread-send"><t>发送</t></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </custom>
+    </view>
+</data>

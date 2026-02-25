@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/web/raw/master/view.xsd">
+<data>
+    <view id='inventory_check_resource' name='盘点单-资源' model='wms.inventory_check'>
+        <resource>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/order_status.js"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/inventory/statics/js/inventory_check.js"/>
+        </resource>
+    </view>
+    <view id='inventory_check_search' name='盘点单-查询' model='wms.inventory_check'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='blind'/>
+            <field name='second_flag'/>
+            <field name='status'/>
+            <field name='remark'/>
+            <field name='warehouse_id'/>
+            <field name='store_area_ids'/>
+            <field name='store_location_ids'/>
+            <field name='abc_type'/>
+            <field name='category'/>
+        </search>
+    </view>
+    <view id='inventory_check_grid' name='盘点单-表格' model='wms.inventory_check'>
+        <grid>
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="ids:['draft', 'reject'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit'].includes(status)" auth="reject"
+                        t-click="rejectOrder" class="btn btn-danger"/>
+                <button label="复制" t-enable="ids: !['commit', 'draft'].includes(status)" auth="create"
+                        t-click="copyOrder" class="btn btn-info"/>
+                <button label="模拟数据"
+                        t-click="generateData" class="btn btn-info"/>
+            </toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='blind'/>
+            <field name='status'
+                   tags="{done:'success',draft:'warning',commit:'warning',approving:'warning',approve:'warning',reject:'warning',first_running:'info',first_done:'info',second_running:'info',second_done:'info'}"/>
+            <field name='remark'/>
+            <field name='warehouse_id'/>
+            <field name='store_area_ids'/>
+            <field name='store_location_ids'/>
+            <field name='abc_type'/>
+            <field name='category'/>
+            <field name="second_flag"/>
+            <!--<field name='second_ratio'/>-->
+        </grid>
+    </view>
+    <view id='inventory_check_form' name='盘点单-表单' model='wms.inventory_check'>
+        <form on-load="onFormLoad">
+            <toolbar buttons='default'>
+                <button label="提交" t-enable="ids:['draft', 'reject'].includes(status)" auth="commit"
+                        t-click="commitOrder" class="btn btn-success"/>
+                <button label="审核" name="approve" t-enable="ids:status=='commit'" auth="approve"
+                        t-click="approveOrder" class="btn btn-info"/>
+                <button label="驳回" ref="approve" t-enable="ids:['commit'].includes(status)" auth="reject"
+                        t-click="rejectOrder" class="btn btn-danger"/>
+                <field name='status' editor="statusbar"
+                       values="draft,commit,approve,first_running,first_done,second_running,second_done,done"/>
+            </toolbar>
+            <field name='code' placeholder="自动生成" readonly="1"/>
+            <field name='name'/>
+            <field name='blind'/>
+            <field name='warehouse_id' on-change-action="onWarehouseIdChange"/>
+            <field name='store_area_ids'
+                   lookup="[['warehouse_id','=',warehouse_id]]"
+                   editor="many2many-tags"/>
+            <field name='store_location_ids'
+                   lookup="[['warehouse_id','=',warehouse_id],['area_id','in',store_area_ids]]"
+                   editor="many2many-tags"/>
+            <field name='abc_type'/>
+            <field name='category'/>
+            <field name="second_flag"/>
+            <field name='remark'/>
+            <tabs>
+                <tab label='盘点物料明细'>
+                    <field name='line_ids' colspan='4' nolabel='1' t-filter="lineFilter">
+                        <grid>
+                            <toolbar buttons='create|delete|export|reload'>
+                                <div class="input-group" position="after">
+                                    <input id="searchLineInput" t-enter="searchLine" type="text" class="form-control"
+                                           placeholder="按物料编码搜索"/>
+                                    <div class="input-suffix">
+                                        <button type="button" auth="read" class="btn btn-default btn-lookup"
+                                                t-click="searchLine">
+                                            <i class="fa fa-search">
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </toolbar>
+                            <field name='material_id'/>
+                            <field name='status'/>
+                            <field name='material_name_spec'/>
+                            <field name='stock_rule'/>
+                            <field name='abc_type'/>
+                            <field name='category'/>
+                            <field name='qty'/>
+                            <field name='first_qty'/>
+                            <field name='second_qty'/>
+                            <field name='diff_qty'/>
+                            <edit>
+                                <field name='material_id' on-change-action="onMaterialChange"/>
+                                <field name='material_name_spec'/>
+                                <field name='category'/>
+                                <field name='stock_rule'/>
+                                <field name='abc_type'/>
+                            </edit>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='盘点标签明细'>
+                    <field name='details_ids' colspan='4' nolabel='1' t-filter="detailsFilter">
+                        <grid>
+                            <toolbar buttons='export|reload'>
+                                <div class="input-group" position="after">
+                                    <input id="searchDetailsInput" t-enter="searchDetails" type="text"
+                                           class="form-control"
+                                           placeholder="按物料编码搜索"/>
+                                    <div class="input-suffix">
+                                        <button type="button" auth="read" class="btn btn-default btn-lookup"
+                                                t-click="searchDetails">
+                                            <i class="fa fa-search">
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </toolbar>
+                            <field name="sn"/>
+                            <field name="lot_num"/>
+                            <field name='status'/>
+                            <field name='material_id'/>
+                            <field name='material_name_spec'/>
+                            <field name='material_stock_rule'/>
+                            <field name='qty'/>
+                            <field name='first_qty'/>
+                            <field name='second_qty'/>
+                            <field name='warehouse_id'/>
+                            <field name='area_id'/>
+                            <field name='location_id'/>
+                        </grid>
+                    </field>
+                </tab>
+                <tab label='消息' t-visible="id">
+                    <field name='message_ids' editor="message" colspan='4' nolabel='1'/>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

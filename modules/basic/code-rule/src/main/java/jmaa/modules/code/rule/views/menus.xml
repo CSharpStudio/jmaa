@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="code_coding_menu" name="编码规则" seq="100" model="code.coding" view="grid,form" parent="base.system_manager_menus"/>
+    <menu id="code_matcher_menu" name="编码匹配" seq="110" model="code.matcher" view="grid,form" parent="base.system_manager_menus"/>
+</data>

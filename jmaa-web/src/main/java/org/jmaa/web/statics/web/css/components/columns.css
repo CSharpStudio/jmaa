@@ -1,0 +1,171 @@
+/* 列头过滤 */
+.column-filter {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    height: 100%;
+    color: #212529;
+    text-align: left;
+}
+
+.column-filter-btn {
+    font-size: 10px;
+    color: #7f7f7f;
+}
+
+.column-filter-panel {
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    top: 100%;
+    padding: 10px;
+    border: 1px solid #dee2e6 !important;
+    width: 300px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+}
+
+.column-filter-input {
+    display: block;
+    height: calc(1.8125rem + 2px);
+    font-weight: 400;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 0 0 transparent;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem 0 0 .2rem;
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+    margin-bottom: 0;
+    outline: 0;
+}
+
+.input-group > .column-filter-input:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* 表格列 */
+.checked-column,
+.unchecked-column {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+}
+
+.checked-column:before {
+    position: absolute;
+    top: 0.15rem;
+    display: block;
+    height: 1rem;
+    content: "";
+    width: 1.75rem;
+    border-radius: 0.5rem;
+    border-color: #017e84;
+    background-color: #017e84;
+}
+
+.checked-column:after {
+    position: absolute;
+    content: "";
+    top: calc(0.15rem + 2px);
+    left: calc(0.75rem + 2px);
+    width: calc(1rem - 4px);
+    height: calc(1rem - 4px);
+    background-color: #dee2e6;
+    border-radius: 0.5rem;
+}
+
+.unchecked-column:before {
+    position: absolute;
+    top: 0.15rem;
+    display: block;
+    height: 1rem;
+    content: "";
+    width: 1.75rem;
+    border-radius: 0.5rem;
+    background-color: #dee2e6;
+    border: #adb5bd solid 1px;
+    box-shadow: inset 0 0.25rem 0.25rem rgb(0 0 0 / 10%);
+}
+
+.unchecked-column:after {
+    position: absolute;
+    content: "";
+    top: calc(0.15rem + 2px);
+    left: calc(2px);
+    width: calc(1rem - 4px);
+    height: calc(1rem - 4px);
+    background-color: #adb5bd;
+    border-radius: 0.5rem;
+}
+
+.checked-column span,
+.unchecked-column span {
+    display: none;
+}
+
+.link-column {
+    cursor: pointer;
+}
+
+.char-column {
+    overflow: auto;
+    scrollbar-width: none;
+    display: inline-block;
+    vertical-align: text-bottom
+}
+
+.text-column {
+    border: none;
+    min-width: 300px;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+}
+
+.col-success {
+    color: green;
+    font-weight: bold;
+}
+
+.col-warning {
+    color: #F59A23;
+    font-weight: bold;
+}
+
+.col-info {
+    color: #2d7581;
+    font-weight: bold;
+}
+
+.col-danger {
+    color: #d9001b;
+    font-weight: bold;
+}
+
+.col-olive {
+    color: #3d9970;
+    font-weight: bold;
+}
+
+.col-primary {
+    color: #017e84;
+    font-weight: bold;
+}
+
+.col-secondary {
+    color: #646160;
+    font-weight: bold;
+}

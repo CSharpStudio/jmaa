@@ -1,0 +1,32 @@
+.e-x2many .grid-table {
+    overflow: auto;
+    padding-bottom: 30px;
+    max-height: 500px;
+    margin-top: 6px;
+}
+
+.e-x2many .grid-table table.table-bordered.dataTable > tfoot > tr {
+    bottom: -30px;
+}
+
+.e-x2many .grid-table .col-sm-12,
+.e-x2many .grid-table .row,
+.e-x2many .grid-table .lookup-data .col-sm-12,
+.e-x2many .grid-table .lookup-data .dataTable {
+    padding: 0px !important;;
+    margin: 0px !important;;
+}
+
+.e-x2many .grid-table table.dataTable {
+    margin-top: 0 !important;;
+}
+
+.e-x2many .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.e-x2many .header [role=tbar] {
+    align-self: flex-start;
+}

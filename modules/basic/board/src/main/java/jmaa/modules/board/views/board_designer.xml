@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id="board_designer_resource" name="看板设计-资源" model="board.designer">
+        <resource>
+            <link rel="stylesheet" href="/web/jmaa/modules/board/statics/css/board_designer.css"></link>
+            <script src="/web/jmaa/modules/board/statics/js/board_designer.js"></script>
+        </resource>
+    </view>
+    <view id="board_designer_search" name="看板设计-查询" model="board.designer">
+        <search>
+            <field name="title"/>
+            <field name="state"/>
+        </search>
+    </view>
+    <view id="board_designer_grid" name="看板设计" model="board.designer">
+        <grid>
+            <toolbar buttons="default|copy">
+                <button name="delete" t-enable="ids:state!='1'"/>
+                <button label="从模板创建" ref="create" auth="create" t-click="createFromTemplate"/>
+                <button label="保存为模板" t-click="saveAsTemplate" t-enable="id" class="btn-info"/>
+                <button label="发布" name="publish" auth="updateState" t-click="updateState" t-enable="ids:state=='0'"
+                        class="btn-success" confirm="确认发布选中的看板?"/>
+                <button label="取消发布" ref="publish" t-click="updateState" t-enable="ids:state=='1'"
+                        confirm="确认取消发布选中的看板?"/>
+                <button label="预览" auth="read" t-click="preview" t-enable="id"/>
+            </toolbar>
+            <field name="title"/>
+            <field name="state"/>
+            <field name="image"/>
+            <field name="create_uid"/>
+            <field name="create_date"/>
+            <field name="update_uid"/>
+            <field name="update_date"/>
+        </grid>
+    </view>
+    <view id="board_designer_card" name="看板设计" model="board.designer">
+        <card>
+            <toolbar buttons="default|copy">
+                <button name="delete" t-enable="ids:state[0]!='1'"/>
+                <button label="从模板创建" ref="create" auth="create" t-click="createFromTemplate"/>
+                <button label="保存为模板" t-click="saveAsTemplate" t-enable="id" class="btn-info"/>
+                <button label="发布" name="publish" auth="updateState" t-click="updateState" t-enable="ids:state[0]=='0'"
+                        class="btn-success" confirm="确认发布选中的看板?"/>
+                <button label="取消发布" ref="publish" t-click="updateState" t-enable="ids:state[0]=='1'"
+                        confirm="确认取消发布选中的看板?"/>
+                <button label="预览" auth="read" t-click="preview" t-enable="id"/>
+            </toolbar>
+            <field name="title"/>
+            <field name="state"/>
+            <field name="image"/>
+            <field name="update_date"/>
+            <template>
+                {@helper getImage}
+                function(image){ return jmaa.web.getTenantPath()+"/attachment/"+image[0].id; }
+                {@/helper}
+                <div class="card-body">
+                    <div class="card-board">
+                        <div class="row m-0">
+                            <div class="board-image w-100">
+                                {@if image &amp;&amp; image[0]}
+                                <img src="${image|getImage}" alt="" style="width:100%"/>
+                                {@else}
+                                <div class="border"></div>
+                                {@/if}
+                            </div>
+                            <div class="mt-1">
+                                <div>${title}</div>
+                                <small>
+                                    ${update_date}
+                                </small>
+                            </div>
+                            <div class="state">
+                                <div class="state-${state[0]}"></div>
+                                <small>${state[1]}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </card>
+    </view>
+</data>

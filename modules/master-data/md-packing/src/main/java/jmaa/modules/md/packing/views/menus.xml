@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="@md-product.product_menus" name="产品资料" seq="30" parent="md-enterprise.master_data_menus">
+        <menu id="package_rule_menu" name="包装规则" seq="130" model="md.packing_rule" view="grid,form"/>
+        <menu id="product_packing_rule_menu" name="产品包装规则" seq="140" model="md.product_packing_rule"
+              view="grid,form"/>
+    </menu>
+</data>

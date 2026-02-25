@@ -1,0 +1,3 @@
+id,login,name,password,must_update_password,company_id,company_ids,mode
+user_test,test,测试,888888,false,"base.company_default","[[4, ref(base.company_default)]]",user
+liangrongzhen,lrz,Eric Liang,888888,false,"base.company_default","[[4, ref(base.company_default)]]",user

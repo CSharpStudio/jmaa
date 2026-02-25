@@ -1,0 +1,119 @@
+.feed-message {
+    max-height: Min(calc(100vh - 140px), 630px);
+    display: flex;
+    flex-flow: column;
+    overflow: auto;
+}
+
+.feed-message .flex-fill {
+    -ms-flex: 1 1 auto !important;
+    flex: 1 1 auto !important;
+}
+
+.feed-message .message {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    padding: 0.25rem .5rem .25rem .25rem;
+    cursor: pointer;
+}
+
+.feed-message .message:hover {
+    background-color: #f8f9fa;
+}
+
+.feed-message .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #3e3a39;
+    color: white;
+    text-align: center;
+    line-height: 36px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 7px;
+}
+
+.feed-message .m-body {
+    display: flex;
+    flex-flow: column;
+    overflow: hidden;
+}
+
+.feed-message .m-header {
+    display: flex;
+    font-weight: 500;
+    font-size: 13px;
+    align-items: center;
+}
+
+.feed-message .m-content {
+    color: #78838e;
+    font-size: 13px;
+    display: flex;
+    flex-flow: column;
+}
+
+.feed-message .feed-counter {
+    margin: 0 0.5rem;
+    flex: 0 0 auto;
+    border-radius: 1em;
+    padding: 0px 6px;
+    height: 16px;
+    background-color: #017e84;
+    color: #fff;
+    font-size: 80%;
+}
+
+.feed-message .feed-unread {
+    margin: 0 10px;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.feed-message .feed-dt {
+    flex: 0 0 auto;
+}
+
+.feed-message [data-type=channel] .avatar {
+    background-color: #017e84;
+}
+
+.feed-message [data-type=channel] .avatar i:before {
+    content: "\f086";
+}
+
+.feed-message [data-type=group] .avatar {
+    background-color: #17a2b8;
+}
+
+.feed-message [data-type=group] .avatar i:before {
+    content: "\f0c0";
+}
+
+.feed-message [data-type=follow] .avatar {
+    background-color: #3c8dbc;
+}
+
+.feed-message [data-type=follow] .avatar i:before {
+    content: "\f005";
+}
+
+.feed-message [data-type=andon] .avatar {
+    background-color: #dc3545;
+}
+
+.feed-message [data-type=andon] .avatar i:before {
+    content: "\f0a1";
+}
+
+.feed-message [data-type=notification] .avatar i:before {
+    content: "\f0f3";
+}
+
+.feed-message [data-type=notification] .avatar {
+    background-color: #3d9970;
+}

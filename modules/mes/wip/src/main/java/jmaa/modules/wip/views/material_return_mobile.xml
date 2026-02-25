@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="mfg_material_return_mobile_resource" type="resource"
+          inherit_id="mfg-logistics.mfg_material_return_mobile_resource"
+          name="生产退料-资源" model="mfg.material_return_mobile">
+        <xpath expr="resource" position="replace">
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+            <script src="/web/jmaa/modules/wip/statics/js/material_return_mobile.js"/>
+            <script src="/web/jmaa/modules/print/statics/js/print.js"/>
+        </xpath>
+    </view>
+    <view id='mfg_material_return_mobile_view' name='生产退料-移动端-资源' type="mobile" priority="100"
+          inherit_id="mfg-logistics.mfg_material_return_mobile_view" model='mfg.material_return_mobile'>
+        <xpath expr="[ref=orderForm] field[name=related_code]" position="replace">
+            <field name='work_order_id' readonly="1" colspan="2" editor="card-item"/>
+        </xpath>
+        <xpath expr="[ref=orderList] field[name=related_code]" position="replace">
+            <field name='work_order_id'/>
+        </xpath>
+    </view>
+    <view id="mfg_material_return_mobile_form" inherit_id="mfg-logistics.mfg_material_return_mobile_form"
+          name="退料单-移动端-表单" model="mfg.material_return_mobile">
+        <xpath expr="field[name='related_code']" position="replace">
+            <field name='work_order_id' view="mobile-lookup" lookup="[['status','!=','draft']]"/>
+        </xpath>
+    </view>
+</data>

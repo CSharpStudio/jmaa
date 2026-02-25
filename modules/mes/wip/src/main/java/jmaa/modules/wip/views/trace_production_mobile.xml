@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id="trace_production_mobile_resource" name="产品履历查询-移动端-资源" model="wip.trace_production_mobile">
+        <resource>
+            <script src="/web/jmaa/modules/wip/statics/js/wip_production_mobile.js"/>
+        </resource>
+    </view>
+    <view id='trace_production_mobile' name='产品履历查询-移动端' model='wip.trace_production_mobile'>
+        <mobile>
+            <div class="ui-page" id="main">
+                <div data-role="header">
+                    <h2 class="task-title">
+                        <t>产品履历查询</t>
+                    </h2>
+                    <a class="home-link"></a>
+                    <div widget="scanner">
+                        <a class="scan-icon"/>
+                        <input class="search-input focus" type="text" t-enter="searchByCode"
+                               placeholder="请扫描标签"/>
+                        <button type="button" class="clear-input"></button>
+                    </div>
+                </div>
+                <list ref="wipList" model="wip.trace_production" on-item-click="openDetail" load-method="loadWipList"
+                      style="height:calc(100% - 42px)">
+                    <card>
+                        <field name="product_code"/>
+                        <field name='$rownum' nolabel="1" render="rownum"/>
+                        <field name="material_id" colspan="2"/>
+                        <field name="material_name_spec" colspan="2"/>
+                        <field name="work_order_id" colspan="2"/>
+                        <field name="qty"/>
+                        <field name="ng_qty"/>
+                        <field name="status"/>
+                    </card>
+                </list>
+            </div>
+            <div class="ui-page" id="detail">
+                <div data-role="header">
+                    <h2>产品履历查询</h2>
+                    <a class="back-link" focus-to=".search-input"></a>
+                </div>
+                <tabs position="footer" style="height:calc(100% - 42px)" ref="tabs">
+                    <tab label="工序" t-click="searchProcess" name="processTab">
+                        <list ref="processList" load-method="loadProcessList" model="wip.trace_process">
+                            <card>
+                                <field name='process_id'/>
+                                <field name='$rownum' nolabel="1" render="rownum"/>
+                                <field name='code' colspan="2"/>
+                                <field name='code_type' colspan="2"/>
+                                <field name='ok_qty'/>
+                                <field name='ng_qty'/>
+                                <field name='workshop_id' colspan="2"/>
+                                <field name='resource_id' colspan="2"/>
+                                <field name='station_id' colspan="2"/>
+                                <field name='op_ids' colspan="2"/>
+                                <field name='create_date' colspan="2" label="操作时间"/>
+                            </card>
+                        </list>
+                    </tab>
+                    <tab label="用料" t-click="searchModule">
+                        <list ref="moduleList" load-method="loadModuleList" model="wip.trace_module">
+                            <card>
+                                <field name='process_id'/>
+                                <field name='$rownum' nolabel="1" render="rownum"/>
+                                <field name='material_id' colspan="2"/>
+                                <field name='material_name_spec' colspan="2"/>
+                                <field name='code' colspan="2"/>
+                                <field name='lot_num' colspan="2"/>
+                                <field name='qty'/>
+                                <field name='unit_id'/>
+                                <field name='create_uid'/>
+                                <field name='create_date'/>
+                            </card>
+                        </list>
+                    </tab>
+                    <tab label="不良" t-click="searchDefect">
+                        <list ref="defectList" load-method="loadDefectList" model="wip.trace_defect">
+                            <card>
+                                <field name='process_id'/>
+                                <field name='$rownum' nolabel="1" render="rownum"/>
+                                <field name='defect_id' colspan="2"/>
+                                <field name='defect_type' colspan="2"/>
+                                <field name='defect_grade' colspan="2"/>
+                                <field name='qty'/>
+                                <field name='status'/>
+                                <field name='create_uid'/>
+                                <field name='create_date'/>
+                            </card>
+                        </list>
+                    </tab>
+                    <tab label="维修" t-click="searchRepair">
+                        <list ref="repairList" load-method="loadRepairList" model="wip.trace_repair">
+                            <card>
+                                <field name='result'/>
+                                <field name='$rownum' nolabel="1" render="rownum"/>
+                                <field name='defect_id' colspan="2"/>
+                                <field name='defect_cause' colspan="2"/>
+                                <field name='method' colspan="2"/>
+                                <field name='tooling' colspan="2"/>
+                                <field name='status' colspan="2"/>
+                                <field name='create_uid'/>
+                                <field name='create_date'/>
+                            </card>
+                        </list>
+                    </tab>
+                </tabs>
+            </div>
+        </mobile>
+    </view>
+</data>

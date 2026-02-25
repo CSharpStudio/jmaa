@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="purchase_price_menu" name="采购价目" seq="60" model="purchase.price" view="grid,form"
+          parent="purchase.purchase_menus"></menu>
+</data>

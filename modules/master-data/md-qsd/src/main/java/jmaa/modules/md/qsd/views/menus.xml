@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <menu id="qsd_menus" name="质量标准" seq="80" parent="md-enterprise.master_data_menus">
+        <menu id="qsd_sampling_plan_menu" name="抽样方案" model="qsd.sampling_plan" view="grid,form"/>
+        <menu id="qsd_sampling_process_menu" name="抽样过程" model="qsd.sampling_process" view="grid,form"/>
+        <menu id="qsd_quality_class_menu" name="质量分类" model="qsd.quality_class" view="grid,form"/>
+        <menu id="qsd_quality_class_spec_menu" name="分类检验标准" model="qsd.quality_class_spec" view="grid,form"/>
+        <menu id="qsd_material_spec_menu" name="料号检验标准" model="qsd.material_spec" view="grid,form"/>
+    </menu>
+    <menu id="quality_menus" name="质量控制" seq="200"/>
+    <m-menu id="m_menus_qms" name="质量控制" seq="200"/>
+</data>

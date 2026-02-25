@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "https://gitee.com/bacheloreric/jmaa/raw/master/files/views.xsd">
+<data>
+    <view id='md_product_family_search' name='产品族-查询' model='md.product_family'>
+        <search>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='active'/>
+        </search>
+    </view>
+    <view id='md_product_family_grid' name='产品族-表格' model='md.product_family'>
+        <grid>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='remark'/>
+            <field name='active'/>
+        </grid>
+    </view>
+    <view id='md_product_family_form' name='产品族-表单' model='md.product_family'>
+        <form>
+            <toolbar buttons='default'></toolbar>
+            <field name='code'/>
+            <field name='name'/>
+            <field name='remark'/>
+            <field name='active'/>
+            <tabs>
+                <tab label="产品">
+                    <field name="product_ids" nolabel="1" colspan="4" editor="many2many">
+                        <grid>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="spec"/>
+                            <field name="category"/>
+                            <field name="unit_id"/>
+                        </grid>
+                    </field>
+                </tab>
+            </tabs>
+        </form>
+    </view>
+</data>

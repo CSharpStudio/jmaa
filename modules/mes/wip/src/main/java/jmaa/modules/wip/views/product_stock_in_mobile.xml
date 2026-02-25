@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <view id="mfg_product_storage_notice_mobile_resource" type="resource" inherit_id="common-data.wms_product_storage_notice_mobile_resource" name="成品入库通知-移动端-资源" model="mfg.product_storage_notice_mobile">
+        <xpath expr="resource" position="replace">
+            <script src="/web/jmaa/modules/wip/statics/js/product_storage_notice_mobile.js"/>
+            <link rel="stylesheet" href="/web/jmaa/modules/md/enterprise/statics/css/msg_editor.css"/>
+            <script src="/web/jmaa/modules/md/enterprise/statics/js/msg_editor.js"/>
+        </xpath>
+    </view>
+    <view id="mfg_product_storage_notice_mobile_view" type="mobile" inherit_id="common-data.wms_product_storage_notice_mobile_view" name="成品入库通知-移动端" model="mfg.product_storage_notice_mobile">
+        <xpath expr="[ref=orderList] field[name=related_code]" position="replace">
+            <field name='work_order_id' />
+        </xpath>
+        <xpath expr="[ref=orderList] field[name=warehouse_id]" position="after">
+            <field name='workshop_id' colspan="2"/>
+            <field name='resource_id' colspan="2"/>
+            <field name='product_order_id'/>
+            <field name='output' label="工单完工数"/>
+        </xpath>
+        <xpath expr="[ref=orderForm] field[name=related_code]" position="replace">
+            <field name='work_order_id' readonly="1"/>
+        </xpath>
+        <xpath expr="[ref=orderForm] field[name=warehouse_id]" position="after">
+            <field name='workshop_id' colspan="2"/>
+            <field name='resource_id' colspan="2"/>
+            <field name='product_order_id'/>
+            <field name='output' label="工单完工数"/>
+        </xpath>
+    </view>
+    <view id="mfg_product_storage_notice_mobile_form" inherit_id="common-data.wms_product_storage_notice_mobile_form" name="成品入库通知单-移动端-表单" model="mfg.product_storage_notice_mobile">
+        <xpath expr="field[name=related_code]" position="replace">
+            <field name='work_order_id' required="1" view="mobile-lookup" on-change-action="onWorkOrderIdChange"/>
+        </xpath>
+    </view>
+</data>

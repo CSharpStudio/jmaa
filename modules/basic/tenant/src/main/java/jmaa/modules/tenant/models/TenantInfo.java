@@ -105,7 +105,7 @@ public class TenantInfo extends Model {
 
     @Model.ServiceMethod(label = "重启租户")
     public Object resetTenant(Records rec) {
-        Tenant tenant = TenantService.get(rec.getString("key"));
+        Tenant tenant = TenantService.get(rec.getString("code"));
         Tenant newTenant = new Tenant(tenant.getKey(), tenant.getName(), tenant.getProperties());
         try {
             newTenant.getRegistry();

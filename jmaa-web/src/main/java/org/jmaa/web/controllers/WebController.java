@@ -29,6 +29,8 @@ public class WebController {
     @RequestMapping(value = "/web/**", method = RequestMethod.GET)
     public void handle(HttpServletRequest request, HttpServletResponse response) {
         String etag = request.getParameter("etag");
+        String path = request.getServletPath();
+        path = path.startsWith("/") ? path.substring(5) : path.substring(4);
         if (Utils.isNotEmpty(etag)) {
             response.setHeader("Etag", etag);
             String tag = request.getHeader("If-None-Match");
@@ -36,10 +38,7 @@ public class WebController {
                 response.setStatus(304);
                 return;
             }
-        }
-        String path = request.getServletPath();
-        path = path.startsWith("/") ? path.substring(5) : path.substring(4);
-        if (isCache(path) && !isDebug(request)) {
+        } else if (isCache(path) && !isDebug(request)) {
             response.setHeader("Etag", getEtag());
             String tag = request.getHeader("If-None-Match");
             if (getEtag().equals(tag)) {

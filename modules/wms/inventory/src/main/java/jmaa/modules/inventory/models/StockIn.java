@@ -29,7 +29,7 @@ public class StockIn extends Model {
                           @Doc("确认数量") Double confirmQty,
                           @Doc("库位编码/ID") String location,
                           @Doc("是否确认提交") boolean submit) {
-        if ("mfg.product_stock_in".equals(record.getString("type")) || "wms.sales_return".equals(record.getString("type"))) {
+        if ("mfg.product_storage_notice".equals(record.getString("type")) || "wms.sales_return".equals(record.getString("type"))) {
             // 成品入库
             // TODO 销售退货跟成品入库有差异，不能通过最外层包含入库，退回来什么标签就入库什么标签
             return productStockIn(record, code, location, submit);

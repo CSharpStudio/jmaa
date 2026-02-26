@@ -66,7 +66,9 @@ public class PgSqlDialect implements SqlDialect {
     @Override
     public void createDatabase(Cursor cr, String name) {
         String sql = "CREATE DATABASE " + name;
+        cr.setAutoCommit(true);
         cr.execute(sql);
+        cr.setAutoCommit(false);
     }
 
     @Override

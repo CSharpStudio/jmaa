@@ -22,7 +22,7 @@ public class ProductOrder extends Model {
             Records orders = record.getRec("craft_order_ids");
             if (orders.any()) {
                 for (Records order : orders) {
-                    if (!"new".equals(order.getString("status"))) {
+                    if (!"draft".equals(order.getString("status"))) {
                         throw new ValidationException(record.l10n("制程单[%s]状态[%s]不能修改数量", order.get("code"), order.getSelection("status")));
                     }
                 }
@@ -45,7 +45,7 @@ public class ProductOrder extends Model {
     @ServiceMethod(label = "生成制程单")
     public Object createCraftOrder(Records records) {
         for (Records record : records) {
-            if (!"new".equals(record.getString("status"))) {
+            if (!"approve".equals(record.getString("status"))) {
                 throw new ValidationException(record.l10n("生产订单[%s]状态[%s]不能生成制程单", record.get("code"), record.getSelection("status")));
             }
             Records craftRoute = record.getRec("craft_route_id");

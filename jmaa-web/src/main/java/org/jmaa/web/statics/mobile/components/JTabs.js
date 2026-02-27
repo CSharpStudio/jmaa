@@ -47,3 +47,11 @@ jmaa.component('JTabs', {
         }
     },
 });
+$.fn.JTabs = function (opt) {
+    let com = $(this).data(name);
+    if (!com) {
+        com = new JTabs($.extend({dom: this}, opt));
+        $(this).data(name, com);
+    }
+    return com;
+};

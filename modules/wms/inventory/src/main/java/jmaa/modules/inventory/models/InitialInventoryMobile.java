@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Model.Meta(name = "wms.initial_inventory_mobile", label = "初始化标签-移动端", inherit = {"wms.initial_inventory"}, table = "wms_initial_inventory")
+@Model.Service(remove = "@edit")
 public class InitialInventoryMobile extends ValueModel {
     static Field material_code = Field.Char().label("物料编码").store(false);
     static Field location_code = Field.Char().label("库位").store(false);
